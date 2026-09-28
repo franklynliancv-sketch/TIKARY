@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#176B52">
+
+<title>TIKARY | Crear cuenta</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   TIKARY - ESTILOS PRINCIPALES
+========================================================= */
+
+:root{
+    --primary:#176B52;
+    --primary-dark:#0E4D3B;
+    --primary-light:#E8F5F0;
+
+    --gold:#D7A62A;
+    --gold-dark:#B88713;
+    --gold-light:#FFF6D9;
+
+    --white:#FFFFFF;
+    --text:#18352D;
+    --muted:#71817B;
+
+    --success:#1D9B62;
+    --danger:#D9534F;
+    --warning:#E7A600;
+
+    --shadow:0 25px 70px rgba(23,107,82,.15);
+    --shadow-soft:0 10px 35px rgba(23,107,82,.08);
+
+    --radius:28px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(215,166,42,.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(23,107,82,.12),
+            transparent 35%
+        ),
+        #F4F8F6;
+}
+
+/* =========================================================
+   FONDO
+========================================================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-5;
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.6;
+    animation:blobFloat 10s ease-in-out infinite alternate;
+}
+
+.blob.one{
+    width:320px;
+    height:320px;
+    left:-100px;
+    top:-80px;
+    background:rgba(23,107,82,.12);
+}
+
+.blob.two{
+    width:380px;
+    height:380px;
+    right:-130px;
+    bottom:-120px;
+    background:rgba(215,166,42,.12);
+    animation-delay:2s;
+}
+
+@keyframes blobFloat{
+
+    from{
+        transform:translate3d(0,0,0) scale(1);
+    }
+
+    to{
+        transform:translate3d(25px,-20px,0) scale(1.08);
+    }
+
+}
+
+/* =========================================================
+   🍃 HOJAS FLOTANTES
+========================================================= */
+
+.leaves{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.leaf{
+    position:absolute;
+    width:25px;
+    height:14px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(23,107,82,.28),
+        rgba(42,139,105,.12)
+    );
+
+    border-radius:100% 0 100% 0;
+
+    opacity:0;
+    animation:leafFloat linear infinite;
+}
+
+.leaf::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:17px;
+    left:12px;
+    top:-2px;
+    background:rgba(23,107,82,.25);
+    transform:rotate(45deg);
+    border-radius:2px;
+}
+
+.leaf:nth-child(1){
+    left:8%;
+    animation-duration:14s;
+    animation-delay:1s;
+    transform:rotate(20deg);
+}
+
+.leaf:nth-child(2){
+    left:23%;
+    animation-duration:18s;
+    animation-delay:5s;
+    transform:rotate(-25deg) scale(.8);
+}
+
+.leaf:nth-child(3){
+    left:42%;
+    animation-duration:16s;
+    animation-delay:2s;
+    transform:rotate(35deg) scale(.7);
+}
+
+.leaf:nth-child(4){
+    left:61%;
+    animation-duration:20s;
+    animation-delay:7s;
+    transform:rotate(-20deg) scale(.9);
+}
+
+.leaf:nth-child(5){
+    left:78%;
+    animation-duration:15s;
+    animation-delay:3s;
+    transform:rotate(25deg) scale(.75);
+}
+
+.leaf:nth-child(6){
+    left:92%;
+    animation-duration:19s;
+    animation-delay:8s;
+    transform:rotate(-35deg) scale(.8);
+}
+
+@keyframes leafFloat{
+
+    0%{
+        top:-40px;
+        opacity:0;
+        transform:translateX(0) rotate(0deg);
+    }
+
+    10%{
+        opacity:.7;
+    }
+
+    50%{
+        transform:translateX(-60px) rotate(180deg);
+    }
+
+    85%{
+        opacity:.45;
+    }
+
+    100%{
+        top:110vh;
+        opacity:0;
+        transform:translateX(80px) rotate(360deg);
+    }
+
+}
+
+/* =========================================================
+   ✨ PARTÍCULAS
+========================================================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-2;
+}
+
+.particle{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:rgba(215,166,42,.35);
+    animation:particleMove 9s linear infinite;
+}
+
+.particle:nth-child(1){
+    left:12%;
+    bottom:-20px;
+    animation-delay:1s;
+}
+
+.particle:nth-child(2){
+    left:35%;
+    bottom:-20px;
+    animation-delay:4s;
+}
+
+.particle:nth-child(3){
+    left:57%;
+    bottom:-20px;
+    animation-delay:2s;
+}
+
+.particle:nth-child(4){
+    left:81%;
+    bottom:-20px;
+    animation-delay:6s;
+}
+
+@keyframes particleMove{
+
+    0%{
+        transform:translateY(0) scale(.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.7;
+    }
+
+    70%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:translateY(-100vh) scale(1.2);
+        opacity:0;
+    }
+
+}
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:35px 20px 80px;
+}
+
+.card{
+    width:min(680px,100%);
+    padding:42px;
+
+    border-radius:var(--radius);
+
+    background:rgba(255,255,255,.90);
+
+    border:1px solid rgba(23,107,82,.08);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+    overflow:hidden;
+}
+
+/* brillo superior */
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:-120px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:260px;
+    height:160px;
+
+    background:rgba(215,166,42,.08);
+    filter:blur(50px);
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   VOLVER
+========================================================= */
+
+.back{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-size:13px;
+    font-weight:900;
+
+    margin-bottom:24px;
+
+    transition:.2s;
+}
+
+.back:hover{
+    color:var(--gold-dark);
+    transform:translateX(-3px);
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-bottom:15px;
+}
+
+.logo{
+    width:110px;
+    height:110px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 6px 20px rgba(23,107,82,.20);
+
+    animation:logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.brand{
+    color:var(--primary);
+    font-size:36px;
+    font-weight:900;
+    letter-spacing:5px;
+}
+
+.subtitle{
+    margin-top:4px;
+    font-size:9px;
+    letter-spacing:3px;
+    font-weight:900;
+    color:var(--muted);
+}
+
+.header h2{
+    margin-top:23px;
+    font-size:22px;
+    font-weight:900;
+    color:var(--primary);
+}
+
+.header p{
+    margin-top:7px;
+    font-size:13px;
+    line-height:1.6;
+    color:var(--muted);
+    font-weight:600;
+}
+
+/* =========================================================
+   FORMULARIO
+========================================================= */
+
+.form{
+    margin-top:28px;
+    position:relative;
+    z-index:2;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    font-size:12px;
+    font-weight:900;
+    color:var(--text);
+}
+
+.input{
+    width:100%;
+    height:50px;
+
+    border:1px solid #DCE6E2;
+
+    border-radius:15px;
+
+    padding:0 15px;
+
+    font-family:inherit;
+    font-size:14px;
+    font-weight:700;
+
+    color:var(--text);
+
+    outline:none;
+
+    background:white;
+
+    transition:.25s;
+}
+
+.input:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(23,107,82,.08);
+
+    background:white;
+}
+
+/* =========================================================
+   DNI
+========================================================= */
+
+.dni-status{
+    margin-top:7px;
+    min-height:19px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.dni-status.success{
+    color:var(--success);
+}
+
+.dni-status.error{
+    color:var(--danger);
+}
+
+/* =========================================================
+   CORREO
+========================================================= */
+
+.email-box{
+    display:flex;
+    align-items:center;
+
+    min-height:50px;
+
+    padding:0 15px;
+
+    border:1px solid #DCE6E2;
+
+    border-radius:15px;
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    font-size:13px;
+    font-weight:900;
+
+    word-break:break-all;
+}
+
+.email-icon{
+    margin-right:9px;
+    font-size:17px;
+}
+
+.account-box{
+    display:none;
+
+    margin-top:10px;
+
+    padding:14px 16px;
+
+    border-radius:15px;
+
+    background:var(--gold-light);
+
+    border:1px solid rgba(215,166,42,.30);
+}
+
+.account-box.show{
+    display:block;
+}
+
+.account-title{
+    font-size:11px;
+    color:var(--gold-dark);
+    font-weight:800;
+}
+
+.account-type{
+    margin-top:3px;
+    font-size:14px;
+    color:var(--text);
+    font-weight:900;
+}
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-wrap{
+    position:relative;
+}
+
+.password-wrap .input{
+    padding-right:48px;
+}
+
+.toggle-password{
+    position:absolute;
+    right:13px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border:none;
+    background:none;
+
+    cursor:pointer;
+
+    font-size:17px;
+    color:var(--muted);
+}
+
+/* =========================================================
+   TERMINOS
+========================================================= */
+
+.terms{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:18px;
+}
+
+.terms input{
+    width:18px;
+    height:18px;
+    margin-top:1px;
+
+    accent-color:var(--primary);
+
+    flex-shrink:0;
+}
+
+.terms label{
+    font-size:11px;
+    line-height:1.5;
+    color:var(--muted);
+    font-weight:700;
+}
+
+.terms a{
+    color:var(--primary);
+    font-weight:900;
+    text-decoration:none;
+}
+
+/* =========================================================
+   BOTÓN REGISTRO
+========================================================= */
+
+.register-btn{
+    width:100%;
+    height:53px;
+
+    margin-top:22px;
+
+    border:none;
+    border-radius:16px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:14px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(23,107,82,.20);
+
+    transition:.25s;
+}
+
+.register-btn:hover{
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(23,107,82,.28);
+}
+
+.register-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-link{
+    text-align:center;
+
+    margin-top:20px;
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:700;
+}
+
+.login-link a{
+    color:var(--primary);
+    font-weight:900;
+    text-decoration:none;
+}
+
+/* =========================================================
+   MENSAJES
+========================================================= */
+
+.message{
+    display:none;
+
+    margin-top:15px;
+
+    padding:12px 14px;
+
+    border-radius:13px;
+
+    font-size:12px;
+    font-weight:800;
+
+    text-align:center;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.success{
+    color:#18804F;
+    background:#E8F7EF;
+}
+
+.message.error{
+    color:var(--danger);
+    background:#FFF0EF;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    margin-top:22px;
+
+    text-align:center;
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    font-weight:700;
+}
+
+.footer strong{
+    color:var(--primary);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+    position:fixed;
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(10,30,24,0.40);
+
+    backdrop-filter:blur(8px);
+
+    z-index:500;
+}
+
+.loading.show{
+    display:flex;
+}
+
+.loading-card{
+    width:min(320px,90%);
+
+    padding:30px;
+
+    border-radius:24px;
+
+    text-align:center;
+
+    background:white;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.25);
+}
+
+.spinner{
+    width:45px;
+    height:45px;
+
+    margin:0 auto 15px;
+
+    border:4px solid #DCE6E2;
+
+    border-top-color:var(--primary);
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.loading-text{
+    color:var(--primary);
+
+    font-size:13px;
+
+    font-weight:900;
+}
+
+/* =========================================================
+   🎵 BOTÓN DE MÚSICA
+========================================================= */
+
+.music-button{
+    position:fixed;
+
+    right:20px;
+    bottom:22px;
+
+    width:58px;
+    height:58px;
+
+    border:none;
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    color:white;
+
+    font-size:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    z-index:1000;
+
+    box-shadow:
+        0 10px 25px rgba(23,107,82,.28),
+        0 0 0 5px rgba(255,255,255,.80);
+
+    transition:.25s ease;
+}
+
+.music-button:hover{
+    transform:scale(1.08);
+}
+
+.music-button:active{
+    transform:scale(.93);
+}
+
+.music-button.playing{
+    animation:musicPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes musicPulse{
+
+    0%,100%{
+        box-shadow:
+            0 10px 25px rgba(23,107,82,.28),
+            0 0 0 5px rgba(255,255,255,.80);
+    }
+
+    50%{
+        box-shadow:
+            0 10px 30px rgba(215,166,42,.35),
+            0 0 0 9px rgba(215,166,42,.12);
+    }
+
+}
+
+/* =========================================================
+   📱 RESPONSIVE
+========================================================= */
+
+@media(max-width:600px){
+
+    .page{
+        padding:22px 13px 90px;
+    }
+
+    .card{
+        padding:28px 20px;
+        border-radius:24px;
+    }
+
+    .brand{
+        font-size:30px;
+        letter-spacing:4px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .logo{
+        width:95px;
+        height:95px;
+    }
+
+    .music-button{
+        width:53px;
+        height:53px;
+        right:16px;
+        bottom:17px;
+        font-size:20px;
+    }
+
+}
+
+/* =========================================================
+   REDUCIR ANIMACIONES SI EL DISPOSITIVO LO SOLICITA
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     🌿 FONDO
+========================================================= -->
+
+<div class="background">
+
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+
+</div>
+
+
+<!-- =========================================================
+     🍃 HOJAS
+========================================================= -->
+
+<div class="leaves">
+
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+    <span class="leaf"></span>
+
+</div>
+
+
+<!-- =========================================================
+     ✨ PARTÍCULAS
+========================================================= -->
+
+<div class="particles">
+
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+
+</div>
+
+
+<!-- =========================================================
+     CONTENIDO
+========================================================= -->
+
+<main class="page">
+
+<section class="card">
+
+    <a href="index.html" class="back">
+        ← Volver
+    </a>
+
+
+    <div class="logo-wrapper">
+
+        <img
+            src="imagenes/logo.jpg"
+            alt="TIKARY"
+            class="logo"
+        >
+
+    </div>
+
+
+    <div class="header">
+
+        <div class="brand">
+            TIKARY
+        </div>
+
+        <div class="subtitle">
+            ORIENTACIÓN · BIENESTAR · ACOMPAÑAMIENTO
+        </div>
+
+        <h2>
+            Crear cuenta 🌿
+        </h2>
+
+        <p>
+            Registra tus datos para acceder a tu espacio personal de TIKARY con tu DNI autorizado.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         FORMULARIO
+    ====================================================== -->
+
+    <form
+        class="form"
+        id="formRegistro"
+    >
+
+        <div class="form-grid">
+
+
+            <div class="field">
+
+                <label for="nombres">
+                    Nombres
+                </label>
+
+                <input
+                    class="input"
+                    type="text"
+                    id="nombres"
+                    placeholder="Ingrese sus nombres"
+                    required
+                    autocomplete="given-name"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="apellidos">
+                    Apellidos
+                </label>
+
+                <input
+                    class="input"
+                    type="text"
+                    id="apellidos"
+                    placeholder="Ingrese sus apellidos"
+                    required
+                    autocomplete="family-name"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label for="dni">
+                    DNI
+                </label>
+
+                <div class="input-wrap">
+
+                    <input
+                        class="input"
+                        type="text"
+                        id="dni"
+                        maxlength="8"
+                        inputmode="numeric"
+                        placeholder="Ingrese su DNI de 8 dígitos"
+                        required
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div
+                    id="dniStatus"
+                    class="dni-status"
+                ></div>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Correo electrónico TIKARY
+                    (Generado automáticamente)
+                </label>
+
+                <div
+                    id="emailBox"
+                    class="email-box"
+                >
+
+                    <span class="email-icon">
+                        ✉️
+                    </span>
+
+                    <span id="correoText">
+                        Ingrese su DNI para generar su correo
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="accountBox"
+                    class="account-box"
+                >
+
+                    <div class="account-title">
+                        TIPO DE PANEL AUTORIZADO
+                    </div>
+
+                    <div
+                        id="accountType"
+                        class="account-type"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="password">
+                    Contraseña
+                </label>
+
+                <div class="password-wrap">
+
+                    <input
+                        class="input"
+                        type="password"
+                        id="password"
+                        placeholder="Crear contraseña"
+                        required
+                        autocomplete="new-password"
+                    >
+
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        data-target="password"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="confirmPassword">
+                    Confirmar contraseña
+                </label>
+
+                <div class="password-wrap">
+
+                    <input
+                        class="input"
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Repita su contraseña"
+                        required
+                        autocomplete="new-password"
+                    >
+
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        data-target="confirmPassword"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="terms">
+
+            <input
+                type="checkbox"
+                id="terms"
+                required
+            >
+
+            <label for="terms">
+
+                Acepto el registro de mi cuenta y el uso de mis datos dentro de la plataforma
+
+                <a href="#">
+                    TIKARY
+                </a>.
+
+            </label>
+
+        </div>
+
+
+        <div
+            id="mensaje"
+            class="message"
+        ></div>
+
+
+        <button
+            type="submit"
+            class="register-btn"
+            id="registerButton"
+        >
+            Crear mi cuenta
+        </button>
+
+
+        <div class="login-link">
+
+            ¿Ya tienes una cuenta?
+
+            <a href="index.html">
+                Ingresar a TIKARY
+            </a>
+
+        </div>
+
+
+    </form>
+
+
+    <div class="footer">
+
+        Tu bienestar también importa.
+
+        <strong>
+            TIKARY
+        </strong>
+
+        te acompaña.
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     LOADING
+========================================================= -->
+
+<div
+    id="loading"
+    class="loading"
+>
+
+    <div class="loading-card">
+
+        <div class="spinner"></div>
+
+        <div
+            id="loadingText"
+            class="loading-text"
+        >
+            Creando tu cuenta...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     🎵 MÚSICA
+========================================================= -->
+
+<audio
+    id="musicaTikary"
+    loop
+    preload="auto"
+>
+
+    <source
+        src="cancion/crearcuenta.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<button
+    id="musicButton"
+    class="music-button"
+    type="button"
+    aria-label="Reproducir música"
+>
+
+    🎵
+
+</button>
+
+
+<!-- =========================================================
+     FIREBASE + FUNCIONES
+========================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const formRegistro =
+    document.getElementById("formRegistro");
+
+const dniInput =
+    document.getElementById("dni");
+
+const dniStatus =
+    document.getElementById("dniStatus");
+
+const correoText =
+    document.getElementById("correoText");
+
+const accountBox =
+    document.getElementById("accountBox");
+
+const accountType =
+    document.getElementById("accountType");
+
+const mensaje =
+    document.getElementById("mensaje");
+
+const loading =
+    document.getElementById("loading");
+
+const loadingText =
+    document.getElementById("loadingText");
+
+
+let datosDniCache = null;
+
+let emailOficialCache = "";
+
+
+/* =========================================================
+   VALIDACIÓN DEL DNI
+========================================================= */
+
+dniInput.addEventListener(
+    "input",
+    function(){
+
+        this.value =
+            this.value
+            .replace(/\D/g,"")
+            .slice(0,8);
+
+    }
+);
+
+
+/* =========================================================
+   BUSCAR DNI EN FIRESTORE
+========================================================= */
+
+dniInput.addEventListener(
+    "input",
+    async () => {
+
+        const dni =
+            dniInput.value.trim();
+
+
+        if(dni.length !== 8){
+
+            dniStatus.textContent = "";
+
+            dniStatus.className =
+                "dni-status";
+
+            correoText.textContent =
+                "Ingrese un DNI de 8 dígitos";
+
+            accountBox.classList.remove("show");
+
+            datosDniCache = null;
+
+            return;
+
+        }
+
+
+        try{
+
+            const docRef =
+                doc(
+                    db,
+                    "dni_permitidos",
+                    dni
+                );
+
+
+            const docSnap =
+                await getDoc(docRef);
+
+
+            if(!docSnap.exists()){
+
+                dniStatus.textContent =
+                    "✖ Este DNI no está autorizado por la administración.";
+
+                dniStatus.className =
+                    "dni-status error";
+
+                correoText.textContent =
+                    "DNI no autorizado";
+
+                accountBox.classList.remove("show");
+
+                datosDniCache = null;
+
+                return;
+
+            }
+
+
+            datosDniCache =
+                docSnap.data();
+
+            datosDniCache.id =
+                docSnap.id;
+
+
+            if(
+                datosDniCache.estado === "bloqueado" ||
+                datosDniCache.permisoCrearCuenta === false
+            ){
+
+                dniStatus.textContent =
+                    "✖ Este DNI se encuentra suspendido o bloqueado.";
+
+                dniStatus.className =
+                    "dni-status error";
+
+                correoText.textContent =
+                    "Acceso restringido";
+
+                accountBox.classList.remove("show");
+
+                datosDniCache = null;
+
+                return;
+
+            }
+
+
+            if(
+                datosDniCache.cuentaCreada ||
+                datosDniCache.estado === "usado"
+            ){
+
+                dniStatus.textContent =
+                    "✖ Este DNI ya tiene una cuenta creada.";
+
+                dniStatus.className =
+                    "dni-status error";
+
+                correoText.textContent =
+                    "DNI ya utilizado";
+
+                accountBox.classList.remove("show");
+
+                datosDniCache = null;
+
+                return;
+
+            }
+
+
+            emailOficialCache =
+                datosDniCache.correoGenerado ||
+                `${dni}@tikary1.com`;
+
+
+            const panelNombre =
+                datosDniCache.panel ||
+                "tikary1";
+
+
+            const tipoRol =
+                datosDniCache.tipo ||
+                "estudiante";
+
+
+            dniStatus.textContent =
+                "✓ DNI autorizado correctamente.";
+
+            dniStatus.className =
+                "dni-status success";
+
+
+            correoText.textContent =
+                emailOficialCache;
+
+
+            accountType.textContent =
+                `Tipo: ${tipoRol.toUpperCase()} | Panel: ${panelNombre.toUpperCase()}`;
+
+
+            accountBox.classList.add("show");
+
+
+        }catch(error){
+
+            console.error(
+                "Error al verificar DNI:",
+                error
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOSTRAR / OCULTAR CONTRASEÑA
+========================================================= */
+
+document
+.querySelectorAll(".toggle-password")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            const target =
+                document.getElementById(
+                    this.dataset.target
+                );
+
+
+            if(target.type === "password"){
+
+                target.type = "text";
+
+                this.textContent = "🙈";
+
+            }else{
+
+                target.type = "password";
+
+                this.textContent = "👁️";
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   REGISTRO
+========================================================= */
+
+formRegistro.addEventListener(
+    "submit",
+    async (e) => {
+
+        e.preventDefault();
+
+
+        const nombres =
+            document
+            .getElementById("nombres")
+            .value
+            .trim();
+
+
+        const apellidos =
+            document
+            .getElementById("apellidos")
+            .value
+            .trim();
+
+
+        const password =
+            document
+            .getElementById("password")
+            .value;
+
+
+        const confirmPassword =
+            document
+            .getElementById("confirmPassword")
+            .value;
+
+
+        if(!datosDniCache){
+
+            mensaje.className =
+                "message show error";
+
+            mensaje.textContent =
+                "Por favor, introduce un DNI válido y autorizado.";
+
+            return;
+
+        }
+
+
+        if(password.length < 6){
+
+            mensaje.className =
+                "message show error";
+
+            mensaje.textContent =
+                "La contraseña debe tener al menos 6 caracteres.";
+
+            return;
+
+        }
+
+
+        if(password !== confirmPassword){
+
+            mensaje.className =
+                "message show error";
+
+            mensaje.textContent =
+                "Las contraseñas no coinciden.";
+
+            return;
+
+        }
+
+
+        loadingText.textContent =
+            "Creando tu cuenta...";
+
+
+        loading.classList.add("show");
+
+
+        try{
+
+            /* Crear usuario */
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    emailOficialCache,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            /* Actualizar DNI */
+
+            const dniRef =
+                doc(
+                    db,
+                    "dni_permitidos",
+                    datosDniCache.id
+                );
+
+
+            await updateDoc(
+                dniRef,
+                {
+
+                    estado:
+                        "usado",
+
+                    cuentaCreada:
+                        true,
+
+                    nombres:
+                        nombres,
+
+                    apellidos:
+                        apellidos,
+
+                    nombreCompleto:
+                        `${nombres} ${apellidos}`,
+
+                    password:
+                        password,
+
+                    uidUsuario:
+                        user.uid,
+
+                    fechaActualizacion:
+                        new Date().toISOString()
+
+                }
+            );
+
+
+            loadingText.textContent =
+                "¡Cuenta creada con éxito!";
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                1500
+            );
+
+
+        }catch(error){
+
+            loading.classList.remove("show");
+
+            mensaje.className =
+                "message show error";
+
+
+            if(
+                error.code ===
+                "auth/email-already-in-use"
+            ){
+
+                mensaje.textContent =
+                    "Este DNI ya cuenta con un registro activo en el sistema.";
+
+            }else{
+
+                mensaje.textContent =
+                    "Error: " + error.message;
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   🎵 SISTEMA DE MÚSICA
+========================================================= */
+
+const musicaTikary =
+    document.getElementById("musicaTikary");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+function actualizarBotonMusica(){
+
+    if(musicaTikary.paused){
+
+        musicButton.textContent =
+            "🎵";
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
+        musicButton.setAttribute(
+            "aria-label",
+            "Reproducir música"
+        );
+
+    }else{
+
+        musicButton.textContent =
+            "⏸️";
+
+        musicButton.classList.add(
+            "playing"
+        );
+
+        musicButton.setAttribute(
+            "aria-label",
+            "Pausar música"
+        );
+
+    }
+
+}
+
+
+/* Botón */
+
+musicButton.addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            if(musicaTikary.paused){
+
+                await musicaTikary.play();
+
+            }else{
+
+                musicaTikary.pause();
+
+            }
+
+            actualizarBotonMusica();
+
+        }catch(error){
+
+            console.log(
+                "No se pudo reproducir la música:",
+                error
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTOPLAY
+========================================================= */
+
+window.addEventListener(
+    "load",
+    async () => {
+
+        try{
+
+            await musicaTikary.play();
+
+            actualizarBotonMusica();
+
+        }catch(error){
+
+            /*
+             Algunos navegadores móviles
+             bloquean automáticamente el audio.
+             El botón 🎵 seguirá disponible.
+            */
+
+            actualizarBotonMusica();
+
+        }
+
+    }
+);
+
+
+musicaTikary.addEventListener(
+    "play",
+    actualizarBotonMusica
+);
+
+
+musicaTikary.addEventListener(
+    "pause",
+    actualizarBotonMusica
+);
+
+
+/* =========================================================
+   PRIMER TOQUE EN LA PÁGINA
+   Ayuda a activar la música en móviles
+========================================================= */
+
+document.addEventListener(
+    "click",
+    async () => {
+
+        if(
+            musicaTikary.paused &&
+            musicaTikary.currentTime === 0
+        ){
+
+            try{
+
+                await musicaTikary.play();
+
+                actualizarBotonMusica();
+
+            }catch(error){
+
+                console.log(
+                    "Autoplay bloqueado por el navegador."
+                );
+
+            }
+
+        }
+
+    },
+    {once:true}
+);
+
+</script>
+
+</body>
+</html>
