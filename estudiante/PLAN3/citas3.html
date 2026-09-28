@@ -1,0 +1,8173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta
+    name="theme-color"
+    content="#176B52"
+>
+
+<meta
+    name="description"
+    content="TIKARY 3 — Bandeja de citas, orientación y comunicación con profesionales."
+>
+
+<title>TIKARY 3 | Mis Citas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   TIKARY 3
+   MIS CITAS
+   DISEÑO RESPONSIVE PREMIUM
+========================================================= */
+
+:root{
+
+    --green:#176B52;
+    --green-dark:#0D4D3B;
+    --green-deep:#083A2D;
+    --green-light:#2D9272;
+    --green-soft:#EAF8F2;
+
+    --gold:#D9A441;
+    --gold-soft:#FFF7E5;
+
+    --blue:#4778E8;
+    --blue-soft:#EEF4FF;
+
+    --purple:#7657D9;
+    --purple-soft:#F2EEFF;
+
+    --red:#D95D5D;
+    --red-soft:#FFF0F0;
+
+    --orange:#E58A35;
+    --orange-soft:#FFF4E8;
+
+    --white:#FFFFFF;
+    --cream:#F7FBF9;
+
+    --text:#19332A;
+    --text-soft:#60756D;
+    --text-light:#8A9A94;
+
+    --border:#E1ECE7;
+
+    --shadow-sm:
+        0 5px 20px rgba(24,74,59,.06);
+
+    --shadow:
+        0 15px 45px rgba(24,74,59,.10);
+
+    --shadow-lg:
+        0 28px 80px rgba(24,74,59,.16);
+
+    --radius-sm:14px;
+    --radius:22px;
+    --radius-lg:32px;
+
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:"Inter",sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 5% 0%,
+            rgba(45,146,114,.13),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 95% 8%,
+            rgba(217,164,65,.09),
+            transparent 24%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(118,87,217,.05),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #FAFDFC 0%,
+            #F4FAF7 50%,
+            #FFFFFF 100%
+        );
+
+    overflow-x:hidden;
+
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#F0F6F3;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B7D3C7;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--green-light);
+}
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+.loading-screen{
+
+    position:fixed;
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(45,146,114,.18),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            #F9FFFC,
+            #EEF9F4
+        );
+
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
+
+}
+
+.loading-screen.hidden{
+
+    opacity:0;
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+.loading-box{
+
+    width:min(430px,90%);
+
+    text-align:center;
+
+    padding:45px 30px;
+
+}
+
+.loading-logo{
+
+    width:88px;
+    height:88px;
+
+    object-fit:cover;
+
+    border-radius:27px;
+
+    background:#fff;
+
+    padding:6px;
+
+    box-shadow:
+        0 16px 50px rgba(23,107,82,.17);
+
+    animation:
+        loadingFloat 2.2s ease-in-out infinite;
+
+}
+
+.loading-spinner{
+
+    width:38px;
+    height:38px;
+
+    margin:28px auto 20px;
+
+    border:4px solid #DDEEE7;
+
+    border-top-color:var(--green);
+
+    border-radius:50%;
+
+    animation:spin .9s linear infinite;
+
+}
+
+.loading-title{
+
+    font-size:20px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    margin-bottom:8px;
+
+}
+
+.loading-text{
+
+    font-size:13px;
+
+    color:var(--text-soft);
+
+    line-height:1.6;
+
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes loadingFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header{
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    width:100%;
+
+    padding:
+        13px
+        max(22px,env(safe-area-inset-right))
+        13px
+        max(22px,env(safe-area-inset-left));
+
+    background:rgba(255,255,255,.84);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border-bottom:1px solid rgba(225,236,231,.85);
+
+}
+
+.header-inner{
+
+    width:min(1500px,100%);
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    min-width:0;
+
+}
+
+.brand-logo{
+
+    width:48px;
+    height:48px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    background:#fff;
+
+    padding:3px;
+
+    box-shadow:
+        0 7px 20px rgba(23,107,82,.13);
+
+}
+
+.brand-info{
+    min-width:0;
+}
+
+.brand-title{
+
+    font-size:17px;
+
+    line-height:1.1;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+}
+
+.brand-subtitle{
+
+    margin-top:4px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    color:var(--text-light);
+
+}
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+.user-badge{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 14px;
+
+    background:var(--green-soft);
+
+    border:1px solid #D6EEE4;
+
+    color:var(--green-dark);
+
+    border-radius:100px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.user-dot{
+
+    width:8px;
+    height:8px;
+
+    flex:none;
+
+    border-radius:50%;
+
+    background:#36B77D;
+
+    box-shadow:
+        0 0 0 4px rgba(54,183,125,.13);
+
+}
+
+.back-btn{
+
+    border:none;
+    outline:none;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:11px 16px;
+
+    border-radius:13px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    color:var(--green-dark);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:.25s ease;
+
+}
+
+.back-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#C7E1D7;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    width:min(1500px,calc(100% - 44px));
+
+    margin:0 auto;
+
+    padding:
+        42px
+        0
+        65px;
+
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:minmax(0,1fr) 360px;
+
+    align-items:center;
+
+    gap:38px;
+
+    padding:38px;
+
+    overflow:hidden;
+
+    border-radius:34px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #FFFFFF 0%,
+            #F6FCF9 55%,
+            #ECF8F2 100%
+        );
+
+    border:1px solid #DDECE6;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:390px;
+    height:390px;
+
+    right:-160px;
+    top:-190px;
+
+    border-radius:50%;
+
+    background:
+        rgba(45,146,114,.09);
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:210px;
+    height:210px;
+
+    left:38%;
+    bottom:-160px;
+
+    border-radius:50%;
+
+    background:
+        rgba(217,164,65,.08);
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.hero-label{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 13px;
+
+    background:#fff;
+
+    border:1px solid #DDEDE7;
+
+    color:var(--green);
+
+    border-radius:100px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+    box-shadow:
+        0 5px 15px rgba(23,107,82,.06);
+
+}
+
+.hero-label-dot{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#39B77C;
+
+    box-shadow:
+        0 0 0 4px rgba(57,183,124,.10);
+
+}
+
+.hero h1{
+
+    font-size:clamp(34px,4vw,55px);
+
+    line-height:1.03;
+
+    letter-spacing:-2px;
+
+    color:var(--green-dark);
+
+    margin-bottom:16px;
+
+    font-weight:800;
+
+}
+
+.hero p{
+
+    max-width:700px;
+
+    color:var(--text-soft);
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual{
+
+    position:relative;
+
+    z-index:3;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.citas-image-wrap{
+
+    position:relative;
+
+    width:100%;
+
+    height:205px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:5px solid rgba(255,255,255,.94);
+
+    box-shadow:
+        0 18px 48px rgba(23,107,82,.16);
+
+    background:#EAF5F0;
+
+}
+
+.citas-image{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .6s ease;
+
+}
+
+.citas-image-wrap:hover .citas-image{
+
+    transform:scale(1.045);
+
+}
+
+.image-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    padding:18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 45%,
+            rgba(6,49,37,.48) 100%
+        );
+
+}
+
+.image-caption{
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.18);
+
+}
+
+.hero-status{
+
+    width:100%;
+
+    padding:17px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.94);
+
+    border:1px solid #DFEEE8;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.status-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+}
+
+.status-icon{
+
+    width:42px;
+    height:42px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:var(--green-soft);
+
+    font-size:20px;
+
+}
+
+.status-online{
+
+    font-size:10px;
+
+    font-weight:800;
+
+    color:#269A66;
+
+    background:#EAF9F1;
+
+    padding:6px 9px;
+
+    border-radius:100px;
+
+}
+
+.status-title{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    margin-bottom:4px;
+
+}
+
+.status-text{
+
+    font-size:11px;
+
+    color:var(--text-light);
+
+    line-height:1.5;
+
+}
+
+/* =========================================================
+   ACTION GRID
+========================================================= */
+
+.action-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:20px;
+
+    margin-bottom:28px;
+
+}
+
+.action-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:220px;
+
+    padding:28px;
+
+    border-radius:25px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+
+}
+
+.action-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow);
+
+    border-color:#CFE4DA;
+
+}
+
+.action-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    right:-75px;
+    bottom:-100px;
+
+}
+
+.action-card.institutional::after{
+
+    background:var(--green-soft);
+
+}
+
+.action-card.independent::after{
+
+    background:var(--purple-soft);
+
+}
+
+.action-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:20px;
+
+}
+
+.action-icon{
+
+    width:54px;
+    height:54px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:17px;
+
+    font-size:25px;
+
+}
+
+.institutional .action-icon{
+
+    background:var(--green-soft);
+
+}
+
+.independent .action-icon{
+
+    background:var(--purple-soft);
+
+}
+
+.action-tag{
+
+    font-size:9px;
+
+    font-weight:800;
+
+    padding:7px 10px;
+
+    border-radius:100px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+.institutional .action-tag{
+
+    color:var(--green);
+
+    background:var(--green-soft);
+
+}
+
+.independent .action-tag{
+
+    color:var(--purple);
+
+    background:var(--purple-soft);
+
+}
+
+.action-card h2{
+
+    font-size:19px;
+
+    color:var(--green-dark);
+
+    margin-bottom:7px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.action-card p{
+
+    color:var(--text-soft);
+
+    font-size:12px;
+
+    line-height:1.65;
+
+    max-width:600px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.action-btn{
+
+    margin-top:20px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    border:none;
+
+    padding:12px 17px;
+
+    border-radius:13px;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.institutional .action-btn{
+
+    background:var(--green);
+
+    color:#fff;
+
+}
+
+.independent .action-btn{
+
+    background:#6C50CE;
+
+    color:#fff;
+
+}
+
+.action-btn:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(1.05);
+
+}
+
+/* =========================================================
+   NUEVO: PANEL DE AGENDA
+   SOLO VISUAL — NO MODIFICA FIREBASE
+========================================================= */
+
+.agenda-dashboard{
+
+    margin-bottom:28px;
+
+    padding:25px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFFFFF 0%,
+            #F7FCF9 100%
+        );
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.agenda-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:20px;
+
+}
+
+.agenda-kicker{
+
+    color:var(--green);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+    margin-bottom:5px;
+
+}
+
+.agenda-heading h2{
+
+    color:var(--green-dark);
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+.agenda-heading p{
+
+    margin-top:5px;
+
+    color:var(--text-light);
+
+    font-size:11px;
+
+}
+
+.agenda-view-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:11px 15px;
+
+    border-radius:12px;
+
+    background:var(--green-soft);
+
+    color:var(--green);
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    transition:.25s ease;
+
+}
+
+.agenda-view-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#DDF3E9;
+
+}
+
+/* =========================================================
+   ESTADÍSTICAS
+========================================================= */
+
+.agenda-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+.agenda-stat{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px;
+
+    border-radius:17px;
+
+    background:#fff;
+
+    border:1px solid #E4EEE9;
+
+    transition:.25s ease;
+
+}
+
+.agenda-stat:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.agenda-stat-icon{
+
+    width:40px;
+    height:40px;
+
+    flex:none;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:var(--green-soft);
+
+    font-size:18px;
+
+}
+
+.agenda-stat:nth-child(2) .agenda-stat-icon{
+
+    background:var(--blue-soft);
+
+}
+
+.agenda-stat:nth-child(3) .agenda-stat-icon{
+
+    background:var(--gold-soft);
+
+}
+
+.agenda-stat:nth-child(4) .agenda-stat-icon{
+
+    background:var(--purple-soft);
+
+}
+
+.agenda-stat strong{
+
+    display:block;
+
+    color:var(--green-dark);
+
+    font-size:20px;
+
+    line-height:1;
+
+}
+
+.agenda-stat small{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:var(--text-light);
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+/* =========================================================
+   CALENDARIO + LATERAL
+========================================================= */
+
+.agenda-layout{
+
+    display:grid;
+
+    grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
+
+    gap:16px;
+
+}
+
+.calendar-panel{
+
+    padding:20px;
+
+    border-radius:21px;
+
+    background:#fff;
+
+    border:1px solid #E4EEE9;
+
+}
+
+.calendar-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+}
+
+.calendar-month{
+
+    text-align:center;
+
+}
+
+.calendar-month strong{
+
+    display:block;
+
+    color:var(--green-dark);
+
+    font-size:15px;
+
+    text-transform:capitalize;
+
+}
+
+.calendar-month small{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:var(--text-light);
+
+    font-size:9px;
+
+}
+
+.calendar-nav{
+
+    width:35px;
+    height:35px;
+
+    display:grid;
+
+    place-items:center;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#F2F7F4;
+
+    color:var(--green);
+
+    font-size:18px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.calendar-nav:hover{
+
+    background:var(--green-soft);
+
+    transform:scale(1.04);
+
+}
+
+.calendar-weekdays{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:5px;
+
+    margin-bottom:6px;
+
+}
+
+.calendar-weekdays div{
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:8px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+}
+
+.calendar-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:5px;
+
+}
+
+.calendar-day{
+
+    position:relative;
+
+    min-height:45px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#FAFCFB;
+
+    color:var(--text);
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.calendar-day:hover{
+
+    background:var(--green-soft);
+
+    color:var(--green);
+
+}
+
+.calendar-day.other-month{
+
+    color:#B8C5C0;
+
+    background:#FBFCFC;
+
+}
+
+.calendar-day.today{
+
+    box-shadow:
+        inset 0 0 0 2px rgba(23,107,82,.24);
+
+}
+
+.calendar-day.selected{
+
+    color:#fff;
+
+    background:var(--green);
+
+    box-shadow:
+        0 7px 15px rgba(23,107,82,.18);
+
+}
+
+.calendar-day.has-events::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:5px;
+
+    width:5px;
+    height:5px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+}
+
+.calendar-day.selected.has-events::after{
+
+    background:#fff;
+
+}
+
+.calendar-day .event-count{
+
+    position:absolute;
+
+    top:4px;
+
+    right:5px;
+
+    min-width:13px;
+    height:13px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:50%;
+
+    background:var(--gold-soft);
+
+    color:#9B721D;
+
+    font-size:7px;
+
+}
+
+.calendar-day.selected .event-count{
+
+    background:rgba(255,255,255,.2);
+
+    color:#fff;
+
+}
+
+.calendar-legend{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:13px;
+
+    padding-top:12px;
+
+    border-top:1px solid #EEF3F0;
+
+    color:var(--text-light);
+
+    font-size:8px;
+
+}
+
+.legend-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+}
+
+.legend-dot{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+}
+
+.legend-today{
+
+    width:9px;
+    height:9px;
+
+    border-radius:3px;
+
+    border:2px solid rgba(23,107,82,.25);
+
+}
+
+/* =========================================================
+   AGENDA LATERAL
+========================================================= */
+
+.agenda-side{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.next-appointment{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:20px;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-dark),
+            var(--green)
+        );
+
+    color:#fff;
+
+    box-shadow:
+        0 15px 35px rgba(23,107,82,.15);
+
+}
+
+.next-appointment::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    right:-65px;
+    top:-70px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.07);
+
+}
+
+.next-label{
+
+    position:relative;
+
+    z-index:1;
+
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    opacity:.72;
+
+}
+
+.next-title{
+
+    position:relative;
+
+    z-index:1;
+
+    margin-top:7px;
+
+    font-size:16px;
+
+    font-weight:800;
+
+}
+
+.next-date{
+
+    position:relative;
+
+    z-index:1;
+
+    margin-top:5px;
+
+    font-size:10px;
+
+    opacity:.8;
+
+}
+
+.next-details{
+
+    position:relative;
+
+    z-index:1;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:15px;
+
+}
+
+.next-pill{
+
+    padding:6px 8px;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.12);
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+.today-panel{
+
+    padding:19px;
+
+    border-radius:21px;
+
+    background:#fff;
+
+    border:1px solid #E4EEE9;
+
+    flex:1;
+
+}
+
+.today-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:12px;
+
+}
+
+.today-head strong{
+
+    color:var(--green-dark);
+
+    font-size:13px;
+
+}
+
+.today-head span{
+
+    color:var(--text-light);
+
+    font-size:9px;
+
+}
+
+.today-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    max-height:160px;
+
+    overflow:auto;
+
+}
+
+.today-item{
+
+    display:grid;
+
+    grid-template-columns:48px minmax(0,1fr);
+
+    gap:9px;
+
+    align-items:center;
+
+    padding:9px;
+
+    border-radius:12px;
+
+    background:#F7FAF8;
+
+    border:1px solid #EAF0ED;
+
+}
+
+.today-time{
+
+    color:var(--green);
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+.today-professional{
+
+    color:var(--green-dark);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.today-specialty{
+
+    margin-top:2px;
+
+    color:var(--text-light);
+
+    font-size:8px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.today-empty{
+
+    padding:17px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:9px;
+
+    line-height:1.6;
+
+}
+
+/* =========================================================
+   DÍA SELECCIONADO
+========================================================= */
+
+.selected-day-panel{
+
+    margin-top:16px;
+
+    padding:18px;
+
+    border-radius:19px;
+
+    background:#fff;
+
+    border:1px solid #E4EEE9;
+
+}
+
+.selected-day-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:12px;
+
+}
+
+.selected-day-header strong{
+
+    color:var(--green-dark);
+
+    font-size:13px;
+
+    text-transform:capitalize;
+
+}
+
+.selected-day-header span{
+
+    padding:5px 8px;
+
+    border-radius:8px;
+
+    background:var(--green-soft);
+
+    color:var(--green);
+
+    font-size:8px;
+
+    font-weight:800;
+
+}
+
+.selected-appointments{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:9px;
+
+}
+
+.selected-appointment{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:11px;
+
+    border-radius:13px;
+
+    background:#F8FBF9;
+
+    border:1px solid #E9F0ED;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.selected-appointment:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#CFE3D9;
+
+}
+
+.selected-time{
+
+    min-width:45px;
+
+    color:var(--green);
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+.selected-info{
+
+    min-width:0;
+
+}
+
+.selected-professional{
+
+    color:var(--green-dark);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.selected-specialty{
+
+    margin-top:2px;
+
+    color:var(--text-light);
+
+    font-size:8px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.selected-empty{
+
+    padding:12px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:9px;
+
+}
+
+/* =========================================================
+   INBOX
+========================================================= */
+
+.inbox-section{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    box-shadow:var(--shadow-sm);
+
+    overflow:hidden;
+
+}
+
+.inbox-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:27px 30px;
+
+    border-bottom:1px solid #EAF0ED;
+
+}
+
+.inbox-title-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+.inbox-icon{
+
+    width:46px;
+    height:46px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:14px;
+
+    background:var(--green-soft);
+
+    font-size:21px;
+
+}
+
+.inbox-title{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+}
+
+.inbox-subtitle{
+
+    margin-top:4px;
+
+    font-size:11px;
+
+    color:var(--text-light);
+
+}
+
+.filters{
+
+    display:flex;
+
+    gap:6px;
+
+    padding:5px;
+
+    border-radius:13px;
+
+    background:#F4F8F6;
+
+    border:1px solid #E6EFEB;
+
+}
+
+.filter-btn{
+
+    border:none;
+
+    background:transparent;
+
+    padding:9px 13px;
+
+    border-radius:9px;
+
+    font-family:inherit;
+
+    color:var(--text-soft);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    white-space:nowrap;
+
+}
+
+.filter-btn:hover{
+
+    color:var(--green);
+
+}
+
+.filter-btn.active{
+
+    background:#fff;
+
+    color:var(--green);
+
+    box-shadow:
+        0 4px 12px rgba(23,107,82,.08);
+
+}
+
+/* =========================================================
+   APPOINTMENTS
+========================================================= */
+
+.appointments-list{
+
+    padding:22px;
+
+}
+
+.appointment-card{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:auto minmax(0,1fr) auto;
+
+    gap:18px;
+
+    align-items:center;
+
+    padding:20px;
+
+    border:1px solid #E5EFEB;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFFFFF,
+            #FBFDFC
+        );
+
+    margin-bottom:12px;
+
+    transition:.25s ease;
+
+}
+
+.appointment-card:last-child{
+
+    margin-bottom:0;
+
+}
+
+.appointment-card:hover{
+
+    border-color:#CFE5DA;
+
+    box-shadow:
+        0 10px 28px rgba(23,107,82,.07);
+
+    transform:translateY(-2px);
+
+}
+
+.professional-icon{
+
+    width:58px;
+    height:58px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:18px;
+
+    background:var(--green-soft);
+
+    font-size:27px;
+
+}
+
+.professional-main{
+
+    min-width:0;
+
+}
+
+.professional-top{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:6px;
+
+}
+
+.professional-name{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+}
+
+.type-badge{
+
+    font-size:9px;
+
+    font-weight:800;
+
+    padding:5px 8px;
+
+    border-radius:100px;
+
+    text-transform:uppercase;
+
+}
+
+.type-institutional{
+
+    color:var(--green);
+
+    background:var(--green-soft);
+
+}
+
+.type-independent{
+
+    color:var(--purple);
+
+    background:var(--purple-soft);
+
+}
+
+.professional-specialty{
+
+    font-size:11px;
+
+    color:var(--text-soft);
+
+    margin-bottom:11px;
+
+}
+
+.appointment-info{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+}
+
+.info-pill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:6px 9px;
+
+    border-radius:8px;
+
+    background:#F5F8F6;
+
+    color:#63766F;
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+.appointment-actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:9px;
+
+}
+
+.status-badge{
+
+    padding:7px 10px;
+
+    border-radius:100px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    background:#EAF8F0;
+
+    color:#238B5E;
+
+}
+
+.status-badge.cancelada{
+
+    background:var(--red-soft);
+
+    color:var(--red);
+
+}
+
+.status-badge.confirmada{
+
+    background:var(--blue-soft);
+
+    color:var(--blue);
+
+}
+
+.status-badge.pendiente{
+
+    background:var(--gold-soft);
+
+    color:#AA7A1B;
+
+}
+
+.card-btn{
+
+    border:none;
+
+    padding:8px 11px;
+
+    border-radius:9px;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.chat-btn{
+
+    color:var(--green);
+
+    background:var(--green-soft);
+
+}
+
+.cancel-btn{
+
+    color:var(--red);
+
+    background:var(--red-soft);
+
+}
+
+.detail-btn{
+
+    color:#6C50CE;
+
+    background:var(--purple-soft);
+
+}
+
+.card-btn:hover{
+
+    transform:translateY(-1px);
+
+    filter:brightness(.98);
+
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-state{
+
+    padding:68px 25px;
+
+    text-align:center;
+
+}
+
+.empty-illustration{
+
+    width:82px;
+    height:82px;
+
+    margin:0 auto 18px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #EEF9F4,
+            #F8FCFA
+        );
+
+    border:1px solid #DFEEE8;
+
+    font-size:35px;
+
+    box-shadow:
+        0 10px 30px rgba(23,107,82,.07);
+
+}
+
+.empty-state h3{
+
+    font-size:19px;
+
+    color:var(--green-dark);
+
+    margin-bottom:8px;
+
+}
+
+.empty-state p{
+
+    max-width:470px;
+
+    margin:0 auto;
+
+    color:var(--text-soft);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+.empty-btn{
+
+    margin-top:20px;
+
+    border:none;
+
+    padding:12px 17px;
+
+    border-radius:12px;
+
+    background:var(--green);
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+}
+
+.empty-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(11,48,37,.32);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+}
+
+.modal-overlay.show{
+
+    display:flex;
+
+    animation:fadeIn .2s ease;
+
+}
+
+.modal{
+
+    width:min(570px,100%);
+
+    max-height:min(90vh,760px);
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border:1px solid #E0ECE7;
+
+    border-radius:28px;
+
+    box-shadow:
+        0 30px 90px rgba(11,48,37,.22);
+
+    animation:modalIn .28s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:23px 25px;
+
+    border-bottom:1px solid #EAF0ED;
+
+}
+
+.modal-title-wrap{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.modal-icon{
+
+    width:43px;
+    height:43px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:var(--green-soft);
+
+    font-size:20px;
+
+}
+
+.modal-title{
+
+    font-size:17px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+}
+
+.modal-subtitle{
+
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:var(--text-light);
+
+}
+
+.close-modal{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#F3F7F5;
+
+    color:#60746C;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.2s ease;
+
+}
+
+.close-modal:hover{
+
+    background:#EAF2EE;
+
+}
+
+.modal-body{
+
+    padding:25px;
+
+}
+
+/* =========================================================
+   NUEVO: DETALLE DE CITA
+========================================================= */
+
+.detail-modal{
+
+    width:min(620px,100%);
+
+}
+
+.detail-hero{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-soft),
+            #F8FCFA
+        );
+
+    border:1px solid #DDEDE6;
+
+    margin-bottom:18px;
+
+}
+
+.detail-avatar{
+
+    width:62px;
+    height:62px;
+
+    display:grid;
+
+    place-items:center;
+
+    flex:none;
+
+    border-radius:19px;
+
+    background:#fff;
+
+    font-size:29px;
+
+    box-shadow:0 8px 20px rgba(23,107,82,.08);
+
+}
+
+.detail-professional{
+
+    min-width:0;
+
+}
+
+.detail-professional strong{
+
+    display:block;
+
+    color:var(--green-dark);
+
+    font-size:15px;
+
+}
+
+.detail-professional span{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:var(--text-soft);
+
+    font-size:10px;
+
+}
+
+.detail-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+}
+
+.detail-item{
+
+    padding:13px;
+
+    border-radius:14px;
+
+    background:#F8FAF9;
+
+    border:1px solid #E7EFEB;
+
+}
+
+.detail-item.full{
+
+    grid-column:1 / -1;
+
+}
+
+.detail-item-label{
+
+    color:var(--text-light);
+
+    font-size:8px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+.detail-item-value{
+
+    margin-top:5px;
+
+    color:var(--green-dark);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+}
+
+.detail-status{
+
+    display:inline-flex;
+
+    padding:5px 8px;
+
+    border-radius:8px;
+
+    background:var(--green-soft);
+
+    color:var(--green);
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+.detail-status.cancelada{
+
+    background:var(--red-soft);
+
+    color:var(--red);
+
+}
+
+.detail-status.confirmada{
+
+    background:var(--blue-soft);
+
+    color:var(--blue);
+
+}
+
+.detail-status.pendiente{
+
+    background:var(--gold-soft);
+
+    color:#AA7A1B;
+
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-group{
+
+    margin-bottom:17px;
+
+}
+
+.form-label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:var(--green-dark);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+.form-control{
+
+    width:100%;
+
+    padding:13px 14px;
+
+    border-radius:12px;
+
+    border:1px solid #DDE9E4;
+
+    background:#FBFDFC;
+
+    color:var(--text);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    outline:none;
+
+    transition:.2s ease;
+
+}
+
+.form-control:focus{
+
+    border-color:#83BDAA;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 0 4px rgba(45,146,114,.08);
+
+}
+
+textarea.form-control{
+
+    min-height:105px;
+
+    resize:vertical;
+
+}
+
+.modal-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    padding:18px 25px;
+
+    border-top:1px solid #EAF0ED;
+
+}
+
+.modal-btn{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+.modal-btn.secondary{
+
+    background:#F1F6F3;
+
+    color:#61756D;
+
+}
+
+.modal-btn.primary{
+
+    background:var(--green);
+
+    color:#fff;
+
+    box-shadow:
+        0 7px 18px rgba(23,107,82,.18);
+
+}
+
+.modal-btn:hover{
+
+    transform:translateY(-1px);
+
+}
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-modal{
+
+    width:min(570px,100%);
+
+}
+
+.chat-messages{
+
+    height:330px;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+    background:#F8FBF9;
+
+}
+
+.message{
+
+    max-width:78%;
+
+    padding:11px 13px;
+
+    margin-bottom:10px;
+
+    border-radius:15px;
+
+    font-size:11px;
+
+    line-height:1.55;
+
+}
+
+.message.professional{
+
+    margin-right:auto;
+
+    background:#fff;
+
+    border:1px solid #E1ECE7;
+
+    border-bottom-left-radius:5px;
+
+}
+
+.message.student{
+
+    margin-left:auto;
+
+    background:var(--green);
+
+    color:#fff;
+
+    border-bottom-right-radius:5px;
+
+}
+
+.message-time{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:8px;
+
+    opacity:.55;
+
+    text-align:right;
+
+}
+
+.chat-input-area{
+
+    display:flex;
+
+    gap:8px;
+
+    padding:15px;
+
+    border-top:1px solid #E6EEEB;
+
+}
+
+.chat-input{
+
+    flex:1;
+
+    border:1px solid #DDE9E4;
+
+    background:#FAFCFB;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+}
+
+.chat-send{
+
+    width:43px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--green);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+/* =========================================================
+   CONFIRMATION
+========================================================= */
+
+.confirmation-panel{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:28px;
+
+    z-index:6000;
+
+    width:min(430px,calc(100% - 30px));
+
+    transform:
+        translate(-50%,30px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    padding:17px 18px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    border:1px solid #DCEBE5;
+
+    box-shadow:var(--shadow-lg);
+
+    transition:.3s ease;
+
+}
+
+.confirmation-panel.show{
+
+    transform:
+        translate(-50%,0);
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.confirmation-content{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.confirmation-icon{
+
+    width:42px;
+    height:42px;
+
+    flex:none;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:var(--green-soft);
+
+    color:var(--green);
+
+    font-size:20px;
+
+}
+
+.confirmation-title{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    margin-bottom:3px;
+
+}
+
+.confirmation-text{
+
+    font-size:10px;
+
+    color:var(--text-soft);
+
+    line-height:1.5;
+
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    z-index:7000;
+
+    max-width:350px;
+
+    padding:13px 16px;
+
+    border-radius:14px;
+
+    background:#19332A;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    box-shadow:var(--shadow-lg);
+
+    transform:translateY(25px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s ease;
+
+}
+
+.toast.show{
+
+    transform:translateY(0);
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    width:min(1500px,calc(100% - 44px));
+
+    margin:0 auto;
+
+    padding:24px 0 35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    border-top:1px solid #E2ECE8;
+
+    color:#8A9A94;
+
+    font-size:10px;
+
+}
+
+.footer-brand{
+
+    color:var(--green);
+
+    font-weight:800;
+
+}
+
+.footer-note{
+
+    text-align:right;
+
+}
+
+/* =========================================================
+   TV
+========================================================= */
+
+@media(min-width:1600px){
+
+    .main{
+
+        padding-top:55px;
+
+    }
+
+    .hero{
+
+        padding:50px;
+
+        grid-template-columns:
+            minmax(0,1fr) 420px;
+
+        min-height:385px;
+
+    }
+
+    .hero h1{
+
+        font-size:62px;
+
+    }
+
+    .hero p{
+
+        font-size:16px;
+
+        max-width:780px;
+
+    }
+
+    .citas-image-wrap{
+
+        height:235px;
+
+    }
+
+    .action-card{
+
+        min-height:240px;
+
+        padding:32px;
+
+    }
+
+    .inbox-title{
+
+        font-size:21px;
+
+    }
+
+    .professional-name{
+
+        font-size:15px;
+
+    }
+
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media(max-width:1100px){
+
+    .hero{
+
+        grid-template-columns:
+            minmax(0,1fr) 310px;
+
+        gap:25px;
+
+    }
+
+    .citas-image-wrap{
+
+        height:190px;
+
+    }
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:850px){
+
+    .main{
+
+        width:min(100% - 28px,720px);
+
+        padding-top:25px;
+
+    }
+
+    .hero{
+
+        grid-template-columns:1fr;
+
+        padding:29px;
+
+        border-radius:27px;
+
+    }
+
+    .hero-visual{
+
+        width:100%;
+
+        max-width:550px;
+
+        margin:0 auto;
+
+    }
+
+    .citas-image-wrap{
+
+        height:240px;
+
+    }
+
+    .action-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .agenda-stats{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .agenda-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .inbox-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        padding:22px;
+
+    }
+
+    .filters{
+
+        width:100%;
+
+        overflow-x:auto;
+
+    }
+
+    .appointments-list{
+
+        padding:14px;
+
+    }
+
+    .appointment-card{
+
+        grid-template-columns:auto minmax(0,1fr);
+
+    }
+
+    .appointment-actions{
+
+        grid-column:1 / -1;
+
+        flex-direction:row;
+
+        align-items:center;
+
+        justify-content:flex-start;
+
+        padding-left:76px;
+
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:620px){
+
+    .site-header{
+
+        padding:
+            10px 14px;
+
+    }
+
+    .header-inner{
+
+        gap:8px;
+
+    }
+
+    .brand{
+
+        gap:9px;
+
+    }
+
+    .brand-logo{
+
+        width:42px;
+        height:42px;
+
+        border-radius:13px;
+
+    }
+
+    .brand-title{
+
+        font-size:14px;
+
+    }
+
+    .brand-subtitle{
+
+        display:none;
+
+    }
+
+    .user-badge{
+
+        padding:9px 10px;
+
+    }
+
+    .user-badge span{
+
+        display:none;
+
+    }
+
+    .back-btn{
+
+        padding:9px 11px;
+
+    }
+
+    .back-btn span{
+
+        display:none;
+
+    }
+
+    .back-btn::after{
+
+        content:"Casa 3";
+
+        display:block;
+
+    }
+
+    .main{
+
+        width:calc(100% - 20px);
+
+        padding-top:18px;
+
+        padding-bottom:45px;
+
+    }
+
+    .hero{
+
+        padding:23px 19px;
+
+        border-radius:23px;
+
+        margin-bottom:17px;
+
+    }
+
+    .hero h1{
+
+        font-size:35px;
+
+        letter-spacing:-1.4px;
+
+    }
+
+    .hero p{
+
+        font-size:12px;
+
+        line-height:1.7;
+
+    }
+
+    .hero-label{
+
+        font-size:9px;
+
+    }
+
+    .hero-visual{
+
+        gap:11px;
+
+    }
+
+    .citas-image-wrap{
+
+        height:210px;
+
+        border-radius:20px;
+
+    }
+
+    .hero-status{
+
+        padding:15px;
+
+    }
+
+    .action-card{
+
+        min-height:auto;
+
+        padding:21px;
+
+        border-radius:20px;
+
+    }
+
+    .action-card h2{
+
+        font-size:17px;
+
+    }
+
+    .action-card p{
+
+        font-size:11px;
+
+    }
+
+    .action-btn{
+
+        width:100%;
+
+    }
+
+    .agenda-dashboard{
+
+        padding:16px;
+
+        border-radius:21px;
+
+    }
+
+    .agenda-heading{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .agenda-heading h2{
+
+        font-size:18px;
+
+    }
+
+    .agenda-view-btn{
+
+        width:100%;
+
+    }
+
+    .agenda-stats{
+
+        gap:8px;
+
+    }
+
+    .agenda-stat{
+
+        padding:11px;
+
+        gap:8px;
+
+    }
+
+    .agenda-stat-icon{
+
+        width:34px;
+        height:34px;
+
+        font-size:15px;
+
+    }
+
+    .agenda-stat strong{
+
+        font-size:17px;
+
+    }
+
+    .agenda-stat small{
+
+        font-size:8px;
+
+    }
+
+    .calendar-panel{
+
+        padding:13px;
+
+    }
+
+    .calendar-day{
+
+        min-height:39px;
+
+        font-size:10px;
+
+    }
+
+    .calendar-grid,
+    .calendar-weekdays{
+
+        gap:3px;
+
+    }
+
+    .selected-appointments{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .inbox-section{
+
+        border-radius:21px;
+
+    }
+
+    .inbox-title{
+
+        font-size:16px;
+
+    }
+
+    .appointment-card{
+
+        padding:16px;
+
+        gap:12px;
+
+        border-radius:17px;
+
+    }
+
+    .professional-icon{
+
+        width:49px;
+        height:49px;
+
+        border-radius:15px;
+
+        font-size:22px;
+
+    }
+
+    .professional-name{
+
+        font-size:13px;
+
+    }
+
+    .appointment-actions{
+
+        padding-left:61px;
+
+        flex-wrap:wrap;
+
+    }
+
+    .footer{
+
+        width:calc(100% - 28px);
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .footer-note{
+
+        text-align:left;
+
+    }
+
+    .modal-overlay{
+
+        padding:10px;
+
+    }
+
+    .modal{
+
+        border-radius:23px;
+
+    }
+
+    .modal-header{
+
+        padding:18px;
+
+    }
+
+    .modal-body{
+
+        padding:18px;
+
+    }
+
+    .modal-footer{
+
+        padding:15px 18px;
+
+    }
+
+    .detail-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .detail-item.full{
+
+        grid-column:auto;
+
+    }
+
+    .chat-messages{
+
+        height:300px;
+
+    }
+
+    .toast{
+
+        right:15px;
+
+        bottom:15px;
+
+        max-width:calc(100% - 30px);
+
+    }
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:430px){
+
+    .header-actions{
+
+        gap:5px;
+
+    }
+
+    .hero h1{
+
+        font-size:30px;
+
+    }
+
+    .citas-image-wrap{
+
+        height:180px;
+
+    }
+
+    .hero-status{
+
+        border-radius:17px;
+
+    }
+
+    .status-title{
+
+        font-size:12px;
+
+    }
+
+    .status-text{
+
+        font-size:10px;
+
+    }
+
+    .action-top{
+
+        margin-bottom:14px;
+
+    }
+
+    .appointment-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .professional-icon{
+
+        width:46px;
+        height:46px;
+
+    }
+
+    .appointment-actions{
+
+        padding-left:0;
+
+    }
+
+    .appointment-actions .status-badge{
+
+        margin-right:auto;
+
+    }
+
+    .agenda-stat{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .calendar-day{
+
+        min-height:34px;
+
+    }
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+
+    outline:3px solid rgba(45,146,114,.22);
+
+    outline-offset:2px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     LOADING
+====================================================== -->
+
+<div
+    class="loading-screen"
+    id="loadingScreen"
+>
+
+    <div class="loading-box">
+
+        <img
+            src="../../imagenes/logo.jpg"
+            alt="TIKARY"
+            class="loading-logo"
+        >
+
+        <div class="loading-spinner"></div>
+
+        <div class="loading-title">
+            Preparando tu bandeja de citas...
+        </div>
+
+        <div class="loading-text">
+            Verificando credenciales de Casa 3
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <div class="brand">
+
+            <img
+                src="../../imagenes/logo.jpg"
+                alt="TIKARY"
+                class="brand-logo"
+            >
+
+            <div class="brand-info">
+
+                <div class="brand-title">
+                    TIKARY 3
+                </div>
+
+                <div class="brand-subtitle">
+                    Psicología y Bienestar
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <div class="user-badge">
+
+                <span class="user-dot"></span>
+
+                <span>
+                    DNI:
+                </span>
+
+                <strong id="userDni">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <button
+                class="back-btn"
+                onclick="goToPage('casa3.html')"
+            >
+
+                ←
+
+                <span>
+                    Volver a Casa 3
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<main class="main">
+
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+
+                <span class="hero-label-dot"></span>
+
+                Bandeja personal de atención
+
+            </div>
+
+
+            <h1>
+                Mis Citas
+            </h1>
+
+
+            <p>
+
+                Consulta tus próximas atenciones, revisa el
+                estado de tus citas y mantén una comunicación
+                cercana con los profesionales disponibles
+                en TIKARY.
+
+            </p>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+
+            <div class="citas-image-wrap">
+
+                <img
+                    src="../../imagenes/citas.jpg"
+                    alt="Citas y atención psicológica TIKARY"
+                    class="citas-image"
+                >
+
+                <div class="image-overlay">
+
+                    <div class="image-caption">
+                        Tu espacio para organizar tus atenciones
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-status">
+
+                <div class="status-top">
+
+                    <div class="status-icon">
+                        📅
+                    </div>
+
+                    <div class="status-online">
+                        ● Disponible
+                    </div>
+
+                </div>
+
+
+                <div class="status-title">
+                    Sistema disponible
+                </div>
+
+
+                <div class="status-text">
+
+                    Tu bandeja se actualiza automáticamente
+                    cuando existe nueva información.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         ACTION CARDS
+    ================================================== -->
+
+    <section class="action-grid">
+
+
+        <article class="action-card institutional">
+
+            <div class="action-top">
+
+                <div class="action-icon">
+                    🏫
+                </div>
+
+                <div class="action-tag">
+                    Institucional
+                </div>
+
+            </div>
+
+
+            <h2>
+                Profesionales institucionales
+            </h2>
+
+
+            <p>
+
+                Accede a los profesionales vinculados
+                con el acompañamiento y bienestar de
+                la comunidad TIKARY.
+
+            </p>
+
+
+            <button
+                class="action-btn"
+                onclick="goToPage('profesionales3.html')"
+            >
+
+                Ver profesionales
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </article>
+
+
+        <article class="action-card independent">
+
+            <div class="action-top">
+
+                <div class="action-icon">
+                    🧑‍⚕️
+                </div>
+
+                <div class="action-tag">
+                    Independientes
+                </div>
+
+            </div>
+
+
+            <h2>
+                Profesionales independientes
+            </h2>
+
+
+            <p>
+
+                Explora profesionales independientes
+                disponibles para solicitar una atención
+                de acuerdo con tus necesidades.
+
+            </p>
+
+
+            <button
+                class="action-btn"
+                onclick="goToPage('profesionales_independientes3.html')"
+            >
+
+                Explorar profesionales
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </article>
+
+    </section>
+
+
+    <!-- ==================================================
+         NUEVO: AGENDA VISUAL
+    ================================================== -->
+
+    <section
+        class="agenda-dashboard"
+        id="agendaDashboard"
+    >
+
+        <div class="agenda-heading">
+
+            <div>
+
+                <div class="agenda-kicker">
+                    AGENDA TIKARY
+                </div>
+
+                <h2>
+                    Tu agenda de atención
+                </h2>
+
+                <p id="agendaSubtitle">
+                    Organiza visualmente tus próximas citas.
+                </p>
+
+            </div>
+
+
+            <button
+                class="agenda-view-btn"
+                onclick="scrollToAppointments()"
+            >
+                Ver mis citas ↓
+            </button>
+
+        </div>
+
+
+        <div class="agenda-stats">
+
+
+            <div class="agenda-stat">
+
+                <div class="agenda-stat-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <strong id="statTotal">
+                        0
+                    </strong>
+
+                    <small>
+                        Total de citas
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="agenda-stat">
+
+                <div class="agenda-stat-icon">
+                    🔜
+                </div>
+
+                <div>
+
+                    <strong id="statUpcoming">
+                        0
+                    </strong>
+
+                    <small>
+                        Próximas
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="agenda-stat">
+
+                <div class="agenda-stat-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <strong id="statPending">
+                        0
+                    </strong>
+
+                    <small>
+                        Pendientes
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="agenda-stat">
+
+                <div class="agenda-stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong id="statConfirmed">
+                        0
+                    </strong>
+
+                    <small>
+                        Confirmadas
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="agenda-layout">
+
+
+            <!-- CALENDARIO -->
+
+            <div class="calendar-panel">
+
+                <div class="calendar-head">
+
+                    <button
+                        class="calendar-nav"
+                        onclick="changeCalendarMonth(-1)"
+                        aria-label="Mes anterior"
+                    >
+                        ‹
+                    </button>
+
+
+                    <div
+                        class="calendar-month"
+                        id="calendarMonthLabel"
+                    >
+                    </div>
+
+
+                    <button
+                        class="calendar-nav"
+                        onclick="changeCalendarMonth(1)"
+                        aria-label="Mes siguiente"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+                <div class="calendar-weekdays">
+
+                    <div>Dom</div>
+                    <div>Lun</div>
+                    <div>Mar</div>
+                    <div>Mié</div>
+                    <div>Jue</div>
+                    <div>Vie</div>
+                    <div>Sáb</div>
+
+                </div>
+
+
+                <div
+                    class="calendar-grid"
+                    id="calendarGrid"
+                >
+                </div>
+
+
+                <div class="calendar-legend">
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot"></span>
+
+                        <span>
+                            Día con cita
+                        </span>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span class="legend-today"></span>
+
+                        <span>
+                            Hoy
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LATERAL -->
+
+            <div class="agenda-side">
+
+
+                <div
+                    class="next-appointment"
+                    id="nextAppointment"
+                >
+                </div>
+
+
+                <div class="today-panel">
+
+                    <div class="today-head">
+
+                        <strong>
+                            Horario de hoy
+                        </strong>
+
+                        <span id="todayDateLabel">
+                            Hoy
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="today-list"
+                        id="todayScheduleList"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DÍA SELECCIONADO -->
+
+        <div
+            class="selected-day-panel"
+            id="selectedDayPanel"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         INBOX
+    ================================================== -->
+
+    <section
+        class="inbox-section"
+        id="appointmentsSection"
+    >
+
+
+        <div class="inbox-header">
+
+
+            <div class="inbox-title-area">
+
+                <div class="inbox-icon">
+                    📬
+                </div>
+
+
+                <div>
+
+                    <div class="inbox-title">
+                        Tu bandeja
+                    </div>
+
+                    <div class="inbox-subtitle">
+                        Revisa y administra tus solicitudes de atención
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="filters">
+
+
+                <button
+                    class="filter-btn active"
+                    data-filter="todas"
+                    onclick="filterAppointments('todas')"
+                >
+                    Todas
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="institucional"
+                    onclick="filterAppointments('institucional')"
+                >
+                    Institucionales
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="independiente"
+                    onclick="filterAppointments('independiente')"
+                >
+                    Independientes
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="appointments-list"
+            id="appointmentsContainer"
+        >
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        © 2026
+
+        <span class="footer-brand">
+            TIKARY
+        </span>
+
+        · Psicología y Bienestar
+
+    </div>
+
+
+    <div class="footer-note">
+
+        Tu bienestar también merece un espacio.
+
+    </div>
+
+</footer>
+
+
+<!-- ======================================================
+     BOOKING MODAL
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="bookingModal"
+>
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+
+            <div class="modal-title-wrap">
+
+                <div class="modal-icon">
+                    📅
+                </div>
+
+
+                <div>
+
+                    <div class="modal-title">
+                        Solicitar una cita
+                    </div>
+
+                    <div class="modal-subtitle">
+                        Completa los datos de tu solicitud
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="close-modal"
+                onclick="closeBookingModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="modalType"
+                >
+                    Tipo de profesional
+                </label>
+
+
+                <select
+                    class="form-control"
+                    id="modalType"
+                    onchange="updateDoctorsList()"
+                >
+
+                    <option value="institucional">
+                        Profesional institucional
+                    </option>
+
+                    <option value="independiente">
+                        Profesional independiente
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="modalProfessional"
+                >
+                    Profesional
+                </label>
+
+
+                <select
+                    class="form-control"
+                    id="modalProfessional"
+                ></select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="modalDate"
+                >
+                    Fecha
+                </label>
+
+
+                <input
+                    type="date"
+                    class="form-control"
+                    id="modalDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="modalTime"
+                >
+                    Hora
+                </label>
+
+
+                <input
+                    type="time"
+                    class="form-control"
+                    id="modalTime"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="modalReason"
+                >
+                    Motivo de la consulta
+                </label>
+
+
+                <textarea
+                    class="form-control"
+                    id="modalReason"
+                    placeholder="Cuéntanos brevemente qué deseas conversar..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+
+            <button
+                class="modal-btn secondary"
+                onclick="closeBookingModal()"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                class="modal-btn primary"
+                onclick="confirmQuickBooking()"
+            >
+                Solicitar cita
+            </button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     NUEVO: DETALLE DE CITA
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="appointmentDetailModal"
+>
+
+    <div class="modal detail-modal">
+
+
+        <div class="modal-header">
+
+            <div class="modal-title-wrap">
+
+                <div class="modal-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <div class="modal-title">
+                        Detalle de la cita
+                    </div>
+
+                    <div class="modal-subtitle">
+                        Información completa de tu atención
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="close-modal"
+                onclick="closeAppointmentDetail()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="modal-body"
+            id="appointmentDetailContent"
+        >
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="modal-btn secondary"
+                onclick="closeAppointmentDetail()"
+            >
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     CHAT MODAL
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="chatModal"
+>
+
+    <div class="modal chat-modal">
+
+
+        <div class="modal-header">
+
+
+            <div class="modal-title-wrap">
+
+                <div class="modal-icon">
+                    💬
+                </div>
+
+
+                <div>
+
+                    <div
+                        class="modal-title"
+                        id="chatProfessionalName"
+                    >
+                        Profesional
+                    </div>
+
+
+                    <div class="modal-subtitle">
+                        Comunicación institucional
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="close-modal"
+                onclick="closeChatModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="chat-messages"
+            id="chatMessages"
+        >
+
+            <div class="message professional">
+
+                Hola 👋. Estamos aquí para acompañarte.
+                ¿En qué podemos ayudarte?
+
+                <span class="message-time">
+                    Ahora
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chatInput"
+                class="chat-input"
+                placeholder="Escribe un mensaje..."
+                onkeydown="handleChatKey(event)"
+            >
+
+
+            <button
+                class="chat-send"
+                onclick="sendChatMessage()"
+            >
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     CONFIRMATION
+====================================================== -->
+
+<div
+    class="confirmation-panel"
+    id="confirmationPanel"
+>
+
+    <div class="confirmation-content">
+
+
+        <div class="confirmation-icon">
+            ✓
+        </div>
+
+
+        <div>
+
+            <div
+                class="confirmation-title"
+                id="confirmationTitle"
+            >
+                Solicitud registrada
+            </div>
+
+
+            <div
+                class="confirmation-text"
+                id="confirmationText"
+            >
+                Tu solicitud fue registrada correctamente.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     TOAST
+====================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<!-- ======================================================
+     FIREBASE
+====================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* ======================================================
+   FIREBASE CONFIG
+   ORIGINAL — NO MODIFICADO
+====================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* ======================================================
+   STATE
+   ORIGINAL + VARIABLES VISUALES NUEVAS
+====================================================== */
+
+let currentDni = "";
+
+let studentName = "Estudiante";
+
+let appointmentsList = [];
+
+let activeFilter = "todas";
+
+let activeChatProfessional = "";
+
+
+/* NUEVO: estado visual del calendario */
+
+let calendarCursor = new Date();
+
+let selectedCalendarDate = getTodayKey();
+
+
+/* ======================================================
+   DOM
+====================================================== */
+
+const loadingScreen =
+    document.getElementById(
+        "loadingScreen"
+    );
+
+
+const appointmentsContainer =
+    document.getElementById(
+        "appointmentsContainer"
+    );
+
+
+const userDni =
+    document.getElementById(
+        "userDni"
+    );
+
+
+/* ======================================================
+   AUTH
+   ORIGINAL
+====================================================== */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        try{
+
+            if(!user){
+
+                window.location.href =
+                    "casa3.html";
+
+                return;
+
+            }
+
+
+            const email =
+                user.email || "";
+
+
+            const match =
+                email.match(
+                    /^(\d{8})@tikary3\.com$/
+                );
+
+
+            if(!match){
+
+                await signOut(auth);
+
+                window.location.href =
+                    "casa3.html";
+
+                return;
+
+            }
+
+
+            currentDni =
+                match[1];
+
+
+            userDni.textContent =
+                currentDni;
+
+
+            const allowedRef =
+                doc(
+                    db,
+                    "dni_permitidos",
+                    currentDni
+                );
+
+
+            const allowedSnap =
+                await getDoc(
+                    allowedRef
+                );
+
+
+            if(!allowedSnap.exists()){
+
+                await signOut(auth);
+
+                window.location.href =
+                    "casa3.html";
+
+                return;
+
+            }
+
+
+            const allowedData =
+                allowedSnap.data() || {};
+
+
+            studentName =
+                allowedData.nombre ||
+                allowedData.nombres ||
+                "Estudiante";
+
+
+            listenToUserAppointments(
+                currentDni
+            );
+
+
+            setTimeout(() => {
+
+                loadingScreen.classList.add(
+                    "hidden"
+                );
+
+            },350);
+
+
+        }catch(error){
+
+            console.error(
+                "Error de autenticación:",
+                error
+            );
+
+
+            window.location.href =
+                "casa3.html";
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   LISTENER DE CITAS
+   ORIGINAL
+====================================================== */
+
+function listenToUserAppointments(dni){
+
+    const appointmentsRef =
+        doc(
+            db,
+            "citas_estudiantes",
+            dni
+        );
+
+
+    onSnapshot(
+
+        appointmentsRef,
+
+        (snapshot) => {
+
+            if(snapshot.exists()){
+
+                const data =
+                    snapshot.data() || {};
+
+
+                appointmentsList =
+                    Array.isArray(
+                        data.citas
+                    )
+                    ? data.citas
+                    : [];
+
+            }else{
+
+                appointmentsList = [];
+
+            }
+
+
+            renderAppointments();
+
+        },
+
+        (error) => {
+
+            console.error(
+                "Error escuchando citas:",
+                error
+            );
+
+
+            showToast(
+                "No se pudo actualizar la bandeja."
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ======================================================
+   RENDER
+   ORIGINAL + ACTUALIZACIÓN VISUAL
+====================================================== */
+
+function renderAppointments(){
+
+    /*
+       IMPORTANTE:
+       El filtro original se conserva.
+       El panel de agenda utiliza appointmentsList
+       completo, sin alterar el filtro de la bandeja.
+    */
+
+    renderAgendaDashboard();
+
+
+    let filtered =
+        appointmentsList;
+
+
+    if(activeFilter !== "todas"){
+
+        filtered =
+            appointmentsList.filter(
+                item =>
+                    item.tipo === activeFilter
+            );
+
+    }
+
+
+    if(!filtered.length){
+
+        appointmentsContainer.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-illustration">
+                    📭
+                </div>
+
+                <h3>
+                    Tu bandeja está tranquila
+                </h3>
+
+                <p>
+                    Todavía no tienes citas en esta sección.
+                    Cuando solicites una atención aparecerá
+                    aquí para que puedas darle seguimiento.
+                </p>
+
+                <button
+                    class="empty-btn"
+                    onclick="openBookingModal()"
+                >
+                    + Solicitar una cita
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    appointmentsContainer.innerHTML =
+        filtered
+            .map(
+                item =>
+                    createAppointmentCard(item)
+            )
+            .join("");
+
+}
+
+
+/* ======================================================
+   APPOINTMENT CARD
+   ORIGINAL + BOTÓN DE DETALLE
+====================================================== */
+
+function createAppointmentCard(item){
+
+    const type =
+        item.tipo === "institucional"
+            ? "Institucional"
+            : "Independiente";
+
+
+    const typeClass =
+        item.tipo === "institucional"
+            ? "type-institutional"
+            : "type-independent";
+
+
+    const state =
+        item.estado ||
+        "programada";
+
+
+    let stateLabel =
+        "Programada";
+
+
+    if(state === "confirmada"){
+
+        stateLabel =
+            "Confirmada";
+
+    }
+
+
+    if(state === "pendiente"){
+
+        stateLabel =
+            "Pendiente";
+
+    }
+
+
+    if(state === "cancelada"){
+
+        stateLabel =
+            "Cancelada";
+
+    }
+
+
+    const stateClass =
+        state === "confirmada"
+            ? "confirmada"
+            : state === "pendiente"
+                ? "pendiente"
+                : state === "cancelada"
+                    ? "cancelada"
+                    : "";
+
+
+    const safeId =
+        String(
+            item.id || ""
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        );
+
+
+    const safeName =
+        String(
+            item.profesional ||
+            "Profesional"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        );
+
+
+    const chatButton =
+        item.tipo === "institucional"
+
+            ? `
+
+                <button
+                    class="card-btn chat-btn"
+                    onclick="openChatModal(
+                        '${safeId}',
+                        '${safeName}'
+                    )"
+                >
+                    💬 Chat
+                </button>
+
+            `
+
+            : "";
+
+
+    /*
+       NUEVO:
+       botón independiente para ver el detalle.
+       No modifica la cita ni Firebase.
+    */
+
+    const detailButton = `
+
+        <button
+            class="card-btn detail-btn"
+            onclick="openAppointmentDetail('${safeId}')"
+        >
+            👁 Detalle
+        </button>
+
+    `;
+
+
+    return `
+
+        <article
+            class="appointment-card"
+        >
+
+
+            <div class="professional-icon">
+                ${escapeHtml(item.icono || "🧑‍⚕️")}
+            </div>
+
+
+            <div class="professional-main">
+
+
+                <div class="professional-top">
+
+
+                    <div class="professional-name">
+                        ${escapeHtml(
+                            item.profesional ||
+                            "Profesional"
+                        )}
+                    </div>
+
+
+                    <div class="type-badge ${typeClass}">
+                        ${type}
+                    </div>
+
+
+                </div>
+
+
+                <div class="professional-specialty">
+
+                    ${escapeHtml(
+                        item.especialidad ||
+                        "Atención profesional"
+                    )}
+
+                </div>
+
+
+                <div class="appointment-info">
+
+
+                    <div class="info-pill">
+
+                        📅
+
+                        ${escapeHtml(
+                            item.fecha ||
+                            "Fecha pendiente"
+                        )}
+
+                    </div>
+
+
+                    <div class="info-pill">
+
+                        🕐
+
+                        ${escapeHtml(
+                            item.hora ||
+                            "Hora pendiente"
+                        )}
+
+                    </div>
+
+
+                    <div class="info-pill">
+
+                        💻
+
+                        ${escapeHtml(
+                            item.modalidad ||
+                            "Virtual TIKARY"
+                        )}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="appointment-actions">
+
+
+                <div
+                    class="status-badge ${stateClass}"
+                >
+                    ${stateLabel}
+                </div>
+
+
+                ${detailButton}
+
+
+                ${chatButton}
+
+
+                ${
+                    state !== "cancelada"
+
+                    ? `
+
+                        <button
+                            class="card-btn cancel-btn"
+                            onclick="cancelAppointment(
+                                '${safeId}',
+                                '${safeName}'
+                            )"
+                        >
+                            Cancelar
+                        </button>
+
+                    `
+
+                    : ""
+                }
+
+
+            </div>
+
+
+        </article>
+
+    `;
+
+}
+
+
+/* ======================================================
+   SAVE APPOINTMENTS
+   ORIGINAL — NO MODIFICADO
+====================================================== */
+
+async function saveAppointmentsToFirestore(
+    list
+){
+
+    if(!currentDni){
+
+        return;
+
+    }
+
+
+    const ref =
+        doc(
+            db,
+            "citas_estudiantes",
+            currentDni
+        );
+
+
+    await setDoc(
+
+        ref,
+
+        {
+
+            dniEstudiante:
+                currentDni,
+
+            citas:
+                list,
+
+            ultimaModificacion:
+                new Date()
+
+        },
+
+        {
+            merge:true
+        }
+
+    );
+
+}
+
+
+/* ======================================================
+   NOTIFICATIONS
+   ORIGINAL
+====================================================== */
+
+async function pushNotification(
+    title,
+    message,
+    actionTag = ""
+){
+
+    if(!currentDni){
+
+        return;
+
+    }
+
+
+    const ref =
+        doc(
+            db,
+            "notificaciones_estudiantes",
+            currentDni
+        );
+
+
+    const snap =
+        await getDoc(ref);
+
+
+    let lista = [];
+
+
+    if(snap.exists()){
+
+        const data =
+            snap.data() || {};
+
+
+        lista =
+            Array.isArray(
+                data.lista
+            )
+            ? data.lista
+            : [];
+
+    }
+
+
+    lista.unshift({
+
+        id:
+            "noti_" +
+            Date.now(),
+
+        titulo:
+            title,
+
+        mensaje:
+            message,
+
+        actionTag:
+            actionTag,
+
+        leida:
+            false,
+
+        fecha:
+            new Date()
+
+    });
+
+
+    await setDoc(
+
+        ref,
+
+        {
+            lista:lista
+        },
+
+        {
+            merge:true
+        }
+
+    );
+
+}
+
+
+/* ======================================================
+   CANCELAR CITA
+   ORIGINAL — NO MODIFICADO
+====================================================== */
+
+window.cancelAppointment =
+async function(
+    id,
+    profName
+){
+
+    const confirmed =
+        confirm(
+            `¿Deseas cancelar la cita con ${profName}?`
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    appointmentsList =
+        appointmentsList.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    try{
+
+        await saveAppointmentsToFirestore(
+            appointmentsList
+        );
+
+
+        await pushNotification(
+
+            "Cita cancelada",
+
+            `La cita con ${profName} fue cancelada correctamente.`,
+
+            "cita"
+
+        );
+
+
+        showConfirmation(
+
+            "Cita cancelada",
+
+            `La cita con ${profName} fue cancelada correctamente.`
+
+        );
+
+
+        showToast(
+            "La cita fue cancelada."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        showToast(
+            "No se pudo cancelar la cita."
+        );
+
+    }
+
+};
+
+
+/* ======================================================
+   OPEN BOOKING
+   ORIGINAL
+====================================================== */
+
+window.openBookingModal =
+function(){
+
+    const modal =
+        document.getElementById(
+            "bookingModal"
+        );
+
+
+    updateDoctorsList();
+
+
+    const dateInput =
+        document.getElementById(
+            "modalDate"
+        );
+
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            now.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const today =
+        `${year}-${month}-${day}`;
+
+
+    dateInput.value =
+        today;
+
+
+    dateInput.min =
+        today;
+
+
+    modal.classList.add(
+        "show"
+    );
+
+};
+
+
+/* ======================================================
+   CLOSE BOOKING
+   ORIGINAL
+====================================================== */
+
+window.closeBookingModal =
+function(){
+
+    document
+        .getElementById(
+            "bookingModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+};
+
+
+/* ======================================================
+   PROFESSIONALS
+   ORIGINAL — NO MODIFICADO
+====================================================== */
+
+window.updateDoctorsList =
+function(){
+
+    const type =
+        document.getElementById(
+            "modalType"
+        ).value;
+
+
+    const select =
+        document.getElementById(
+            "modalProfessional"
+        );
+
+
+    let professionals = [];
+
+
+    if(type === "institucional"){
+
+        professionals = [
+
+            {
+
+                nombre:
+                    "Dra. Sofía Mendoza",
+
+                especialidad:
+                    "Psicología Institucional",
+
+                icono:
+                    "👩‍⚕️"
+
+            },
+
+            {
+
+                nombre:
+                    "Lic. Roberto Gómez",
+
+                especialidad:
+                    "Tutor Psicopedagógico",
+
+                icono:
+                    "👨‍💼"
+
+            }
+
+        ];
+
+    }else{
+
+        professionals = [
+
+            {
+
+                nombre:
+                    "Lic. Carlos Aranda",
+
+                especialidad:
+                    "Terapia Cognitivo Conductual",
+
+                icono:
+                    "👨‍⚕️"
+
+            },
+
+            {
+
+                nombre:
+                    "Dra. Elena Rostova",
+
+                especialidad:
+                    "Gestión Emocional",
+
+                icono:
+                    "👩‍⚕️"
+
+            }
+
+        ];
+
+    }
+
+
+    select.innerHTML =
+        professionals
+            .map(
+                professional => `
+
+                    <option
+                        value="${escapeHtml(professional.nombre)}"
+                        data-specialty="${escapeHtml(professional.especialidad)}"
+                        data-icon="${escapeHtml(professional.icono)}"
+                    >
+
+                        ${escapeHtml(professional.nombre)}
+                        ·
+                        ${escapeHtml(professional.especialidad)}
+
+                    </option>
+
+                `
+            )
+            .join("");
+
+};
+
+
+/* ======================================================
+   CONFIRM BOOKING
+   ORIGINAL — NO MODIFICADO
+====================================================== */
+
+window.confirmQuickBooking =
+async function(){
+
+    const type =
+        document.getElementById(
+            "modalType"
+        ).value;
+
+
+    const professionalSelect =
+        document.getElementById(
+            "modalProfessional"
+        );
+
+
+    const selected =
+        professionalSelect.options[
+            professionalSelect.selectedIndex
+        ];
+
+
+    const professional =
+        selected.value;
+
+
+    const specialty =
+        selected.dataset.specialty ||
+        "Atención profesional";
+
+
+    const icon =
+        selected.dataset.icon ||
+        "🧑‍⚕️";
+
+
+    const date =
+        document.getElementById(
+            "modalDate"
+        ).value;
+
+
+    const time =
+        document.getElementById(
+            "modalTime"
+        ).value;
+
+
+    const reason =
+        document.getElementById(
+            "modalReason"
+        ).value.trim();
+
+
+    if(!date || !time){
+
+        showToast(
+            "Selecciona una fecha y una hora."
+        );
+
+        return;
+
+    }
+
+
+    const appointment = {
+
+        id:
+            "cita_" +
+            Date.now(),
+
+        profesional:
+            professional,
+
+        especialidad:
+            specialty,
+
+        tipo:
+            type,
+
+        fecha:
+            date,
+
+        hora:
+            time,
+
+        modalidad:
+            "Virtual TIKARY",
+
+        motivo:
+            reason,
+
+        estado:
+            "programada",
+
+        icono:
+            icon
+
+    };
+
+
+    const updatedList = [
+
+        ...appointmentsList,
+
+        appointment
+
+    ];
+
+
+    try{
+
+        await saveAppointmentsToFirestore(
+            updatedList
+        );
+
+
+        await pushNotification(
+
+            "Nueva solicitud de cita",
+
+            `Tu solicitud con ${professional} fue registrada.`,
+
+            "cita"
+
+        );
+
+
+        closeBookingModal();
+
+
+        document.getElementById(
+            "modalReason"
+        ).value = "";
+
+
+        document.getElementById(
+            "modalTime"
+        ).value = "";
+
+
+        showConfirmation(
+
+            "Solicitud registrada",
+
+            `Tu cita con ${professional} fue registrada correctamente.`
+
+        );
+
+
+        showToast(
+            "Solicitud de cita registrada."
+        );
+
+
+        if(type === "institucional"){
+
+            setTimeout(() => {
+
+                showToast(
+                    "También puedes comunicarte por el chat institucional."
+                );
+
+            },1200);
+
+        }
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        showToast(
+            "No se pudo registrar la solicitud."
+        );
+
+    }
+
+};
+
+
+/* ======================================================
+   FILTERS
+   ORIGINAL
+====================================================== */
+
+window.filterAppointments =
+function(filter){
+
+    activeFilter =
+        filter;
+
+
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            button => {
+
+                button.classList.toggle(
+
+                    "active",
+
+                    button.dataset.filter === filter
+
+                );
+
+            }
+        );
+
+
+    renderAppointments();
+
+};
+
+
+/* ======================================================
+   CHAT
+   ORIGINAL
+====================================================== */
+
+window.openChatModal =
+function(
+    id,
+    professional
+){
+
+    activeChatProfessional =
+        professional;
+
+
+    document.getElementById(
+        "chatProfessionalName"
+    ).textContent =
+        professional;
+
+
+    document.getElementById(
+        "chatModal"
+    ).classList.add(
+        "show"
+    );
+
+
+    document.getElementById(
+        "chatInput"
+    ).focus();
+
+};
+
+
+/* ======================================================
+   CLOSE CHAT
+   ORIGINAL
+====================================================== */
+
+window.closeChatModal =
+function(){
+
+    document
+        .getElementById(
+            "chatModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+};
+
+
+/* ======================================================
+   CHAT ENTER
+   ORIGINAL
+====================================================== */
+
+window.handleChatKey =
+function(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        sendChatMessage();
+
+    }
+
+};
+
+
+/* ======================================================
+   SEND CHAT
+   ORIGINAL
+====================================================== */
+
+window.sendChatMessage =
+function(){
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if(!message){
+
+        return;
+
+    }
+
+
+    const messages =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const studentMessage =
+        document.createElement(
+            "div"
+        );
+
+
+    studentMessage.className =
+        "message student";
+
+
+    studentMessage.innerHTML = `
+
+        ${escapeHtml(message)}
+
+        <span class="message-time">
+            Ahora
+        </span>
+
+    `;
+
+
+    messages.appendChild(
+        studentMessage
+    );
+
+
+    input.value = "";
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+
+    setTimeout(() => {
+
+        const professionalMessage =
+            document.createElement(
+                "div"
+            );
+
+
+        professionalMessage.className =
+            "message professional";
+
+
+        professionalMessage.innerHTML = `
+
+            Gracias por escribirnos.
+            Revisaremos tu mensaje y continuaremos
+            acompañándote por este medio.
+
+            <span class="message-time">
+                Ahora
+            </span>
+
+        `;
+
+
+        messages.appendChild(
+            professionalMessage
+        );
+
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+
+    },800);
+
+};
+
+
+/* ======================================================
+   ESCAPE HTML
+   ORIGINAL
+====================================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ======================================================
+   CONFIRMATION
+   ORIGINAL
+====================================================== */
+
+function showConfirmation(
+    title,
+    text
+){
+
+    const panel =
+        document.getElementById(
+            "confirmationPanel"
+        );
+
+
+    document.getElementById(
+        "confirmationTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "confirmationText"
+    ).textContent =
+        text;
+
+
+    panel.classList.add(
+        "show"
+    );
+
+
+    setTimeout(() => {
+
+        panel.classList.remove(
+            "show"
+        );
+
+    },4500);
+
+}
+
+
+/* ======================================================
+   TOAST
+   ORIGINAL
+====================================================== */
+
+window.showToast =
+function(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },3200);
+
+};
+
+
+/* ======================================================
+   NAVIGATION
+   ORIGINAL
+====================================================== */
+
+window.goToPage =
+function(page){
+
+    window.location.href =
+        page;
+
+};
+
+
+/* ======================================================
+   ======================================================
+   NUEVAS FUNCIONES VISUALES
+   NO ESCRIBEN NI CAMBIAN FIREBASE
+   ======================================================
+====================================================== */
+
+
+/* ======================================================
+   FECHA ACTUAL
+====================================================== */
+
+function getTodayKey(){
+
+    const now =
+        new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(
+            now.getMonth() + 1
+        )
+        .padStart(2,"0");
+
+    const day =
+        String(
+            now.getDate()
+        )
+        .padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* ======================================================
+   PARSEAR FECHA
+====================================================== */
+
+function parseDateKey(key){
+
+    if(!key){
+
+        return null;
+
+    }
+
+
+    const parts =
+        String(key)
+            .slice(0,10)
+            .split("-")
+            .map(Number);
+
+
+    if(parts.length !== 3){
+
+        return null;
+
+    }
+
+
+    const [year,month,day] =
+        parts;
+
+
+    const date =
+        new Date(
+            year,
+            month - 1,
+            day
+        );
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return null;
+
+    }
+
+
+    return date;
+
+}
+
+
+/* ======================================================
+   FORMATEAR FECHA
+====================================================== */
+
+function formatLongDate(key){
+
+    const date =
+        parseDateKey(key);
+
+
+    if(!date){
+
+        return "Fecha pendiente";
+
+    }
+
+
+    let text =
+        new Intl.DateTimeFormat(
+            "es-PE",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        )
+        .format(date);
+
+
+    return text.charAt(0).toUpperCase() +
+        text.slice(1);
+
+}
+
+
+/* ======================================================
+   FECHA + HORA
+====================================================== */
+
+function getAppointmentDateTime(item){
+
+    if(!item || !item.fecha){
+
+        return null;
+
+    }
+
+
+    let value =
+        item.fecha;
+
+
+    if(item.hora){
+
+        value +=
+            "T" +
+            item.hora;
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return null;
+
+    }
+
+
+    return date;
+
+}
+
+
+/* ======================================================
+   CITA FUTURA
+====================================================== */
+
+function isUpcoming(item){
+
+    if(
+        !item ||
+        item.estado === "cancelada"
+    ){
+
+        return false;
+
+    }
+
+
+    const date =
+        getAppointmentDateTime(item);
+
+
+    if(!date){
+
+        return false;
+
+    }
+
+
+    return date.getTime() >=
+        Date.now();
+
+}
+
+
+/* ======================================================
+   ORDENAR CITAS
+====================================================== */
+
+function sortAppointments(list){
+
+    return [...list].sort(
+        (a,b) => {
+
+            const dateA =
+                getAppointmentDateTime(a);
+
+            const dateB =
+                getAppointmentDateTime(b);
+
+
+            if(!dateA && !dateB){
+
+                return 0;
+
+            }
+
+
+            if(!dateA){
+
+                return 1;
+
+            }
+
+
+            if(!dateB){
+
+                return -1;
+
+            }
+
+
+            return dateA.getTime() -
+                dateB.getTime();
+
+        }
+    );
+
+}
+
+
+/* ======================================================
+   RENDER AGENDA
+====================================================== */
+
+function renderAgendaDashboard(){
+
+    const total =
+        appointmentsList.length;
+
+
+    const upcoming =
+        appointmentsList.filter(
+            item =>
+                isUpcoming(item)
+        );
+
+
+    const pending =
+        appointmentsList.filter(
+            item =>
+                item.estado === "pendiente"
+        );
+
+
+    const confirmed =
+        appointmentsList.filter(
+            item =>
+                item.estado === "confirmada"
+        );
+
+
+    document.getElementById(
+        "statTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "statUpcoming"
+    ).textContent =
+        upcoming.length;
+
+
+    document.getElementById(
+        "statPending"
+    ).textContent =
+        pending.length;
+
+
+    document.getElementById(
+        "statConfirmed"
+    ).textContent =
+        confirmed.length;
+
+
+    renderCalendar();
+
+
+    renderNextAppointment(
+        upcoming
+    );
+
+
+    renderTodaySchedule();
+
+
+    renderSelectedDay();
+
+}
+
+
+/* ======================================================
+   CALENDARIO
+====================================================== */
+
+function renderCalendar(){
+
+    const grid =
+        document.getElementById(
+            "calendarGrid"
+        );
+
+
+    const label =
+        document.getElementById(
+            "calendarMonthLabel"
+        );
+
+
+    const year =
+        calendarCursor.getFullYear();
+
+
+    const month =
+        calendarCursor.getMonth();
+
+
+    const monthText =
+        new Intl.DateTimeFormat(
+            "es-PE",
+            {
+                month:"long"
+            }
+        )
+        .format(calendarCursor);
+
+
+    label.innerHTML = `
+
+        <strong>
+            ${monthText}
+        </strong>
+
+        <small>
+            ${year}
+        </small>
+
+    `;
+
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        )
+        .getDay();
+
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        )
+        .getDate();
+
+
+    const previousDays =
+        new Date(
+            year,
+            month,
+            0
+        )
+        .getDate();
+
+
+    let html = "";
+
+
+    /*
+       Días del mes anterior
+    */
+
+    for(
+        let i = firstDay - 1;
+        i >= 0;
+        i--
+    ){
+
+        const day =
+            previousDays - i;
+
+
+        const date =
+            new Date(
+                year,
+                month - 1,
+                day
+            );
+
+
+        const key =
+            formatDateKey(
+                date
+            );
+
+
+        html += createCalendarDay(
+            date,
+            key,
+            true
+        );
+
+    }
+
+
+    /*
+       Días del mes actual
+    */
+
+    for(
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ){
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const key =
+            formatDateKey(
+                date
+            );
+
+
+        html += createCalendarDay(
+            date,
+            key,
+            false
+        );
+
+    }
+
+
+    /*
+       Completar cuadrícula
+    */
+
+    const totalCells =
+        firstDay +
+        daysInMonth;
+
+
+    const remaining =
+        Math.ceil(
+            totalCells / 7
+        ) * 7 -
+        totalCells;
+
+
+    for(
+        let day = 1;
+        day <= remaining;
+        day++
+    ){
+
+        const date =
+            new Date(
+                year,
+                month + 1,
+                day
+            );
+
+
+        const key =
+            formatDateKey(
+                date
+            );
+
+
+        html += createCalendarDay(
+            date,
+            key,
+            true
+        );
+
+    }
+
+
+    grid.innerHTML =
+        html;
+
+}
+
+
+/* ======================================================
+   DÍA DEL CALENDARIO
+====================================================== */
+
+function createCalendarDay(
+    date,
+    key,
+    otherMonth
+){
+
+    const today =
+        key === getTodayKey();
+
+
+    const selected =
+        key === selectedCalendarDate;
+
+
+    const dayAppointments =
+        appointmentsList.filter(
+            item =>
+                String(
+                    item.fecha || ""
+                )
+                .slice(0,10) === key
+        );
+
+
+    const hasEvents =
+        dayAppointments.length > 0;
+
+
+    const classes = [
+
+        "calendar-day",
+
+        otherMonth
+            ? "other-month"
+            : "",
+
+        today
+            ? "today"
+            : "",
+
+        selected
+            ? "selected"
+            : "",
+
+        hasEvents
+            ? "has-events"
+            : ""
+
+    ]
+    .filter(Boolean)
+    .join(" ");
+
+
+    const count =
+        hasEvents
+            ? `
+                <span class="event-count">
+                    ${dayAppointments.length}
+                </span>
+              `
+            : "";
+
+
+    return `
+
+        <button
+            class="${classes}"
+            onclick="selectCalendarDate('${key}')"
+            aria-label="${formatLongDate(key)}"
+        >
+
+            ${date.getDate()}
+
+            ${count}
+
+        </button>
+
+    `;
+
+}
+
+
+/* ======================================================
+   FORMATO YYYY-MM-DD
+====================================================== */
+
+function formatDateKey(date){
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        )
+        .padStart(2,"0");
+
+
+    const day =
+        String(
+            date.getDate()
+        )
+        .padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* ======================================================
+   CAMBIAR MES
+====================================================== */
+
+window.changeCalendarMonth =
+function(direction){
+
+    calendarCursor =
+        new Date(
+            calendarCursor.getFullYear(),
+            calendarCursor.getMonth() +
+                direction,
+            1
+        );
+
+
+    renderCalendar();
+
+};
+
+
+/* ======================================================
+   SELECCIONAR DÍA
+====================================================== */
+
+window.selectCalendarDate =
+function(key){
+
+    selectedCalendarDate =
+        key;
+
+
+    const date =
+        parseDateKey(key);
+
+
+    if(date){
+
+        calendarCursor =
+            new Date(
+                date.getFullYear(),
+                date.getMonth(),
+                1
+            );
+
+    }
+
+
+    renderCalendar();
+
+    renderSelectedDay();
+
+};
+
+
+/* ======================================================
+   PRÓXIMA CITA
+====================================================== */
+
+function renderNextAppointment(
+    upcoming
+){
+
+    const container =
+        document.getElementById(
+            "nextAppointment"
+        );
+
+
+    const sorted =
+        sortAppointments(
+            upcoming
+        );
+
+
+    const next =
+        sorted[0];
+
+
+    if(!next){
+
+        container.innerHTML = `
+
+            <div class="next-label">
+                PRÓXIMA ATENCIÓN
+            </div>
+
+            <div class="next-title">
+                No tienes citas próximas
+            </div>
+
+            <div class="next-date">
+                Cuando solicites una cita,
+                aparecerá aquí automáticamente.
+            </div>
+
+            <div class="next-details">
+
+                <div class="next-pill">
+                    📅 Agenda disponible
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const professional =
+        next.profesional ||
+        "Profesional";
+
+
+    const specialty =
+        next.especialidad ||
+        "Atención profesional";
+
+
+    const date =
+        formatLongDate(
+            next.fecha
+        );
+
+
+    const time =
+        next.hora ||
+        "Hora pendiente";
+
+
+    container.innerHTML = `
+
+        <div class="next-label">
+            PRÓXIMA ATENCIÓN
+        </div>
+
+        <div class="next-title">
+            ${escapeHtml(professional)}
+        </div>
+
+        <div class="next-date">
+            ${escapeHtml(date)}
+        </div>
+
+        <div class="next-details">
+
+            <div class="next-pill">
+                🕐 ${escapeHtml(time)}
+            </div>
+
+            <div class="next-pill">
+                ${escapeHtml(specialty)}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ======================================================
+   HORARIO DE HOY
+====================================================== */
+
+function renderTodaySchedule(){
+
+    const container =
+        document.getElementById(
+            "todayScheduleList"
+        );
+
+
+    const today =
+        getTodayKey();
+
+
+    const todayAppointments =
+        sortAppointments(
+            appointmentsList.filter(
+                item =>
+                    String(
+                        item.fecha || ""
+                    )
+                    .slice(0,10) === today &&
+                    item.estado !== "cancelada"
+            )
+        );
+
+
+    document.getElementById(
+        "todayDateLabel"
+    ).textContent =
+        new Intl.DateTimeFormat(
+            "es-PE",
+            {
+                day:"numeric",
+                month:"short"
+            }
+        )
+        .format(
+            new Date()
+        );
+
+
+    if(!todayAppointments.length){
+
+        container.innerHTML = `
+
+            <div class="today-empty">
+
+                No tienes atenciones programadas
+                para hoy.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        todayAppointments
+            .map(
+                item => `
+
+                    <div
+                        class="today-item"
+                        onclick="openAppointmentDetail('${escapeHtml(
+                            item.id || ""
+                        )}')"
+                    >
+
+                        <div class="today-time">
+
+                            ${escapeHtml(
+                                item.hora ||
+                                "--:--"
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="today-professional">
+
+                                ${escapeHtml(
+                                    item.profesional ||
+                                    "Profesional"
+                                )}
+
+                            </div>
+
+
+                            <div class="today-specialty">
+
+                                ${escapeHtml(
+                                    item.especialidad ||
+                                    "Atención profesional"
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* ======================================================
+   DÍA SELECCIONADO
+====================================================== */
+
+function renderSelectedDay(){
+
+    const container =
+        document.getElementById(
+            "selectedDayPanel"
+        );
+
+
+    const dateText =
+        formatLongDate(
+            selectedCalendarDate
+        );
+
+
+    const selectedAppointments =
+        sortAppointments(
+
+            appointmentsList.filter(
+                item =>
+                    String(
+                        item.fecha || ""
+                    )
+                    .slice(0,10) ===
+                    selectedCalendarDate
+            )
+
+        );
+
+
+    let content = `
+
+        <div class="selected-day-header">
+
+            <strong>
+                ${escapeHtml(dateText)}
+            </strong>
+
+            <span>
+                ${selectedAppointments.length}
+                ${
+                    selectedAppointments.length === 1
+                        ? " cita"
+                        : " citas"
+                }
+            </span>
+
+        </div>
+
+    `;
+
+
+    if(!selectedAppointments.length){
+
+        content += `
+
+            <div class="selected-empty">
+
+                No hay citas registradas para este día.
+
+            </div>
+
+        `;
+
+
+        container.innerHTML =
+            content;
+
+        return;
+
+    }
+
+
+    content += `
+
+        <div class="selected-appointments">
+
+    `;
+
+
+    selectedAppointments.forEach(
+        item => {
+
+            const safeId =
+                String(
+                    item.id || ""
+                )
+                .replace(
+                    /'/g,
+                    "\\'"
+                );
+
+
+            content += `
+
+                <div
+                    class="selected-appointment"
+                    onclick="openAppointmentDetail('${safeId}')"
+                >
+
+                    <div class="selected-time">
+
+                        ${escapeHtml(
+                            item.hora ||
+                            "--:--"
+                        )}
+
+                    </div>
+
+
+                    <div class="selected-info">
+
+                        <div class="selected-professional">
+
+                            ${escapeHtml(
+                                item.profesional ||
+                                "Profesional"
+                            )}
+
+                        </div>
+
+
+                        <div class="selected-specialty">
+
+                            ${escapeHtml(
+                                item.especialidad ||
+                                "Atención profesional"
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    content += `
+        </div>
+    `;
+
+
+    container.innerHTML =
+        content;
+
+}
+
+
+/* ======================================================
+   DETALLE DE CITA
+====================================================== */
+
+window.openAppointmentDetail =
+function(id){
+
+    const appointment =
+        appointmentsList.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if(!appointment){
+
+        showToast(
+            "No se encontró la información de la cita."
+        );
+
+        return;
+
+    }
+
+
+    const state =
+        appointment.estado ||
+        "programada";
+
+
+    let stateLabel =
+        "Programada";
+
+
+    if(state === "confirmada"){
+
+        stateLabel =
+            "Confirmada";
+
+    }
+
+
+    if(state === "pendiente"){
+
+        stateLabel =
+            "Pendiente";
+
+    }
+
+
+    if(state === "cancelada"){
+
+        stateLabel =
+            "Cancelada";
+
+    }
+
+
+    const stateClass =
+        state === "confirmada"
+            ? "confirmada"
+            : state === "pendiente"
+                ? "pendiente"
+                : state === "cancelada"
+                    ? "cancelada"
+                    : "";
+
+
+    const content =
+        document.getElementById(
+            "appointmentDetailContent"
+        );
+
+
+    content.innerHTML = `
+
+        <div class="detail-hero">
+
+            <div class="detail-avatar">
+
+                ${escapeHtml(
+                    appointment.icono ||
+                    "🧑‍⚕️"
+                )}
+
+            </div>
+
+
+            <div class="detail-professional">
+
+                <strong>
+
+                    ${escapeHtml(
+                        appointment.profesional ||
+                        "Profesional"
+                    )}
+
+                </strong>
+
+
+                <span>
+
+                    ${escapeHtml(
+                        appointment.especialidad ||
+                        "Atención profesional"
+                    )}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-grid">
+
+
+            <div class="detail-item">
+
+                <div class="detail-item-label">
+                    Fecha
+                </div>
+
+                <div class="detail-item-value">
+
+                    📅
+
+                    ${escapeHtml(
+                        formatLongDate(
+                            appointment.fecha
+                        )
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <div class="detail-item-label">
+                    Hora
+                </div>
+
+                <div class="detail-item-value">
+
+                    🕐
+
+                    ${escapeHtml(
+                        appointment.hora ||
+                        "Hora pendiente"
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <div class="detail-item-label">
+                    Tipo
+                </div>
+
+                <div class="detail-item-value">
+
+                    ${
+                        appointment.tipo ===
+                        "institucional"
+
+                        ? "🏫 Profesional institucional"
+
+                        : "🧑‍⚕️ Profesional independiente"
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <div class="detail-item-label">
+                    Estado
+                </div>
+
+                <div class="detail-item-value">
+
+                    <span
+                        class="detail-status ${stateClass}"
+                    >
+                        ${stateLabel}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-item full">
+
+                <div class="detail-item-label">
+                    Modalidad
+                </div>
+
+                <div class="detail-item-value">
+
+                    💻
+
+                    ${escapeHtml(
+                        appointment.modalidad ||
+                        "Virtual TIKARY"
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-item full">
+
+                <div class="detail-item-label">
+                    Motivo de la consulta
+                </div>
+
+                <div class="detail-item-value">
+
+                    ${
+                        appointment.motivo
+
+                        ? escapeHtml(
+                            appointment.motivo
+                        )
+
+                        : "No se registró un motivo específico."
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "appointmentDetailModal"
+    )
+    .classList.add(
+        "show"
+    );
+
+};
+
+
+/* ======================================================
+   CERRAR DETALLE
+====================================================== */
+
+window.closeAppointmentDetail =
+function(){
+
+    document
+        .getElementById(
+            "appointmentDetailModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+};
+
+
+/* ======================================================
+   SCROLL A CITAS
+====================================================== */
+
+window.scrollToAppointments =
+function(){
+
+    const section =
+        document.getElementById(
+            "appointmentsSection"
+        );
+
+
+    if(section){
+
+        section.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
+};
+
+
+/* ======================================================
+   CLICK OUTSIDE
+   ORIGINAL + DETALLE NUEVO
+====================================================== */
+
+document
+    .getElementById(
+        "bookingModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeBookingModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "chatModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeChatModal();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "appointmentDetailModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeAppointmentDetail();
+
+            }
+
+        }
+    );
+
+
+/* ======================================================
+   ESCAPE
+   ORIGINAL + DETALLE
+====================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeBookingModal();
+
+            closeChatModal();
+
+            closeAppointmentDetail();
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   INIT
+   ORIGINAL
+====================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        updateDoctorsList();
+
+        /*
+           Inicialización visual.
+           No toca Firebase ni modifica citas.
+        */
+
+        renderAgendaDashboard();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,2844 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6BB89D">
+
+<title>TIKARY | Mi Perfil · Casa 3</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   TIKARY · PERFIL · BIENESTAR (CASA 3)
+   DISEÑO RESPONSIVE / GLASS / PSICOLOGÍA
+========================================================= */
+
+:root{
+
+    --green:#5FAF91;
+    --green-dark:#397D68;
+    --green-deep:#285F50;
+    --green-light:#A8DCC7;
+    --green-pale:#EAF8F2;
+
+    --mint:#DDF4EA;
+    --sage:#CFE8DC;
+
+    --gold:#D9A441;
+    --gold-light:#F5DEA2;
+
+    --cream:#FFFDF8;
+    --cream-2:#F9F5EC;
+
+    --white:#FFFFFF;
+
+    --text:#29453C;
+    --text-soft:#668078;
+    --gray:#81938C;
+
+    --pink-soft:#F7E8E8;
+    --lavender:#EEEAF8;
+    --blue-soft:#E7F1F8;
+
+    --shadow-soft:
+        0 18px 45px rgba(55,100,84,.10);
+
+    --shadow-card:
+        0 22px 55px rgba(55,100,84,.13);
+
+    --radius:28px;
+
+    --transition:
+        .3s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:"Inter",sans-serif;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(168,220,199,.55),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 92% 12%,
+            rgba(245,222,162,.35),
+            transparent 24%
+        ),
+
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(221,244,234,.7),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #F0FAF5 0%,
+            #FFFDF8 45%,
+            #F8F1E4 100%
+        );
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================================
+   DECORACIÓN DE FONDO
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(95,175,145,.13),
+            transparent 68%
+        );
+
+    top:170px;
+    left:-180px;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+    animation:
+        floatingBlob 12s ease-in-out infinite;
+}
+
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(217,164,65,.10),
+            transparent 68%
+        );
+
+    right:-230px;
+    bottom:-180px;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+    animation:
+        floatingBlob 15s ease-in-out infinite reverse;
+}
+
+
+@keyframes floatingBlob{
+
+    0%,100%{
+        transform:translate(0,0) scale(1);
+    }
+
+    50%{
+        transform:translate(25px,-20px) scale(1.06);
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:
+        rgba(255,253,248,.76);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    border-bottom:
+        1px solid rgba(57,125,104,.08);
+
+    box-shadow:
+        0 8px 30px rgba(50,90,75,.05);
+}
+
+
+.navbar{
+
+    width:min(1240px, calc(100% - 40px));
+
+    min-height:78px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+
+.brand:hover{
+    transform:translateY(-2px);
+}
+
+
+.brand img{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 8px 24px rgba(57,125,104,.18);
+}
+
+
+.brand-name{
+
+    font-size:19px;
+
+    font-weight:800;
+
+    letter-spacing:-.4px;
+
+    color:var(--green-deep);
+}
+
+
+/* =========================================================
+   BOTÓN CASA
+========================================================= */
+
+.back-btn{
+
+    border:1px solid rgba(95,175,145,.18);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.95),
+            rgba(239,249,244,.9)
+        );
+
+    padding:10px 17px;
+
+    border-radius:16px;
+
+    color:var(--green-deep);
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    box-shadow:
+        0 8px 25px rgba(57,125,104,.09);
+
+    transition:var(--transition);
+
+    white-space:nowrap;
+}
+
+
+.back-btn:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFFFFF,
+            #E4F7EE
+        );
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 13px 30px rgba(57,125,104,.15);
+}
+
+
+.home-icon{
+
+    width:30px;
+    height:30px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #BCE7D4,
+            #E9F8F1
+        );
+
+    font-size:17px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+    width:min(1120px, calc(100% - 40px));
+
+    margin:auto;
+
+    padding:
+        38px
+        0
+        90px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.glass-header{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:38px;
+
+    border-radius:34px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.83),
+            rgba(235,249,242,.84)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        var(--shadow-card);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+}
+
+
+.glass-header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168,220,199,.42),
+            transparent 70%
+        );
+
+    top:-150px;
+    right:-70px;
+
+    pointer-events:none;
+}
+
+
+.glass-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+    height:200px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,222,162,.27),
+            transparent 70%
+        );
+
+    bottom:-130px;
+    left:15%;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   PROFILE HERO
+========================================================= */
+
+.profile-hero{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:27px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+.avatar-wrapper{
+
+    position:relative;
+}
+
+
+.avatar-box{
+
+    width:110px;
+    height:110px;
+
+    border-radius:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:48px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #FFFFFF,
+            #DFF5E9
+        );
+
+    border:
+        1px solid rgba(95,175,145,.20);
+
+    box-shadow:
+
+        0 18px 35px rgba(57,125,104,.13),
+
+        inset 0 1px 0 rgba(255,255,255,.95);
+
+    animation:
+        softFloat 5s ease-in-out infinite;
+}
+
+
+@keyframes softFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+
+}
+
+
+.avatar-wrapper::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-5px;
+    bottom:-4px;
+
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    background:#82C8A8;
+
+    border:4px solid white;
+
+    box-shadow:
+        0 5px 15px rgba(57,125,104,.18);
+}
+
+
+.user-info h1{
+
+    margin:0;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:clamp(27px,4vw,38px);
+
+    line-height:1.1;
+
+    letter-spacing:-.8px;
+
+    color:var(--green-deep);
+}
+
+
+.profile-subtitle{
+
+    margin-top:8px;
+
+    color:var(--text-soft);
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+
+.user-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin-top:14px;
+
+    padding:8px 13px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.75);
+
+    border:
+        1px solid rgba(95,175,145,.16);
+
+    color:var(--green-deep);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 6px 18px rgba(57,125,104,.06);
+}
+
+
+/* =========================================================
+   MINI DECORACIÓN HERO
+========================================================= */
+
+.hero-sparkles{
+
+    position:absolute;
+
+    right:35px;
+    top:30px;
+
+    display:flex;
+
+    gap:8px;
+
+    opacity:.75;
+
+    z-index:3;
+}
+
+
+.sparkle{
+
+    width:32px;
+    height:32px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.72);
+
+    box-shadow:
+        0 8px 20px rgba(57,125,104,.07);
+
+    animation:
+        sparkleFloat 4s ease-in-out infinite;
+}
+
+
+.sparkle:nth-child(2){
+    animation-delay:.8s;
+}
+
+
+.sparkle:nth-child(3){
+    animation-delay:1.6s;
+}
+
+
+@keyframes sparkleFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+
+    50%{
+        transform:translateY(-6px) rotate(5deg);
+    }
+
+}
+
+
+/* =========================================================
+   NOTA DE BIENESTAR
+========================================================= */
+
+.psychologist-note{
+
+    margin-top:22px;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:13px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,249,229,.94),
+            rgba(255,255,255,.80)
+        );
+
+    border:
+        1px solid rgba(217,164,65,.20);
+
+    box-shadow:
+        0 12px 30px rgba(130,100,50,.06);
+
+    color:var(--text);
+
+    font-size:13px;
+
+    line-height:1.65;
+}
+
+
+.note-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #F9E6AD,
+            #FFF7DB
+        );
+
+    font-size:20px;
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   CARD PRINCIPAL
+========================================================= */
+
+.profile-card{
+
+    margin-top:22px;
+
+    padding:32px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    border:
+        1px solid rgba(255,255,255,.92);
+
+    box-shadow:
+        var(--shadow-card);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+}
+
+
+.section-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+.section-icon{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:21px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #DDF4EA,
+            #F3FBF7
+        );
+
+    box-shadow:
+        0 8px 20px rgba(57,125,104,.08);
+}
+
+
+.section-title h2{
+
+    margin:0;
+
+    color:var(--green-deep);
+
+    font-size:20px;
+
+    letter-spacing:-.3px;
+}
+
+
+.section-title p{
+
+    margin:3px 0 0;
+
+    color:var(--text-soft);
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid-two{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:20px;
+}
+
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.form-group.full{
+
+    grid-column:1 / -1;
+}
+
+
+label{
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--green-deep);
+
+    text-transform:uppercase;
+
+    letter-spacing:.65px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+}
+
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:16px;
+
+    border:
+        1px solid rgba(57,125,104,.12);
+
+    background:
+        rgba(255,255,255,.82);
+
+    font-family:inherit;
+
+    font-size:14px;
+
+    color:var(--text);
+
+    outline:none;
+
+    transition:var(--transition);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+
+input:hover,
+select:hover,
+textarea:hover{
+
+    border-color:
+        rgba(95,175,145,.32);
+}
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:
+        var(--green);
+
+    background:#FFFFFF;
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(95,175,145,.12),
+
+        0 10px 25px
+        rgba(57,125,104,.06);
+
+    transform:
+        translateY(-1px);
+}
+
+
+textarea{
+
+    resize:vertical;
+
+    min-height:100px;
+}
+
+
+input[readonly]{
+
+    background:
+        linear-gradient(
+            135deg,
+            #F0FAF5,
+            #F8FCFA
+        );
+
+    color:var(--green-deep);
+}
+
+
+/* =========================================================
+   COLOR PICKER
+========================================================= */
+
+.color-picker-wrapper{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+.color-picker-wrapper input[type="color"]{
+
+    width:52px;
+    height:48px;
+
+    padding:4px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   EXTRA VISUAL HINTS
+========================================================= */
+
+.field-hint{
+
+    font-size:10px;
+
+    color:var(--gray);
+
+    margin-top:1px;
+}
+
+
+/* =========================================================
+   BOTÓN GUARDAR
+========================================================= */
+
+.form-footer{
+
+    margin-top:28px;
+
+    padding-top:23px;
+
+    border-top:
+        1px solid rgba(57,125,104,.08);
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+
+.save-message{
+
+    color:var(--text-soft);
+
+    font-size:11px;
+}
+
+
+.primary-btn{
+
+    min-height:52px;
+
+    padding:0 25px;
+
+    border:0;
+
+    border-radius:17px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #69B99B,
+            #4B987E
+        );
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    box-shadow:
+        0 13px 30px rgba(57,125,104,.20);
+
+    transition:var(--transition);
+}
+
+
+.primary-btn:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 17px 35px rgba(57,125,104,.25);
+}
+
+
+.primary-btn:active{
+
+    transform:
+        translateY(0) scale(.98);
+}
+
+
+/* =========================================================
+   FOOTER DECORATIVO
+========================================================= */
+
+.wellness-footer{
+
+    text-align:center;
+
+    padding-top:28px;
+
+    color:var(--gray);
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+
+.wellness-footer span{
+
+    color:var(--gold);
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #FFFFFF 0%,
+            #EFFAF5 55%,
+            #F7F0E2 100%
+        );
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:9999;
+}
+
+
+.loading-logo{
+
+    width:82px;
+    height:82px;
+
+    border-radius:25px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 18px 40px rgba(57,125,104,.18);
+
+    animation:
+        loadingPulse 2s ease-in-out infinite;
+}
+
+
+@keyframes loadingPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+
+}
+
+
+.loading-text{
+
+    margin-top:20px;
+
+    color:var(--green-deep);
+
+    font-weight:800;
+
+    font-size:13px;
+}
+
+
+.loading-dots{
+
+    display:flex;
+
+    gap:5px;
+
+    margin-top:12px;
+}
+
+
+.loading-dots span{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    animation:
+        loadingDots 1.2s infinite ease-in-out;
+}
+
+
+.loading-dots span:nth-child(2){
+    animation-delay:.15s;
+}
+
+
+.loading-dots span:nth-child(3){
+    animation-delay:.3s;
+}
+
+
+@keyframes loadingDots{
+
+    0%,80%,100%{
+        transform:scale(.6);
+        opacity:.4;
+    }
+
+    40%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:28px;
+
+    transform:
+        translate(-50%,25px);
+
+    background:
+        rgba(40,95,80,.95);
+
+    color:white;
+
+    padding:13px 20px;
+
+    border-radius:15px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 18px 45px rgba(40,95,80,.22);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.35s;
+
+    z-index:10000;
+
+    backdrop-filter:blur(12px);
+}
+
+
+#toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    main{
+
+        width:min(100% - 30px,760px);
+
+    }
+
+    .grid-two{
+
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+
+        grid-column:auto;
+    }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media(max-width:650px){
+
+    .navbar{
+
+        width:
+            calc(100% - 24px);
+
+        min-height:70px;
+    }
+
+
+    .brand-name{
+
+        font-size:17px;
+    }
+
+
+    .brand img{
+
+        width:40px;
+        height:40px;
+    }
+
+
+    .back-btn{
+
+        padding:8px 10px;
+
+        font-size:0;
+
+        gap:0;
+    }
+
+
+    .home-icon{
+
+        width:32px;
+        height:32px;
+
+        font-size:17px;
+    }
+
+
+    main{
+
+        width:
+            calc(100% - 22px);
+
+        padding:
+            20px
+            0
+            55px;
+    }
+
+
+    .glass-header{
+
+        padding:27px 21px;
+
+        border-radius:27px;
+    }
+
+
+    .profile-hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:17px;
+    }
+
+
+    .avatar-box{
+
+        width:92px;
+        height:92px;
+
+        font-size:41px;
+    }
+
+
+    .user-badge{
+
+        justify-content:center;
+    }
+
+
+    .hero-sparkles{
+
+        right:15px;
+        top:15px;
+    }
+
+
+    .sparkle{
+
+        width:27px;
+        height:27px;
+
+        font-size:12px;
+    }
+
+
+    .psychologist-note{
+
+        padding:15px;
+
+        font-size:12px;
+    }
+
+
+    .profile-card{
+
+        padding:22px 17px;
+
+        border-radius:25px;
+    }
+
+
+    .section-heading{
+
+        align-items:flex-start;
+    }
+
+
+    .form-footer{
+
+        flex-direction:column-reverse;
+
+        align-items:stretch;
+    }
+
+
+    .primary-btn{
+
+        width:100%;
+    }
+
+
+    .save-message{
+
+        text-align:center;
+    }
+
+}
+
+
+/* =========================================================
+   PANTALLAS GRANDES / TV
+========================================================= */
+
+@media(min-width:1600px){
+
+    body{
+
+        font-size:16px;
+    }
+
+
+    .navbar{
+
+        width:min(1450px,92%);
+    }
+
+
+    main{
+
+        width:min(1280px,88%);
+
+        padding-top:55px;
+    }
+
+
+    .glass-header{
+
+        padding:48px;
+    }
+
+
+    .profile-card{
+
+        padding:42px;
+    }
+
+
+    .avatar-box{
+
+        width:125px;
+        height:125px;
+
+        font-size:55px;
+    }
+
+
+    .user-info h1{
+
+        font-size:44px;
+    }
+
+
+    input,
+    select,
+    textarea{
+
+        font-size:15px;
+
+        padding:16px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition-duration:.01ms !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     LOADING
+======================================================= -->
+
+<div id="loadingScreen">
+
+    <img
+        src="../../imagenes/logo.jpg"
+        class="loading-logo"
+        alt="TIKARY"
+    >
+
+    <div class="loading-text">
+        Preparando tu espacio de bienestar...
+    </div>
+
+    <div class="loading-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div
+            class="brand"
+            onclick="goToPage('casa3.html')"
+        >
+
+            <img
+                src="../../imagenes/logo.jpg"
+                alt="TIKARY"
+            >
+
+            <div class="brand-name">
+                TIKARY
+            </div>
+
+        </div>
+
+
+        <!-- BOTÓN CASA VISIBLE -->
+
+        <button
+            class="back-btn"
+            onclick="goToPage('casa3.html')"
+            aria-label="Volver a Casa 3"
+        >
+
+            <span class="home-icon">
+                🏠
+            </span>
+
+            <span>
+                Volver a Casa 3
+            </span>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main>
+
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section class="glass-header">
+
+        <div class="hero-sparkles">
+
+            <div class="sparkle">✨</div>
+            <div class="sparkle">🌿</div>
+            <div class="sparkle">☀️</div>
+
+        </div>
+
+
+        <div class="profile-hero">
+
+            <div class="avatar-wrapper">
+
+                <div
+                    class="avatar-box"
+                    id="avatarEmoji"
+                >
+                    🌿
+                </div>
+
+            </div>
+
+
+            <div class="user-info">
+
+                <h1 id="displayRealName">
+                    Verificando nombre verdadero...
+                </h1>
+
+
+                <div class="profile-subtitle">
+                    Tu espacio personal para conocerte,
+                    expresarte y cuidar tu bienestar.
+                </div>
+
+
+                <div class="user-badge">
+
+                    <span>✨ Estudiante · Casa 3</span>
+
+                    <span>•</span>
+
+                    <span id="displayDni">
+                        DNI: --------
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         NOTA PSICOLÓGICA
+    ==================================================== -->
+
+    <div class="psychologist-note">
+
+        <div class="note-icon">
+            🧠
+        </div>
+
+        <div>
+
+            <strong>
+                Espacio de Personalidad y Bienestar
+            </strong>
+
+            <br>
+
+            Esta ficha de prototipo permite personalizar
+            tu experiencia en TIKARY y conocer mejor tus
+            preferencias, intereses y aspectos que pueden
+            ayudarte durante tu proceso de orientación.
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         FORMULARIO
+    ==================================================== -->
+
+    <form
+        id="profileForm"
+        onsubmit="saveProfile(event)"
+        style="margin-top:22px;"
+    >
+
+        <div class="profile-card">
+
+
+            <!-- CABECERA -->
+
+            <div class="section-heading">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Mi espacio personal
+                        </h2>
+
+                        <p>
+                            Puedes actualizar tus preferencias
+                            cuando quieras.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid-two">
+
+
+                <!-- =================================================
+                     NOMBRE
+                ================================================== -->
+
+                <div class="form-group full">
+
+                    <label>
+                        👤 Nombre verdadero registrado
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inputRealName"
+                        readonly
+                        style="font-weight:700;"
+                    >
+
+                    <div class="field-hint">
+                        Este nombre se obtiene directamente
+                        de los datos verificados de Firebase.
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     EDAD
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🎂 Edad
+                    </label>
+
+                    <input
+                        type="number"
+                        id="inputAge"
+                        min="10"
+                        max="99"
+                        placeholder="Ej. 17"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     CUMPLEAÑOS
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🎈 Fecha de cumpleaños
+                    </label>
+
+                    <input
+                        type="date"
+                        id="inputBirthday"
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     COLOR
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🎨 Color que más te representa
+                    </label>
+
+                    <div class="color-picker-wrapper">
+
+                        <input
+                            type="color"
+                            id="inputColorPicker"
+                            value="#6BB89D"
+                            onchange="syncColor(this.value)"
+                        >
+
+                        <input
+                            type="text"
+                            id="inputColorText"
+                            placeholder="Ej. Verde esmeralda"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     COMIDA
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🍓 Comida que más te gusta
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inputFavoriteFood"
+                        placeholder="Ej. Pizza, ceviche, frutas..."
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     MÚSICA
+                ================================================== -->
+
+                <div class="form-group full">
+
+                    <label>
+                        🎵 Música que disfrutas o te calma
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inputSong"
+                        placeholder="Canción, artista o género favorito"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     ESTADO DE ÁNIMO
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        😌 ¿Cómo te sientes habitualmente?
+                    </label>
+
+                    <select id="inputMood">
+
+                        <option value="Tranquilo y enfocado">
+                            Tranquilo y enfocado 😌
+                        </option>
+
+                        <option value="Con energía y motivado">
+                            Con energía y motivado 🔥
+                        </option>
+
+                        <option value="A veces estresado o cansado">
+                            A veces estresado o cansado 😴
+                        </option>
+
+                        <option value="Buscando mayor claridad">
+                            Buscando mayor claridad 🧠
+                        </option>
+
+                        <option value="Emocional y reflexivo">
+                            Emocional y reflexivo 🌙
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =================================================
+                     PASATIEMPOS
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🎮 Pasatiempos y actividades
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inputHobbies"
+                        placeholder="Videojuegos, dibujo, deporte..."
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     ESTACIÓN
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🌸 Estación del año favorita
+                    </label>
+
+                    <select id="inputSeason">
+
+                        <option value="Primavera">
+                            🌸 Primavera
+                        </option>
+
+                        <option value="Verano">
+                            ☀️ Verano
+                        </option>
+
+                        <option value="Otoño">
+                            🍂 Otoño
+                        </option>
+
+                        <option value="Invierno">
+                            ❄️ Invierno
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =================================================
+                     LUGAR FAVORITO
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🌿 Lugar donde te sientes cómodo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inputFavoritePlace"
+                        placeholder="Mi habitación, parque, naturaleza..."
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     CALMA
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        🕊️ ¿Qué te ayuda a relajarte?
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inputRelax"
+                        placeholder="Música, caminar, dormir..."
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     NOTA
+                ================================================== -->
+
+                <div class="form-group full">
+
+                    <label>
+                        💬 Algo que te gustaría que tu orientador conozca
+                    </label>
+
+                    <textarea
+                        id="inputCounselorNote"
+                        rows="4"
+                        placeholder="Escribe aquí cualquier detalle que quieras compartir..."
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER FORMULARIO
+            ================================================== -->
+
+            <div class="form-footer">
+
+                <div class="save-message">
+
+                    🔒 Tus preferencias se guardan
+                    en tu perfil de TIKARY.
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+
+                    💾
+
+                    Guardar y actualizar perfil
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </form>
+
+
+    <!-- ===================================================
+         FOOTER
+    ==================================================== -->
+
+    <div class="wellness-footer">
+
+        <span>✦</span>
+
+        Un pequeño espacio para conocerte mejor.
+
+        <br>
+
+        TIKARY · Psicología y Bienestar
+
+    </div>
+
+
+</main>
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div id="toast"></div>
+
+
+<!-- =======================================================
+     FIREBASE
+======================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+let currentDni = "";
+
+
+/* =========================================================
+   AUTENTICACIÓN
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        try {
+
+            if (!user) {
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+            }
+
+
+            const email =
+                (user.email || "")
+                .trim()
+                .toLowerCase();
+
+
+            const regex =
+                /^\d{8}@tikary3\.com$/;
+
+
+            if (!regex.test(email)) {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+            }
+
+
+            currentDni =
+                email.split("@")[0];
+
+
+            /* =============================================
+               OBTENER DNI
+            ============================================== */
+
+            const refDni =
+                doc(
+                    db,
+                    "dni_permitidos",
+                    currentDni
+                );
+
+
+            const snapshotDni =
+                await getDoc(refDni);
+
+
+            if (!snapshotDni.exists()) {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+            }
+
+
+            const datos =
+                snapshotDni.data();
+
+
+            /* =============================================
+               NOMBRE VERDADERO
+            ============================================== */
+
+            const nombreVerdadero =
+                datos.nombres ||
+                datos.nombreCompleto ||
+                datos.nombresCompletos ||
+                "Estudiante Tikary";
+
+
+            document
+                .getElementById("displayRealName")
+                .textContent =
+                nombreVerdadero;
+
+
+            document
+                .getElementById("inputRealName")
+                .value =
+                nombreVerdadero;
+
+
+            document
+                .getElementById("displayDni")
+                .textContent =
+                "DNI: " + currentDni;
+
+
+            /* =============================================
+               PERFIL
+            ============================================== */
+
+            const refProfile =
+                doc(
+                    db,
+                    "perfiles_estudiantes",
+                    currentDni
+                );
+
+
+            const snapshotProfile =
+                await getDoc(refProfile);
+
+
+            if (snapshotProfile.exists()) {
+
+                const pref =
+                    snapshotProfile.data();
+
+
+                if (pref.edad) {
+
+                    document
+                        .getElementById("inputAge")
+                        .value =
+                        pref.edad;
+                }
+
+
+                if (pref.cumpleanos) {
+
+                    document
+                        .getElementById("inputBirthday")
+                        .value =
+                        pref.cumpleanos;
+                }
+
+
+                if (pref.colorHex) {
+
+                    document
+                        .getElementById("inputColorPicker")
+                        .value =
+                        pref.colorHex;
+
+                    syncColor(
+                        pref.colorHex
+                    );
+                }
+
+
+                if (pref.colorNombre) {
+
+                    document
+                        .getElementById("inputColorText")
+                        .value =
+                        pref.colorNombre;
+                }
+
+
+                if (pref.cancion) {
+
+                    document
+                        .getElementById("inputSong")
+                        .value =
+                        pref.cancion;
+                }
+
+
+                if (pref.estadoAnimo) {
+
+                    document
+                        .getElementById("inputMood")
+                        .value =
+                        pref.estadoAnimo;
+                }
+
+
+                if (pref.pasatiempos) {
+
+                    document
+                        .getElementById("inputHobbies")
+                        .value =
+                        pref.pasatiempos;
+                }
+
+
+                if (pref.comidaFavorita) {
+
+                    document
+                        .getElementById("inputFavoriteFood")
+                        .value =
+                        pref.comidaFavorita;
+                }
+
+
+                if (pref.estacionFavorita) {
+
+                    document
+                        .getElementById("inputSeason")
+                        .value =
+                        pref.estacionFavorita;
+                }
+
+
+                if (pref.lugarFavorito) {
+
+                    document
+                        .getElementById("inputFavoritePlace")
+                        .value =
+                        pref.lugarFavorito;
+                }
+
+
+                if (pref.relajacion) {
+
+                    document
+                        .getElementById("inputRelax")
+                        .value =
+                        pref.relajacion;
+                }
+
+
+                if (pref.notaPsicologo) {
+
+                    document
+                        .getElementById("inputCounselorNote")
+                        .value =
+                        pref.notaPsicologo;
+                }
+
+            }
+
+            else {
+
+                /* =========================================
+                   DATOS PROTOTIPO
+                ========================================== */
+
+                document
+                    .getElementById("inputAge")
+                    .value =
+                    "17";
+
+
+                document
+                    .getElementById("inputColorText")
+                    .value =
+                    "Verde Esmeralda";
+
+
+                document
+                    .getElementById("inputSong")
+                    .value =
+                    "Lofi Beats / Música Relajante";
+
+
+                document
+                    .getElementById("inputFavoriteFood")
+                    .value =
+                    "Mi comida favorita";
+
+
+                document
+                    .getElementById("inputHobbies")
+                    .value =
+                    "Dibujar, escuchar música y leer";
+
+
+                document
+                    .getElementById("inputFavoritePlace")
+                    .value =
+                    "Un lugar tranquilo";
+
+
+                document
+                    .getElementById("inputRelax")
+                    .value =
+                    "Escuchar música y descansar";
+
+
+                document
+                    .getElementById("inputCounselorNote")
+                    .value =
+                    "Me gustaría recibir técnicas para mejorar mi concentración y manejo de tiempo.";
+
+            }
+
+
+            /* =============================================
+               OCULTAR LOADING
+            ============================================== */
+
+            setTimeout(() => {
+
+                document
+                    .getElementById("loadingScreen")
+                    .style.opacity =
+                    "0";
+
+                setTimeout(() => {
+
+                    document
+                        .getElementById("loadingScreen")
+                        .style.display =
+                        "none";
+
+                },300);
+
+            },350);
+
+
+        }
+
+        catch(error) {
+
+            console.error(
+                "Error cargando el perfil:",
+                error
+            );
+
+            window.location.href =
+                "../../index.html";
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GUARDAR PERFIL
+========================================================= */
+
+window.saveProfile =
+async function(event){
+
+    event.preventDefault();
+
+
+    if (!currentDni)
+        return;
+
+
+    const profileData = {
+
+        edad:
+            document
+            .getElementById("inputAge")
+            .value,
+
+
+        cumpleanos:
+            document
+            .getElementById("inputBirthday")
+            .value,
+
+
+        colorHex:
+            document
+            .getElementById("inputColorPicker")
+            .value,
+
+
+        colorNombre:
+            document
+            .getElementById("inputColorText")
+            .value,
+
+
+        cancion:
+            document
+            .getElementById("inputSong")
+            .value,
+
+
+        estadoAnimo:
+            document
+            .getElementById("inputMood")
+            .value,
+
+
+        pasatiempos:
+            document
+            .getElementById("inputHobbies")
+            .value,
+
+
+        comidaFavorita:
+            document
+            .getElementById("inputFavoriteFood")
+            .value,
+
+
+        estacionFavorita:
+            document
+            .getElementById("inputSeason")
+            .value,
+
+
+        lugarFavorito:
+            document
+            .getElementById("inputFavoritePlace")
+            .value,
+
+
+        relajacion:
+            document
+            .getElementById("inputRelax")
+            .value,
+
+
+        notaPsicologo:
+            document
+            .getElementById("inputCounselorNote")
+            .value,
+
+
+        ultimaActualizacion:
+            new Date().toISOString()
+
+    };
+
+
+    try {
+
+        await setDoc(
+
+            doc(
+                db,
+                "perfiles_estudiantes",
+                currentDni
+            ),
+
+            profileData,
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        showToast(
+            "✨ ¡Tu perfil se guardó correctamente!"
+        );
+
+
+    }
+
+    catch(err) {
+
+        console.error(
+            "Error guardando datos:",
+            err
+        );
+
+
+        showToast(
+            "No se pudieron guardar los cambios"
+        );
+
+    }
+
+};
+
+</script>
+
+
+<!-- =======================================================
+     FUNCIONES VISUALES
+======================================================= -->
+
+<script>
+
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+function syncColor(val){
+
+    document
+        .documentElement
+        .style
+        .setProperty(
+            "--green",
+            val
+        );
+
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+function goToPage(page){
+
+    window.location.href =
+        page;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(msg){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        msg;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },2800);
+
+}
+
+
+/* =========================================================
+   EFECTO SUAVE AL ENTRAR
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        document
+            .querySelectorAll(
+                ".glass-header, .profile-card, .psychologist-note"
+            )
+            .forEach(
+                (element,index) => {
+
+                    element.animate(
+
+                        [
+
+                            {
+                                opacity:0,
+                                transform:
+                                    "translateY(15px)"
+                            },
+
+                            {
+                                opacity:1,
+                                transform:
+                                    "translateY(0)"
+                            }
+
+                        ],
+
+                        {
+
+                            duration:
+                                650,
+
+                            delay:
+                                index * 100,
+
+                            easing:
+                                "cubic-bezier(.2,.8,.2,1)",
+
+                            fill:
+                                "both"
+
+                        }
+
+                    );
+
+                }
+            );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

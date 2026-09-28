@@ -1,0 +1,4247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta
+    name="theme-color"
+    content="#EAF7F1"
+>
+
+<meta
+    name="description"
+    content="TIKARY 3 — Biblioteca virtual de bienestar y recursos psicológicos."
+>
+
+<title>TIKARY 3 | Biblioteca Virtual de Bienestar</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   TIKARY 3
+   BIBLIOTECA VIRTUAL DE BIENESTAR
+   DISEÑO RESPONSIVE · CELULAR · TABLET · LAPTOP · TV
+========================================================= */
+
+:root{
+
+    --green:#287A64;
+    --green-dark:#155645;
+    --green-deep:#0E4436;
+    --green-light:#63B79C;
+
+    --mint:#EAF7F1;
+    --mint-2:#DDF1E9;
+    --mint-3:#F3FBF7;
+
+    --gold:#D8A94A;
+    --gold-light:#F5D994;
+    --gold-soft:#FFF8E8;
+
+    --lavender:#EEEAF8;
+    --lavender-dark:#7565A8;
+
+    --peach:#FFF0E8;
+    --peach-dark:#B56F4F;
+
+    --blue-soft:#EAF3FB;
+    --blue-dark:#4C7BA5;
+
+    --cream:#FFFDF8;
+    --white:#FFFFFF;
+
+    --text:#183B31;
+    --text-soft:#526E65;
+    --gray:#748780;
+    --gray-light:#A4B2AD;
+
+    --border:rgba(255,255,255,.72);
+
+    --shadow:
+        0 18px 50px rgba(21,86,69,.10);
+
+    --shadow-hover:
+        0 25px 65px rgba(21,86,69,.16);
+
+    --radius:28px;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:"Inter",sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(99,183,156,.18),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 92% 18%,
+            rgba(216,169,74,.13),
+            transparent 24%
+        ),
+
+        radial-gradient(
+            circle at 75% 85%,
+            rgba(117,101,168,.09),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #EFFAF5 0%,
+            #FFFDF8 48%,
+            #F8F3E9 100%
+        );
+
+    overflow-x:hidden;
+
+}
+
+
+/* =========================================================
+   FONDO DECORATIVO
+========================================================= */
+
+.background-decoration{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.bg-orb{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(4px);
+
+    opacity:.45;
+
+    animation:
+        floatingOrb 12s ease-in-out infinite;
+
+}
+
+.bg-orb.one{
+
+    width:260px;
+    height:260px;
+
+    background:rgba(99,183,156,.16);
+
+    top:110px;
+    left:-120px;
+
+}
+
+.bg-orb.two{
+
+    width:320px;
+    height:320px;
+
+    background:rgba(216,169,74,.11);
+
+    right:-150px;
+    top:40%;
+
+    animation-delay:-4s;
+
+}
+
+.bg-orb.three{
+
+    width:220px;
+    height:220px;
+
+    background:rgba(117,101,168,.10);
+
+    left:35%;
+    bottom:-120px;
+
+    animation-delay:-7s;
+
+}
+
+@keyframes floatingOrb{
+
+    0%,100%{
+        transform:translate3d(0,0,0);
+    }
+
+    50%{
+        transform:translate3d(18px,-20px,0);
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:
+        rgba(255,253,248,.78);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    border-bottom:
+        1px solid rgba(24,59,49,.07);
+
+}
+
+.navbar{
+
+    width:
+        min(
+            1400px,
+            calc(100% - 36px)
+        );
+
+    min-height:78px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.brand-logo{
+
+    width:45px;
+    height:45px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    box-shadow:
+        0 8px 25px rgba(21,86,69,.15);
+
+}
+
+.brand-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2px;
+
+}
+
+.brand-name{
+
+    color:var(--green-deep);
+
+    font-size:18px;
+
+    font-weight:800;
+
+    letter-spacing:-.3px;
+
+}
+
+.brand-subtitle{
+
+    color:var(--gray);
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+   HEADER DERECHA
+========================================================= */
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.user-badge{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:9px 14px;
+
+    border-radius:999px;
+
+    background:
+        rgba(234,247,241,.85);
+
+    border:
+        1px solid rgba(40,122,100,.14);
+
+    color:var(--green-dark);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+.user-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#5EB68F;
+
+    box-shadow:
+        0 0 0 4px rgba(94,182,143,.13);
+
+}
+
+
+.back-btn{
+
+    border:0;
+
+    background:var(--white);
+
+    color:var(--green-dark);
+
+    padding:10px 15px;
+
+    min-height:42px;
+
+    border-radius:14px;
+
+    border:
+        1px solid rgba(24,59,49,.09);
+
+    box-shadow:
+        0 7px 22px rgba(21,86,69,.06);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+
+}
+
+.back-btn:hover{
+
+    background:var(--mint);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(21,86,69,.10);
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+    width:
+        min(
+            1400px,
+            calc(100% - 36px)
+        );
+
+    margin:auto;
+
+    padding:
+        34px 0
+        80px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.library-hero{
+
+    position:relative;
+
+    min-height:365px;
+
+    padding:
+        48px
+        430px
+        48px
+        48px;
+
+    border-radius:36px;
+
+    overflow:hidden;
+
+    background:
+
+        linear-gradient(
+            125deg,
+            #185D49 0%,
+            #287A64 50%,
+            #4B9B82 100%
+        );
+
+    box-shadow:
+        0 28px 65px rgba(21,86,69,.18);
+
+    border:
+        1px solid rgba(255,255,255,.35);
+
+}
+
+
+/* brillo */
+
+.library-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:430px;
+    height:430px;
+
+    border-radius:50%;
+
+    right:-150px;
+    top:-220px;
+
+    background:
+        rgba(255,255,255,.10);
+
+}
+
+.library-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    left:35%;
+    bottom:-190px;
+
+    background:
+        rgba(255,255,255,.07);
+
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content{
+
+    position:relative;
+
+    z-index:4;
+
+    max-width:610px;
+
+}
+
+.hero-label{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 13px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+    text-transform:uppercase;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.hero-title{
+
+    margin-top:18px;
+
+    color:white;
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            46px
+        );
+
+    line-height:1.08;
+
+    letter-spacing:-1.4px;
+
+    font-weight:800;
+
+}
+
+.hero-title span{
+
+    color:#F8DFA2;
+
+}
+
+.hero-description{
+
+    margin-top:16px;
+
+    max-width:600px;
+
+    color:
+        rgba(255,255,255,.88);
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+.hero-pills{
+
+    margin-top:24px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+}
+
+.hero-pill{
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   IMAGEN REAL biblioteca.jpg
+========================================================= */
+
+.hero-art{
+
+    position:absolute;
+
+    z-index:3;
+
+    right:38px;
+
+    top:50%;
+
+    width:370px;
+
+    height:285px;
+
+    transform:
+        translateY(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.hero-image-glow{
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.25),
+            transparent 68%
+        );
+
+    filter:blur(5px);
+
+}
+
+.hero-image-frame{
+
+    position:relative;
+
+    width:345px;
+
+    height:245px;
+
+    padding:8px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    border:
+        1px solid rgba(255,255,255,.4);
+
+    box-shadow:
+        0 28px 55px rgba(0,0,0,.22);
+
+    backdrop-filter:blur(12px);
+
+    transform:
+        rotate(2deg);
+
+    transition:
+        transform .4s ease;
+
+    overflow:hidden;
+
+}
+
+.hero-image-frame:hover{
+
+    transform:
+        rotate(0deg)
+        translateY(-5px)
+        scale(1.02);
+
+}
+
+.library-image{
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    border-radius:23px;
+
+}
+
+
+/* =========================================================
+   PEQUEÑOS ELEMENTOS FLOTANTES
+========================================================= */
+
+.floating-badge{
+
+    position:absolute;
+
+    z-index:5;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:10px 13px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    color:var(--green-dark);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.15);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    animation:
+        badgeFloat 5s ease-in-out infinite;
+
+}
+
+.floating-badge.top{
+
+    top:18px;
+
+    right:18px;
+
+}
+
+.floating-badge.bottom{
+
+    bottom:20px;
+
+    left:8px;
+
+    animation-delay:-2s;
+
+}
+
+@keyframes badgeFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+
+/* =========================================================
+   SECCIÓN INTRO
+========================================================= */
+
+.section-heading{
+
+    margin:
+        38px 0
+        20px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.section-title{
+
+    font-size:23px;
+
+    font-weight:800;
+
+    color:var(--green-deep);
+
+    letter-spacing:-.5px;
+
+}
+
+.section-subtitle{
+
+    margin-top:5px;
+
+    font-size:12px;
+
+    color:var(--gray);
+
+    line-height:1.5;
+
+}
+
+.resource-count{
+
+    flex-shrink:0;
+
+    padding:9px 13px;
+
+    border-radius:999px;
+
+    background:var(--white);
+
+    border:
+        1px solid rgba(24,59,49,.08);
+
+    color:var(--green-dark);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.filter-wrapper{
+
+    padding:7px;
+
+    margin-bottom:27px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.62);
+
+    border:
+        1px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 10px 30px rgba(21,86,69,.05);
+
+    backdrop-filter:blur(15px);
+
+    overflow-x:auto;
+
+}
+
+.filter-bar{
+
+    display:flex;
+
+    gap:7px;
+
+    min-width:max-content;
+
+}
+
+.filter-btn{
+
+    border:0;
+
+    padding:
+        11px 16px;
+
+    border-radius:14px;
+
+    background:transparent;
+
+    color:var(--gray);
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:
+        all .25s ease;
+
+}
+
+.filter-btn:hover{
+
+    color:var(--green-dark);
+
+    background:var(--mint);
+
+}
+
+.filter-btn.active{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--green-light)
+        );
+
+    box-shadow:
+        0 7px 18px rgba(40,122,100,.20);
+
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.resource-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
+
+    gap:22px;
+
+}
+
+
+/* =========================================================
+   RESOURCE CARD
+========================================================= */
+
+.resource-card{
+
+    position:relative;
+
+    min-height:285px;
+
+    padding:25px;
+
+    border-radius:
+        var(--radius);
+
+    background:
+        rgba(255,255,255,.82);
+
+    border:
+        1px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    overflow:hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+
+    animation:
+        cardAppear .55s ease both;
+
+}
+
+.resource-card:nth-child(2){
+    animation-delay:.06s;
+}
+
+.resource-card:nth-child(3){
+    animation-delay:.12s;
+}
+
+.resource-card:nth-child(4){
+    animation-delay:.18s;
+}
+
+@keyframes cardAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.resource-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    right:-65px;
+    top:-65px;
+
+    background:
+        rgba(99,183,156,.09);
+
+    pointer-events:none;
+
+}
+
+.resource-card:hover{
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        var(--shadow-hover);
+
+    border-color:
+        rgba(40,122,100,.15);
+
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.res-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    width:max-content;
+
+    padding:
+        6px 10px;
+
+    border-radius:9px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:.45px;
+
+    text-transform:uppercase;
+
+    margin-bottom:17px;
+
+}
+
+.tag-guia{
+
+    background:#E8F6F0;
+
+    color:#23725C;
+
+}
+
+.tag-audio{
+
+    background:#FFF5D9;
+
+    color:#916B19;
+
+}
+
+.tag-podcast{
+
+    background:#F0EBFA;
+
+    color:#7562A5;
+
+}
+
+.tag-ejercicio{
+
+    background:#EAF3FB;
+
+    color:#4A78A1;
+
+}
+
+
+/* =========================================================
+   HEADER DE RECURSO
+========================================================= */
+
+.res-header{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+}
+
+.res-icon{
+
+    width:57px;
+    height:57px;
+
+    flex:0 0 57px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    font-size:27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FFF8E7,
+            #FFF2C9
+        );
+
+    border:
+        1px solid rgba(216,169,74,.22);
+
+    box-shadow:
+        0 10px 22px rgba(216,169,74,.10);
+
+}
+
+.res-title{
+
+    margin:0 0 7px;
+
+    color:var(--green-deep);
+
+    font-size:16px;
+
+    line-height:1.35;
+
+    font-weight:800;
+
+    letter-spacing:-.2px;
+
+}
+
+.res-meta{
+
+    color:var(--gray);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+}
+
+.res-desc{
+
+    margin-top:17px;
+
+    color:var(--text-soft);
+
+    font-size:12px;
+
+    line-height:1.65;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.action-row{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.6fr)
+        minmax(110px,1fr);
+
+    gap:9px;
+
+    margin-top:23px;
+
+}
+
+.btn-open,
+.btn-save{
+
+    min-height:45px;
+
+    border-radius:14px;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+
+}
+
+.btn-open{
+
+    border:0;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--green-light)
+        );
+
+    box-shadow:
+        0 9px 20px rgba(40,122,100,.17);
+
+}
+
+.btn-open:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 13px 27px rgba(40,122,100,.23);
+
+}
+
+.btn-save{
+
+    color:var(--green-dark);
+
+    background:
+        var(--gold-soft);
+
+    border:
+        1px solid rgba(216,169,74,.28);
+
+}
+
+.btn-save:hover{
+
+    transform:translateY(-2px);
+
+    background:#FFF0C8;
+
+}
+
+.btn-save.saved{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D29E36,
+            #E0B553
+        );
+
+    border-color:transparent;
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-backdrop{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(14,68,54,.55);
+
+    backdrop-filter:blur(14px);
+
+    -webkit-backdrop-filter:blur(14px);
+
+}
+
+.modal-card{
+
+    width:
+        min(
+            560px,
+            100%
+        );
+
+    max-height:
+        min(
+            88vh,
+            720px
+        );
+
+    overflow:auto;
+
+    padding:30px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,253,248,.97);
+
+    border:
+        1px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.25);
+
+    animation:
+        modalIn .28s ease;
+
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+.modal-top{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.modal-title{
+
+    color:var(--green-deep);
+
+    font-size:19px;
+
+    line-height:1.3;
+
+    font-weight:800;
+
+}
+
+.modal-subtitle{
+
+    margin-top:6px;
+
+    color:var(--gray);
+
+    font-size:11px;
+
+    line-height:1.5;
+
+}
+
+.modal-close{
+
+    width:38px;
+    height:38px;
+
+    flex:0 0 38px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:var(--mint);
+
+    color:var(--green-dark);
+
+    font-size:18px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+.modal-close:hover{
+
+    background:var(--mint-2);
+
+}
+
+.modal-body{
+
+    margin-top:22px;
+
+    min-height:180px;
+
+    padding:24px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #EEF9F4,
+            #FFF9EC
+        );
+
+    border:
+        1px solid rgba(40,122,100,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+.modal-icon{
+
+    font-size:48px;
+
+    margin-bottom:13px;
+
+}
+
+.modal-message-title{
+
+    color:var(--green-dark);
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+.modal-message{
+
+    max-width:420px;
+
+    margin-top:7px;
+
+    color:var(--gray);
+
+    font-size:11px;
+
+    line-height:1.6;
+
+}
+
+.fake-player{
+
+    width:100%;
+
+    max-width:430px;
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    background:white;
+
+    border:
+        1px solid rgba(24,59,49,.07);
+
+    box-shadow:
+        0 10px 25px rgba(21,86,69,.07);
+
+}
+
+.player-line{
+
+    height:5px;
+
+    border-radius:99px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green-light) 0 38%,
+            #DDEBE5 38% 100%
+        );
+
+}
+
+.player-controls{
+
+    margin-top:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    color:var(--gray);
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+.fake-play{
+
+    width:43px;
+    height:43px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    color:white;
+
+    font-size:17px;
+
+}
+
+.modal-footer{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+
+/* =========================================================
+   INFO INFERIOR
+========================================================= */
+
+.wellness-note{
+
+    margin-top:28px;
+
+    padding:20px 22px;
+
+    border-radius:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:
+        rgba(255,255,255,.65);
+
+    border:
+        1px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 12px 35px rgba(21,86,69,.06);
+
+    backdrop-filter:blur(12px);
+
+}
+
+.note-icon{
+
+    width:47px;
+    height:47px;
+
+    flex:0 0 47px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--gold-soft);
+
+    font-size:22px;
+
+}
+
+.note-title{
+
+    color:var(--green-dark);
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+.note-text{
+
+    margin-top:4px;
+
+    color:var(--gray);
+
+    font-size:10px;
+
+    line-height:1.55;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    width:
+        min(
+            1400px,
+            calc(100% - 36px)
+        );
+
+    margin:
+        0 auto
+        35px;
+
+    text-align:center;
+
+    color:var(--gray);
+
+    font-size:10px;
+
+}
+
+footer strong{
+
+    color:var(--green-dark);
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #F4FCF8,
+            #FFFDF8
+        );
+
+}
+
+.loading-logo{
+
+    width:82px;
+    height:82px;
+
+    border-radius:24px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 18px 45px rgba(21,86,69,.16);
+
+    animation:
+        loadingPulse 1.7s ease-in-out infinite;
+
+}
+
+.loading-ring{
+
+    width:36px;
+    height:36px;
+
+    margin-top:22px;
+
+    border-radius:50%;
+
+    border:
+        3px solid #DCEDE6;
+
+    border-top-color:
+        var(--green);
+
+    animation:
+        spin .8s linear infinite;
+
+}
+
+.loading-text{
+
+    margin-top:13px;
+
+    color:var(--green);
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+@keyframes loadingPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:fixed;
+
+    z-index:11000;
+
+    left:50%;
+
+    bottom:
+        max(
+            25px,
+            env(safe-area-inset-bottom)
+        );
+
+    transform:
+        translate(-50%,20px);
+
+    max-width:
+        min(
+            420px,
+            calc(100% - 30px)
+        );
+
+    padding:
+        12px 18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(21,86,69,.96);
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 40px rgba(21,86,69,.25);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        .3s ease;
+
+}
+
+#toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:1050px){
+
+    .library-hero{
+
+        padding-right:390px;
+
+    }
+
+    .hero-art{
+
+        right:20px;
+
+        width:340px;
+
+    }
+
+    .hero-image-frame{
+
+        width:305px;
+        height:220px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / PANTALLAS MEDIANAS
+========================================================= */
+
+@media (max-width:820px){
+
+    .navbar{
+
+        width:
+            min(
+                100% - 24px,
+                700px
+            );
+
+        min-height:70px;
+
+    }
+
+    .brand-subtitle{
+
+        display:none;
+
+    }
+
+    .user-badge{
+
+        display:none;
+
+    }
+
+    main{
+
+        width:
+            min(
+                100% - 24px,
+                760px
+            );
+
+        padding-top:22px;
+
+    }
+
+    .library-hero{
+
+        min-height:auto;
+
+        padding:
+            32px;
+
+        display:flex;
+
+        flex-direction:column;
+
+    }
+
+    .hero-content{
+
+        max-width:none;
+
+    }
+
+    .hero-art{
+
+        position:relative;
+
+        right:auto;
+
+        top:auto;
+
+        transform:none;
+
+        width:100%;
+
+        height:235px;
+
+        margin-top:25px;
+
+    }
+
+    .hero-image-frame{
+
+        width:
+            min(
+                390px,
+                90%
+            );
+
+        height:225px;
+
+    }
+
+    .resource-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width:560px){
+
+    .navbar{
+
+        width:
+            calc(100% - 18px);
+
+        min-height:64px;
+
+        gap:8px;
+
+    }
+
+    .brand-logo{
+
+        width:39px;
+        height:39px;
+
+        border-radius:12px;
+
+    }
+
+    .brand-name{
+
+        font-size:15px;
+
+    }
+
+    .back-btn{
+
+        width:42px;
+        min-width:42px;
+
+        padding:0;
+
+        font-size:0;
+
+    }
+
+    .back-btn .back-text{
+
+        display:none;
+
+    }
+
+    main{
+
+        width:
+            calc(100% - 18px);
+
+        padding:
+            15px 0
+            55px;
+
+    }
+
+    .library-hero{
+
+        padding:25px 20px 23px;
+
+        border-radius:27px;
+
+    }
+
+    .hero-label{
+
+        font-size:8px;
+
+    }
+
+    .hero-title{
+
+        margin-top:14px;
+
+        font-size:28px;
+
+        letter-spacing:-.8px;
+
+    }
+
+    .hero-description{
+
+        font-size:11px;
+
+        line-height:1.65;
+
+    }
+
+    .hero-pills{
+
+        margin-top:17px;
+
+    }
+
+    .hero-pill{
+
+        font-size:9px;
+
+        padding:7px 10px;
+
+    }
+
+    .hero-art{
+
+        height:195px;
+
+        margin-top:17px;
+
+    }
+
+    .hero-image-frame{
+
+        width:92%;
+
+        height:175px;
+
+        padding:6px;
+
+        border-radius:23px;
+
+    }
+
+    .library-image{
+
+        border-radius:18px;
+
+    }
+
+    .floating-badge{
+
+        padding:8px 10px;
+
+        font-size:8px;
+
+    }
+
+    .floating-badge.top{
+
+        top:4px;
+
+        right:1px;
+
+    }
+
+    .floating-badge.bottom{
+
+        bottom:2px;
+
+        left:1px;
+
+    }
+
+    .section-heading{
+
+        margin-top:28px;
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+    .section-title{
+
+        font-size:20px;
+
+    }
+
+    .resource-count{
+
+        font-size:9px;
+
+    }
+
+    .filter-wrapper{
+
+        margin-left:-2px;
+
+        margin-right:-2px;
+
+    }
+
+    .filter-btn{
+
+        padding:10px 13px;
+
+        font-size:9px;
+
+    }
+
+    .resource-card{
+
+        padding:20px;
+
+        min-height:0;
+
+        border-radius:23px;
+
+    }
+
+    .res-icon{
+
+        width:51px;
+        height:51px;
+
+        flex-basis:51px;
+
+        font-size:23px;
+
+        border-radius:16px;
+
+    }
+
+    .res-title{
+
+        font-size:14px;
+
+    }
+
+    .res-meta{
+
+        font-size:9px;
+
+    }
+
+    .res-desc{
+
+        font-size:11px;
+
+    }
+
+    .action-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .modal-card{
+
+        padding:21px;
+
+        border-radius:24px;
+
+    }
+
+    .modal-body{
+
+        padding:20px;
+
+    }
+
+    .wellness-note{
+
+        align-items:flex-start;
+
+        padding:17px;
+
+    }
+
+}
+
+
+/* =========================================================
+   PANTALLAS GRANDES / LAPTOP / PC
+========================================================= */
+
+@media (min-width:1500px){
+
+    .navbar,
+    main,
+    footer{
+
+        width:
+            min(
+                1500px,
+                calc(100% - 80px)
+            );
+
+    }
+
+    .library-hero{
+
+        min-height:410px;
+
+        padding-left:65px;
+
+    }
+
+    .hero-title{
+
+        font-size:50px;
+
+    }
+
+    .hero-description{
+
+        font-size:15px;
+
+    }
+
+    .resource-grid{
+
+        gap:27px;
+
+    }
+
+    .resource-card{
+
+        padding:30px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TV / 4K / PANTALLAS MUY GRANDES
+========================================================= */
+
+@media (min-width:2200px){
+
+    body{
+
+        font-size:18px;
+
+    }
+
+    .navbar{
+
+        min-height:100px;
+
+    }
+
+    .brand-logo{
+
+        width:58px;
+        height:58px;
+
+    }
+
+    .brand-name{
+
+        font-size:24px;
+
+    }
+
+    main{
+
+        padding-top:55px;
+
+    }
+
+    .library-hero{
+
+        min-height:500px;
+
+        padding:
+            70px
+            560px
+            70px
+            70px;
+
+        border-radius:45px;
+
+    }
+
+    .hero-title{
+
+        font-size:64px;
+
+    }
+
+    .hero-description{
+
+        font-size:19px;
+
+        line-height:1.7;
+
+    }
+
+    .hero-art{
+
+        width:480px;
+        height:360px;
+
+        right:60px;
+
+    }
+
+    .hero-image-frame{
+
+        width:450px;
+        height:320px;
+
+        border-radius:38px;
+
+    }
+
+    .section-title{
+
+        font-size:31px;
+
+    }
+
+    .section-subtitle{
+
+        font-size:15px;
+
+    }
+
+    .resource-grid{
+
+        gap:32px;
+
+    }
+
+    .resource-card{
+
+        min-height:360px;
+
+        padding:35px;
+
+        border-radius:34px;
+
+    }
+
+    .res-title{
+
+        font-size:20px;
+
+    }
+
+    .res-desc{
+
+        font-size:14px;
+
+    }
+
+    .btn-open,
+    .btn-save{
+
+        min-height:56px;
+
+        font-size:13px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCIR ANIMACIONES
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition-duration:.01ms !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     DECORACIÓN DE FONDO
+======================================================= -->
+
+<div class="background-decoration">
+
+    <div class="bg-orb one"></div>
+    <div class="bg-orb two"></div>
+    <div class="bg-orb three"></div>
+
+</div>
+
+
+<!-- =======================================================
+     LOADING
+======================================================= -->
+
+<div id="loadingScreen">
+
+    <img
+        src="../../imagenes/logo.jpg"
+        class="loading-logo"
+        alt="TIKARY"
+    >
+
+    <div class="loading-ring"></div>
+
+    <div class="loading-text">
+        Preparando tu biblioteca de bienestar...
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div
+            class="brand"
+            onclick="goToPage('casa3.html')"
+            role="button"
+            tabindex="0"
+            aria-label="Volver a Casita 3"
+        >
+
+            <img
+                src="../../imagenes/logo.jpg"
+                class="brand-logo"
+                alt="Logo TIKARY"
+            >
+
+            <div class="brand-text">
+
+                <div class="brand-name">
+                    TIKARY 3
+                </div>
+
+                <div class="brand-subtitle">
+                    Psicología y Bienestar
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <div class="user-badge">
+
+                <span class="user-dot"></span>
+
+                👤 DNI:
+                <span id="dniText">---</span>
+
+            </div>
+
+
+            <button
+                class="back-btn"
+                onclick="goToPage('casa3.html')"
+                aria-label="Ir a Casita 3"
+            >
+
+                <span>⌂</span>
+
+                <span class="back-text">
+                    Casita 3
+                </span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =======================================================
+     CONTENIDO
+======================================================= -->
+
+<main>
+
+
+    <!-- ===================================================
+         HERO
+    =================================================== -->
+
+    <section class="library-hero">
+
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+
+                📖
+
+                Biblioteca Virtual de Bienestar
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                Un espacio para
+                <span>leer, escuchar</span>
+                y aprender sobre ti.
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Explora recursos creados como apoyo para tu bienestar:
+                lecturas, audios, podcasts y ejercicios prácticos.
+                Tómate tu tiempo, elige lo que necesites y descubre
+                nuevas formas de cuidar tu bienestar emocional.
+
+            </p>
+
+
+            <div class="hero-pills">
+
+                <div class="hero-pill">
+                    📚 Lecturas
+                </div>
+
+                <div class="hero-pill">
+                    🎧 Audios
+                </div>
+
+                <div class="hero-pill">
+                    🎙️ Podcasts
+                </div>
+
+                <div class="hero-pill">
+                    ✍️ Ejercicios
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ===============================================
+             IMAGEN REAL biblioteca.jpg
+        ================================================ -->
+
+        <div class="hero-art">
+
+            <div class="hero-image-glow"></div>
+
+
+            <div class="hero-image-frame">
+
+                <img
+                    src="../../imagenes/biblioteca.jpg"
+                    class="library-image"
+                    alt="Biblioteca virtual TIKARY"
+                >
+
+            </div>
+
+
+            <div class="floating-badge top">
+
+                ✨
+                Recursos para ti
+
+            </div>
+
+
+            <div class="floating-badge bottom">
+
+                🌿
+                Espacio de bienestar
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ENCABEZADO DE RECURSOS
+    =================================================== -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2 class="section-title">
+                Explora tu biblioteca
+            </h2>
+
+            <p class="section-subtitle">
+                Encuentra un recurso según lo que quieras hacer hoy.
+            </p>
+
+        </div>
+
+
+        <div class="resource-count">
+
+            ✨ 4 recursos disponibles
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================
+         FILTROS
+    =================================================== -->
+
+    <div class="filter-wrapper">
+
+        <div class="filter-bar">
+
+            <button
+                class="filter-btn active"
+                onclick="filterCategory('all', this)"
+            >
+                🌟 Todos
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('guia', this)"
+            >
+                📚 Guías y Manuales
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('audio', this)"
+            >
+                🎧 Audios
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('podcast', this)"
+            >
+                🎙️ Podcasts
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('ejercicio', this)"
+            >
+                ✍️ Ejercicios
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================
+         CATÁLOGO
+    =================================================== -->
+
+    <div class="resource-grid">
+
+
+
+        <!-- =================================================
+             RECURSO 1
+        ================================================== -->
+
+        <article
+            class="resource-card"
+            data-category="audio"
+        >
+
+            <div>
+
+                <span class="res-tag tag-audio">
+                    🎧 Audio guiado
+                </span>
+
+
+                <div class="res-header">
+
+                    <div class="res-icon">
+                        🧘‍♂️
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="res-title">
+                            Respiración 4-7-8 para Ansiedad
+                        </h3>
+
+                        <div class="res-meta">
+                            ⏱️ 8 minutos · Módulo Estrés
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <p class="res-desc">
+
+                    Técnica de respiración guiada para acompañarte
+                    durante momentos de tensión, preocupación o antes
+                    de una jornada académica exigente.
+
+                </p>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <button
+                    class="btn-open"
+                    onclick="openResourceModal(
+                        'Respiración 4-7-8',
+                        'Técnica Guiada de Control de Ansiedad',
+                        'audio'
+                    )"
+                >
+                    ▶️ Reproducir Audio
+                </button>
+
+
+                <button
+                    class="btn-save"
+                    id="save_res_1"
+                    onclick="toggleSaveResource(
+                        'res_1',
+                        'Respiración 4-7-8'
+                    )"
+                >
+                    🔖 Guardar
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             RECURSO 2
+        ================================================== -->
+
+        <article
+            class="resource-card"
+            data-category="guia"
+        >
+
+            <div>
+
+                <span class="res-tag tag-guia">
+                    📘 Manual PDF
+                </span>
+
+
+                <div class="res-header">
+
+                    <div class="res-icon">
+                        📘
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="res-title">
+                            Manual de Gestión del Síndrome del Impostor
+                        </h3>
+
+                        <div class="res-meta">
+                            📖 12 páginas · TIKARY Ediciones
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <p class="res-desc">
+
+                    Material psicoeducativo para reconocer pensamientos
+                    de autoexigencia, valorar tus avances y reflexionar
+                    sobre la percepción de tus propios logros.
+
+                </p>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <button
+                    class="btn-open"
+                    onclick="openResourceModal(
+                        'Manual del Síndrome del Impostor',
+                        'Documento PDF Interactivo',
+                        'pdf'
+                    )"
+                >
+                    📄 Abrir Lectura
+                </button>
+
+
+                <button
+                    class="btn-save"
+                    id="save_res_2"
+                    onclick="toggleSaveResource(
+                        'res_2',
+                        'Manual Síndrome Impostor'
+                    )"
+                >
+                    🔖 Guardar
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             RECURSO 3
+        ================================================== -->
+
+        <article
+            class="resource-card"
+            data-category="podcast"
+        >
+
+            <div>
+
+                <span class="res-tag tag-podcast">
+                    🎙️ Podcast psicoeducativo
+                </span>
+
+
+                <div class="res-header">
+
+                    <div class="res-icon">
+                        🎙️
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="res-title">
+                            Episodio 04: Hábitos para el Foco Profundo
+                        </h3>
+
+                        <div class="res-meta">
+                            ⏱️ 22 minutos · Psicología Educativa
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <p class="res-desc">
+
+                    Conversatorio sobre organización del estudio,
+                    concentración y descanso para construir jornadas
+                    académicas más equilibradas.
+
+                </p>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <button
+                    class="btn-open"
+                    onclick="openResourceModal(
+                        'Episodio 04: Foco Profundo',
+                        'Podcast de Psicología Educativa',
+                        'audio'
+                    )"
+                >
+                    🎧 Escuchar
+                </button>
+
+
+                <button
+                    class="btn-save"
+                    id="save_res_3"
+                    onclick="toggleSaveResource(
+                        'res_3',
+                        'Podcast Foco Profundo'
+                    )"
+                >
+                    🔖 Guardar
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             RECURSO 4
+        ================================================== -->
+
+        <article
+            class="resource-card"
+            data-category="ejercicio"
+        >
+
+            <div>
+
+                <span class="res-tag tag-ejercicio">
+                    ✍️ Hoja de trabajo
+                </span>
+
+
+                <div class="res-header">
+
+                    <div class="res-icon">
+                        ✍️
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="res-title">
+                            Plantilla de Reestructuración Cognitiva
+                        </h3>
+
+                        <div class="res-meta">
+                            📝 Formato digital · Terapia Cognitiva
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <p class="res-desc">
+
+                    Ejercicio de registro para observar pensamientos
+                    automáticos, analizar diferentes perspectivas y
+                    formular respuestas más realistas.
+
+                </p>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <button
+                    class="btn-open"
+                    onclick="openResourceModal(
+                        'Plantilla de Registro Cognitivo',
+                        'Ejercicio Práctico Guiado',
+                        'pdf'
+                    )"
+                >
+                    ✏️ Abrir Ejercicio
+                </button>
+
+
+                <button
+                    class="btn-save"
+                    id="save_res_4"
+                    onclick="toggleSaveResource(
+                        'res_4',
+                        'Plantilla Registro Cognitivo'
+                    )"
+                >
+                    🔖 Guardar
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+
+    <!-- ===================================================
+         NOTA DE BIENESTAR
+    =================================================== -->
+
+    <div class="wellness-note">
+
+        <div class="note-icon">
+            🌿
+        </div>
+
+
+        <div>
+
+            <div class="note-title">
+                Este espacio es para ti
+            </div>
+
+            <div class="note-text">
+
+                Puedes explorar los materiales a tu propio ritmo.
+                Los recursos de esta biblioteca funcionan como material
+                de orientación y bienestar dentro del prototipo TIKARY 3.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+    <strong>TIKARY 3</strong>
+    · Biblioteca Virtual de Bienestar
+
+    <br>
+
+    Un espacio digital de orientación, aprendizaje y autocuidado.
+
+</footer>
+
+
+
+<!-- =======================================================
+     MODAL
+======================================================= -->
+
+<div
+    class="modal-backdrop"
+    id="resModal"
+    onclick="handleModalBackdrop(event)"
+>
+
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalResTitle"
+    >
+
+
+        <div class="modal-top">
+
+            <div>
+
+                <h3
+                    id="modalResTitle"
+                    class="modal-title"
+                >
+                    Recurso
+                </h3>
+
+
+                <p
+                    id="modalResSub"
+                    class="modal-subtitle"
+                >
+                    ---
+                </p>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                onclick="closeResourceModal()"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="modalResBody"
+            class="modal-body"
+        >
+
+            <!-- CONTENIDO DINÁMICO -->
+
+        </div>
+
+
+
+        <div class="modal-footer">
+
+            <button
+                class="back-btn"
+                onclick="closeResourceModal()"
+            >
+                Cerrar Recurso
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div id="toast"></div>
+
+
+
+<!-- =======================================================
+     FIREBASE
+     RESTRINGIDO A @tikary3.com
+======================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+/* =========================================================
+   CONFIGURACIÓN FIREBASE
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+
+};
+
+
+
+/* =========================================================
+   INICIALIZAR
+========================================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+let currentDni = "";
+
+let guardados = [];
+
+
+
+/* =========================================================
+   AUTENTICACIÓN
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        try {
+
+            if (!user) {
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+
+            }
+
+
+
+            const email =
+                (user.email || "")
+                .trim()
+                .toLowerCase();
+
+
+
+            const regexTikary3 =
+                /^\d{8}@tikary3\.com$/;
+
+
+
+            if (
+                !regexTikary3.test(email)
+            ) {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+
+            }
+
+
+
+            currentDni =
+                email.split("@")[0];
+
+
+
+            const dniTextElem =
+                document.getElementById(
+                    "dniText"
+                );
+
+
+            if (dniTextElem) {
+
+                dniTextElem.textContent =
+                    currentDni;
+
+            }
+
+
+
+            /* =============================================
+               VERIFICAR DNI AUTORIZADO
+            ============================================= */
+
+            const refDni =
+                doc(
+                    db,
+                    "dni_permitidos",
+                    currentDni
+                );
+
+
+            const snapshotDni =
+                await getDoc(refDni);
+
+
+
+            if (
+                !snapshotDni.exists()
+            ) {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+
+            }
+
+
+
+            /* =============================================
+               CARGAR RECURSOS GUARDADOS
+            ============================================= */
+
+            await cargarRecursosGuardados();
+
+
+
+            /* =============================================
+               OCULTAR LOADING
+            ============================================= */
+
+            const loading =
+                document.getElementById(
+                    "loadingScreen"
+                );
+
+
+            if (loading) {
+
+                loading.style.opacity =
+                    "0";
+
+                loading.style.transition =
+                    "opacity .35s ease";
+
+
+                setTimeout(
+                    () => {
+
+                        loading.style.display =
+                            "none";
+
+                    },
+                    350
+                );
+
+            }
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Error al autenticar en biblioteca 3:",
+                error
+            );
+
+
+            window.location.href =
+                "../../index.html";
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   CARGAR RECURSOS GUARDADOS
+========================================================= */
+
+async function cargarRecursosGuardados(){
+
+    try {
+
+        const refBiblio =
+            doc(
+                db,
+                "biblioteca_estudiantes",
+                currentDni
+            );
+
+
+        const snap =
+            await getDoc(refBiblio);
+
+
+
+        if (
+            snap.exists()
+        ) {
+
+            guardados =
+                snap.data()
+                .recursosGuardados || [];
+
+
+
+            guardados.forEach(
+                (resId) => {
+
+                    const btn =
+                        document.getElementById(
+                            `save_${resId}`
+                        );
+
+
+                    if (btn) {
+
+                        btn.textContent =
+                            "✓ Guardado";
+
+                        btn.classList.add(
+                            "saved"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+
+    catch (e) {
+
+        console.error(
+            "Error al cargar biblioteca guardada:",
+            e
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   GUARDAR / QUITAR RECURSO
+========================================================= */
+
+window.toggleSaveResource =
+    async function(
+        idRecurso,
+        tituloRecurso
+    ){
+
+        if (!currentDni)
+            return;
+
+
+
+        try {
+
+            const refBiblio =
+                doc(
+                    db,
+                    "biblioteca_estudiantes",
+                    currentDni
+                );
+
+
+            const snap =
+                await getDoc(refBiblio);
+
+
+
+            let lista =
+                snap.exists()
+                    ? (
+                        snap.data()
+                        .recursosGuardados || []
+                    )
+                    : [];
+
+
+
+            const index =
+                lista.indexOf(idRecurso);
+
+
+
+            let mensajeToast = "";
+
+
+
+            if (
+                index > -1
+            ) {
+
+                lista.splice(
+                    index,
+                    1
+                );
+
+
+                mensajeToast =
+                    "Recurso removido de tus guardados.";
+
+            }
+
+            else {
+
+                lista.push(
+                    idRecurso
+                );
+
+
+                mensajeToast =
+                    `¡"${tituloRecurso}" guardado en tu biblioteca! ✓`;
+
+            }
+
+
+
+            /* =============================================
+               GUARDAR EN FIRESTORE
+            ============================================= */
+
+            await setDoc(
+
+                refBiblio,
+
+                {
+
+                    dniEstudiante:
+                        currentDni,
+
+                    recursosGuardados:
+                        lista,
+
+                    ultimaModificacion:
+                        new Date().toISOString()
+
+                },
+
+                {
+                    merge:true
+                }
+
+            );
+
+
+
+            /* =============================================
+               ACTUALIZAR BOTÓN
+            ============================================= */
+
+            const btn =
+                document.getElementById(
+                    `save_${idRecurso}`
+                );
+
+
+            if (btn) {
+
+                if (
+                    lista.includes(
+                        idRecurso
+                    )
+                ) {
+
+                    btn.textContent =
+                        "✓ Guardado";
+
+                    btn.classList.add(
+                        "saved"
+                    );
+
+                }
+
+                else {
+
+                    btn.textContent =
+                        "🔖 Guardar";
+
+                    btn.classList.remove(
+                        "saved"
+                    );
+
+                }
+
+            }
+
+
+
+            showToast(
+                mensajeToast
+            );
+
+
+        }
+
+        catch (err) {
+
+            console.error(
+                "Error al guardar recurso:",
+                err
+            );
+
+
+            showToast(
+                "No se pudo actualizar tu biblioteca."
+            );
+
+        }
+
+    };
+
+
+</script>
+
+
+
+<!-- =======================================================
+     FUNCIONES DE INTERFAZ
+======================================================= -->
+
+<script>
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+function goToPage(page){
+
+    window.location.href =
+        page;
+
+}
+
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(msg){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    if (!toast)
+        return;
+
+
+
+    toast.textContent =
+        msg;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
+
+}
+
+
+
+/* =========================================================
+   FILTRAR CATEGORÍAS
+========================================================= */
+
+function filterCategory(
+    cat,
+    clickedButton
+){
+
+    const cards =
+        document.querySelectorAll(
+            ".resource-card"
+        );
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".filter-btn"
+        );
+
+
+
+    buttons.forEach(
+        (btn) => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+
+    if (clickedButton) {
+
+        clickedButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+
+    cards.forEach(
+        (card) => {
+
+            const match =
+                cat === "all" ||
+                card.dataset.category === cat;
+
+
+
+            if (match) {
+
+                card.style.display =
+                    "flex";
+
+
+                requestAnimationFrame(
+                    () => {
+
+                        card.style.opacity =
+                            "1";
+
+                        card.style.transform =
+                            "translateY(0)";
+
+                    }
+                );
+
+            }
+
+            else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   ABRIR MODAL
+========================================================= */
+
+function openResourceModal(
+    titulo,
+    subtitulo,
+    tipo
+){
+
+    const modal =
+        document.getElementById(
+            "resModal"
+        );
+
+
+    const title =
+        document.getElementById(
+            "modalResTitle"
+        );
+
+
+    const sub =
+        document.getElementById(
+            "modalResSub"
+        );
+
+
+    const body =
+        document.getElementById(
+            "modalResBody"
+        );
+
+
+
+    if (!modal || !title || !sub || !body)
+        return;
+
+
+
+    title.textContent =
+        titulo;
+
+
+    sub.textContent =
+        subtitulo;
+
+
+
+    /* =============================================
+       AUDIO
+    ============================================= */
+
+    if (
+        tipo === "audio"
+    ) {
+
+        body.innerHTML = `
+
+            <div class="modal-icon">
+                🎧
+            </div>
+
+            <div class="modal-message-title">
+                Reproductor de Audio TIKARY
+            </div>
+
+            <p class="modal-message">
+                Este recurso forma parte del prototipo
+                de la biblioteca virtual. La interfaz
+                permite visualizar cómo funcionaría
+                el reproductor.
+            </p>
+
+            <div class="fake-player">
+
+                <div class="player-line"></div>
+
+                <div class="player-controls">
+
+                    <span>
+                        00:00
+                    </span>
+
+                    <button
+                        class="fake-play"
+                        onclick="showToast('Reproductor de demostración')"
+                        aria-label="Reproducir"
+                    >
+                        ▶
+                    </button>
+
+                    <span>
+                        08:00
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* =============================================
+       PDF / LECTURA
+    ============================================= */
+
+    else {
+
+        body.innerHTML = `
+
+            <div class="modal-icon">
+                📚
+            </div>
+
+            <div class="modal-message-title">
+                Visor de Documentos TIKARY 3
+            </div>
+
+            <p class="modal-message">
+                Esta sección representa el espacio
+                donde posteriormente podrán abrirse
+                guías, manuales, fichas y otros
+                materiales de lectura.
+            </p>
+
+            <div
+                style="
+                    margin-top:20px;
+                    width:100%;
+                    max-width:430px;
+                    padding:17px;
+                    border-radius:17px;
+                    background:white;
+                    border:1px solid rgba(24,59,49,.07);
+                    color:#287A64;
+                    font-size:11px;
+                    font-weight:800;
+                "
+            >
+                📄 Documento de demostración
+                <br>
+                <span
+                    style="
+                        display:block;
+                        margin-top:5px;
+                        color:#748780;
+                        font-size:9px;
+                        font-weight:600;
+                    "
+                >
+                    Vista previa del recurso
+                </span>
+            </div>
+
+        `;
+
+    }
+
+
+
+    modal.style.display =
+        "flex";
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =========================================================
+   CERRAR MODAL
+========================================================= */
+
+function closeResourceModal(){
+
+    const modal =
+        document.getElementById(
+            "resModal"
+        );
+
+
+    if (!modal)
+        return;
+
+
+
+    modal.style.display =
+        "none";
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+/* =========================================================
+   CERRAR HACIENDO CLICK FUERA
+========================================================= */
+
+function handleModalBackdrop(event){
+
+    if (
+        event.target.id ===
+        "resModal"
+    ) {
+
+        closeResourceModal();
+
+    }
+
+}
+
+
+
+/* =========================================================
+   TECLA ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeResourceModal();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   ACCESIBILIDAD DEL LOGO
+========================================================= */
+
+document
+    .querySelector(".brand")
+    ?.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                goToPage(
+                    "casa3.html"
+                );
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#176B52">
+
+<title>TIKARY | Centro de Notificaciones · Casa 3</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ESTILOS GENERALES Y GLASSMORPHISM · TIKARY CASA 3
+========================================================= */
+
+:root{
+    --green:#176B52;
+    --green-dark:#0D4D3B;
+    --green-light:#2D9272;
+    --green-soft:#E8F7F0;
+
+    --gold:#D9A441;
+    --gold-light:#F4D88C;
+    --gold-soft:#FFF8E7;
+
+    --cream:#FFFDF7;
+    --white:#FFFFFF;
+
+    --text:#17352D;
+    --gray:#6B7B75;
+    --gray-light:#94A39E;
+
+    --red:#D32F2F;
+    --red-soft:#FFEBEE;
+
+    --border:rgba(255, 255, 255, 0.4);
+    --shadow:0 20px 40px rgba(13,77,59,.12);
+    --radius:24px;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:"Inter",sans-serif;
+    color:var(--text);
+    background: linear-gradient(135deg, #E8F7F0 0%, #FFFDF7 50%, #F4E8D2 100%);
+    min-height: 100vh;
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   HEADER & NAVBAR
+========================================================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,253,247,.82);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(23,53,45,.06);
+}
+
+.navbar{
+    width:min(1180px,calc(100% - 32px));
+    margin:auto;
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    cursor:pointer;
+}
+
+.brand img{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    object-fit:cover;
+    box-shadow:0 7px 20px rgba(13,77,59,.12);
+}
+
+.brand-name{
+    font-size:18px;
+    font-weight:800;
+    color:var(--green-dark);
+}
+
+.user-badge {
+    background: var(--green-soft);
+    border: 1px solid rgba(23,107,82,0.2);
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.back-btn {
+    border: none;
+    background: var(--white);
+    border: 1px solid rgba(23,53,45,.1);
+    padding: 9px 16px;
+    border-radius: 12px;
+    color: var(--green-dark);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    background: var(--green-soft);
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   MAIN CONTENT & CABECERA
+========================================================= */
+
+main{
+    width:min(900px,calc(100% - 32px));
+    margin:auto;
+    padding:35px 0 70px;
+}
+
+.glass-header {
+    background: linear-gradient(135deg, rgba(13, 77, 59, 0.95), rgba(23, 107, 82, 0.88));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: white;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 20px 45px rgba(13, 77, 59, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.btn-header-action {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-header-action:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(23, 53, 45, 0.1);
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green-dark);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--green-dark);
+    color: white;
+}
+
+/* =========================================================
+   LISTA DE NOTIFICACIONES
+========================================================= */
+
+.notif-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.notif-card {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    box-shadow: 0 10px 30px rgba(13, 77, 59, 0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.notif-card.unread {
+    background: #FFFFFF;
+    border-left: 5px solid var(--gold);
+    box-shadow: 0 15px 35px rgba(13, 77, 59, 0.12);
+}
+
+.notif-card:hover {
+    transform: translateY(-2px);
+}
+
+.notif-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: var(--green-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.notif-card.unread .notif-icon {
+    background: var(--gold-soft);
+}
+
+.notif-content {
+    flex: 1;
+}
+
+.notif-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.notif-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--green-dark);
+}
+
+.notif-date {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray);
+}
+
+.notif-body {
+    margin: 0 0 14px 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.notif-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-notif-action {
+    background: transparent;
+    border: 1px solid rgba(23, 53, 45, 0.15);
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-dark);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-notif-action:hover {
+    background: var(--green-soft);
+}
+
+.badge-unread {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius);
+    color: var(--gray);
+}
+
+/* =========================================================
+   MODAL DE DETALLE
+========================================================= */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 77, 59, 0.5);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+}
+
+.modal-card {
+    background: var(--cream);
+    border-radius: 28px;
+    padding: 30px;
+    width: min(520px, 100%);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+/* =========================================================
+   LOADING & TOAST
+========================================================= */
+
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 22px;
+    object-fit: cover;
+    box-shadow: 0 12px 35px rgba(13,77,59,.16);
+}
+
+#toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translate(-50%, 20px);
+    background: var(--green-dark);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 15px 40px rgba(13,77,59,.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+    z-index: 10000;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loadingScreen">
+    <img src="../../imagenes/logo.jpg" class="loading-logo" alt="TIKARY" onerror="this.style.display='none'">
+    <div style="margin-top:20px; color:var(--green); font-weight:700; font-size:14px;">
+        Cargando Notificaciones · Casa 3...
+    </div>
+</div>
+
+<header>
+    <nav class="navbar">
+        <div class="brand" onclick="goToPage('casa3.html')">
+            <img src="../../imagenes/logo.jpg" alt="TIKARY" onerror="this.style.display='none'">
+            <div class="brand-name">TIKARY <span style="font-size: 12px; color: var(--gold);">Casa 3</span></div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px;">
+            <div class="user-badge">
+                👤 DNI: <span id="dniText">---</span>
+            </div>
+
+            <a href="casa3.html" class="back-btn">
+                ← Volver a Casa 3
+            </a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <section class="glass-header">
+        <div>
+            <span style="background:rgba(255,255,255,0.2); color:white; padding:4px 12px; border-radius:8px; font-size:11px; font-weight:800; letter-spacing:0.5px;">
+                🔔 AVISOS Y REGISTRO DE ACTIVIDAD · CASA 3
+            </span>
+            <h1 style="margin:10px 0 0 0; font-size:26px; font-weight:800;">Centro de Notificaciones</h1>
+            <p style="margin:8px 0 0 0; font-size:13px; opacity:0.92;">
+                Historial completo de tus citas institucionales, gestión de perfil y avisos del sistema en Casa 3.
+            </p>
+        </div>
+
+        <button class="btn-header-action" onclick="markAllAsRead()">
+            ✓ Marcar todas como leídas
+        </button>
+    </section>
+
+    <!-- FILTROS -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterNotifs('all')">📩 Todas (<span id="countAll">0</span>)</button>
+        <button class="filter-btn" onclick="filterNotifs('unread')">🟡 Sin leer (<span id="countUnread">0</span>)</button>
+        <button class="filter-btn" onclick="filterNotifs('citas')">📅 Citas</button>
+        <button class="filter-btn" onclick="filterNotifs('rutas')">🚌 Rutas</button>
+        <button class="filter-btn" onclick="filterNotifs('sistema')">⚙️ Sistema</button>
+    </div>
+
+    <!-- CONTENEDOR DE NOTIFICACIONES -->
+    <div class="notif-list" id="notifContainer">
+        <!-- Generado dinámicamente -->
+    </div>
+
+</main>
+
+<!-- MODAL VISOR DETALLE -->
+<div class="modal-backdrop" id="notifModal">
+    <div class="modal-card">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <span id="modalIcon" style="font-size:28px;">🔔</span>
+            <div>
+                <h3 id="modalTitle" style="margin:0; color:var(--green-dark); font-size:18px;">---</h3>
+                <span id="modalDate" style="font-size:11px; color:var(--gray); font-weight:700;">---</span>
+            </div>
+        </div>
+
+        <p id="modalBody" style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:24px; background:var(--green-soft); padding:16px; border-radius:14px;">
+            ---
+        </p>
+
+        <div style="display:flex; justify-content:flex-end;">
+            <button class="back-btn" onclick="closeNotifModal()">Entendido / Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- =======================================================
+     FIREBASE LÓGICA · REGISTRO AUTOMÁTICO DE ACCIONES
+======================================================= -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+    authDomain: "tikary2-82b25.firebaseapp.com",
+    projectId: "tikary2-82b25",
+    storageBucket: "tikary2-82b25.firebasestorage.app",
+    messagingSenderId: "515813934347",
+    appId: "1:515813934347:web:e55de461d8b98a31da0e0e",
+    measurementId: "G-M9HPJ7QQE6"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentDni = "";
+let notificaciones = [];
+
+// NOTIFICACIONES INICIALES POR DEFECTO PARA CASA 3
+const initialNotifs = [
+    {
+        id: "notif_1",
+        type: "citas",
+        icon: "📅",
+        title: "Recordatorio de Cita Institucional · Casa 3",
+        body: "Tu cita presencial vinculada a Casa 3 se encuentra programada. Recuerda llegar con unos minutos de anticipación.",
+        date: "26 Sep 2026, 09:30 AM",
+        read: false
+    },
+    {
+        id: "notif_2",
+        type: "rutas",
+        icon: "🚌",
+        title: "Confirmación de Salida Grupal",
+        body: "Te has inscrito correctamente a las actividades programadas de Casa 3. Revisa los puntos de encuentro y recomendaciones.",
+        date: "25 Sep 2026, 04:15 PM",
+        read: false
+    },
+    {
+        id: "notif_3",
+        type: "sistema",
+        icon: "⚙️",
+        title: "Bienvenido a TIKARY Casa 3",
+        body: "Tu cuenta institucional ha sido verificada con éxito bajo el esquema de seguridad del plan Casa 3.",
+        date: "20 Sep 2026, 08:00 AM",
+        read: true
+    }
+];
+
+// AUTENTICACIÓN Y VALIDACIÓN ESTRICTA @tikary3.com y plan 3
+onAuthStateChanged(auth, async (user) => {
+    try {
+        if (!user) {
+            window.location.href = "../../index.html";
+            return;
+        }
+
+        const email = (user.email || "").trim().toLowerCase();
+        const regexTikary3 = /^\d{8}@tikary3\.com$/;
+
+        if (!regexTikary3.test(email)) {
+            await signOut(auth);
+            window.location.href = "../../index.html";
+            return;
+        }
+
+        currentDni = email.split("@")[0];
+
+        const dniTextElem = document.getElementById("dniText");
+        if (dniTextElem) dniTextElem.textContent = currentDni;
+
+        // Validar DNI en Firestore y verificar pertenencia al plan 3
+        const refDni = doc(db, "dni_permitidos", currentDni);
+        const snapshotDni = await getDoc(refDni);
+
+        if (!snapshotDni.exists() || snapshotDni.data().plan !== "3" || snapshotDni.data().estado === "bloqueado") {
+            await signOut(auth);
+            window.location.href = "../../index.html";
+            return;
+        }
+
+        // Cargar o inicializar notificaciones del estudiante
+        await cargarNotificaciones();
+
+        document.getElementById("loadingScreen").style.display = "none";
+
+    } catch (error) {
+        console.error("Error al autenticar en notificaciones Casa 3:", error);
+        window.location.href = "../../index.html";
+    }
+});
+
+// FUNCIÓN GLOBAL EXPORTADA PARA REGISTRAR CUALQUIER ACCIÓN DEL USUARIO DESDE OTRAS PÁGINAS O SCRIPTS
+window.registrarAccionCasa3 = async function(titulo, descripcion, tipo = "sistema", icono = "✨") {
+    if (!currentDni) return;
+
+    try {
+        const refNotif = doc(db, "notificaciones_estudiantes_casa3", currentDni);
+        const snap = await getDoc(refNotif);
+
+        let items = initialNotifs;
+        if (snap.exists() && snap.data().items) {
+            items = snap.data().items;
+        }
+
+        const nuevaNotif = {
+            id: "act_" + Date.now(),
+            type: tipo,
+            icon: icono,
+            title: titulo,
+            body: descripcion,
+            date: new Date().toLocaleString("es-PE", { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+            read: false
+        };
+
+        // Agregar la nueva acción al inicio de la lista
+        items.unshift(nuevaNotif);
+
+        await setDoc(refNotif, {
+            dniEstudiante: currentDni,
+            items: items,
+            ultimaActualizacion: new Date().toISOString()
+        }, { merge: true });
+
+        // Actualizar en tiempo real si el usuario está viendo la página
+        notificaciones = items;
+        renderNotificaciones(document.querySelector('.filter-btn.active')?.dataset.cat || 'all');
+
+    } catch (e) {
+        console.error("Error al registrar acción en Casa 3:", e);
+    }
+};
+
+// CARGAR NOTIFICACIONES DESDE FIRESTORE
+async function cargarNotificaciones() {
+    try {
+        const refNotif = doc(db, "notificaciones_estudiantes_casa3", currentDni);
+        const snap = await getDoc(refNotif);
+
+        if (snap.exists()) {
+            notificaciones = snap.data().items || initialNotifs;
+        } else {
+            notificaciones = initialNotifs;
+            await guardarEstadoFirestore();
+        }
+
+        renderNotificaciones('all');
+
+    } catch (e) {
+        console.error("Error cargando notificaciones:", e);
+        notificaciones = initialNotifs;
+        renderNotificaciones('all');
+    }
+}
+
+async function guardarEstadoFirestore() {
+    if (!currentDni) return;
+
+    try {
+        const refNotif = doc(db, "notificaciones_estudiantes_casa3", currentDni);
+        await setDoc(refNotif, {
+            dniEstudiante: currentDni,
+            items: notificaciones,
+            ultimaActualizacion: new Date().toISOString()
+        }, { merge: true });
+    } catch (e) {
+        console.error("Error al guardar estado de notificaciones:", e);
+    }
+}
+
+// RENDERIZAR LISTA DE NOTIFICACIONES
+window.renderNotificaciones = function(filterCat = 'all') {
+    const container = document.getElementById("notifContainer");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const countAll = notificaciones.length;
+    const countUnread = notificaciones.filter(n => !n.read).length;
+
+    document.getElementById("countAll").textContent = countAll;
+    document.getElementById("countUnread").textContent = countUnread;
+
+    let list = notificaciones;
+    if (filterCat === 'unread') {
+        list = notificaciones.filter(n => !n.read);
+    } else if (filterCat !== 'all') {
+        list = notificaciones.filter(n => n.type === filterCat);
+    }
+
+    if (list.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div style="font-size:36px; margin-bottom:10px;">📭</div>
+                <div style="font-size:15px; font-weight:700; color:var(--green-dark);">No hay notificaciones aquí</div>
+                <p style="font-size:12px; margin-top:4px;">No tienes avisos pendientes en esta categoría para Casa 3.</p>
+            </div>
+        `;
+        return;
+    }
+
+    list.forEach(n => {
+        const card = document.createElement("div");
+        card.className = `notif-card ${n.read ? '' : 'unread'}`;
+        card.dataset.category = n.type;
+
+        card.innerHTML = `
+            <div class="notif-icon">${n.icon}</div>
+            <div class="notif-content">
+                <div class="notif-header-row">
+                    <h3 class="notif-title">
+                        ${!n.read ? '<span class="badge-unread"></span>' : ''}
+                        ${n.title}
+                    </h3>
+                    <span class="notif-date">${n.date}</span>
+                </div>
+                <p class="notif-body">${n.body}</p>
+                <div class="notif-actions">
+                    <button class="btn-notif-action" onclick="openNotifDetail('${n.id}')">
+                        👁️ Ver Detalle
+                    </button>
+                    ${!n.read ? `
+                        <button class="btn-notif-action" onclick="toggleRead('${n.id}')">
+                            ✓ Marcar como Leída
+                        </button>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+};
+
+window.toggleRead = async function(id) {
+    const item = notificaciones.find(n => n.id === id);
+    if (item) {
+        item.read = true;
+        await guardarEstadoFirestore();
+        renderNotificaciones(document.querySelector('.filter-btn.active')?.dataset.cat || 'all');
+        showToast("Notificación marcada como leída ✓");
+    }
+};
+
+window.markAllAsRead = async function() {
+    notificaciones.forEach(n => n.read = true);
+    await guardarEstadoFirestore();
+    renderNotificaciones('all');
+    showToast("Todas las notificaciones marcadas como leídas ✓");
+};
+
+window.openNotifDetail = async function(id) {
+    const item = notificaciones.find(n => n.id === id);
+    if (!item) return;
+
+    document.getElementById("modalIcon").textContent = item.icon;
+    document.getElementById("modalTitle").textContent = item.title;
+    document.getElementById("modalDate").textContent = item.date;
+    document.getElementById("modalBody").textContent = item.body;
+
+    if (!item.read) {
+        item.read = true;
+        await guardarEstadoFirestore();
+        renderNotificaciones(document.querySelector('.filter-btn.active')?.dataset.cat || 'all');
+    }
+
+    document.getElementById("notifModal").style.display = "flex";
+};
+
+</script>
+
+<script>
+function goToPage(page) {
+    window.location.href = page;
+}
+
+function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2800);
+}
+
+function filterNotifs(cat) {
+    const buttons = document.querySelectorAll(".filter-btn");
+    buttons.forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+    event.target.dataset.cat = cat;
+
+    window.renderNotificaciones(cat);
+}
+
+function closeNotifModal() {
+    document.getElementById("notifModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
