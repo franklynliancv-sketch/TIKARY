@@ -1,0 +1,4564 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#315f5c">
+    <meta name="description" content="TIKARY P3 - Panel para Psicólogo Independiente">
+
+    <title>TIKARY P3 | Psicólogo Independiente</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --verde: #315f5c;
+            --verde-medio: #527f79;
+            --verde-claro: #6d918c;
+            --verde-oscuro: #234b47;
+
+            --dorado: #b18a45;
+            --dorado-claro: #d3b16d;
+
+            --blanco: #ffffff;
+            --fondo: #f3f8f6;
+            --texto: #294743;
+            --muted: #71837f;
+
+            --verde-suave: #e8f3f0;
+            --dorado-suave: #f8f0df;
+            --rojo-suave: #fae9e7;
+            --rojo: #b65b55;
+            --azul-suave: #eaf1f7;
+            --azul: #537792;
+
+            --sombra: 0 20px 50px rgba(35, 75, 71, .10);
+            --sombra-suave: 0 8px 25px rgba(35, 75, 71, .07);
+
+            --radio: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(211, 177, 109, .13), transparent 28%),
+                radial-gradient(circle at 90% 20%, rgba(82, 127, 121, .12), transparent 30%),
+                linear-gradient(135deg, #eef8f2, #f8f3df, #e8f1f5);
+            min-height: 100vh;
+            color: var(--texto);
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            width: 270px;
+            padding: 24px 18px;
+            background: rgba(255, 255, 255, .84);
+            border-right: 1px solid rgba(49, 95, 92, .10);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 8px 25px;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(49, 95, 92, .16);
+        }
+
+        .brand-text strong {
+            display: block;
+            color: var(--verde-oscuro);
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: .4px;
+        }
+
+        .brand-text span {
+            font-size: 11px;
+            color: var(--dorado);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+        }
+
+        .doctor-mini {
+            background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
+            color: white;
+            padding: 16px;
+            border-radius: 19px;
+            margin: 0 4px 20px;
+            box-shadow: 0 12px 28px rgba(35, 75, 71, .18);
+        }
+
+        .doctor-mini small {
+            display: block;
+            opacity: .75;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .doctor-mini strong {
+            font-size: 15px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .doctor-mini .status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 11px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #8ad6a7;
+        }
+
+        .nav-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 900;
+            color: var(--muted);
+            padding: 0 12px;
+            margin: 19px 0 8px;
+        }
+
+        .nav-item {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            border-radius: 14px;
+            margin-bottom: 4px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .nav-item:hover {
+            background: var(--verde-suave);
+            color: var(--verde);
+            transform: translateX(2px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--verde), var(--verde-medio));
+            color: white;
+            box-shadow: 0 8px 20px rgba(49, 95, 92, .18);
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .badge {
+            margin-left: auto;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            display: grid;
+            place-items: center;
+            background: var(--dorado);
+            color: white;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .availability {
+            margin: 25px 4px 0;
+            padding: 15px;
+            background: rgba(232, 243, 240, .8);
+            border: 1px solid rgba(82, 127, 121, .12);
+            border-radius: 18px;
+        }
+
+        .availability-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .availability-title span {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .toggle {
+            width: 42px;
+            height: 23px;
+            background: #b7c5c2;
+            border-radius: 20px;
+            border: none;
+            position: relative;
+            transition: .2s;
+        }
+
+        .toggle::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: white;
+            transition: .2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+        }
+
+        .toggle.on {
+            background: var(--verde);
+        }
+
+        .toggle.on::after {
+            transform: translateX(19px);
+        }
+
+        .availability small {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 270px;
+            width: calc(100% - 270px);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            background: rgba(255, 255, 255, .54);
+            border-bottom: 1px solid rgba(49, 95, 92, .08);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .mobile-menu {
+            display: none;
+            border: none;
+            background: var(--verde-suave);
+            color: var(--verde);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            font-size: 20px;
+        }
+
+        .page-title h1 {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--verde-oscuro);
+        }
+
+        .page-title p {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-button {
+            border: none;
+            background: rgba(255, 255, 255, .85);
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            color: var(--verde);
+            font-size: 18px;
+            position: relative;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .notification-dot {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: var(--dorado);
+            border-radius: 50%;
+            top: 8px;
+            right: 9px;
+            border: 2px solid white;
+        }
+
+        .content {
+            padding: 32px 35px 50px;
+            max-width: 1550px;
+            margin: auto;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn .3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-size: 23px;
+            color: var(--verde-oscuro);
+            font-weight: 900;
+        }
+
+        .section-header p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .btn {
+            border: none;
+            border-radius: 13px;
+            padding: 11px 17px;
+            font-size: 12px;
+            font-weight: 800;
+            transition: .2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--verde), var(--verde-medio));
+            color: white;
+            box-shadow: 0 8px 18px rgba(49, 95, 92, .18);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--dorado), var(--dorado-claro));
+            color: white;
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--verde);
+            border: 1px solid rgba(49, 95, 92, .1);
+        }
+
+        .btn-danger {
+            background: var(--rojo-suave);
+            color: var(--rojo);
+        }
+
+        /* ================= COTIZACIÓN ================= */
+
+        .quotation-banner {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(49, 95, 92, .98), rgba(35, 75, 71, .96));
+            border-radius: 25px;
+            padding: 25px 28px;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: 0 18px 45px rgba(35, 75, 71, .18);
+        }
+
+        .quotation-banner::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(211, 177, 109, .13);
+            right: -60px;
+            top: -100px;
+        }
+
+        .quotation-banner::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .05);
+            right: 180px;
+            bottom: -75px;
+        }
+
+        .quotation-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .quotation-info {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .quotation-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            border-radius: 17px;
+            background: rgba(255, 255, 255, .13);
+            font-size: 25px;
+        }
+
+        .quotation-info small {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 9px;
+            opacity: .7;
+            font-weight: 800;
+        }
+
+        .quotation-info h3 {
+            font-size: 18px;
+            margin: 3px 0;
+        }
+
+        .quotation-info p {
+            font-size: 11px;
+            opacity: .76;
+        }
+
+        .quotation-percent {
+            text-align: center;
+            min-width: 130px;
+            padding: 11px 18px;
+            border-radius: 17px;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .quotation-percent strong {
+            display: block;
+            font-size: 30px;
+            color: #f1d89d;
+            line-height: 1;
+        }
+
+        .quotation-percent span {
+            font-size: 9px;
+            opacity: .75;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, .76);
+            border: 1px solid rgba(49, 95, 92, .08);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            font-size: 19px;
+            background: var(--verde-suave);
+            color: var(--verde);
+        }
+
+        .stat-icon.gold {
+            background: var(--dorado-suave);
+            color: var(--dorado);
+        }
+
+        .stat-icon.blue {
+            background: var(--azul-suave);
+            color: var(--azul);
+        }
+
+        .stat-icon.red {
+            background: var(--rojo-suave);
+            color: var(--rojo);
+        }
+
+        .stat-change {
+            font-size: 9px;
+            font-weight: 900;
+            color: var(--verde);
+        }
+
+        .stat-card h3 {
+            font-size: 26px;
+            color: var(--verde-oscuro);
+            margin-top: 16px;
+            font-weight: 900;
+        }
+
+        .stat-card p {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .78);
+            border: 1px solid rgba(49, 95, 92, .08);
+            border-radius: var(--radio);
+            padding: 22px;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .card-title h3 {
+            font-size: 15px;
+            color: var(--verde-oscuro);
+            font-weight: 900;
+        }
+
+        .card-title a {
+            color: var(--dorado);
+            font-size: 10px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* ================= REQUESTS ================= */
+
+        .request {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(49, 95, 92, .08);
+        }
+
+        .request:last-child {
+            border-bottom: none;
+        }
+
+        .request-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 43px;
+            height: 43px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #dcece8, #f5e9cf);
+            display: grid;
+            place-items: center;
+            color: var(--verde);
+            font-size: 14px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .request-name {
+            flex: 1;
+        }
+
+        .request-name strong {
+            display: block;
+            font-size: 13px;
+            color: var(--texto);
+        }
+
+        .request-name span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .request-time {
+            font-size: 9px;
+            color: var(--muted);
+        }
+
+        .request-reason {
+            margin: 10px 0 11px 55px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .request-actions {
+            display: flex;
+            gap: 7px;
+            margin-left: 55px;
+        }
+
+        .mini-btn {
+            border: none;
+            padding: 7px 11px;
+            border-radius: 9px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .mini-btn.accept {
+            background: var(--verde-suave);
+            color: var(--verde);
+        }
+
+        .mini-btn.reject {
+            background: var(--rojo-suave);
+            color: var(--rojo);
+        }
+
+        .mini-btn.detail {
+            background: var(--dorado-suave);
+            color: var(--dorado);
+        }
+
+        /* ================= QUOTE BOX ================= */
+
+        .quote-box {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #f8f3e7, #fffdf8);
+            border: 1px solid rgba(177, 138, 69, .15);
+        }
+
+        .quote-box-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: var(--muted);
+            padding: 3px 0;
+        }
+
+        .quote-box-row strong {
+            color: var(--texto);
+        }
+
+        .quote-box-row.total {
+            margin-top: 6px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(177, 138, 69, .15);
+            color: var(--texto);
+            font-size: 11px;
+        }
+
+        .quote-box-row.total strong {
+            color: var(--dorado);
+            font-size: 14px;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            color: var(--muted);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(49, 95, 92, .1);
+        }
+
+        td {
+            padding: 14px 10px;
+            border-bottom: 1px solid rgba(49, 95, 92, .07);
+            font-size: 11px;
+            color: var(--texto);
+        }
+
+        td strong {
+            font-weight: 800;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 8px;
+            font-weight: 900;
+        }
+
+        .pill.green {
+            background: var(--verde-suave);
+            color: var(--verde);
+        }
+
+        .pill.gold {
+            background: var(--dorado-suave);
+            color: var(--dorado);
+        }
+
+        .pill.red {
+            background: var(--rojo-suave);
+            color: var(--rojo);
+        }
+
+        .pill.blue {
+            background: var(--azul-suave);
+            color: var(--azul);
+        }
+
+        /* ================= CALENDAR ================= */
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 7px;
+        }
+
+        .day-name {
+            text-align: center;
+            font-size: 9px;
+            color: var(--muted);
+            font-weight: 900;
+            padding: 5px 0;
+        }
+
+        .day {
+            min-height: 75px;
+            padding: 8px;
+            background: rgba(255, 255, 255, .65);
+            border: 1px solid rgba(49, 95, 92, .07);
+            border-radius: 12px;
+            font-size: 10px;
+        }
+
+        .day.today {
+            border: 2px solid var(--verde);
+        }
+
+        .day-number {
+            font-weight: 900;
+            color: var(--texto);
+        }
+
+        .event {
+            margin-top: 7px;
+            padding: 4px 5px;
+            border-radius: 6px;
+            background: var(--verde-suave);
+            color: var(--verde);
+            font-size: 7px;
+            font-weight: 800;
+        }
+
+        /* ================= CHART ================= */
+
+        .chart-box {
+            height: 300px;
+            position: relative;
+        }
+
+        /* ================= NOTIFICATIONS ================= */
+
+        .notification {
+            display: flex;
+            gap: 13px;
+            padding: 16px;
+            border-bottom: 1px solid rgba(49, 95, 92, .07);
+        }
+
+        .notification:last-child {
+            border-bottom: none;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: var(--verde-suave);
+        }
+
+        .notification strong {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .notification p {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .notification small {
+            display: block;
+            margin-top: 5px;
+            font-size: 8px;
+            color: var(--muted);
+        }
+
+        /* ================= PROFILE ================= */
+
+        .profile-head {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 25px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 22px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .15);
+            font-size: 27px;
+            font-weight: 900;
+        }
+
+        .profile-head h2 {
+            font-size: 21px;
+        }
+
+        .profile-head p {
+            font-size: 11px;
+            opacity: .75;
+            margin-top: 3px;
+        }
+
+        .profile-fields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: 1px solid rgba(49, 95, 92, .12);
+            background: rgba(255, 255, 255, .8);
+            border-radius: 12px;
+            padding: 11px 13px;
+            outline: none;
+            color: var(--texto);
+            font-size: 11px;
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(25, 48, 45, .42);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: min(560px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .22);
+            animation: modalIn .25s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(.96) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            color: var(--verde-oscuro);
+        }
+
+        .close {
+            border: none;
+            background: var(--verde-suave);
+            color: var(--verde);
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            font-size: 17px;
+        }
+
+        .detail-box {
+            padding: 16px;
+            border-radius: 16px;
+            background: var(--fondo);
+            margin-bottom: 12px;
+        }
+
+        .detail-box h4 {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 6px 0;
+            font-size: 10px;
+        }
+
+        .detail-row span:first-child {
+            color: var(--muted);
+        }
+
+        .detail-row strong {
+            text-align: right;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 9px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        /* ================= TOAST ================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: var(--verde-oscuro);
+            color: white;
+            padding: 13px 18px;
+            border-radius: 13px;
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 15px 35px rgba(35, 75, 71, .25);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: .3s;
+            z-index: 500;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1150px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: .3s;
+                box-shadow: 20px 0 50px rgba(0, 0, 0, .12);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding: 25px 18px 40px;
+            }
+
+            .quotation-content {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .quotation-percent {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .profile-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title h1 {
+                font-size: 17px;
+            }
+
+            .page-title p {
+                display: none;
+            }
+
+            .top-actions .icon-button:nth-child(1) {
+                display: none;
+            }
+
+            .quotation-banner {
+                padding: 20px;
+            }
+
+            .quotation-info {
+                align-items: flex-start;
+            }
+
+            .quotation-info h3 {
+                font-size: 16px;
+            }
+
+            .calendar {
+                min-width: 600px;
+            }
+
+            .calendar-wrap {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+                <img src="../../imagenes/logo.jpg" alt="TIKARY">
+
+                <div class="brand-text">
+                    <strong>TIKARY</strong>
+                    <span>Psicología & Bienestar</span>
+                </div>
+            </div>
+
+            <div class="doctor-mini">
+
+                <small>Psicólogo independiente</small>
+
+                <strong id="psychologistName">
+                    Cargando...
+                </strong>
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    <span>Disponible para solicitudes</span>
+                </div>
+
+            </div>
+
+            <div class="nav-title">
+                Principal
+            </div>
+
+            <button class="nav-item active" data-section="inicio">
+                <span class="nav-icon">⌂</span>
+                Inicio
+            </button>
+
+            <button class="nav-item" data-section="solicitudes">
+                <span class="nav-icon">✉</span>
+                Solicitudes
+                <span class="badge" id="requestBadge">4</span>
+            </button>
+
+            <button class="nav-item" data-section="pacientes">
+                <span class="nav-icon">♙</span>
+                Mis pacientes
+            </button>
+
+            <button class="nav-item" data-section="agenda">
+                <span class="nav-icon">▣</span>
+                Agenda
+            </button>
+
+            <button class="nav-item" data-section="consultas">
+                <span class="nav-icon">◫</span>
+                Consultas
+            </button>
+
+            <div class="nav-title">
+                Gestión
+            </div>
+
+            <button class="nav-item" data-section="estadisticas">
+                <span class="nav-icon">◒</span>
+                Estadísticas
+            </button>
+
+            <button class="nav-item" data-section="notificaciones">
+                <span class="nav-icon">♢</span>
+                Notificaciones
+                <span class="badge">3</span>
+            </button>
+
+            <button class="nav-item" data-section="reportes">
+                <span class="nav-icon">▤</span>
+                Reportes
+            </button>
+
+            <div class="nav-title">
+                Cuenta
+            </div>
+
+            <button class="nav-item" data-section="perfil">
+                <span class="nav-icon">◎</span>
+                Mi perfil
+            </button>
+
+            <button class="nav-item" data-section="configuracion">
+                <span class="nav-icon">⚙</span>
+                Configuración
+            </button>
+
+            <button class="nav-item" id="logoutBtn">
+                <span class="nav-icon">↪</span>
+                Cerrar sesión
+            </button>
+
+            <div class="availability">
+
+                <div class="availability-title">
+
+                    <span>Disponibilidad</span>
+
+                    <button class="toggle on" id="availabilityToggle"></button>
+
+                </div>
+
+                <small id="availabilityText">
+                    Recibiendo nuevas solicitudes
+                </small>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div style="display:flex;align-items:center;gap:12px;">
+
+                    <button class="mobile-menu" id="mobileMenu">
+                        ☰
+                    </button>
+
+                    <div class="page-title">
+
+                        <h1 id="pageHeading">
+                            Panel profesional
+                        </h1>
+
+                        <p>
+                            Psicólogo Independiente · Plan P3
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="top-actions">
+
+                    <button class="icon-button"
+                        onclick="showSection('notificaciones')">
+
+                        ♢
+
+                        <span class="notification-dot"></span>
+
+                    </button>
+
+                    <button class="icon-button"
+                        onclick="showSection('perfil')">
+
+                        ◎
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <div class="content">
+
+                <!-- ================= INICIO ================= -->
+
+                <section class="section active" id="inicio">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Buenos días 👋
+                            </h2>
+
+                            <p>
+                                Gestiona tus solicitudes, pacientes y consultas desde un solo lugar.
+                            </p>
+
+                        </div>
+
+                        <button class="btn btn-primary"
+                            onclick="openAppointmentModal()">
+
+                            ＋ Nueva consulta
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- COTIZACIÓN 20% -->
+
+                    <div class="quotation-banner">
+
+                        <div class="quotation-content">
+
+                            <div class="quotation-info">
+
+                                <div class="quotation-icon">
+                                    💰
+                                </div>
+
+                                <div>
+
+                                    <small>
+                                        Cotización TIKARY · Plan P3
+                                    </small>
+
+                                    <h3>
+                                        Cotización del servicio: 20%
+                                    </h3>
+
+                                    <p>
+                                        La plataforma considera una cotización del 20%
+                                        sobre el valor registrado del servicio.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="quotation-percent">
+
+                                <strong>
+                                    20%
+                                </strong>
+
+                                <span>
+                                    Cotización TIKARY
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon gold">
+                                    ✉
+                                </div>
+
+                                <span class="stat-change">
+                                    Pendientes
+                                </span>
+
+                            </div>
+
+                            <h3 id="pendingCount">
+                                4
+                            </h3>
+
+                            <p>
+                                Solicitudes pendientes
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon">
+                                    ♙
+                                </div>
+
+                                <span class="stat-change">
+                                    Activos
+                                </span>
+
+                            </div>
+
+                            <h3>
+                                28
+                            </h3>
+
+                            <p>
+                                Pacientes registrados
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon blue">
+                                    ◫
+                                </div>
+
+                                <span class="stat-change">
+                                    Esta semana
+                                </span>
+
+                            </div>
+
+                            <h3>
+                                18
+                            </h3>
+
+                            <p>
+                                Consultas programadas
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon gold">
+                                    ★
+                                </div>
+
+                                <span class="stat-change">
+                                    Actual
+                                </span>
+
+                            </div>
+
+                            <h3>
+                                4.9
+                            </h3>
+
+                            <p>
+                                Valoración promedio
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid-2">
+
+                        <div class="card">
+
+                            <div class="card-title">
+
+                                <h3>
+                                    Solicitudes recientes
+                                </h3>
+
+                                <a onclick="showSection('solicitudes')">
+                                    Ver todas →
+                                </a>
+
+                            </div>
+
+                            <div id="recentRequests"></div>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div class="card-title">
+
+                                <h3>
+                                    Próximas consultas
+                                </h3>
+
+                                <a onclick="showSection('agenda')">
+                                    Ver agenda →
+                                </a>
+
+                            </div>
+
+                            <div id="upcomingHome"></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= SOLICITUDES ================= -->
+
+                <section class="section" id="solicitudes">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Solicitudes
+                            </h2>
+
+                            <p>
+                                Revisa, acepta o rechaza nuevas solicitudes de atención.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon gold">
+                                ✉
+                            </div>
+
+                            <h3 id="allPending">
+                                4
+                            </h3>
+
+                            <p>
+                                Pendientes
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon">
+                                ✓
+                            </div>
+
+                            <h3>
+                                37
+                            </h3>
+
+                            <p>
+                                Aceptadas
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon red">
+                                ×
+                            </div>
+
+                            <h3>
+                                7
+                            </h3>
+
+                            <p>
+                                Rechazadas
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon blue">
+                                ◷
+                            </div>
+
+                            <h3>
+                                11
+                            </h3>
+
+                            <p>
+                                Hoy
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Solicitudes recibidas
+                            </h3>
+
+                            <select id="requestFilter"
+                                style="border:1px solid rgba(49,95,92,.1);padding:8px 11px;border-radius:10px;color:var(--texto);font-size:10px;">
+
+                                <option value="all">
+                                    Todas
+                                </option>
+
+                                <option value="pending">
+                                    Pendientes
+                                </option>
+
+                                <option value="accepted">
+                                    Aceptadas
+                                </option>
+
+                                <option value="rejected">
+                                    Rechazadas
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div id="requestsList"></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PACIENTES ================= -->
+
+                <section class="section" id="pacientes">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Mis pacientes
+                            </h2>
+
+                            <p>
+                                Consulta la información básica y el seguimiento de tus pacientes.
+                            </p>
+
+                        </div>
+
+                        <button class="btn btn-primary"
+                            onclick="openAppointmentModal()">
+
+                            ＋ Agendar consulta
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Pacientes registrados
+                            </h3>
+
+                            <input type="search"
+                                id="patientSearch"
+                                placeholder="Buscar paciente..."
+                                style="border:1px solid rgba(49,95,92,.1);padding:9px 12px;border-radius:10px;outline:none;font-size:10px;">
+
+                        </div>
+
+
+                        <div class="table-wrap">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Paciente
+                                        </th>
+
+                                        <th>
+                                            Última consulta
+                                        </th>
+
+                                        <th>
+                                            Próxima cita
+                                        </th>
+
+                                        <th>
+                                            Estado
+                                        </th>
+
+                                        <th>
+                                            Acción
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="patientsTable">
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                María Fernanda
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            24 Sep 2026
+                                        </td>
+
+                                        <td>
+                                            30 Sep 2026
+                                        </td>
+
+                                        <td>
+                                            <span class="pill green">
+                                                Activo
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <button class="mini-btn detail">
+                                                Ver perfil
+                                            </button>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                Luis Alberto
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            22 Sep 2026
+                                        </td>
+
+                                        <td>
+                                            29 Sep 2026
+                                        </td>
+
+                                        <td>
+                                            <span class="pill green">
+                                                Activo
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <button class="mini-btn detail">
+                                                Ver perfil
+                                            </button>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                Andrea Lucía
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            20 Sep 2026
+                                        </td>
+
+                                        <td>
+                                            02 Oct 2026
+                                        </td>
+
+                                        <td>
+                                            <span class="pill blue">
+                                                Seguimiento
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <button class="mini-btn detail">
+                                                Ver perfil
+                                            </button>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                Carlos Alberto
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            18 Sep 2026
+                                        </td>
+
+                                        <td>
+                                            —
+                                        </td>
+
+                                        <td>
+                                            <span class="pill gold">
+                                                Pendiente
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <button class="mini-btn detail">
+                                                Ver perfil
+                                            </button>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= AGENDA ================= -->
+
+                <section class="section" id="agenda">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Agenda
+                            </h2>
+
+                            <p>
+                                Organiza tus próximas consultas.
+                            </p>
+
+                        </div>
+
+                        <button class="btn btn-primary"
+                            onclick="openAppointmentModal()">
+
+                            ＋ Nueva consulta
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Septiembre 2026
+                            </h3>
+
+                            <div style="display:flex;gap:6px;">
+
+                                <button class="btn btn-light">
+                                    ‹
+                                </button>
+
+                                <button class="btn btn-light">
+                                    ›
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="calendar-wrap">
+
+                            <div class="calendar">
+
+                                <div class="day-name">
+                                    LUN
+                                </div>
+
+                                <div class="day-name">
+                                    MAR
+                                </div>
+
+                                <div class="day-name">
+                                    MIÉ
+                                </div>
+
+                                <div class="day-name">
+                                    JUE
+                                </div>
+
+                                <div class="day-name">
+                                    VIE
+                                </div>
+
+                                <div class="day-name">
+                                    SÁB
+                                </div>
+
+                                <div class="day-name">
+                                    DOM
+                                </div>
+
+
+                                <div class="day"></div>
+                                <div class="day">1</div>
+                                <div class="day">2</div>
+                                <div class="day">3</div>
+                                <div class="day">4</div>
+                                <div class="day">5</div>
+                                <div class="day">6</div>
+
+                                <div class="day">7</div>
+                                <div class="day">8</div>
+                                <div class="day">9</div>
+                                <div class="day">10</div>
+                                <div class="day">11</div>
+                                <div class="day">12</div>
+                                <div class="day">13</div>
+
+                                <div class="day">14</div>
+                                <div class="day">15</div>
+                                <div class="day">16</div>
+                                <div class="day">17</div>
+                                <div class="day">18</div>
+                                <div class="day">19</div>
+                                <div class="day">20</div>
+
+                                <div class="day">21</div>
+                                <div class="day">22</div>
+                                <div class="day">23</div>
+                                <div class="day">24</div>
+                                <div class="day">25</div>
+                                <div class="day">26</div>
+
+                                <div class="day today">
+
+                                    <div class="day-number">
+                                        27
+                                    </div>
+
+                                    <div class="event">
+                                        María · 10:00
+                                    </div>
+
+                                </div>
+
+                                <div class="day">
+
+                                    <div class="day-number">
+                                        28
+                                    </div>
+
+                                    <div class="event">
+                                        Luis · 15:00
+                                    </div>
+
+                                </div>
+
+                                <div class="day">
+
+                                    <div class="day-number">
+                                        29
+                                    </div>
+
+                                    <div class="event">
+                                        Andrea · 11:00
+                                    </div>
+
+                                </div>
+
+                                <div class="day">
+
+                                    <div class="day-number">
+                                        30
+                                    </div>
+
+                                    <div class="event">
+                                        María · 16:00
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Próximas consultas
+                            </h3>
+
+                        </div>
+
+                        <div id="agendaUpcoming"></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= CONSULTAS ================= -->
+
+                <section class="section" id="consultas">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Consultas
+                            </h2>
+
+                            <p>
+                                Historial de consultas realizadas y programadas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="table-wrap">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Fecha
+                                        </th>
+
+                                        <th>
+                                            Paciente
+                                        </th>
+
+                                        <th>
+                                            Modalidad
+                                        </th>
+
+                                        <th>
+                                            Estado
+                                        </th>
+
+                                        <th>
+                                            Valor
+                                        </th>
+
+                                        <th>
+                                            Cotización
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <td>
+                                            27 Sep 2026 · 10:00
+                                        </td>
+
+                                        <td>
+                                            <strong>
+                                                María Fernanda
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            Virtual
+                                        </td>
+
+                                        <td>
+                                            <span class="pill gold">
+                                                Programada
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            S/ 80.00
+                                        </td>
+
+                                        <td>
+                                            S/ 16.00
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            26 Sep 2026 · 15:00
+                                        </td>
+
+                                        <td>
+                                            <strong>
+                                                Luis Alberto
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            Virtual
+                                        </td>
+
+                                        <td>
+                                            <span class="pill green">
+                                                Realizada
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            S/ 80.00
+                                        </td>
+
+                                        <td>
+                                            S/ 16.00
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            24 Sep 2026 · 11:00
+                                        </td>
+
+                                        <td>
+                                            <strong>
+                                                Andrea Lucía
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            Presencial
+                                        </td>
+
+                                        <td>
+                                            <span class="pill green">
+                                                Realizada
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            S/ 100.00
+                                        </td>
+
+                                        <td>
+                                            S/ 20.00
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= ESTADÍSTICAS ================= -->
+
+                <section class="section" id="estadisticas">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Estadísticas
+                            </h2>
+
+                            <p>
+                                Visualiza el movimiento de tu actividad profesional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon">
+                                ♙
+                            </div>
+
+                            <h3>
+                                28
+                            </h3>
+
+                            <p>
+                                Pacientes activos
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon blue">
+                                ◫
+                            </div>
+
+                            <h3>
+                                72
+                            </h3>
+
+                            <p>
+                                Consultas realizadas
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon gold">
+                                S/
+                            </div>
+
+                            <h3>
+                                S/ 6,240
+                            </h3>
+
+                            <p>
+                                Servicios registrados
+                            </p>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon red">
+                                %
+                            </div>
+
+                            <h3>
+                                20%
+                            </h3>
+
+                            <p>
+                                Cotización TIKARY
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Consultas de los últimos meses
+                            </h3>
+
+                        </div>
+
+                        <div class="chart-box">
+
+                            <canvas id="consultationChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= NOTIFICACIONES ================= -->
+
+                <section class="section" id="notificaciones">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Notificaciones
+                            </h2>
+
+                            <p>
+                                Mantente al día con la actividad de tu panel.
+                            </p>
+
+                        </div>
+
+                        <button class="btn btn-light"
+                            onclick="markNotificationsRead()">
+
+                            Marcar como leídas
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="notification">
+
+                            <div class="notification-icon">
+                                ✉
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Nueva solicitud de atención
+                                </strong>
+
+                                <p>
+                                    María Fernanda ha enviado una solicitud para agendar una consulta.
+                                </p>
+
+                                <small>
+                                    Hace 10 minutos
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notification">
+
+                            <div class="notification-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Consulta confirmada
+                                </strong>
+
+                                <p>
+                                    La consulta con Luis Alberto quedó registrada correctamente.
+                                </p>
+
+                                <small>
+                                    Hace 1 hora
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notification">
+
+                            <div class="notification-icon">
+                                💰
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Cotización TIKARY
+                                </strong>
+
+                                <p>
+                                    La cotización configurada para tu Plan P3 es del 20%.
+                                </p>
+
+                                <small>
+                                    Hoy
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= REPORTES ================= -->
+
+                <section class="section" id="reportes">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Reportes
+                            </h2>
+
+                            <p>
+                                Genera información resumida de tu actividad profesional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="card">
+
+                            <div class="stat-icon">
+                                ▤
+                            </div>
+
+                            <h3 style="font-size:16px;margin-top:15px;">
+                                Consultas
+                            </h3>
+
+                            <p style="font-size:10px;color:var(--muted);margin:5px 0 15px;">
+                                Resumen de consultas realizadas.
+                            </p>
+
+                            <button class="btn btn-light"
+                                onclick="generateReport('Consultas')">
+
+                                Generar reporte
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div class="stat-icon gold">
+                                S/
+                            </div>
+
+                            <h3 style="font-size:16px;margin-top:15px;">
+                                Cotizaciones
+                            </h3>
+
+                            <p style="font-size:10px;color:var(--muted);margin:5px 0 15px;">
+                                Servicios y cotización del 20%.
+                            </p>
+
+                            <button class="btn btn-light"
+                                onclick="generateReport('Cotizaciones')">
+
+                                Generar reporte
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div class="stat-icon blue">
+                                ♙
+                            </div>
+
+                            <h3 style="font-size:16px;margin-top:15px;">
+                                Pacientes
+                            </h3>
+
+                            <p style="font-size:10px;color:var(--muted);margin:5px 0 15px;">
+                                Pacientes y actividad registrada.
+                            </p>
+
+                            <button class="btn btn-light"
+                                onclick="generateReport('Pacientes')">
+
+                                Generar reporte
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="card">
+
+                            <div class="stat-icon">
+                                ◒
+                            </div>
+
+                            <h3 style="font-size:16px;margin-top:15px;">
+                                Actividad
+                            </h3>
+
+                            <p style="font-size:10px;color:var(--muted);margin:5px 0 15px;">
+                                Resumen general del Plan P3.
+                            </p>
+
+                            <button class="btn btn-light"
+                                onclick="generateReport('Actividad')">
+
+                                Generar reporte
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PERFIL ================= -->
+
+                <section class="section" id="perfil">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Mi perfil
+                            </h2>
+
+                            <p>
+                                Información pública y profesional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-head">
+
+                        <div class="profile-avatar"
+                            id="profileInitial">
+
+                            P
+
+                        </div>
+
+                        <div>
+
+                            <h2 id="profileName">
+                                Psicólogo independiente
+                            </h2>
+
+                            <p>
+                                Profesional TIKARY · Plan P3
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="profile-fields">
+
+                            <div class="field">
+
+                                <label>
+                                    Nombres completos
+                                </label>
+
+                                <input id="profileFullName"
+                                    type="text"
+                                    placeholder="Nombre completo">
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Correo electrónico
+                                </label>
+
+                                <input id="profileEmail"
+                                    type="email"
+                                    readonly>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Especialidad
+                                </label>
+
+                                <input type="text"
+                                    value="Psicología">
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Modalidad
+                                </label>
+
+                                <select>
+
+                                    <option>
+                                        Virtual y presencial
+                                    </option>
+
+                                    <option>
+                                        Virtual
+                                    </option>
+
+                                    <option>
+                                        Presencial
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field"
+                                style="grid-column:1/-1;">
+
+                                <label>
+                                    Presentación profesional
+                                </label>
+
+                                <textarea
+                                    placeholder="Escribe una breve presentación profesional..."></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <div style="margin-top:20px;">
+
+                            <button class="btn btn-primary"
+                                onclick="saveProfile()">
+
+                                Guardar cambios
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= CONFIGURACIÓN ================= -->
+
+                <section class="section" id="configuracion">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Configuración
+                            </h2>
+
+                            <p>
+                                Administra las preferencias de tu cuenta profesional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Preferencias de solicitudes
+                            </h3>
+
+                        </div>
+
+
+                        <div style="display:grid;gap:15px;">
+
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+
+                                <div>
+
+                                    <strong style="font-size:12px;">
+                                        Recibir nuevas solicitudes
+                                    </strong>
+
+                                    <p style="font-size:9px;color:var(--muted);">
+                                        Permite que nuevos pacientes envíen solicitudes.
+                                    </p>
+
+                                </div>
+
+                                <button class="toggle on"
+                                    onclick="toggleSetting(this)">
+                                </button>
+
+                            </div>
+
+
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+
+                                <div>
+
+                                    <strong style="font-size:12px;">
+                                        Notificaciones
+                                    </strong>
+
+                                    <p style="font-size:9px;color:var(--muted);">
+                                        Recibir avisos sobre nuevas actividades.
+                                    </p>
+
+                                </div>
+
+                                <button class="toggle on"
+                                    onclick="toggleSetting(this)">
+                                </button>
+
+                            </div>
+
+
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+
+                                <div>
+
+                                    <strong style="font-size:12px;">
+                                        Confirmación automática
+                                    </strong>
+
+                                    <p style="font-size:9px;color:var(--muted);">
+                                        Requiere revisión antes de aceptar una solicitud.
+                                    </p>
+
+                                </div>
+
+                                <button class="toggle"
+                                    onclick="toggleSetting(this)">
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="card">
+
+                        <div class="card-title">
+
+                            <h3>
+                                Información del Plan
+                            </h3>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Plan contratado
+                            </span>
+
+                            <strong>
+                                TIKARY P3
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Tipo de cuenta
+                            </span>
+
+                            <strong>
+                                Psicólogo Independiente
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Cotización TIKARY
+                            </span>
+
+                            <strong style="color:var(--dorado);">
+                                20%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= MODAL SOLICITUD ================= -->
+
+    <div class="modal" id="requestModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h3>
+                    Detalle de solicitud
+                </h3>
+
+                <button class="close"
+                    onclick="closeModal('requestModal')">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div id="requestDetail"></div>
+
+
+            <div class="modal-actions">
+
+                <button class="btn btn-danger"
+                    id="modalReject">
+
+                    Rechazar
+
+                </button>
+
+                <button class="btn btn-primary"
+                    id="modalAccept">
+
+                    Aceptar solicitud
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL NUEVA CONSULTA ================= -->
+
+    <div class="modal" id="appointmentModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h3>
+                    Nueva consulta
+                </h3>
+
+                <button class="close"
+                    onclick="closeModal('appointmentModal')">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div class="profile-fields">
+
+                <div class="field">
+
+                    <label>
+                        Paciente
+                    </label>
+
+                    <select>
+
+                        <option>
+                            María Fernanda
+                        </option>
+
+                        <option>
+                            Luis Alberto
+                        </option>
+
+                        <option>
+                            Andrea Lucía
+                        </option>
+
+                        <option>
+                            Carlos Alberto
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Modalidad
+                    </label>
+
+                    <select>
+
+                        <option>
+                            Virtual
+                        </option>
+
+                        <option>
+                            Presencial
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Fecha
+                    </label>
+
+                    <input type="date"
+                        value="2026-09-30">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Hora
+                    </label>
+
+                    <input type="time"
+                        value="10:00">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Valor del servicio
+                    </label>
+
+                    <input type="number"
+                        id="serviceValue"
+                        value="80"
+                        min="0"
+                        step="0.01">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Cotización TIKARY
+                    </label>
+
+                    <input type="text"
+                        value="20%"
+                        readonly>
+
+                </div>
+
+            </div>
+
+
+            <div class="quote-box">
+
+                <div class="quote-box-row">
+
+                    <span>
+                        Valor del servicio
+                    </span>
+
+                    <strong id="quoteBase">
+                        S/ 80.00
+                    </strong>
+
+                </div>
+
+
+                <div class="quote-box-row">
+
+                    <span>
+                        Cotización TIKARY (20%)
+                    </span>
+
+                    <strong id="quoteCommission">
+                        S/ 16.00
+                    </strong>
+
+                </div>
+
+
+                <div class="quote-box-row total">
+
+                    <span>
+                        Total cotización
+                    </span>
+
+                    <strong id="quoteTotal">
+                        S/ 96.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button class="btn btn-light"
+                    onclick="closeModal('appointmentModal')">
+
+                    Cancelar
+
+                </button>
+
+                <button class="btn btn-primary"
+                    onclick="saveAppointment()">
+
+                    Guardar consulta
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="toast" id="toast"></div>
+
+
+    <!-- ================= FIREBASE + CHART ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+        import {
+            getFirestore,
+            collection,
+            query,
+            where,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+            authDomain:
+                "tikary2-82b25.firebaseapp.com",
+
+            projectId:
+                "tikary2-82b25",
+
+            storageBucket:
+                "tikary2-82b25.firebasestorage.app",
+
+            messagingSenderId:
+                "515813934347",
+
+            appId:
+                "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+            measurementId:
+                "G-M9HPJ7QQE6"
+
+        };
+
+
+        const app =
+            initializeApp(firebaseConfig);
+
+        const auth =
+            getAuth(app);
+
+        const db =
+            getFirestore(app);
+
+
+        onAuthStateChanged(auth, async (user) => {
+
+            if (!user) {
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+
+            }
+
+
+            const email =
+                user.email || "";
+
+            const dni =
+                email.split("@")[0];
+
+
+            document.getElementById(
+                "profileEmail"
+            ).value = email;
+
+
+            try {
+
+                const q = query(
+                    collection(db, "dni_permitidos"),
+                    where("dni", "==", dni)
+                );
+
+
+                const snap =
+                    await getDocs(q);
+
+
+                if (!snap.empty) {
+
+                    const data =
+                        snap.docs[0].data();
+
+
+                    const name =
+                        data.nombreCompleto ||
+                        data.nombre ||
+                        data.nombres ||
+                        `${data.nombres || ""} ${data.apellidos || ""}`.trim() ||
+                        "Psicólogo independiente";
+
+
+                    setPsychologistName(name);
+
+                } else {
+
+                    setPsychologistName(
+                        "Psicólogo independiente"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                setPsychologistName(
+                    "Psicólogo independiente"
+                );
+
+            }
+
+        });
+
+
+        function setPsychologistName(name) {
+
+            document.getElementById(
+                "psychologistName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "profileName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "profileFullName"
+            ).value = name;
+
+
+            const initial =
+                name.trim().charAt(0).toUpperCase() || "P";
+
+
+            document.getElementById(
+                "profileInitial"
+            ).textContent = initial;
+
+        }
+
+
+        document.getElementById(
+            "logoutBtn"
+        ).addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "../../index.html";
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showToast(
+                        "No se pudo cerrar la sesión."
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+    <script>
+
+        /* ================= SOLICITUDES ================= */
+
+        let requests = [
+
+            {
+                id: 1,
+                name: "María Fernanda",
+                initials: "MF",
+                reason:
+                    "Desea solicitar una primera consulta de orientación.",
+                date: "Hace 10 min",
+                status: "pending",
+                service: 80
+            },
+
+            {
+                id: 2,
+                name: "Luis Alberto",
+                initials: "LA",
+                reason:
+                    "Solicitud de consulta de seguimiento.",
+                date: "Hace 35 min",
+                status: "pending",
+                service: 80
+            },
+
+            {
+                id: 3,
+                name: "Andrea Lucía",
+                initials: "AL",
+                reason:
+                    "Desea conocer disponibilidad para una consulta.",
+                date: "Hace 1 h",
+                status: "pending",
+                service: 100
+            },
+
+            {
+                id: 4,
+                name: "Carlos Alberto",
+                initials: "CA",
+                reason:
+                    "Solicitud de atención psicológica.",
+                date: "Hace 2 h",
+                status: "pending",
+                service: 80
+            }
+
+        ];
+
+
+        function renderRequests() {
+
+            const container =
+                document.getElementById(
+                    "requestsList"
+                );
+
+            const recent =
+                document.getElementById(
+                    "recentRequests"
+                );
+
+            const filter =
+                document.getElementById(
+                    "requestFilter"
+                );
+
+
+            let list =
+                requests;
+
+
+            if (
+                filter &&
+                filter.value !== "all"
+            ) {
+
+                list =
+                    requests.filter(
+                        r =>
+                            r.status ===
+                            filter.value
+                    );
+
+            }
+
+
+            if (list.length === 0) {
+
+                container.innerHTML = `
+
+                    <div style="
+                        padding:30px;
+                        text-align:center;
+                        color:var(--muted);
+                        font-size:11px;
+                    ">
+
+                        No hay solicitudes en esta categoría.
+
+                    </div>
+
+                `;
+
+            } else {
+
+                container.innerHTML =
+                    list.map(
+                        requestHTML
+                    ).join("");
+
+            }
+
+
+            const pending =
+                requests.filter(
+                    r =>
+                        r.status ===
+                        "pending"
+                );
+
+
+            document.getElementById(
+                "requestBadge"
+            ).textContent =
+                pending.length;
+
+
+            document.getElementById(
+                "pendingCount"
+            ).textContent =
+                pending.length;
+
+
+            document.getElementById(
+                "allPending"
+            ).textContent =
+                pending.length;
+
+
+            if (pending.length === 0) {
+
+                recent.innerHTML = `
+
+                    <div style="
+                        padding:25px 0;
+                        text-align:center;
+                        color:var(--muted);
+                        font-size:11px;
+                    ">
+
+                        No tienes solicitudes pendientes.
+
+                    </div>
+
+                `;
+
+            } else {
+
+                recent.innerHTML =
+                    pending
+                        .slice(0, 3)
+                        .map(requestHTML)
+                        .join("");
+
+            }
+
+        }
+
+
+        function requestHTML(r) {
+
+            const buttons =
+                r.status === "pending"
+
+                    ? `
+
+                        <button
+                            class="mini-btn accept"
+                            onclick="changeRequest(${r.id}, 'accepted')">
+
+                            ✓ Aceptar
+
+                        </button>
+
+                        <button
+                            class="mini-btn reject"
+                            onclick="changeRequest(${r.id}, 'rejected')">
+
+                            × Rechazar
+
+                        </button>
+
+                        <button
+                            class="mini-btn detail"
+                            onclick="openRequest(${r.id})">
+
+                            Ver detalle
+
+                        </button>
+
+                    `
+
+                    : `
+
+                        <span class="pill ${
+                            r.status === "accepted"
+                                ? "green"
+                                : "red"
+                        }">
+
+                            ${
+                                r.status === "accepted"
+                                    ? "Aceptada"
+                                    : "Rechazada"
+                            }
+
+                        </span>
+
+                        <button
+                            class="mini-btn detail"
+                            onclick="openRequest(${r.id})">
+
+                            Ver detalle
+
+                        </button>
+
+                    `;
+
+
+            return `
+
+                <div class="request">
+
+                    <div class="request-head">
+
+                        <div class="avatar">
+                            ${r.initials}
+                        </div>
+
+                        <div class="request-name">
+
+                            <strong>
+                                ${r.name}
+                            </strong>
+
+                            <span>
+                                Solicitud de consulta
+                            </span>
+
+                        </div>
+
+                        <span class="request-time">
+                            ${r.date}
+                        </span>
+
+                    </div>
+
+
+                    <div class="request-reason">
+                        ${r.reason}
+                    </div>
+
+
+                    <div class="request-actions">
+                        ${buttons}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        window.changeRequest =
+            function(id, status) {
+
+                const request =
+                    requests.find(
+                        r =>
+                            r.id === id
+                    );
+
+
+                if (!request)
+                    return;
+
+
+                request.status =
+                    status;
+
+
+                renderRequests();
+
+
+                if (
+                    status ===
+                    "accepted"
+                ) {
+
+                    showToast(
+                        `Solicitud de ${request.name} aceptada.`
+                    );
+
+                } else {
+
+                    showToast(
+                        `Solicitud de ${request.name} rechazada.`
+                    );
+
+                }
+
+            };
+
+
+        window.openRequest =
+            function(id) {
+
+                const request =
+                    requests.find(
+                        r =>
+                            r.id === id
+                    );
+
+
+                if (!request)
+                    return;
+
+
+                const commission =
+                    request.service * 0.20;
+
+
+                const total =
+                    request.service +
+                    commission;
+
+
+                document.getElementById(
+                    "requestDetail"
+                ).innerHTML = `
+
+                    <div class="detail-box">
+
+                        <h4>
+                            Información de la solicitud
+                        </h4>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Paciente
+                            </span>
+
+                            <strong>
+                                ${request.name}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Motivo
+                            </span>
+
+                            <strong>
+                                ${request.reason}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Estado
+                            </span>
+
+                            <strong>
+
+                                ${
+                                    request.status === "pending"
+                                        ? "Pendiente"
+                                        : request.status === "accepted"
+                                            ? "Aceptada"
+                                            : "Rechazada"
+                                }
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <h4>
+                            Cotización del servicio
+                        </h4>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Valor del servicio
+                            </span>
+
+                            <strong>
+                                S/ ${request.service.toFixed(2)}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Cotización TIKARY
+                            </span>
+
+                            <strong style="color:var(--dorado);">
+
+                                20% · S/ ${commission.toFixed(2)}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong style="color:var(--verde);">
+
+                                S/ ${total.toFixed(2)}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                document.getElementById(
+                    "modalAccept"
+                ).onclick = () => {
+
+                    changeRequest(
+                        id,
+                        "accepted"
+                    );
+
+                    closeModal(
+                        "requestModal"
+                    );
+
+                };
+
+
+                document.getElementById(
+                    "modalReject"
+                ).onclick = () => {
+
+                    changeRequest(
+                        id,
+                        "rejected"
+                    );
+
+                    closeModal(
+                        "requestModal"
+                    );
+
+                };
+
+
+                document.getElementById(
+                    "requestModal"
+                ).classList.add("show");
+
+            };
+
+
+        document.getElementById(
+            "requestFilter"
+        ).addEventListener(
+            "change",
+            renderRequests
+        );
+
+
+        /* ================= NAVEGACIÓN ================= */
+
+        const navItems =
+            document.querySelectorAll(
+                ".nav-item[data-section]"
+            );
+
+
+        navItems.forEach(item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    showSection(
+                        item.dataset.section
+                    );
+
+                }
+            );
+
+        });
+
+
+        window.showSection =
+            function(sectionId) {
+
+                document.querySelectorAll(
+                    ".section"
+                ).forEach(
+                    section => {
+
+                        section.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                const target =
+                    document.getElementById(
+                        sectionId
+                    );
+
+
+                if (target) {
+
+                    target.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                navItems.forEach(item => {
+
+                    item.classList.toggle(
+                        "active",
+                        item.dataset.section ===
+                        sectionId
+                    );
+
+                });
+
+
+                const titles = {
+
+                    inicio:
+                        "Panel profesional",
+
+                    solicitudes:
+                        "Solicitudes",
+
+                    pacientes:
+                        "Mis pacientes",
+
+                    agenda:
+                        "Agenda",
+
+                    consultas:
+                        "Consultas",
+
+                    estadisticas:
+                        "Estadísticas",
+
+                    notificaciones:
+                        "Notificaciones",
+
+                    reportes:
+                        "Reportes",
+
+                    perfil:
+                        "Mi perfil",
+
+                    configuracion:
+                        "Configuración"
+
+                };
+
+
+                document.getElementById(
+                    "pageHeading"
+                ).textContent =
+                    titles[sectionId] ||
+                    "Panel profesional";
+
+
+                document.getElementById(
+                    "sidebar"
+                ).classList.remove(
+                    "open"
+                );
+
+            };
+
+
+        /* ================= MOBILE ================= */
+
+        document.getElementById(
+            "mobileMenu"
+        ).addEventListener(
+            "click",
+            () => {
+
+                document.getElementById(
+                    "sidebar"
+                ).classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+
+        /* ================= DISPONIBILIDAD ================= */
+
+        document.getElementById(
+            "availabilityToggle"
+        ).addEventListener(
+            "click",
+            function() {
+
+                this.classList.toggle(
+                    "on"
+                );
+
+
+                const active =
+                    this.classList.contains(
+                        "on"
+                    );
+
+
+                document.getElementById(
+                    "availabilityText"
+                ).textContent =
+                    active
+                        ? "Recibiendo nuevas solicitudes"
+                        : "No estás recibiendo solicitudes";
+
+
+                showToast(
+                    active
+                        ? "Ahora recibes nuevas solicitudes."
+                        : "Has pausado las nuevas solicitudes."
+                );
+
+            }
+        );
+
+
+        /* ================= AGENDA ================= */
+
+        function renderUpcoming() {
+
+            const html = `
+
+                <div class="request">
+
+                    <div class="request-head">
+
+                        <div class="avatar">
+                            MF
+                        </div>
+
+                        <div class="request-name">
+
+                            <strong>
+                                María Fernanda
+                            </strong>
+
+                            <span>
+                                Consulta virtual
+                            </span>
+
+                        </div>
+
+                        <span class="pill gold">
+                            Hoy · 10:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request">
+
+                    <div class="request-head">
+
+                        <div class="avatar">
+                            LA
+                        </div>
+
+                        <div class="request-name">
+
+                            <strong>
+                                Luis Alberto
+                            </strong>
+
+                            <span>
+                                Consulta virtual
+                            </span>
+
+                        </div>
+
+                        <span class="pill blue">
+                            Mañana · 15:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request">
+
+                    <div class="request-head">
+
+                        <div class="avatar">
+                            AL
+                        </div>
+
+                        <div class="request-name">
+
+                            <strong>
+                                Andrea Lucía
+                            </strong>
+
+                            <span>
+                                Consulta presencial
+                            </span>
+
+                        </div>
+
+                        <span class="pill green">
+                            29 Sep · 11:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            document.getElementById(
+                "upcomingHome"
+            ).innerHTML = html;
+
+
+            document.getElementById(
+                "agendaUpcoming"
+            ).innerHTML = html;
+
+        }
+
+
+        /* ================= COTIZACIÓN 20% ================= */
+
+        const serviceValue =
+            document.getElementById(
+                "serviceValue"
+            );
+
+
+        serviceValue.addEventListener(
+            "input",
+            updateQuotation
+        );
+
+
+        function updateQuotation() {
+
+            const base =
+                Number(
+                    serviceValue.value
+                ) || 0;
+
+
+            const commission =
+                base * 0.20;
+
+
+            const total =
+                base + commission;
+
+
+            document.getElementById(
+                "quoteBase"
+            ).textContent =
+                `S/ ${base.toFixed(2)}`;
+
+
+            document.getElementById(
+                "quoteCommission"
+            ).textContent =
+                `S/ ${commission.toFixed(2)}`;
+
+
+            document.getElementById(
+                "quoteTotal"
+            ).textContent =
+                `S/ ${total.toFixed(2)}`;
+
+        }
+
+
+        /* ================= MODALES ================= */
+
+        window.closeModal =
+            function(id) {
+
+                document.getElementById(
+                    id
+                ).classList.remove(
+                    "show"
+                );
+
+            };
+
+
+        window.openAppointmentModal =
+            function() {
+
+                document.getElementById(
+                    "appointmentModal"
+                ).classList.add(
+                    "show"
+                );
+
+
+                updateQuotation();
+
+            };
+
+
+        window.saveAppointment =
+            function() {
+
+                closeModal(
+                    "appointmentModal"
+                );
+
+
+                showToast(
+                    "Consulta registrada correctamente."
+                );
+
+            };
+
+
+        /* ================= PERFIL ================= */
+
+        window.saveProfile =
+            function() {
+
+                showToast(
+                    "Cambios guardados correctamente."
+                );
+
+            };
+
+
+        /* ================= CONFIGURACIÓN ================= */
+
+        window.toggleSetting =
+            function(button) {
+
+                button.classList.toggle(
+                    "on"
+                );
+
+
+                showToast(
+                    button.classList.contains("on")
+                        ? "Configuración activada."
+                        : "Configuración desactivada."
+                );
+
+            };
+
+
+        /* ================= NOTIFICACIONES ================= */
+
+        window.markNotificationsRead =
+            function() {
+
+                document.querySelectorAll(
+                    ".notification-dot"
+                ).forEach(
+                    dot => {
+
+                        dot.style.display =
+                            "none";
+
+                    }
+                );
+
+
+                showToast(
+                    "Notificaciones marcadas como leídas."
+                );
+
+            };
+
+
+        /* ================= REPORTES ================= */
+
+        window.generateReport =
+            function(type) {
+
+                showToast(
+                    `Preparando reporte de ${type}...`
+                );
+
+            };
+
+
+        /* ================= TOAST ================= */
+
+        window.showToast =
+            function(message) {
+
+                const toast =
+                    document.getElementById(
+                        "toast"
+                    );
+
+
+                toast.textContent =
+                    message;
+
+
+                toast.classList.add(
+                    "show"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    2800
+                );
+
+            };
+
+
+        /* ================= BUSCADOR ================= */
+
+        document.getElementById(
+            "patientSearch"
+        ).addEventListener(
+            "input",
+            function() {
+
+                const search =
+                    this.value.toLowerCase();
+
+
+                document.querySelectorAll(
+                    "#patientsTable tr"
+                ).forEach(
+                    row => {
+
+                        row.style.display =
+                            row.textContent
+                                .toLowerCase()
+                                .includes(search)
+                                ? ""
+                                : "none";
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* ================= CERRAR MODAL ================= */
+
+        document.querySelectorAll(
+            ".modal"
+        ).forEach(
+            modal => {
+
+                modal.addEventListener(
+                    "click",
+                    e => {
+
+                        if (
+                            e.target === modal
+                        ) {
+
+                            modal.classList.remove(
+                                "show"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* ================= CHART ================= */
+
+        setTimeout(
+            () => {
+
+                const canvas =
+                    document.getElementById(
+                        "consultationChart"
+                    );
+
+
+                if (
+                    !canvas ||
+                    typeof Chart ===
+                    "undefined"
+                )
+                    return;
+
+
+                new Chart(
+                    canvas,
+                    {
+
+                        type: "line",
+
+                        data: {
+
+                            labels: [
+                                "Abr",
+                                "May",
+                                "Jun",
+                                "Jul",
+                                "Ago",
+                                "Sep"
+                            ],
+
+                            datasets: [{
+
+                                label:
+                                    "Consultas",
+
+                                data: [
+                                    25,
+                                    31,
+                                    39,
+                                    45,
+                                    57,
+                                    72
+                                ],
+
+                                borderWidth: 3,
+
+                                tension: .4,
+
+                                fill: false
+
+                            }]
+
+                        },
+
+                        options: {
+
+                            responsive: true,
+
+                            maintainAspectRatio:
+                                false,
+
+                            plugins: {
+
+                                legend: {
+                                    display: false
+                                }
+
+                            },
+
+                            scales: {
+
+                                y: {
+
+                                    beginAtZero:
+                                        true,
+
+                                    grid: {
+
+                                        color:
+                                            "rgba(49,95,92,.07)"
+
+                                    }
+
+                                },
+
+                                x: {
+
+                                    grid: {
+                                        display: false
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                );
+
+            },
+            500
+        );
+
+
+        /* ================= INICIO ================= */
+
+        renderRequests();
+
+        renderUpcoming();
+
+    </script>
+
+</body>
+
+</html>
