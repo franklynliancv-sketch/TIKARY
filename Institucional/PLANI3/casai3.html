@@ -1,0 +1,5447 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#315f5c">
+<meta name="description" content="TIKARY 3I - Panel institucional para colegios">
+
+<title>TIKARY 3I | Panel Institucional</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<style>
+
+:root{
+    --verde:#315f5c;
+    --verde-medio:#527f79;
+    --verde-claro:#6d918c;
+    --verde-oscuro:#234b47;
+
+    --dorado:#b18a45;
+    --dorado-claro:#d3b16d;
+
+    --blanco:#ffffff;
+    --texto:#294743;
+    --muted:#71837f;
+
+    --fondo:#eef8f2;
+    --fondo2:#f8f3df;
+
+    --success:#43866e;
+    --warning:#c18b35;
+    --danger:#b85c5c;
+    --info:#4c7fa0;
+
+    --sidebar:280px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Nunito",sans-serif;
+    color:var(--texto);
+    background:
+        radial-gradient(circle at 10% 10%,rgba(82,127,121,.13),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(211,177,109,.15),transparent 30%),
+        linear-gradient(135deg,var(--fondo),var(--fondo2));
+    min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+#loading{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(82,127,121,.25),transparent 35%),
+        linear-gradient(135deg,#eef8f2,#f8f3df);
+}
+
+.loading-box{
+    width:min(90%,390px);
+    padding:40px 30px;
+    text-align:center;
+    border-radius:30px;
+    background:rgba(255,255,255,.65);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 25px 70px rgba(35,75,71,.15);
+    backdrop-filter:blur(25px);
+}
+
+.loading-logo{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:22px;
+    margin-bottom:18px;
+    box-shadow:0 12px 30px rgba(49,95,92,.2);
+}
+
+.spinner{
+    width:38px;
+    height:38px;
+    border:4px solid rgba(49,95,92,.15);
+    border-top-color:var(--verde);
+    border-radius:50%;
+    margin:20px auto;
+    animation:girar .8s linear infinite;
+}
+
+@keyframes girar{
+    to{transform:rotate(360deg)}
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+    display:none;
+    min-height:100vh;
+}
+
+.app.active{
+    display:flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:var(--sidebar);
+    padding:22px 16px;
+    background:rgba(255,255,255,.72);
+    border-right:1px solid rgba(255,255,255,.8);
+    backdrop-filter:blur(28px);
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:6px 10px 24px;
+}
+
+.brand img{
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.brand-text strong{
+    display:block;
+    color:var(--verde-oscuro);
+    font-size:20px;
+    font-weight:900;
+}
+
+.brand-text span{
+    font-size:11px;
+    color:var(--dorado);
+    font-weight:800;
+    letter-spacing:.8px;
+}
+
+.plan-badge{
+    margin:0 4px 20px;
+    padding:12px 14px;
+    border-radius:16px;
+    color:var(--verde-oscuro);
+    background:linear-gradient(135deg,rgba(211,177,109,.18),rgba(82,127,121,.1));
+    border:1px solid rgba(177,138,69,.2);
+    font-size:11px;
+    font-weight:800;
+    line-height:1.5;
+}
+
+.nav-title{
+    padding:10px 12px 7px;
+    color:#94a49f;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+.nav-item{
+    width:100%;
+    border:0;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 13px;
+    margin-bottom:4px;
+    border-radius:14px;
+    color:#607773;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+    transition:.2s ease;
+}
+
+.nav-item:hover{
+    background:rgba(82,127,121,.08);
+    color:var(--verde);
+}
+
+.nav-item.active{
+    color:white;
+    background:linear-gradient(135deg,var(--verde),var(--verde-medio));
+    box-shadow:0 10px 25px rgba(49,95,92,.2);
+}
+
+.nav-icon{
+    width:23px;
+    text-align:center;
+    font-size:17px;
+}
+
+.nav-count{
+    margin-left:auto;
+    min-width:22px;
+    height:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    border-radius:20px;
+    background:rgba(184,92,92,.12);
+    color:var(--danger);
+    font-size:10px;
+    font-weight:900;
+}
+
+.sidebar-bottom{
+    margin-top:25px;
+    padding-top:18px;
+    border-top:1px solid rgba(49,95,92,.1);
+}
+
+.logout-btn{
+    width:100%;
+    border:0;
+    background:rgba(184,92,92,.08);
+    color:var(--danger);
+    padding:12px;
+    border-radius:14px;
+    font-weight:800;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    width:calc(100% - var(--sidebar));
+    margin-left:var(--sidebar);
+    min-height:100vh;
+}
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:500;
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:15px 30px;
+    background:rgba(238,248,242,.72);
+    border-bottom:1px solid rgba(255,255,255,.7);
+    backdrop-filter:blur(22px);
+}
+
+.mobile-menu{
+    display:none;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:12px;
+    background:white;
+    color:var(--verde);
+    font-size:20px;
+}
+
+.page-heading h1{
+    color:var(--verde-oscuro);
+    font-size:23px;
+    font-weight:900;
+}
+
+.page-heading p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:2px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.notification-btn{
+    position:relative;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(49,95,92,.08);
+    border-radius:13px;
+    background:rgba(255,255,255,.75);
+    color:var(--verde);
+    font-size:18px;
+}
+
+.notification-dot{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--danger);
+}
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:5px 9px 5px 5px;
+    background:rgba(255,255,255,.7);
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:16px;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--verde),var(--verde-medio));
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    font-weight:900;
+}
+
+.user-info strong{
+    display:block;
+    font-size:12px;
+    color:var(--verde-oscuro);
+}
+
+.user-info span{
+    display:block;
+    font-size:10px;
+    color:var(--muted);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    padding:28px 30px 50px;
+}
+
+.view{
+    display:none;
+    animation:entrada .25s ease;
+}
+
+.view.active{
+    display:block;
+}
+
+@keyframes entrada{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    margin-bottom:22px;
+}
+
+.section-head h2{
+    color:var(--verde-oscuro);
+    font-size:25px;
+    font-weight:900;
+}
+
+.section-head p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.btn{
+    border:0;
+    border-radius:12px;
+    padding:10px 15px;
+    font-size:12px;
+    font-weight:800;
+    transition:.2s ease;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    color:white;
+    background:linear-gradient(135deg,var(--verde),var(--verde-medio));
+    box-shadow:0 8px 20px rgba(49,95,92,.18);
+}
+
+.btn-secondary{
+    color:var(--verde);
+    background:white;
+    border:1px solid rgba(49,95,92,.1);
+}
+
+.btn-gold{
+    color:#6f5422;
+    background:rgba(211,177,109,.2);
+}
+
+.btn-danger{
+    color:var(--danger);
+    background:rgba(184,92,92,.1);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:rgba(255,255,255,.68);
+    border:1px solid rgba(255,255,255,.85);
+    border-radius:22px;
+    box-shadow:0 15px 45px rgba(35,75,71,.07);
+    backdrop-filter:blur(20px);
+}
+
+.card-padding{
+    padding:20px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.stat-card{
+    position:relative;
+    overflow:hidden;
+    padding:19px;
+    min-height:135px;
+}
+
+.stat-card::after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:80px;
+    right:-28px;
+    bottom:-30px;
+    border-radius:50%;
+    background:rgba(82,127,121,.08);
+}
+
+.stat-icon{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:rgba(82,127,121,.1);
+    color:var(--verde);
+    font-size:19px;
+    margin-bottom:12px;
+}
+
+.stat-value{
+    font-size:25px;
+    color:var(--verde-oscuro);
+    font-weight:900;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:700;
+    margin-top:2px;
+}
+
+.stat-change{
+    margin-top:7px;
+    color:var(--success);
+    font-size:10px;
+    font-weight:800;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:18px;
+    margin-bottom:18px;
+}
+
+.chart-card{
+    padding:20px;
+    min-height:330px;
+}
+
+.card-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.card-title h3{
+    font-size:16px;
+    color:var(--verde-oscuro);
+    font-weight:900;
+}
+
+.card-title span{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.chart-wrap{
+    height:250px;
+    position:relative;
+}
+
+.bottom-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.activity-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.activity-item{
+    display:flex;
+    gap:11px;
+    align-items:flex-start;
+    padding-bottom:12px;
+    border-bottom:1px solid rgba(49,95,92,.07);
+}
+
+.activity-item:last-child{
+    border-bottom:0;
+}
+
+.activity-icon{
+    width:34px;
+    height:34px;
+    flex-shrink:0;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(82,127,121,.1);
+}
+
+.activity-item strong{
+    display:block;
+    font-size:12px;
+}
+
+.activity-item span{
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:10px;
+}
+
+.progress-box{
+    margin-top:10px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.progress{
+    width:100%;
+    height:9px;
+    border-radius:20px;
+    overflow:hidden;
+    background:rgba(49,95,92,.09);
+}
+
+.progress-bar{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--verde),var(--dorado));
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-card{
+    overflow:hidden;
+}
+
+.table-toolbar{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:18px 20px;
+    border-bottom:1px solid rgba(49,95,92,.07);
+}
+
+.search-box{
+    position:relative;
+    flex:1;
+    max-width:350px;
+}
+
+.search-box input{
+    width:100%;
+    height:42px;
+    padding:0 15px 0 40px;
+    border:1px solid rgba(49,95,92,.1);
+    outline:none;
+    border-radius:12px;
+    background:white;
+    color:var(--texto);
+}
+
+.search-box span{
+    position:absolute;
+    left:14px;
+    top:11px;
+    color:var(--muted);
+}
+
+.filters{
+    display:flex;
+    gap:8px;
+}
+
+.filters select{
+    height:42px;
+    border:1px solid rgba(49,95,92,.1);
+    border-radius:12px;
+    background:white;
+    color:var(--texto);
+    padding:0 12px;
+    outline:none;
+}
+
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th{
+    padding:13px 16px;
+    background:rgba(82,127,121,.045);
+    color:#758681;
+    text-align:left;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+td{
+    padding:14px 16px;
+    border-bottom:1px solid rgba(49,95,92,.06);
+    font-size:12px;
+}
+
+tbody tr:hover{
+    background:rgba(255,255,255,.55);
+}
+
+.student-name{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.student-avatar{
+    width:35px;
+    height:35px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(82,127,121,.1);
+    color:var(--verde);
+    font-size:11px;
+    font-weight:900;
+}
+
+.student-name strong{
+    display:block;
+}
+
+.student-name span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:800;
+}
+
+.status::before{
+    content:"";
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:currentColor;
+}
+
+.status.active{
+    color:var(--success);
+    background:rgba(67,134,110,.1);
+}
+
+.status.inactive{
+    color:var(--danger);
+    background:rgba(184,92,92,.1);
+}
+
+.status.pending{
+    color:var(--warning);
+    background:rgba(193,139,53,.1);
+}
+
+.mini-progress{
+    width:85px;
+    height:6px;
+    background:rgba(49,95,92,.08);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.mini-progress div{
+    height:100%;
+    border-radius:10px;
+    background:var(--verde-medio);
+}
+
+.icon-btn{
+    width:31px;
+    height:31px;
+    border:0;
+    border-radius:9px;
+    background:rgba(82,127,121,.08);
+    color:var(--verde);
+}
+
+/* =========================
+   ALERTS
+========================= */
+
+.alert-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.alert-card{
+    padding:18px;
+    display:flex;
+    gap:13px;
+}
+
+.alert-icon{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:13px;
+}
+
+.alert-icon.warning{
+    color:var(--warning);
+    background:rgba(193,139,53,.12);
+}
+
+.alert-icon.danger{
+    color:var(--danger);
+    background:rgba(184,92,92,.12);
+}
+
+.alert-icon.info{
+    color:var(--info);
+    background:rgba(76,127,160,.12);
+}
+
+.alert-card h4{
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.alert-card p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.5;
+}
+
+.alert-time{
+    display:block;
+    margin-top:8px;
+    color:#9ba8a5;
+    font-size:9px;
+}
+
+/* =========================
+   WELLBEING
+========================= */
+
+.wellbeing-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.wellbeing-card{
+    padding:20px;
+    text-align:center;
+}
+
+.wellbeing-emoji{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.wellbeing-card strong{
+    display:block;
+    font-size:25px;
+    color:var(--verde-oscuro);
+}
+
+.wellbeing-card span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   REPORTS
+========================= */
+
+.report-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.report-card{
+    padding:22px;
+}
+
+.report-card .report-icon{
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:13px;
+    background:rgba(82,127,121,.1);
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.report-card h3{
+    font-size:15px;
+    margin-bottom:5px;
+}
+
+.report-card p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-box{
+    padding:35px;
+    text-align:center;
+    border:2px dashed rgba(82,127,121,.25);
+    border-radius:20px;
+    background:rgba(255,255,255,.35);
+}
+
+.upload-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.upload-box h3{
+    color:var(--verde-oscuro);
+    font-size:17px;
+}
+
+.upload-box p{
+    max-width:600px;
+    margin:7px auto 18px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+}
+
+.file-input{
+    display:none;
+}
+
+.capacity{
+    margin-top:20px;
+    padding:17px;
+    border-radius:16px;
+    background:rgba(82,127,121,.06);
+}
+
+.capacity-head{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:9px;
+    font-size:12px;
+    font-weight:800;
+}
+
+/* =========================
+   GRADES
+========================= */
+
+.grade-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.grade-card{
+    padding:20px;
+}
+
+.grade-card h3{
+    font-size:16px;
+    color:var(--verde-oscuro);
+}
+
+.grade-number{
+    margin:8px 0;
+    font-size:28px;
+    font-weight:900;
+    color:var(--verde);
+}
+
+.grade-card p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* =========================
+   CONFIG
+========================= */
+
+.config-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-card{
+    padding:22px;
+}
+
+.form-card h3{
+    margin-bottom:18px;
+    color:var(--verde-oscuro);
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-size:11px;
+    font-weight:800;
+    color:#617570;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid rgba(49,95,92,.1);
+    border-radius:11px;
+    background:white;
+    padding:11px 12px;
+    color:var(--texto);
+    outline:none;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:rgba(82,127,121,.45);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(35,75,71,.35);
+    backdrop-filter:blur(8px);
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow-y:auto;
+    padding:25px;
+    border-radius:25px;
+    background:rgba(255,255,255,.94);
+    box-shadow:0 30px 80px rgba(35,75,71,.2);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-head h3{
+    color:var(--verde-oscuro);
+    font-size:19px;
+}
+
+.close-modal{
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:10px;
+    background:rgba(49,95,92,.08);
+    color:var(--verde);
+    font-size:18px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast-container{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:7000;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.toast{
+    min-width:280px;
+    max-width:380px;
+    padding:14px 16px;
+    border-radius:15px;
+    background:rgba(255,255,255,.95);
+    box-shadow:0 15px 45px rgba(35,75,71,.16);
+    border-left:4px solid var(--verde);
+    animation:toastIn .25s ease;
+}
+
+.toast strong{
+    display:block;
+    font-size:12px;
+}
+
+.toast span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:2px;
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(30px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+    .stats-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .alert-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grade-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:900px){
+
+    :root{
+        --sidebar:0px;
+    }
+
+    .sidebar{
+        width:280px;
+        transform:translateX(-100%);
+        transition:.25s ease;
+        box-shadow:15px 0 50px rgba(35,75,71,.15);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+        padding:13px 18px;
+    }
+
+    .content{
+        padding:22px 18px 40px;
+    }
+
+    .config-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .bottom-grid,
+    .report-grid,
+    .alert-grid{
+        grid-template-columns:1fr;
+    }
+
+    .wellbeing-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grade-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .section-head{
+        flex-direction:column;
+    }
+
+    .table-toolbar{
+        flex-direction:column;
+    }
+
+    .search-box{
+        max-width:none;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .wellbeing-grid,
+    .grade-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .page-heading h1{
+        font-size:18px;
+    }
+
+    .user-info{
+        display:none;
+    }
+
+    .content{
+        padding:18px 12px 35px;
+    }
+
+    .topbar{
+        padding:12px;
+    }
+
+    .section-head h2{
+        font-size:21px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div id="loading">
+
+    <div class="loading-box">
+
+        <img
+            src="../../imagenes/logo.jpg"
+            class="loading-logo"
+            alt="TIKARY"
+        >
+
+        <h2>TIKARY 3I</h2>
+
+        <p>
+            Preparando panel institucional...
+        </p>
+
+        <div class="spinner"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div class="app" id="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+        <img
+            src="../../imagenes/logo.jpg"
+            alt="TIKARY"
+        >
+
+        <div class="brand-text">
+            <strong>TIKARY</strong>
+            <span>INSTITUCIONAL 3I</span>
+        </div>
+
+    </div>
+
+
+    <div class="plan-badge">
+
+        🏫 PLAN 3 · INSTITUCIONAL<br>
+
+        <span>
+            Máximo 500 estudiantes
+        </span>
+
+    </div>
+
+
+    <div class="nav-title">
+        Principal
+    </div>
+
+
+    <button
+        class="nav-item active"
+        data-view="inicio"
+    >
+
+        <span class="nav-icon">⌂</span>
+
+        <span>Inicio</span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="estudiantes"
+    >
+
+        <span class="nav-icon">👥</span>
+
+        <span>Estudiantes</span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="asistencia"
+    >
+
+        <span class="nav-icon">✓</span>
+
+        <span>Asistencia</span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="bienestar"
+    >
+
+        <span class="nav-icon">♡</span>
+
+        <span>Bienestar</span>
+
+    </button>
+
+
+    <div class="nav-title">
+        Gestión
+    </div>
+
+
+    <button
+        class="nav-item"
+        data-view="alertas"
+    >
+
+        <span class="nav-icon">⚠</span>
+
+        <span>Alertas</span>
+
+        <span class="nav-count">
+            8
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="reportes"
+    >
+
+        <span class="nav-icon">▤</span>
+
+        <span>Reportes</span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="carga"
+    >
+
+        <span class="nav-icon">⇧</span>
+
+        <span>Cargar estudiantes</span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="grados"
+    >
+
+        <span class="nav-icon">▦</span>
+
+        <span>Grados y secciones</span>
+
+    </button>
+
+
+    <div class="nav-title">
+        Institución
+    </div>
+
+
+    <button
+        class="nav-item"
+        data-view="actividad"
+    >
+
+        <span class="nav-icon">◷</span>
+
+        <span>Actividad</span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-view="configuracion"
+    >
+
+        <span class="nav-icon">⚙</span>
+
+        <span>Configuración</span>
+
+    </button>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout-btn"
+            id="logoutBtn"
+        >
+            ↪ Cerrar sesión
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+    <div style="display:flex;align-items:center;gap:12px;">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+            ☰
+        </button>
+
+        <div class="page-heading">
+
+            <h1 id="pageTitle">
+                Inicio
+            </h1>
+
+            <p id="pageSubtitle">
+                Resumen institucional de TIKARY
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="notification-btn"
+            id="notificationBtn"
+            title="Notificaciones"
+        >
+
+            🔔
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+        <div class="user-box">
+
+            <div
+                class="avatar"
+                id="avatarUsuario"
+            >
+                AD
+            </div>
+
+            <div class="user-info">
+
+                <strong id="nombreUsuario">
+                    Administrador
+                </strong>
+
+                <span id="correoUsuario">
+                    --@tikary3i.com
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- CONTENT -->
+
+<div class="content">
+
+
+<!-- =========================
+     INICIO
+========================= -->
+
+<section
+    class="view active"
+    id="view-inicio"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Resumen institucional
+            </h2>
+
+            <p>
+                Información general de tu institución educativa.
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn btn-secondary"
+                onclick="showToast('Información','Datos actualizados correctamente.')"
+            >
+                ↻ Actualizar
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="goTo('reportes')"
+            >
+                ▤ Ver reportes
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">👥</div>
+
+            <div class="stat-value" id="totalStudents">
+                0
+            </div>
+
+            <div class="stat-label">
+                Estudiantes registrados
+            </div>
+
+            <div class="stat-change">
+                de 500 disponibles
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">●</div>
+
+            <div class="stat-value">
+                432
+            </div>
+
+            <div class="stat-label">
+                Estudiantes activos
+            </div>
+
+            <div class="stat-change">
+                86.4% del total
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">◉</div>
+
+            <div class="stat-value">
+                87
+            </div>
+
+            <div class="stat-label">
+                Conectados hoy
+            </div>
+
+            <div class="stat-change">
+                Actividad reciente
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">✓</div>
+
+            <div class="stat-value">
+                91%
+            </div>
+
+            <div class="stat-label">
+                Asistencia general
+            </div>
+
+            <div class="stat-change">
+                Últimos 30 días
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">⚠</div>
+
+            <div class="stat-value">
+                8
+            </div>
+
+            <div class="stat-label">
+                Alertas pendientes
+            </div>
+
+            <div class="stat-change">
+                Requieren revisión
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="card chart-card">
+
+            <div class="card-title">
+
+                <h3>
+                    Actividad estudiantil
+                </h3>
+
+                <span>
+                    Últimos 7 días
+                </span>
+
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="activityChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="card chart-card">
+
+            <div class="card-title">
+
+                <h3>
+                    Asistencia
+                </h3>
+
+                <span>
+                    Resumen
+                </span>
+
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="attendanceChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-grid">
+
+        <div class="card card-padding">
+
+            <div class="card-title">
+
+                <h3>
+                    Capacidad del plan
+                </h3>
+
+                <span>
+                    Plan 3I
+                </span>
+
+            </div>
+
+            <div class="progress-box">
+
+                <div class="progress-info">
+
+                    <span>
+                        Estudiantes registrados
+                    </span>
+
+                    <span id="capacityText">
+                        0 / 500
+                    </span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="capacityBar"
+                        style="width:0%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <p style="font-size:11px;color:var(--muted);margin-top:15px;">
+                El Plan 3 permite administrar hasta 500 estudiantes.
+            </p>
+
+        </div>
+
+
+        <div class="card card-padding">
+
+            <div class="card-title">
+
+                <h3>
+                    Actividad reciente
+                </h3>
+
+                <span>
+                    Hoy
+                </span>
+
+            </div>
+
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        👤
+                    </div>
+
+                    <div>
+                        <strong>
+                            Nuevo registro de estudiante
+                        </strong>
+
+                        <span>
+                            Hace 12 minutos
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>
+                            Actualización de asistencia
+                        </strong>
+
+                        <span>
+                            Hace 35 minutos
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        ♡
+                    </div>
+
+                    <div>
+                        <strong>
+                            Nuevos check-ins de bienestar
+                        </strong>
+
+                        <span>
+                            Hace 1 hora
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ESTUDIANTES
+========================= -->
+
+<section
+    class="view"
+    id="view-estudiantes"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Estudiantes
+            </h2>
+
+            <p>
+                Administra los estudiantes registrados en TIKARY.
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn btn-secondary"
+                onclick="exportStudents()"
+            >
+                ↓ Excel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="openStudentModal()"
+            >
+                + Nuevo estudiante
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card table-card">
+
+        <div class="table-toolbar">
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="search"
+                    id="studentSearch"
+                    placeholder="Buscar estudiante, DNI o código..."
+                    oninput="renderStudents()"
+                >
+
+            </div>
+
+
+            <div class="filters">
+
+                <select
+                    id="gradeFilter"
+                    onchange="renderStudents()"
+                >
+
+                    <option value="">
+                        Todos los grados
+                    </option>
+
+                    <option>1.º</option>
+                    <option>2.º</option>
+                    <option>3.º</option>
+                    <option>4.º</option>
+                    <option>5.º</option>
+
+                </select>
+
+
+                <select
+                    id="statusFilter"
+                    onchange="renderStudents()"
+                >
+
+                    <option value="">
+                        Todos
+                    </option>
+
+                    <option value="Activo">
+                        Activos
+                    </option>
+
+                    <option value="Inactivo">
+                        Inactivos
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Código
+                        </th>
+
+                        <th>
+                            Estudiante
+                        </th>
+
+                        <th>
+                            Grado
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Asistencia
+                        </th>
+
+                        <th>
+                            Bienestar
+                        </th>
+
+                        <th>
+                            Última actividad
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ASISTENCIA
+========================= -->
+
+<section
+    class="view"
+    id="view-asistencia"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Asistencia
+            </h2>
+
+            <p>
+                Consulta el comportamiento de asistencia de los estudiantes.
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn btn-secondary"
+                onclick="exportAttendance()"
+            >
+                ↓ Exportar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="card stat-card">
+            <div class="stat-icon">✓</div>
+            <div class="stat-value">91%</div>
+            <div class="stat-label">Asistencia general</div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-icon">●</div>
+            <div class="stat-value">4%</div>
+            <div class="stat-label">Inasistencia</div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-icon">◷</div>
+            <div class="stat-value">5%</div>
+            <div class="stat-label">Tardanzas</div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-icon">⚠</div>
+            <div class="stat-value">17</div>
+            <div class="stat-label">Baja asistencia</div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-icon">▦</div>
+            <div class="stat-value">5</div>
+            <div class="stat-label">Grados registrados</div>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="card chart-card">
+
+            <div class="card-title">
+                <h3>Evolución de asistencia</h3>
+                <span>Últimas semanas</span>
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="attendanceEvolution"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="card chart-card">
+
+            <div class="card-title">
+                <h3>Asistencia por grado</h3>
+                <span>Porcentaje</span>
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="gradeAttendance"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BIENESTAR
+========================= -->
+
+<section
+    class="view"
+    id="view-bienestar"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Bienestar estudiantil
+            </h2>
+
+            <p>
+                Consulta indicadores generales de bienestar y participación.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="wellbeing-grid">
+
+        <div class="card wellbeing-card">
+
+            <div class="wellbeing-emoji">
+                😊
+            </div>
+
+            <strong>
+                48%
+            </strong>
+
+            <span>
+                Bien
+            </span>
+
+        </div>
+
+
+        <div class="card wellbeing-card">
+
+            <div class="wellbeing-emoji">
+                😌
+            </div>
+
+            <strong>
+                27%
+            </strong>
+
+            <span>
+                Tranquilo
+            </span>
+
+        </div>
+
+
+        <div class="card wellbeing-card">
+
+            <div class="wellbeing-emoji">
+                😐
+            </div>
+
+            <strong>
+                16%
+            </strong>
+
+            <span>
+                Regular
+            </span>
+
+        </div>
+
+
+        <div class="card wellbeing-card">
+
+            <div class="wellbeing-emoji">
+                😟
+            </div>
+
+            <strong>
+                9%
+            </strong>
+
+            <span>
+                Requiere seguimiento
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="card chart-card">
+
+            <div class="card-title">
+                <h3>Evolución del bienestar</h3>
+                <span>Últimos 30 días</span>
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="wellbeingChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="card card-padding">
+
+            <div class="card-title">
+                <h3>Seguimiento</h3>
+                <span>Información general</span>
+            </div>
+
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        ♡
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Check-ins realizados
+                        </strong>
+
+                        <span>
+                            384 durante el mes
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Solicitudes de orientación
+                        </strong>
+
+                        <span>
+                            13 solicitudes registradas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Seguimientos pendientes
+                        </strong>
+
+                        <span>
+                            8 casos para revisión institucional
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ALERTAS
+========================= -->
+
+<section
+    class="view"
+    id="view-alertas"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Alertas
+            </h2>
+
+            <p>
+                Situaciones que requieren revisión del administrador.
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-secondary"
+            onclick="showToast('Alertas','Las alertas han sido actualizadas.')"
+        >
+            ↻ Actualizar
+        </button>
+
+    </div>
+
+
+    <div class="alert-grid">
+
+        <div class="card alert-card">
+
+            <div class="alert-icon warning">
+                ⚠
+            </div>
+
+            <div>
+
+                <h4>
+                    Baja asistencia
+                </h4>
+
+                <p>
+                    17 estudiantes presentan una asistencia inferior al indicador establecido.
+                </p>
+
+                <span class="alert-time">
+                    Actualizado hoy
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card alert-card">
+
+            <div class="alert-icon danger">
+                !
+            </div>
+
+            <div>
+
+                <h4>
+                    Seguimiento pendiente
+                </h4>
+
+                <p>
+                    Existen 8 solicitudes pendientes de revisión institucional.
+                </p>
+
+                <span class="alert-time">
+                    Revisión pendiente
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card alert-card">
+
+            <div class="alert-icon info">
+                ●
+            </div>
+
+            <div>
+
+                <h4>
+                    Estudiantes inactivos
+                </h4>
+
+                <p>
+                    18 cuentas no presentan actividad reciente en la plataforma.
+                </p>
+
+                <span class="alert-time">
+                    Últimos 30 días
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card alert-card">
+
+            <div class="alert-icon warning">
+                +
+            </div>
+
+            <div>
+
+                <h4>
+                    Nuevos registros
+                </h4>
+
+                <p>
+                    Hay 6 registros recientes pendientes de revisión administrativa.
+                </p>
+
+                <span class="alert-time">
+                    Hoy
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card alert-card">
+
+            <div class="alert-icon info">
+                ♡
+            </div>
+
+            <div>
+
+                <h4>
+                    Actividad de bienestar
+                </h4>
+
+                <p>
+                    Se registraron nuevos check-ins durante la jornada.
+                </p>
+
+                <span class="alert-time">
+                    Hace 1 hora
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card alert-card">
+
+            <div class="alert-icon warning">
+                ◷
+            </div>
+
+            <div>
+
+                <h4>
+                    Actividad pendiente
+                </h4>
+
+                <p>
+                    Algunos estudiantes no han realizado actividades recientes.
+                </p>
+
+                <span class="alert-time">
+                    Esta semana
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REPORTES
+========================= -->
+
+<section
+    class="view"
+    id="view-reportes"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Reportes
+            </h2>
+
+            <p>
+                Genera información administrativa de la institución.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="report-grid">
+
+        <div class="card report-card">
+
+            <div class="report-icon">
+                👥
+            </div>
+
+            <h3>
+                Reporte de estudiantes
+            </h3>
+
+            <p>
+                Lista general de estudiantes, códigos, grados, secciones y estados.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="exportStudents()"
+            >
+                Exportar Excel
+            </button>
+
+        </div>
+
+
+        <div class="card report-card">
+
+            <div class="report-icon">
+                ✓
+            </div>
+
+            <h3>
+                Reporte de asistencia
+            </h3>
+
+            <p>
+                Resumen de asistencia, inasistencias y tardanzas.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="exportAttendance()"
+            >
+                Exportar Excel
+            </button>
+
+        </div>
+
+
+        <div class="card report-card">
+
+            <div class="report-icon">
+                ♡
+            </div>
+
+            <h3>
+                Reporte de bienestar
+            </h3>
+
+            <p>
+                Indicadores generales de participación y check-ins.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="generateReport('bienestar')"
+            >
+                Generar reporte
+            </button>
+
+        </div>
+
+
+        <div class="card report-card">
+
+            <div class="report-icon">
+                ▦
+            </div>
+
+            <h3>
+                Reporte por grado
+            </h3>
+
+            <p>
+                Información agrupada por grado y sección.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="generateReport('grados')"
+            >
+                Generar reporte
+            </button>
+
+        </div>
+
+
+        <div class="card report-card">
+
+            <div class="report-icon">
+                ⚠
+            </div>
+
+            <h3>
+                Reporte de alertas
+            </h3>
+
+            <p>
+                Alertas y situaciones pendientes de revisión.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="generateReport('alertas')"
+            >
+                Generar reporte
+            </button>
+
+        </div>
+
+
+        <div class="card report-card">
+
+            <div class="report-icon">
+                ◷
+            </div>
+
+            <h3>
+                Actividad institucional
+            </h3>
+
+            <p>
+                Historial de acciones realizadas en el panel.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="generateReport('actividad')"
+            >
+                Generar reporte
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CARGA
+========================= -->
+
+<section
+    class="view"
+    id="view-carga"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Cargar estudiantes
+            </h2>
+
+            <p>
+                Importa estudiantes mediante Excel o CSV.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card card-padding">
+
+        <div class="upload-box">
+
+            <div class="upload-icon">
+                📊
+            </div>
+
+            <h3>
+                Importar archivo Excel
+            </h3>
+
+            <p>
+                Sube un archivo .xlsx, .xls o .csv con la información de tus estudiantes.
+                El Plan 3 permite hasta 500 estudiantes.
+            </p>
+
+
+            <input
+                type="file"
+                id="excelInput"
+                class="file-input"
+                accept=".xlsx,.xls,.csv"
+                onchange="handleExcel(event)"
+            >
+
+
+            <label
+                for="excelInput"
+                class="btn btn-primary"
+            >
+                Seleccionar archivo
+            </label>
+
+
+            <button
+                class="btn btn-secondary"
+                onclick="downloadTemplate()"
+                style="margin-left:6px;"
+            >
+                Descargar plantilla
+            </button>
+
+        </div>
+
+
+        <div class="capacity">
+
+            <div class="capacity-head">
+
+                <span>
+                    Capacidad utilizada
+                </span>
+
+                <span id="uploadCapacity">
+                    0 / 500
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="uploadCapacityBar"
+                    style="width:0%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="importPreview"
+            style="margin-top:20px;"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GRADOS
+========================= -->
+
+<section
+    class="view"
+    id="view-grados"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Grados y secciones
+            </h2>
+
+            <p>
+                Visualiza la distribución de estudiantes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="grade-grid"
+        id="gradeGrid"
+    ></div>
+
+</section>
+
+
+<!-- =========================
+     ACTIVIDAD
+========================= -->
+
+<section
+    class="view"
+    id="view-actividad"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Actividad institucional
+            </h2>
+
+            <p>
+                Historial de acciones realizadas en el panel.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card table-card">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Administrador
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
+                        <th>
+                            Detalle
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Hoy · 10:42</td>
+                        <td>Administrador</td>
+                        <td>Inicio de sesión</td>
+                        <td>Acceso al panel institucional</td>
+                    </tr>
+
+                    <tr>
+                        <td>Hoy · 10:25</td>
+                        <td>Administrador</td>
+                        <td>Consulta</td>
+                        <td>Revisión de estudiantes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Hoy · 09:48</td>
+                        <td>Administrador</td>
+                        <td>Reporte</td>
+                        <td>Generación de reporte de asistencia</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ayer · 16:20</td>
+                        <td>Administrador</td>
+                        <td>Actualización</td>
+                        <td>Actualización de información institucional</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONFIGURACIÓN
+========================= -->
+
+<section
+    class="view"
+    id="view-configuracion"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                Configuración
+            </h2>
+
+            <p>
+                Configuración general de la institución.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="config-grid">
+
+        <div class="card form-card">
+
+            <h3>
+                Información institucional
+            </h3>
+
+
+            <div class="form-group">
+
+                <label>
+                    Nombre de la institución
+                </label>
+
+                <input
+                    id="institutionName"
+                    value="Institución Educativa"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Código institucional
+                </label>
+
+                <input
+                    value="TIKARY-3I"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Correo institucional
+                </label>
+
+                <input
+                    id="institutionEmail"
+                    type="email"
+                    placeholder="institucion@ejemplo.com"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Responsable
+                </label>
+
+                <input
+                    id="responsibleName"
+                    placeholder="Nombre del responsable"
+                >
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="saveInstitution()"
+            >
+                Guardar cambios
+            </button>
+
+        </div>
+
+
+        <div class="card form-card">
+
+            <h3>
+                Plan institucional
+            </h3>
+
+
+            <div class="form-group">
+
+                <label>
+                    Plan contratado
+                </label>
+
+                <input
+                    value="TIKARY 3I · Plan 3"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Capacidad máxima
+                </label>
+
+                <input
+                    value="500 estudiantes"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Dominio institucional
+                </label>
+
+                <input
+                    value="@tikary3i.com"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Código del panel
+                </label>
+
+                <input
+                    value="tikary3i"
+                    readonly
+                >
+
+            </div>
+
+
+            <div
+                style="
+                padding:13px;
+                border-radius:13px;
+                background:rgba(82,127,121,.07);
+                color:var(--muted);
+                font-size:11px;
+                line-height:1.6;
+                "
+            >
+
+                Este panel corresponde exclusivamente al
+                <strong>TIKARY 3I – Plan 3</strong>.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     MODAL ESTUDIANTE
+========================= -->
+
+<div
+    class="modal"
+    id="studentModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                Nuevo estudiante
+            </h3>
+
+            <button
+                class="close-modal"
+                onclick="closeStudentModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="config-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Código
+                </label>
+
+                <input
+                    id="newCode"
+                    placeholder="EST-0001"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    DNI
+                </label>
+
+                <input
+                    id="newDni"
+                    placeholder="00000000"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Nombres
+            </label>
+
+            <input
+                id="newNames"
+                placeholder="Nombres"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Apellidos
+            </label>
+
+            <input
+                id="newLastNames"
+                placeholder="Apellidos"
+            >
+
+        </div>
+
+
+        <div class="config-grid">
+
+            <div class="form-group">
+
+                <label>
+                    Grado
+                </label>
+
+                <select id="newGrade">
+
+                    <option>1.º</option>
+                    <option>2.º</option>
+                    <option>3.º</option>
+                    <option>4.º</option>
+                    <option>5.º</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sección
+                </label>
+
+                <input
+                    id="newSection"
+                    placeholder="A"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Correo
+            </label>
+
+            <input
+                id="newEmail"
+                type="email"
+                placeholder="estudiante@ejemplo.com"
+            >
+
+        </div>
+
+
+        <div
+            style="
+            display:flex;
+            justify-content:flex-end;
+            gap:8px;
+            "
+        >
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeStudentModal()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="addStudent()"
+            >
+                Registrar estudiante
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL DETALLE
+========================= -->
+
+<div
+    class="modal"
+    id="detailModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3 id="detailTitle">
+                Perfil del estudiante
+            </h3>
+
+            <button
+                class="close-modal"
+                onclick="closeDetailModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="detailContent"></div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<!-- =========================
+     FIREBASE + JAVASCRIPT
+========================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+
+};
+
+
+const appFirebase =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(appFirebase);
+
+const db =
+    getFirestore(appFirebase);
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const loading =
+    document.getElementById("loading");
+
+const app =
+    document.getElementById("app");
+
+const nombreUsuario =
+    document.getElementById("nombreUsuario");
+
+const correoUsuario =
+    document.getElementById("correoUsuario");
+
+const avatarUsuario =
+    document.getElementById("avatarUsuario");
+
+
+/* =========================
+   AUTENTICACIÓN
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        const email =
+            user.email || "";
+
+
+        /*
+         * ESTE PANEL ES EXCLUSIVO
+         * PARA TIKARY 3I.
+         */
+
+        if(
+            !email.toLowerCase().endsWith(
+                "@tikary3i.com"
+            )
+        ){
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        const dni =
+            email.split("@")[0];
+
+
+        correoUsuario.textContent =
+            email;
+
+
+        try{
+
+            const q =
+                query(
+                    collection(
+                        db,
+                        "dni_permitidos"
+                    ),
+                    where(
+                        "dni",
+                        "==",
+                        dni
+                    )
+                );
+
+
+            const snap =
+                await getDocs(q);
+
+
+            if(!snap.empty){
+
+                const datos =
+                    snap.docs[0].data();
+
+
+                const nombre =
+                    datos.nombreCompleto ||
+                    datos.nombre ||
+                    datos.nombres ||
+                    (
+                        (
+                            datos.nombres || ""
+                        )
+                        +
+                        " "
+                        +
+                        (
+                            datos.apellidos || ""
+                        )
+                    ).trim() ||
+                    "Administrador institucional";
+
+
+                nombreUsuario.textContent =
+                    nombre;
+
+
+                avatarUsuario.textContent =
+                    obtenerIniciales(nombre);
+
+            }
+
+        }catch(error){
+
+            console.error(
+                "Error obteniendo administrador:",
+                error
+            );
+
+        }
+
+
+        loading.style.display =
+            "none";
+
+        app.classList.add("active");
+
+
+        iniciarDashboard();
+
+    }
+);
+
+
+/* =========================
+   INICIALES
+========================= */
+
+function obtenerIniciales(nombre){
+
+    const partes =
+        nombre
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+    if(!partes.length)
+        return "AD";
+
+
+    if(partes.length === 1)
+        return partes[0]
+            .substring(0,2)
+            .toUpperCase();
+
+
+    return (
+        partes[0][0] +
+        partes[partes.length - 1][0]
+    ).toUpperCase();
+
+}
+
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+const pageTitles = {
+
+    inicio:[
+        "Inicio",
+        "Resumen institucional de TIKARY"
+    ],
+
+    estudiantes:[
+        "Estudiantes",
+        "Administración de estudiantes"
+    ],
+
+    asistencia:[
+        "Asistencia",
+        "Seguimiento de asistencia institucional"
+    ],
+
+    bienestar:[
+        "Bienestar estudiantil",
+        "Indicadores generales de bienestar"
+    ],
+
+    alertas:[
+        "Alertas",
+        "Situaciones pendientes de revisión"
+    ],
+
+    reportes:[
+        "Reportes",
+        "Información institucional"
+    ],
+
+    carga:[
+        "Cargar estudiantes",
+        "Importación mediante Excel o CSV"
+    ],
+
+    grados:[
+        "Grados y secciones",
+        "Distribución de estudiantes"
+    ],
+
+    actividad:[
+        "Actividad",
+        "Historial de acciones institucionales"
+    ],
+
+    configuracion:[
+        "Configuración",
+        "Configuración institucional"
+
+    ]
+
+};
+
+
+document
+    .querySelectorAll(".nav-item")
+    .forEach(item => {
+
+        item.addEventListener(
+            "click",
+            () => {
+
+                const view =
+                    item.dataset.view;
+
+                goTo(view);
+
+            }
+        );
+
+    });
+
+
+window.goTo = function(view){
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(item => {
+
+            item.classList.toggle(
+                "active",
+                item.dataset.view === view
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(".view")
+        .forEach(section => {
+
+            section.classList.toggle(
+                "active",
+                section.id ===
+                "view-" + view
+            );
+
+        });
+
+
+    const info =
+        pageTitles[view];
+
+
+    if(info){
+
+        document.getElementById(
+            "pageTitle"
+        ).textContent = info[0];
+
+
+        document.getElementById(
+            "pageSubtitle"
+        ).textContent = info[1];
+
+    }
+
+
+    document
+        .getElementById("sidebar")
+        .classList.remove("open");
+
+
+    if(view === "grados")
+        renderGrades();
+
+};
+
+
+/* =========================
+   MENÚ MÓVIL
+========================= */
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("open");
+
+        }
+    );
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async () => {
+
+            const confirmar =
+                confirm(
+                    "¿Deseas cerrar sesión?"
+                );
+
+
+            if(!confirmar)
+                return;
+
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+        }
+    );
+
+
+/* =========================
+   DATOS DEMO
+========================= */
+
+let students = [
+
+    {
+        code:"EST-0001",
+        dni:"70234561",
+        name:"Andrea Quispe Flores",
+        grade:"1.º",
+        section:"A",
+        status:"Activo",
+        attendance:96,
+        wellbeing:"Bien",
+        activity:"Hoy · 09:45"
+    },
+
+    {
+        code:"EST-0002",
+        dni:"71345672",
+        name:"Luis Huamán Pérez",
+        grade:"2.º",
+        section:"B",
+        status:"Activo",
+        attendance:91,
+        wellbeing:"Tranquilo",
+        activity:"Hoy · 09:21"
+    },
+
+    {
+        code:"EST-0003",
+        dni:"72456783",
+        name:"María Cárdenas Rojas",
+        grade:"3.º",
+        section:"A",
+        status:"Activo",
+        attendance:88,
+        wellbeing:"Regular",
+        activity:"Ayer · 16:30"
+    },
+
+    {
+        code:"EST-0004",
+        dni:"73567894",
+        name:"Diego Mendoza López",
+        grade:"4.º",
+        section:"C",
+        status:"Activo",
+        attendance:94,
+        wellbeing:"Bien",
+        activity:"Hoy · 08:52"
+    },
+
+    {
+        code:"EST-0005",
+        dni:"74678905",
+        name:"Valeria Torres Cárdenas",
+        grade:"5.º",
+        section:"A",
+        status:"Inactivo",
+        attendance:72,
+        wellbeing:"Requiere seguimiento",
+        activity:"Hace 18 días"
+    },
+
+    {
+        code:"EST-0006",
+        dni:"75789016",
+        name:"Carlos Paredes Soto",
+        grade:"2.º",
+        section:"A",
+        status:"Activo",
+        attendance:89,
+        wellbeing:"Bien",
+        activity:"Hoy · 10:05"
+    },
+
+    {
+        code:"EST-0007",
+        dni:"76890127",
+        name:"Luciana Rojas Medina",
+        grade:"3.º",
+        section:"B",
+        status:"Activo",
+        attendance:97,
+        wellbeing:"Bien",
+        activity:"Hoy · 10:15"
+    },
+
+    {
+        code:"EST-0008",
+        dni:"77901238",
+        name:"Mateo Gutiérrez Cayo",
+        grade:"4.º",
+        section:"A",
+        status:"Activo",
+        attendance:93,
+        wellbeing:"Tranquilo",
+        activity:"Hoy · 09:58"
+    }
+
+];
+
+
+let importedStudents = [];
+
+
+/* =========================
+   RENDER ESTUDIANTES
+========================= */
+
+window.renderStudents = function(){
+
+    const tbody =
+        document.getElementById(
+            "studentsTable"
+        );
+
+
+    const search =
+        (
+            document.getElementById(
+                "studentSearch"
+            ).value || ""
+        ).toLowerCase();
+
+
+    const grade =
+        document.getElementById(
+            "gradeFilter"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const filtrados =
+        students.filter(student => {
+
+            const coincideBusqueda =
+                !search ||
+                student.name
+                    .toLowerCase()
+                    .includes(search) ||
+                student.dni
+                    .includes(search) ||
+                student.code
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const coincideGrado =
+                !grade ||
+                student.grade === grade;
+
+
+            const coincideEstado =
+                !status ||
+                student.status === status;
+
+
+            return (
+                coincideBusqueda &&
+                coincideGrado &&
+                coincideEstado
+            );
+
+        });
+
+
+    tbody.innerHTML =
+        filtrados.map(
+            (student,index) => `
+
+            <tr>
+
+                <td>
+                    <strong>
+                        ${student.code}
+                    </strong>
+                </td>
+
+                <td>
+
+                    <div class="student-name">
+
+                        <div class="student-avatar">
+                            ${obtenerIniciales(student.name)}
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                ${student.name}
+                            </strong>
+
+                            <span>
+                                DNI ${student.dni}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    ${student.grade}
+                    -
+                    ${student.section}
+                </td>
+
+                <td>
+
+                    <span class="status ${
+                        student.status === "Activo"
+                        ? "active"
+                        : "inactive"
+                    }">
+
+                        ${student.status}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+
+                        <div class="mini-progress">
+
+                            <div
+                                style="width:${student.attendance}%"
+                            ></div>
+
+                        </div>
+
+                        <strong>
+                            ${student.attendance}%
+                        </strong>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    ${student.wellbeing}
+                </td>
+
+                <td>
+                    ${student.activity}
+                </td>
+
+                <td>
+
+                    <button
+                        class="icon-btn"
+                        onclick="showStudent(${students.indexOf(student)})"
+                        title="Ver estudiante"
+                    >
+                        👁
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `
+        ).join("");
+
+
+    updateCapacity();
+
+};
+
+
+/* =========================
+   DETALLE ESTUDIANTE
+========================= */
+
+window.showStudent = function(index){
+
+    const student =
+        students[index];
+
+
+    if(!student)
+        return;
+
+
+    document.getElementById(
+        "detailTitle"
+    ).textContent =
+        student.name;
+
+
+    document.getElementById(
+        "detailContent"
+    ).innerHTML = `
+
+        <div class="config-grid">
+
+            <div class="card card-padding">
+
+                <small style="color:var(--muted);">
+                    Código institucional
+                </small>
+
+                <h3 style="margin-top:5px;">
+                    ${student.code}
+                </h3>
+
+            </div>
+
+
+            <div class="card card-padding">
+
+                <small style="color:var(--muted);">
+                    Estado
+                </small>
+
+                <h3 style="margin-top:5px;">
+                    ${student.status}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="card card-padding" style="margin-top:15px;">
+
+            <h3 style="margin-bottom:15px;">
+                Información académica
+            </h3>
+
+            <p style="font-size:12px;margin-bottom:8px;">
+                <strong>DNI:</strong>
+                ${student.dni}
+            </p>
+
+            <p style="font-size:12px;margin-bottom:8px;">
+                <strong>Grado:</strong>
+                ${student.grade}
+            </p>
+
+            <p style="font-size:12px;margin-bottom:8px;">
+                <strong>Sección:</strong>
+                ${student.section}
+            </p>
+
+            <p style="font-size:12px;">
+                <strong>Última actividad:</strong>
+                ${student.activity}
+            </p>
+
+        </div>
+
+
+        <div class="card card-padding" style="margin-top:15px;">
+
+            <h3 style="margin-bottom:15px;">
+                Seguimiento
+            </h3>
+
+            <div class="progress-info">
+                <span>Asistencia</span>
+                <span>${student.attendance}%</span>
+            </div>
+
+            <div class="progress">
+                <div
+                    class="progress-bar"
+                    style="width:${student.attendance}%"
+                ></div>
+            </div>
+
+            <p style="margin-top:15px;font-size:12px;">
+                <strong>Indicador de bienestar:</strong>
+                ${student.wellbeing}
+            </p>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("detailModal")
+        .classList.add("active");
+
+};
+
+
+window.closeDetailModal = function(){
+
+    document
+        .getElementById("detailModal")
+        .classList.remove("active");
+
+};
+
+
+/* =========================
+   NUEVO ESTUDIANTE
+========================= */
+
+window.openStudentModal = function(){
+
+    if(students.length >= 500){
+
+        showToast(
+            "Capacidad alcanzada",
+            "El Plan 3 permite máximo 500 estudiantes."
+        );
+
+        return;
+    }
+
+
+    document
+        .getElementById("studentModal")
+        .classList.add("active");
+
+};
+
+
+window.closeStudentModal = function(){
+
+    document
+        .getElementById("studentModal")
+        .classList.remove("active");
+
+};
+
+
+window.addStudent = function(){
+
+    if(students.length >= 500){
+
+        showToast(
+            "Capacidad alcanzada",
+            "El Plan 3 permite máximo 500 estudiantes."
+        );
+
+        return;
+    }
+
+
+    const code =
+        document.getElementById(
+            "newCode"
+        ).value.trim();
+
+
+    const dni =
+        document.getElementById(
+            "newDni"
+        ).value.trim();
+
+
+    const names =
+        document.getElementById(
+            "newNames"
+        ).value.trim();
+
+
+    const lastNames =
+        document.getElementById(
+            "newLastNames"
+        ).value.trim();
+
+
+    const grade =
+        document.getElementById(
+            "newGrade"
+        ).value;
+
+
+    const section =
+        document.getElementById(
+            "newSection"
+        ).value.trim() || "A";
+
+
+    if(
+        !code ||
+        !dni ||
+        !names ||
+        !lastNames
+    ){
+
+        showToast(
+            "Faltan datos",
+            "Completa los campos obligatorios."
+        );
+
+        return;
+    }
+
+
+    students.push({
+
+        code,
+        dni,
+
+        name:
+            names +
+            " " +
+            lastNames,
+
+        grade,
+        section,
+
+        status:"Activo",
+
+        attendance:100,
+
+        wellbeing:"Sin registro",
+
+        activity:"Recién registrado"
+
+    });
+
+
+    renderStudents();
+
+
+    closeStudentModal();
+
+
+    showToast(
+        "Estudiante registrado",
+        "El estudiante fue agregado correctamente."
+    );
+
+
+    limpiarFormulario();
+
+};
+
+
+function limpiarFormulario(){
+
+    [
+        "newCode",
+        "newDni",
+        "newNames",
+        "newLastNames",
+        "newSection",
+        "newEmail"
+    ].forEach(id => {
+
+        const el =
+            document.getElementById(id);
+
+        if(el)
+            el.value = "";
+
+    });
+
+}
+
+
+/* =========================
+   CAPACIDAD
+========================= */
+
+function updateCapacity(){
+
+    const total =
+        students.length;
+
+
+    const percentage =
+        Math.min(
+            (total / 500) * 100,
+            100
+        );
+
+
+    document.getElementById(
+        "totalStudents"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "capacityText"
+    ).textContent =
+        `${total} / 500`;
+
+
+    document.getElementById(
+        "capacityBar"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "uploadCapacity"
+    ).textContent =
+        `${total} / 500`;
+
+
+    document.getElementById(
+        "uploadCapacityBar"
+    ).style.width =
+        percentage + "%";
+
+}
+
+
+/* =========================
+   EXCEL
+========================= */
+
+window.handleExcel = function(event){
+
+    const file =
+        event.target.files[0];
+
+
+    if(!file)
+        return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(e){
+
+        try{
+
+            const data =
+                new Uint8Array(
+                    e.target.result
+                );
+
+
+            const workbook =
+                XLSX.read(
+                    data,
+                    {
+                        type:"array"
+                    }
+                );
+
+
+            const firstSheet =
+                workbook.Sheets[
+                    workbook.SheetNames[0]
+                ];
+
+
+            const rows =
+                XLSX.utils.sheet_to_json(
+                    firstSheet
+                );
+
+
+            if(
+                students.length +
+                rows.length >
+                500
+            ){
+
+                showToast(
+                    "Límite excedido",
+                    "El Plan 3 permite máximo 500 estudiantes."
+                );
+
+                return;
+            }
+
+
+            importedStudents =
+                rows;
+
+
+            document.getElementById(
+                "importPreview"
+            ).innerHTML = `
+
+                <div class="card card-padding">
+
+                    <h3>
+                        Vista previa
+                    </h3>
+
+                    <p style="
+                        color:var(--muted);
+                        font-size:11px;
+                        margin:6px 0 15px;
+                    ">
+
+                        ${rows.length}
+                        estudiantes encontrados.
+
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="importStudents()"
+                    >
+                        Importar estudiantes
+                    </button>
+
+                </div>
+
+            `;
+
+
+        }catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Error",
+                "No se pudo leer el archivo."
+            );
+
+        }
+
+    };
+
+
+    reader.readAsArrayBuffer(file);
+
+};
+
+
+window.importStudents = function(){
+
+    importedStudents.forEach(
+        (row,index) => {
+
+            const nombre =
+                row.Nombres ||
+                row.nombres ||
+                row.Nombre ||
+                "Estudiante";
+
+
+            const apellidos =
+                row.Apellidos ||
+                row.apellidos ||
+                row.Apellido ||
+                "";
+
+
+            const grade =
+                row.Grado ||
+                row.grado ||
+                "1.º";
+
+
+            const section =
+                row.Sección ||
+                row.Seccion ||
+                row.seccion ||
+                "A";
+
+
+            const dni =
+                String(
+                    row.DNI ||
+                    row.dni ||
+                    ""
+                );
+
+
+            students.push({
+
+                code:
+                    row.Código ||
+                    row.Codigo ||
+                    `EST-${String(
+                        students.length + 1
+                    ).padStart(4,"0")}`,
+
+                dni,
+
+                name:
+                    `${nombre} ${apellidos}`
+                        .trim(),
+
+                grade,
+                section,
+
+                status:"Activo",
+
+                attendance:100,
+
+                wellbeing:"Sin registro",
+
+                activity:"Importado"
+
+            });
+
+        }
+    );
+
+
+    updateCapacity();
+
+
+    renderStudents();
+
+
+    importedStudents = [];
+
+
+    document.getElementById(
+        "importPreview"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "excelInput"
+    ).value = "";
+
+
+    showToast(
+        "Importación completada",
+        "Los estudiantes fueron agregados correctamente."
+    );
+
+};
+
+
+/* =========================
+   PLANTILLA
+========================= */
+
+window.downloadTemplate = function(){
+
+    const data = [
+
+        {
+            Código:"EST-0001",
+            DNI:"70000001",
+            Nombres:"Nombre",
+            Apellidos:"Apellido",
+            Grado:"1.º",
+            Sección:"A",
+            Correo:"estudiante@ejemplo.com"
+        }
+
+    ];
+
+
+    const ws =
+        XLSX.utils.json_to_sheet(data);
+
+
+    const wb =
+        XLSX.utils.book_new();
+
+
+    XLSX.utils.book_append_sheet(
+        wb,
+        ws,
+        "Estudiantes"
+    );
+
+
+    XLSX.writeFile(
+        wb,
+        "Plantilla_TIKARY_3I.xlsx"
+    );
+
+};
+
+
+/* =========================
+   EXPORTAR ESTUDIANTES
+========================= */
+
+window.exportStudents = function(){
+
+    const data =
+        students.map(student => ({
+
+            Código:
+                student.code,
+
+            DNI:
+                student.dni,
+
+            Estudiante:
+                student.name,
+
+            Grado:
+                student.grade,
+
+            Sección:
+                student.section,
+
+            Estado:
+                student.status,
+
+            Asistencia:
+                student.attendance + "%",
+
+            Bienestar:
+                student.wellbeing,
+
+            "Última actividad":
+                student.activity
+
+        }));
+
+
+    const ws =
+        XLSX.utils.json_to_sheet(data);
+
+
+    const wb =
+        XLSX.utils.book_new();
+
+
+    XLSX.utils.book_append_sheet(
+        wb,
+        ws,
+        "Estudiantes"
+    );
+
+
+    XLSX.writeFile(
+        wb,
+        "TIKARY_3I_Estudiantes.xlsx"
+    );
+
+
+    showToast(
+        "Reporte generado",
+        "El archivo de estudiantes fue exportado."
+    );
+
+};
+
+
+/* =========================
+   EXPORTAR ASISTENCIA
+========================= */
+
+window.exportAttendance = function(){
+
+    const data =
+        students.map(student => ({
+
+            Código:
+                student.code,
+
+            Estudiante:
+                student.name,
+
+            Grado:
+                student.grade,
+
+            Sección:
+                student.section,
+
+            Asistencia:
+                student.attendance + "%"
+
+        }));
+
+
+    const ws =
+        XLSX.utils.json_to_sheet(data);
+
+
+    const wb =
+        XLSX.utils.book_new();
+
+
+    XLSX.utils.book_append_sheet(
+        wb,
+        ws,
+        "Asistencia"
+    );
+
+
+    XLSX.writeFile(
+        wb,
+        "TIKARY_3I_Asistencia.xlsx"
+    );
+
+
+    showToast(
+        "Reporte generado",
+        "El reporte de asistencia fue exportado."
+    );
+
+};
+
+
+/* =========================
+   GRADOS
+========================= */
+
+window.renderGrades = function(){
+
+    const container =
+        document.getElementById(
+            "gradeGrid"
+        );
+
+
+    const grades = [
+        "1.º",
+        "2.º",
+        "3.º",
+        "4.º",
+        "5.º"
+    ];
+
+
+    container.innerHTML =
+        grades.map(grade => {
+
+            const cantidad =
+                students.filter(
+                    s => s.grade === grade
+                ).length;
+
+
+            const activos =
+                students.filter(
+                    s =>
+                        s.grade === grade &&
+                        s.status === "Activo"
+                ).length;
+
+
+            return `
+
+                <div class="card grade-card">
+
+                    <h3>
+                        ${grade} grado
+                    </h3>
+
+                    <div class="grade-number">
+                        ${cantidad}
+                    </div>
+
+                    <p>
+                        ${activos}
+                        estudiantes activos
+                    </p>
+
+                    <div class="progress-box">
+
+                        <div class="progress">
+
+                            <div
+                                class="progress-bar"
+                                style="width:${
+                                    Math.min(
+                                        cantidad * 5,
+                                        100
+                                    )
+                                }%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+};
+
+
+/* =========================
+   REPORTES GENERALES
+========================= */
+
+window.generateReport = function(tipo){
+
+    showToast(
+        "Reporte",
+        `Preparando reporte de ${tipo}.`
+    );
+
+};
+
+
+/* =========================
+   CONFIGURACIÓN
+========================= */
+
+window.saveInstitution = function(){
+
+    const name =
+        document.getElementById(
+            "institutionName"
+        ).value;
+
+
+    showToast(
+        "Configuración guardada",
+        `La información de ${name} fue actualizada.`
+    );
+
+};
+
+
+/* =========================
+   TOAST
+========================= */
+
+window.showToast = function(
+    title,
+    message
+){
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        "toast";
+
+
+    toast.innerHTML = `
+
+        <strong>
+            ${title}
+        </strong>
+
+        <span>
+            ${message}
+        </span>
+
+    `;
+
+
+    container.appendChild(toast);
+
+
+    setTimeout(
+        () => {
+
+            toast.style.opacity =
+                "0";
+
+            toast.style.transform =
+                "translateX(30px)";
+
+
+            setTimeout(
+                () => toast.remove(),
+                250
+            );
+
+        },
+        3500
+    );
+
+};
+
+
+/* =========================
+   NOTIFICACIONES
+========================= */
+
+document
+    .getElementById(
+        "notificationBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            goTo("alertas");
+
+        }
+    );
+
+
+/* =========================
+   GRÁFICOS
+========================= */
+
+function crearGraficos(){
+
+    const activityCanvas =
+        document.getElementById(
+            "activityChart"
+        );
+
+
+    if(activityCanvas){
+
+        new Chart(
+            activityCanvas,
+            {
+
+                type:"line",
+
+                data:{
+
+                    labels:[
+                        "Lun",
+                        "Mar",
+                        "Mié",
+                        "Jue",
+                        "Vie",
+                        "Sáb",
+                        "Dom"
+                    ],
+
+                    datasets:[{
+
+                        label:
+                            "Actividad",
+
+                        data:[
+                            42,
+                            67,
+                            55,
+                            81,
+                            74,
+                            39,
+                            87
+                        ],
+
+                        borderColor:
+                            "#315f5c",
+
+                        backgroundColor:
+                            "rgba(49,95,92,.08)",
+
+                        fill:true,
+
+                        tension:.4
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            display:false
+                        }
+                    },
+
+                    scales:{
+
+                        y:{
+                            beginAtZero:true
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    const attendanceCanvas =
+        document.getElementById(
+            "attendanceChart"
+        );
+
+
+    if(attendanceCanvas){
+
+        new Chart(
+            attendanceCanvas,
+            {
+
+                type:"doughnut",
+
+                data:{
+
+                    labels:[
+                        "Asistió",
+                        "Inasistencia",
+                        "Tardanza"
+                    ],
+
+                    datasets:[{
+
+                        data:[
+                            91,
+                            4,
+                            5
+                        ],
+
+                        backgroundColor:[
+                            "#527f79",
+                            "#b85c5c",
+                            "#d3b16d"
+                        ],
+
+                        borderWidth:0
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+                            position:"bottom"
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    const evolution =
+        document.getElementById(
+            "attendanceEvolution"
+        );
+
+
+    if(evolution){
+
+        new Chart(
+            evolution,
+            {
+
+                type:"line",
+
+                data:{
+
+                    labels:[
+                        "Semana 1",
+                        "Semana 2",
+                        "Semana 3",
+                        "Semana 4"
+                    ],
+
+                    datasets:[{
+
+                        label:
+                            "Asistencia",
+
+                        data:[
+                            87,
+                            89,
+                            90,
+                            91
+                        ],
+
+                        borderColor:
+                            "#527f79",
+
+                        tension:.35
+
+                    }]
+
+                },
+
+                options:{
+                    responsive:true,
+                    maintainAspectRatio:false
+                }
+
+            }
+        );
+
+    }
+
+
+    const gradeAttendance =
+        document.getElementById(
+            "gradeAttendance"
+        );
+
+
+    if(gradeAttendance){
+
+        new Chart(
+            gradeAttendance,
+            {
+
+                type:"bar",
+
+                data:{
+
+                    labels:[
+                        "1.º",
+                        "2.º",
+                        "3.º",
+                        "4.º",
+                        "5.º"
+                    ],
+
+                    datasets:[{
+
+                        label:
+                            "Asistencia %",
+
+                        data:[
+                            93,
+                            91,
+                            89,
+                            94,
+                            88
+                        ],
+
+                        backgroundColor:
+                            "#527f79",
+
+                        borderRadius:8
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    scales:{
+                        y:{
+                            beginAtZero:false,
+                            min:70,
+                            max:100
+                        }
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    const wellbeing =
+        document.getElementById(
+            "wellbeingChart"
+        );
+
+
+    if(wellbeing){
+
+        new Chart(
+            wellbeing,
+            {
+
+                type:"line",
+
+                data:{
+
+                    labels:[
+                        "1",
+                        "5",
+                        "10",
+                        "15",
+                        "20",
+                        "25",
+                        "30"
+                    ],
+
+                    datasets:[{
+
+                        label:
+                            "Bienestar general",
+
+                        data:[
+                            72,
+                            74,
+                            76,
+                            73,
+                            79,
+                            81,
+                            82
+                        ],
+
+                        borderColor:
+                            "#b18a45",
+
+                        backgroundColor:
+                            "rgba(177,138,69,.08)",
+
+                        fill:true,
+
+                        tension:.4
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+                        legend:{
+                            display:false
+                        }
+                    },
+
+                    scales:{
+
+                        y:{
+                            min:50,
+                            max:100
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================
+   INICIAR DASHBOARD
+========================= */
+
+function iniciarDashboard(){
+
+    renderStudents();
+
+    renderGrades();
+
+    crearGraficos();
+
+    updateCapacity();
+
+}
+
+
+/* =========================
+   CERRAR MODALES AL HACER
+   CLICK FUERA
+========================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(
+                    event.target === modal
+                ){
+
+                    modal.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+</script>
+
+</body>
+</html>
