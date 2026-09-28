@@ -1,0 +1,3572 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta name="theme-color" content="#176B52">
+
+<meta
+    name="description"
+    content="TIKARY 2 | Psicólogos Institucionales"
+>
+
+<title>TIKARY 2 | Psicólogos Institucionales</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   TIKARY 2 · PSICÓLOGOS INSTITUCIONALES
+   DISEÑO RESPONSIVE · PC · LAPTOP · TABLET · CELULAR
+========================================================= */
+
+:root{
+
+    --green:#176B52;
+    --green-dark:#0D4D3B;
+    --green-deep:#083C2F;
+    --green-light:#2D9272;
+
+    --green-soft:#E8F7F0;
+    --green-soft-2:#F2FBF7;
+
+    --gold:#D9A441;
+    --gold-light:#F4D88C;
+
+    --cream:#FFFDF7;
+    --white:#FFFFFF;
+
+    --text:#17352D;
+    --gray:#6B7B75;
+    --gray-light:#9AA8A3;
+
+    --shadow:
+        0 22px 60px rgba(13,77,59,.12);
+
+    --shadow-hover:
+        0 30px 70px rgba(13,77,59,.20);
+
+    --radius:28px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:"Inter",sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(45,146,114,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(217,164,65,.12),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #E8F7F0 0%,
+            #FFFDF7 50%,
+            #F4E8D2 100%
+        );
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    background:
+        rgba(255,253,247,.82);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border-bottom:
+        1px solid rgba(23,53,45,.07);
+}
+
+
+.navbar{
+
+    width:min(1280px, calc(100% - 40px));
+
+    height:78px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+
+.brand img{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 8px 22px rgba(13,77,59,.16);
+}
+
+
+.brand-name{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:var(--green-dark);
+
+    letter-spacing:-.4px;
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+
+.user-badge{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:
+        8px 14px;
+
+    border-radius:999px;
+
+    background:
+        var(--green-soft);
+
+    border:
+        1px solid rgba(23,107,82,.15);
+
+    color:var(--green-dark);
+
+    font-size:12px;
+
+    font-weight:800;
+}
+
+
+.back-btn{
+
+    border:none;
+
+    background:var(--white);
+
+    border:
+        1px solid rgba(23,53,45,.10);
+
+    padding:
+        10px 16px;
+
+    border-radius:13px;
+
+    color:var(--green-dark);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    transition:.25s;
+}
+
+
+.back-btn:hover{
+
+    background:var(--green-soft);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(13,77,59,.10);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+    width:min(1240px, calc(100% - 40px));
+
+    margin:auto;
+
+    padding:
+        38px 0 80px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:32px;
+
+    padding:
+        42px 44px;
+
+    margin-bottom:32px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #176B52 0%,
+            #0D4D3B 55%,
+            #083C2F 100%
+        );
+
+    box-shadow:
+        0 25px 60px rgba(13,77,59,.20);
+
+    border:
+        1px solid rgba(255,255,255,.20);
+}
+
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.06);
+
+    right:-70px;
+    top:-90px;
+}
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+        rgba(217,164,65,.10);
+
+    left:-80px;
+    bottom:-100px;
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:850px;
+}
+
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:
+        7px 12px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.13);
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+
+    margin-bottom:14px;
+}
+
+
+.hero h1{
+
+    font-size:
+        clamp(27px, 4vw, 42px);
+
+    line-height:1.1;
+
+    font-weight:900;
+
+    letter-spacing:-1.2px;
+
+    margin-bottom:12px;
+}
+
+
+.hero p{
+
+    max-width:720px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    color:
+        rgba(255,255,255,.88);
+}
+
+
+/* =========================================================
+   INFORMATION BAR
+========================================================= */
+
+.info-bar{
+
+    margin-top:24px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:12px;
+
+    max-width:850px;
+}
+
+
+.info-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:
+        11px 13px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+
+.info-icon{
+
+    width:30px;
+    height:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-heading{
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin:
+        34px 2px 20px;
+}
+
+
+.section-heading h2{
+
+    font-size:
+        clamp(21px, 3vw, 28px);
+
+    font-weight:900;
+
+    color:var(--green-dark);
+
+    letter-spacing:-.6px;
+}
+
+
+.section-heading p{
+
+    margin-top:5px;
+
+    font-size:12px;
+
+    color:var(--gray);
+
+    line-height:1.5;
+}
+
+
+.free-label{
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:
+        9px 13px;
+
+    border-radius:999px;
+
+    background:
+        #FFF8E8;
+
+    border:
+        1px solid rgba(217,164,65,.25);
+
+    color:
+        #8A641D;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   PROFESSIONALS GRID
+========================================================= */
+
+.prof-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap:28px;
+
+    max-width:1100px;
+
+    margin:auto;
+}
+
+
+/* =========================================================
+   PROFESSIONAL CARD
+========================================================= */
+
+.prof-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.82);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid rgba(255,255,255,.90);
+
+    border-radius:
+        var(--radius);
+
+    box-shadow:
+        var(--shadow);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+.prof-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.prof-photo{
+
+    position:relative;
+
+    width:100%;
+
+    height:330px;
+
+    overflow:hidden;
+
+    background:
+        var(--green-soft);
+}
+
+
+.prof-photo img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center top;
+
+    display:block;
+
+    transition:
+        transform .5s ease;
+}
+
+
+.prof-card:hover
+.prof-photo img{
+
+    transform:
+        scale(1.035);
+}
+
+
+.photo-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(5,46,36,.68),
+            transparent 48%
+        );
+}
+
+
+.photo-badge{
+
+    position:absolute;
+
+    left:18px;
+    bottom:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:
+        8px 12px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    color:var(--green-dark);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.15);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.prof-content{
+
+    padding:
+        24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+}
+
+
+.prof-name{
+
+    font-size:21px;
+
+    font-weight:900;
+
+    color:var(--green-dark);
+
+    letter-spacing:-.5px;
+
+    margin-bottom:5px;
+}
+
+
+.prof-specialty{
+
+    font-size:12px;
+
+    color:var(--gray);
+
+    font-weight:700;
+
+    margin-bottom:17px;
+}
+
+
+.prof-description{
+
+    font-size:13px;
+
+    line-height:1.65;
+
+    color:var(--text);
+
+    margin-bottom:20px;
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.prof-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-bottom:20px;
+}
+
+
+.tag{
+
+    padding:
+        6px 9px;
+
+    border-radius:9px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--green-dark);
+
+    font-size:10px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   SCHEDULE
+========================================================= */
+
+.schedule-box{
+
+    padding:
+        15px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #F2FBF7,
+            #E8F7F0
+        );
+
+    border:
+        1px solid rgba(23,107,82,.08);
+
+    margin-bottom:20px;
+}
+
+
+.schedule-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:var(--green-dark);
+
+    margin-bottom:9px;
+}
+
+
+.schedule-line{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    font-size:11px;
+
+    color:var(--gray);
+
+    line-height:1.6;
+}
+
+
+.schedule-line strong{
+
+    color:var(--green-dark);
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.card-footer{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-top:auto;
+}
+
+
+.free-price{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2px;
+}
+
+
+.free-price small{
+
+    font-size:9px;
+
+    color:var(--gray);
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+}
+
+
+.free-price strong{
+
+    color:var(--green);
+
+    font-size:15px;
+
+    font-weight:900;
+}
+
+
+.btn-request{
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--green-dark)
+        );
+
+    color:white;
+
+    padding:
+        13px 18px;
+
+    border-radius:14px;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    box-shadow:
+        0 9px 20px rgba(13,77,59,.17);
+
+    transition:.25s;
+}
+
+
+.btn-request:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 13px 27px rgba(13,77,59,.24);
+
+    background:
+        var(--green-deep);
+}
+
+
+/* =========================================================
+   BOTTOM INFORMATION
+========================================================= */
+
+.bottom-note{
+
+    max-width:1100px;
+
+    margin:
+        30px auto 0;
+
+    padding:
+        17px 20px;
+
+    border-radius:18px;
+
+    background:
+        rgba(255,255,255,.70);
+
+    border:
+        1px solid rgba(255,255,255,.90);
+
+    box-shadow:
+        0 12px 35px rgba(13,77,59,.07);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    color:var(--gray);
+}
+
+
+.bottom-note-icon{
+
+    width:36px;
+    height:36px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        var(--green-soft);
+
+    color:var(--green);
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-backdrop{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:10000;
+
+    background:
+        rgba(5,46,36,.58);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+
+.modal-card{
+
+    width:
+        min(520px,100%);
+
+    max-height:
+        calc(100vh - 30px);
+
+    overflow-y:auto;
+
+    background:
+        var(--cream);
+
+    border-radius:
+        28px;
+
+    padding:
+        28px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.25);
+
+    border:
+        1px solid rgba(255,255,255,.9);
+
+    animation:
+        modalIn .25s ease;
+}
+
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+
+.modal-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+
+.modal-title{
+
+    color:var(--green-dark);
+
+    font-size:20px;
+
+    font-weight:900;
+}
+
+
+.modal-close{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        var(--green-soft);
+
+    color:var(--green-dark);
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:800;
+}
+
+
+.selected-prof{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:
+        13px;
+
+    border-radius:15px;
+
+    background:
+        var(--green-soft);
+
+    border:
+        1px solid rgba(23,107,82,.10);
+
+    margin-bottom:20px;
+}
+
+
+.selected-icon{
+
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+}
+
+
+.selected-icon img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+.selected-prof strong{
+
+    display:block;
+
+    font-size:13px;
+
+    color:var(--green-dark);
+
+    margin-bottom:3px;
+}
+
+
+.selected-prof span{
+
+    font-size:10px;
+
+    color:var(--gray);
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:14px;
+}
+
+
+.form-group{
+
+    margin-bottom:14px;
+}
+
+
+.form-group.full{
+
+    grid-column:
+        1 / -1;
+}
+
+
+label{
+
+    display:block;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    color:var(--green-dark);
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    margin-bottom:6px;
+}
+
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:
+        12px 13px;
+
+    border-radius:12px;
+
+    border:
+        1px solid rgba(23,53,45,.16);
+
+    background:white;
+
+    color:var(--text);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+
+textarea{
+
+    resize:vertical;
+
+    min-height:95px;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 0 0 3px rgba(23,107,82,.10);
+}
+
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:18px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFFDF7,
+            #E8F7F0
+        );
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+}
+
+
+.loading-logo{
+
+    width:82px;
+    height:82px;
+
+    border-radius:23px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 15px 40px rgba(13,77,59,.16);
+
+    animation:
+        loadingPulse 1.5s infinite;
+}
+
+
+@keyframes loadingPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+}
+
+
+.loading-text{
+
+    margin-top:18px;
+
+    color:var(--green);
+
+    font-weight:800;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:28px;
+
+    transform:
+        translate(-50%,20px);
+
+    background:
+        var(--green-dark);
+
+    color:white;
+
+    padding:
+        13px 22px;
+
+    border-radius:14px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 15px 40px rgba(13,77,59,.25);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:20000;
+
+    white-space:nowrap;
+}
+
+
+#toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   RESPONSIVE · TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .prof-grid{
+
+        grid-template-columns:
+            1fr;
+            
+        max-width:650px;
+    }
+
+    .prof-photo{
+
+        height:360px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE · CELULAR
+========================================================= */
+
+@media(max-width:650px){
+
+    .navbar{
+
+        width:
+            calc(100% - 24px);
+
+        height:70px;
+    }
+
+
+    .brand-name{
+
+        font-size:15px;
+    }
+
+
+    .brand img{
+
+        width:39px;
+        height:39px;
+    }
+
+
+    .user-badge{
+
+        display:none;
+    }
+
+
+    .back-btn{
+
+        padding:
+            9px 12px;
+
+        font-size:10px;
+    }
+
+
+    main{
+
+        width:
+            calc(100% - 22px);
+
+        padding:
+            22px 0 55px;
+    }
+
+
+    .hero{
+
+        padding:
+            28px 22px;
+
+        border-radius:25px;
+    }
+
+
+    .hero h1{
+
+        font-size:27px;
+    }
+
+
+    .hero p{
+
+        font-size:12px;
+    }
+
+
+    .info-bar{
+
+        grid-template-columns:
+            1fr;
+
+        gap:8px;
+    }
+
+
+    .section-heading{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        margin-top:28px;
+    }
+
+
+    .prof-grid{
+
+        gap:18px;
+    }
+
+
+    .prof-card{
+
+        border-radius:23px;
+    }
+
+
+    .prof-photo{
+
+        height:290px;
+    }
+
+
+    .prof-content{
+
+        padding:
+            20px;
+    }
+
+
+    .prof-name{
+
+        font-size:19px;
+    }
+
+
+    .card-footer{
+
+        align-items:stretch;
+
+        flex-direction:column;
+    }
+
+
+    .btn-request{
+
+        width:100%;
+    }
+
+
+    .form-grid{
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .form-group.full{
+
+        grid-column:
+            auto;
+    }
+
+
+    .modal-card{
+
+        padding:
+            22px;
+
+        border-radius:23px;
+    }
+
+
+    .modal-actions{
+
+        flex-direction:column-reverse;
+    }
+
+
+    .modal-actions button{
+
+        width:100%;
+    }
+
+
+    #toast{
+
+        width:
+            calc(100% - 30px);
+
+        text-align:center;
+
+        white-space:normal;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP / PC GRANDES
+========================================================= */
+
+@media(min-width:1400px){
+
+    .navbar{
+
+        width:min(1400px, calc(100% - 70px));
+    }
+
+
+    main{
+
+        width:min(1400px, calc(100% - 70px));
+    }
+
+
+    .prof-grid{
+
+        max-width:1180px;
+
+        gap:34px;
+    }
+
+
+    .prof-photo{
+
+        height:380px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     PANTALLA DE CARGA
+====================================================== -->
+
+<div id="loadingScreen">
+
+    <img
+        src="../../imagenes/logo.jpg"
+        class="loading-logo"
+        alt="TIKARY"
+    >
+
+    <div class="loading-text">
+        Verificando credenciales en TIKARY 2...
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div
+            class="brand"
+            onclick="goToPage('citas2.html')"
+        >
+
+            <img
+                src="../../imagenes/logo.jpg"
+                alt="TIKARY"
+            >
+
+            <div class="brand-name">
+                TIKARY 2
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <div class="user-badge">
+
+                👤 DNI:
+                <span id="dniText">---</span>
+
+            </div>
+
+
+            <button
+                class="back-btn"
+                onclick="goToPage('citas2.html')"
+            >
+
+                ←
+                <span>Volver a Mis Citas</span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ======================================================
+     CONTENIDO PRINCIPAL
+====================================================== -->
+
+<main>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                🏛️ SERVICIO PSICOLÓGICO INSTITUCIONAL
+            </div>
+
+
+            <h1>
+                Psicólogos TIKARY 2
+            </h1>
+
+
+            <p>
+                Cuenta con el acompañamiento de nuestros profesionales
+                institucionales. Puedes solicitar una atención de manera
+                sencilla, de lunes a viernes, de acuerdo con los horarios
+                disponibles.
+            </p>
+
+
+            <div class="info-bar">
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🗓️
+                    </div>
+
+                    <span>
+                        Lunes a viernes
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🕐
+                    </div>
+
+                    <span>
+                        8:00 a. m. – 7:00 p. m.
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        ✨
+                    </div>
+
+                    <span>
+                        Atención sin costo
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TÍTULO -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Profesionales disponibles
+            </h2>
+
+            <p>
+                Conoce a nuestros cuatro psicólogos institucionales y solicita
+                una cita según tu disponibilidad.
+            </p>
+
+        </div>
+
+
+        <div class="free-label">
+            ✓ Servicio institucional sin costo
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         CUATRO PSICÓLOGOS
+    ================================================== -->
+
+    <div class="prof-grid">
+
+
+        <!-- ==============================================
+             PSICÓLOGA 1
+        =============================================== -->
+
+        <article class="prof-card">
+
+            <div class="prof-photo">
+
+                <img
+                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1000&q=88"
+                    alt="Psicóloga institucional"
+                    loading="lazy"
+                >
+
+                <div class="photo-overlay"></div>
+
+                <div class="photo-badge">
+                    🟢 Disponible para solicitudes
+                </div>
+
+            </div>
+
+
+            <div class="prof-content">
+
+                <h3 class="prof-name">
+                    Dra. Sofía Mendoza
+                </h3>
+
+
+                <p class="prof-specialty">
+                    Psicóloga Clínica e Institucional
+                </p>
+
+
+                <p class="prof-description">
+
+                    Orientación y acompañamiento para estudiantes que
+                    necesiten apoyo en aspectos emocionales, académicos,
+                    personales y de adaptación a la vida estudiantil.
+
+                </p>
+
+
+                <div class="prof-tags">
+
+                    <span class="tag">
+                        Orientación
+                    </span>
+
+                    <span class="tag">
+                        Estrés académico
+                    </span>
+
+                    <span class="tag">
+                        Gestión emocional
+                    </span>
+
+                    <span class="tag">
+                        Orientación vocacional
+                    </span>
+
+                </div>
+
+
+                <div class="schedule-box">
+
+                    <div class="schedule-title">
+                        🕐 Horario de atención
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Lunes a viernes
+                        </span>
+
+                        <strong>
+                            8:00 a. m. – 7:00 p. m.
+                        </strong>
+
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Modalidad
+                        </span>
+
+                        <strong>
+                            Virtual / Presencial
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <div class="free-price">
+
+                        <small>
+                            Atención institucional
+                        </small>
+
+                        <strong>
+                            SIN COSTO
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="btn-request"
+                        onclick="openBookingModal(
+                            'Dra. Sofía Mendoza',
+                            'Psicóloga Clínica e Institucional',
+                            'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=300&q=85'
+                        )"
+                    >
+
+                        📅
+                        Solicitar cita
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ==============================================
+             PSICÓLOGO 2
+        =============================================== -->
+
+        <article class="prof-card">
+
+            <div class="prof-photo">
+
+                <img
+                    src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1000&q=88"
+                    alt="Psicólogo institucional"
+                    loading="lazy"
+                >
+
+                <div class="photo-overlay"></div>
+
+                <div class="photo-badge">
+                    🟢 Disponible para solicitudes
+                </div>
+
+            </div>
+
+
+            <div class="prof-content">
+
+                <h3 class="prof-name">
+                    Lic. Roberto Gómez
+                </h3>
+
+
+                <p class="prof-specialty">
+                    Psicólogo Educativo y Tutor
+                </p>
+
+
+                <p class="prof-description">
+
+                    Acompañamiento psicopedagógico dirigido a estudiantes
+                    que buscan fortalecer sus hábitos de estudio,
+                    habilidades personales, organización y adaptación
+                    académica.
+
+                </p>
+
+
+                <div class="prof-tags">
+
+                    <span class="tag">
+                        Orientación académica
+                    </span>
+
+                    <span class="tag">
+                        Hábitos de estudio
+                    </span>
+
+                    <span class="tag">
+                        Habilidades sociales
+                    </span>
+
+                    <span class="tag">
+                        Acompañamiento
+                    </span>
+
+                </div>
+
+
+                <div class="schedule-box">
+
+                    <div class="schedule-title">
+                        🕐 Horario de atención
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Lunes a viernes
+                        </span>
+
+                        <strong>
+                            8:00 a. m. – 7:00 p. m.
+                        </strong>
+
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Modalidad
+                        </span>
+
+                        <strong>
+                            Virtual / Presencial
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <div class="free-price">
+
+                        <small>
+                            Atención institucional
+                        </small>
+
+                        <strong>
+                            SIN COSTO
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="btn-request"
+                        onclick="openBookingModal(
+                            'Lic. Roberto Gómez',
+                            'Psicólogo Educativo y Tutor',
+                            'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=300&q=85'
+                        )"
+                    >
+
+                        📅
+                        Solicitar cita
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ==============================================
+             PSICÓLOGA 3
+        =============================================== -->
+
+        <article class="prof-card">
+
+            <div class="prof-photo">
+
+                <img
+                    src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=1000&q=88"
+                    alt="Psicóloga institucional"
+                    loading="lazy"
+                >
+
+                <div class="photo-overlay"></div>
+
+                <div class="photo-badge">
+                    🟢 Disponible para solicitudes
+                </div>
+
+            </div>
+
+
+            <div class="prof-content">
+
+                <h3 class="prof-name">
+                    Lic. Valeria Torres
+                </h3>
+
+
+                <p class="prof-specialty">
+                    Psicóloga Educativa e Institucional
+                </p>
+
+
+                <p class="prof-description">
+
+                    Brinda orientación a estudiantes que desean mejorar
+                    su bienestar emocional, relaciones interpersonales,
+                    autoestima y adaptación al entorno educativo.
+
+                </p>
+
+
+                <div class="prof-tags">
+
+                    <span class="tag">
+                        Bienestar emocional
+                    </span>
+
+                    <span class="tag">
+                        Autoestima
+                    </span>
+
+                    <span class="tag">
+                        Relaciones sociales
+                    </span>
+
+                    <span class="tag">
+                        Adaptación
+                    </span>
+
+                </div>
+
+
+                <div class="schedule-box">
+
+                    <div class="schedule-title">
+                        🕐 Horario de atención
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Lunes a viernes
+                        </span>
+
+                        <strong>
+                            8:00 a. m. – 7:00 p. m.
+                        </strong>
+
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Modalidad
+                        </span>
+
+                        <strong>
+                            Virtual / Presencial
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <div class="free-price">
+
+                        <small>
+                            Atención institucional
+                        </small>
+
+                        <strong>
+                            SIN COSTO
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="btn-request"
+                        onclick="openBookingModal(
+                            'Lic. Valeria Torres',
+                            'Psicóloga Educativa e Institucional',
+                            'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=300&q=85'
+                        )"
+                    >
+
+                        📅
+                        Solicitar cita
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ==============================================
+             PSICÓLOGO 4
+        =============================================== -->
+
+        <article class="prof-card">
+
+            <div class="prof-photo">
+
+                <img
+                    src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=1000&q=88"
+                    alt="Psicólogo institucional"
+                    loading="lazy"
+                >
+
+                <div class="photo-overlay"></div>
+
+                <div class="photo-badge">
+                    🟢 Disponible para solicitudes
+                </div>
+
+            </div>
+
+
+            <div class="prof-content">
+
+                <h3 class="prof-name">
+                    Mg. Daniel Vargas
+                </h3>
+
+
+                <p class="prof-specialty">
+                    Psicólogo Organizacional y Educativo
+                </p>
+
+
+                <p class="prof-description">
+
+                    Orientación para estudiantes en temas relacionados
+                    con organización personal, toma de decisiones,
+                    habilidades sociales, metas académicas y desarrollo
+                    personal.
+
+                </p>
+
+
+                <div class="prof-tags">
+
+                    <span class="tag">
+                        Desarrollo personal
+                    </span>
+
+                    <span class="tag">
+                        Organización
+                    </span>
+
+                    <span class="tag">
+                        Toma de decisiones
+                    </span>
+
+                    <span class="tag">
+                        Metas académicas
+                    </span>
+
+                </div>
+
+
+                <div class="schedule-box">
+
+                    <div class="schedule-title">
+                        🕐 Horario de atención
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Lunes a viernes
+                        </span>
+
+                        <strong>
+                            8:00 a. m. – 7:00 p. m.
+                        </strong>
+
+                    </div>
+
+                    <div class="schedule-line">
+
+                        <span>
+                            Modalidad
+                        </span>
+
+                        <strong>
+                            Virtual / Presencial
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+
+                    <div class="free-price">
+
+                        <small>
+                            Atención institucional
+                        </small>
+
+                        <strong>
+                            SIN COSTO
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="btn-request"
+                        onclick="openBookingModal(
+                            'Mg. Daniel Vargas',
+                            'Psicólogo Organizacional y Educativo',
+                            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=300&q=85'
+                        )"
+                    >
+
+                        📅
+                        Solicitar cita
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+
+    <!-- NOTA -->
+
+    <div class="bottom-note">
+
+        <div class="bottom-note-icon">
+            🔒
+        </div>
+
+        <div>
+
+            <strong style="color:var(--green-dark);">
+                Solicitud confidencial
+            </strong>
+
+            <br>
+
+            Tu solicitud se registra en tu cuenta TIKARY y queda asociada
+            a tu DNI para realizar el seguimiento correspondiente.
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ======================================================
+     MODAL DE SOLICITUD
+====================================================== -->
+
+<div
+    class="modal-backdrop"
+    id="bookingModal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-top">
+
+            <div class="modal-title">
+                📅 Solicitar una cita
+            </div>
+
+            <button
+                class="modal-close"
+                type="button"
+                onclick="closeBookingModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- PROFESIONAL SELECCIONADO -->
+
+        <div class="selected-prof">
+
+            <div class="selected-icon">
+
+                <img
+                    id="modalDoctorImage"
+                    src=""
+                    alt="Profesional"
+                >
+
+            </div>
+
+
+            <div>
+
+                <strong id="modalProfName">
+                    ---
+                </strong>
+
+                <span id="modalProfSpec">
+                    ---
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORMULARIO -->
+
+        <form
+            onsubmit="submitAppointmentRequest(event)"
+        >
+
+
+            <div class="form-grid">
+
+
+                <!-- FECHA -->
+
+                <div class="form-group">
+
+                    <label>
+                        Fecha de la cita
+                    </label>
+
+                    <input
+                        type="date"
+                        id="modalDate"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- HORA -->
+
+                <div class="form-group">
+
+                    <label>
+                        Hora
+                    </label>
+
+                    <select
+                        id="modalTime"
+                        required
+                    >
+
+                        <option value="08:00 AM">
+                            08:00 a. m.
+                        </option>
+
+                        <option value="09:00 AM">
+                            09:00 a. m.
+                        </option>
+
+                        <option value="10:00 AM">
+                            10:00 a. m.
+                        </option>
+
+                        <option value="11:00 AM">
+                            11:00 a. m.
+                        </option>
+
+                        <option value="12:00 PM">
+                            12:00 p. m.
+                        </option>
+
+                        <option value="01:00 PM">
+                            01:00 p. m.
+                        </option>
+
+                        <option value="02:00 PM">
+                            02:00 p. m.
+                        </option>
+
+                        <option value="03:00 PM">
+                            03:00 p. m.
+                        </option>
+
+                        <option value="04:00 PM">
+                            04:00 p. m.
+                        </option>
+
+                        <option value="05:00 PM">
+                            05:00 p. m.
+                        </option>
+
+                        <option value="06:00 PM">
+                            06:00 p. m.
+                        </option>
+
+                        <option value="07:00 PM">
+                            07:00 p. m.
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MODALIDAD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Modalidad
+                    </label>
+
+                    <select
+                        id="modalModality"
+                        required
+                    >
+
+                        <option value="Virtual">
+                            💻 Virtual
+                        </option>
+
+                        <option value="Presencial">
+                            🏛️ Presencial
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MOTIVO -->
+
+                <div class="form-group full">
+
+                    <label>
+                        ¿En qué necesitas apoyo?
+                    </label>
+
+                    <textarea
+                        id="modalReason"
+                        rows="4"
+                        placeholder="Cuéntanos brevemente qué necesitas o qué situación te gustaría conversar con el profesional..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    onclick="closeBookingModal()"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-request"
+                >
+
+                    ✓
+                    Enviar solicitud
+
+                </button>
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- TOAST -->
+
+<div id="toast"></div>
+
+
+
+<!-- ======================================================
+     FIREBASE · TIKARY 2
+====================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =====================================================
+   CONFIGURACIÓN FIREBASE · TIKARY 2
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentDni = "";
+
+let selectedDoctor = "";
+
+let selectedSpec = "";
+
+let selectedIcon = "🩺";
+
+let selectedDoctorImage = "";
+
+
+/* =====================================================
+   AUTENTICACIÓN · TIKARY 2
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        try {
+
+            /* =========================================
+               1. DEBE EXISTIR SESIÓN
+            ========================================= */
+
+            if (!user) {
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+            }
+
+
+            /* =========================================
+               2. OBTENER EMAIL
+            ========================================= */
+
+            const email =
+                (user.email || "")
+                .trim()
+                .toLowerCase();
+
+
+            /* =========================================
+               3. SOLO SE ACEPTAN USUARIOS TIKARY 2
+            ========================================= */
+
+            const regexTikary2 =
+                /^\d{8}@tikary2\.com$/;
+
+
+            if (!regexTikary2.test(email)) {
+
+                console.warn(
+                    "Usuario rechazado: no pertenece a TIKARY 2."
+                );
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+            }
+
+
+            /* =========================================
+               4. EXTRAER ÚNICAMENTE EL DNI
+            ========================================= */
+
+            currentDni =
+                email.split("@")[0];
+
+
+            /* =========================================
+               5. MOSTRAR DNI EN LA INTERFAZ
+            ========================================= */
+
+            const dniTextElem =
+                document.getElementById("dniText");
+
+
+            if (dniTextElem) {
+
+                dniTextElem.textContent =
+                    currentDni;
+
+            }
+
+
+            /* =========================================
+               6. VERIFICAR DNI EN TIKARY 2
+            ========================================= */
+
+            const refDni =
+                doc(
+                    db,
+                    "dni_permitidos",
+                    currentDni
+                );
+
+
+            const snapshotDni =
+                await getDoc(refDni);
+
+
+            /* =========================================
+               7. SI EL DNI NO ESTÁ AUTORIZADO
+            ========================================= */
+
+            if (!snapshotDni.exists()) {
+
+                console.warn(
+                    "DNI no autorizado en TIKARY 2:",
+                    currentDni
+                );
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+                return;
+            }
+
+
+            /* =========================================
+               8. MOSTRAR PÁGINA
+            ========================================= */
+
+            const loadingScreen =
+                document.getElementById(
+                    "loadingScreen"
+                );
+
+
+            if (loadingScreen) {
+
+                loadingScreen.style.display =
+                    "none";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al autenticar en profesionales 2:",
+                error
+            );
+
+
+            await signOut(auth).catch(
+                () => {}
+            );
+
+
+            window.location.href =
+                "../../index.html";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ABRIR MODAL
+===================================================== */
+
+window.openBookingModal =
+function(
+    nombre,
+    especialidad,
+    imagen
+){
+
+    selectedDoctor =
+        nombre;
+
+    selectedSpec =
+        especialidad;
+
+    selectedIcon =
+        "🩺";
+
+    selectedDoctorImage =
+        imagen;
+
+
+    document
+        .getElementById("modalProfName")
+        .textContent =
+            nombre;
+
+
+    document
+        .getElementById("modalProfSpec")
+        .textContent =
+            especialidad;
+
+
+    document
+        .getElementById("modalDoctorImage")
+        .src =
+            imagen;
+
+
+    /* FECHA MÍNIMA */
+
+    const dateInput =
+        document.getElementById("modalDate");
+
+
+    const today =
+        new Date();
+
+
+    const year =
+        today.getFullYear();
+
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(2,"0");
+
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(2,"0");
+
+
+    const todayString =
+        `${year}-${month}-${day}`;
+
+
+    dateInput.min =
+        todayString;
+
+
+    dateInput.value =
+        todayString;
+
+
+    /* LIMPIAR MOTIVO */
+
+    document
+        .getElementById("modalReason")
+        .value = "";
+
+
+    document
+        .getElementById("bookingModal")
+        .style.display =
+            "flex";
+
+};
+
+
+/* =====================================================
+   CERRAR MODAL
+===================================================== */
+
+window.closeBookingModal =
+function(){
+
+    document
+        .getElementById("bookingModal")
+        .style.display =
+            "none";
+
+};
+
+
+/* =====================================================
+   VALIDAR DÍA DE ATENCIÓN
+   SOLO LUNES A VIERNES
+===================================================== */
+
+document
+    .getElementById("modalDate")
+    .addEventListener(
+        "change",
+        function(){
+
+            if (!this.value)
+                return;
+
+
+            const selectedDate =
+                new Date(
+                    this.value +
+                    "T00:00:00"
+                );
+
+
+            const day =
+                selectedDate.getDay();
+
+
+            if (
+                day === 0 ||
+                day === 6
+            ){
+
+                alert(
+                    "Las citas institucionales están disponibles de lunes a viernes."
+                );
+
+                this.value = "";
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   ENVIAR SOLICITUD · TIKARY 2
+===================================================== */
+
+window.submitAppointmentRequest =
+async function(event){
+
+    event.preventDefault();
+
+
+    /* =========================================
+       1. COMPROBAR DNI
+    ========================================= */
+
+    if (!currentDni){
+
+        alert(
+            "Error de autenticación. Inicie sesión nuevamente."
+        );
+
+        return;
+
+    }
+
+
+    const fecha =
+        document
+            .getElementById("modalDate")
+            .value;
+
+
+    const hora =
+        document
+            .getElementById("modalTime")
+            .value;
+
+
+    const modalidad =
+        document
+            .getElementById("modalModality")
+            .value;
+
+
+    const motivo =
+        document
+            .getElementById("modalReason")
+            .value
+            .trim();
+
+
+    if (!fecha || !hora || !motivo){
+
+        alert(
+            "Completa todos los campos de la solicitud."
+        );
+
+        return;
+
+    }
+
+
+    /* =========================================
+       VALIDAR LUNES-VIERNES
+    ========================================= */
+
+    const selectedDate =
+        new Date(
+            fecha +
+            "T00:00:00"
+        );
+
+
+    const day =
+        selectedDate.getDay();
+
+
+    if (
+        day === 0 ||
+        day === 6
+    ){
+
+        alert(
+            "Selecciona una fecha de lunes a viernes."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+
+        /* ============================================
+           1. VERIFICAR NUEVAMENTE EL DNI EN TIKARY 2
+        ============================================ */
+
+        const refDni =
+            doc(
+                db,
+                "dni_permitidos",
+                currentDni
+            );
+
+
+        const snapDni =
+            await getDoc(refDni);
+
+
+        if (!snapDni.exists()) {
+
+            alert(
+                "Tu DNI ya no está autorizado para TIKARY 2."
+            );
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        /* ============================================
+           2. OBTENER CITAS DEL ESTUDIANTE
+        ============================================ */
+
+        const refCitas =
+            doc(
+                db,
+                "citas_estudiantes",
+                currentDni
+            );
+
+
+        const snapCitas =
+            await getDoc(refCitas);
+
+
+        let listaCitas =
+            snapCitas.exists()
+                ? snapCitas.data().citas || []
+                : [];
+
+
+        /* ============================================
+           3. CREAR NUEVA CITA
+        ============================================ */
+
+        const nuevaCita = {
+
+            id:
+                "cita_" +
+                Date.now(),
+
+            profesional:
+                selectedDoctor,
+
+            especialidad:
+                selectedSpec,
+
+            tipo:
+                "institucional",
+
+            casa:
+                "TIKARY 2",
+
+            dniEstudiante:
+                currentDni,
+
+            fecha:
+                fecha,
+
+            hora:
+                hora,
+
+            modalidad:
+                modalidad,
+
+            motivo:
+                motivo,
+
+            estado:
+                "programada",
+
+            icono:
+                selectedIcon,
+
+            imagenProfesional:
+                selectedDoctorImage,
+
+            costo:
+                "Sin costo",
+
+            horarioInstitucional:
+                "Lunes a viernes de 08:00 AM a 07:00 PM"
+
+        };
+
+
+        listaCitas.unshift(
+            nuevaCita
+        );
+
+
+        /* ============================================
+           4. GUARDAR EN FIRESTORE
+        ============================================ */
+
+        await setDoc(
+
+            refCitas,
+
+            {
+
+                dniEstudiante:
+                    currentDni,
+
+                casa:
+                    "TIKARY 2",
+
+                citas:
+                    listaCitas,
+
+                ultimaModificacion:
+                    new Date().toISOString()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        /* ============================================
+           5. NOTIFICACIÓN DEL MISMO DNI
+        ============================================ */
+
+        const refNotif =
+            doc(
+                db,
+                "notificaciones_estudiantes",
+                currentDni
+            );
+
+
+        const snapNotif =
+            await getDoc(refNotif);
+
+
+        let listaNotif =
+            snapNotif.exists()
+                ? snapNotif.data().lista || []
+                : [];
+
+
+        listaNotif.unshift({
+
+            id:
+                "notif_inst_" +
+                Date.now(),
+
+            titulo:
+                "Solicitud de Cita Enviada",
+
+            mensaje:
+                `Solicitaste una cita institucional con ${selectedDoctor} para el ${fecha} a las ${hora}.`,
+
+            categoria:
+                "orientacion",
+
+            icono:
+                selectedIcon,
+
+            fecha:
+                "Ahora mismo",
+
+            leida:
+                false,
+
+            accionTag:
+                "Citas Agendadas",
+
+            profesional:
+                selectedDoctor,
+
+            modalidad:
+                modalidad,
+
+            casa:
+                "TIKARY 2",
+
+            dniEstudiante:
+                currentDni
+
+        });
+
+
+        await setDoc(
+
+            refNotif,
+
+            {
+
+                dniEstudiante:
+                    currentDni,
+
+                casa:
+                    "TIKARY 2",
+
+                lista:
+                    listaNotif,
+
+                ultimaModificacion:
+                    new Date().toISOString()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        /* ============================================
+           6. CERRAR Y MOSTRAR CONFIRMACIÓN
+        ============================================ */
+
+        closeBookingModal();
+
+
+        showToast(
+            "¡Solicitud registrada correctamente! ✓"
+        );
+
+
+        /* ============================================
+           7. VOLVER A CITAS DE TIKARY 2
+        ============================================ */
+
+        setTimeout(
+            () => {
+
+                window.location.href =
+                    "citas2.html";
+
+            },
+            1500
+        );
+
+
+    } catch (err) {
+
+        console.error(
+            "Error al registrar la cita:",
+            err
+        );
+
+
+        alert(
+            "Ocurrió un error al enviar la solicitud. Intente nuevamente."
+        );
+
+    }
+
+};
+
+</script>
+
+
+
+<!-- ======================================================
+     FUNCIONES GENERALES
+====================================================== -->
+
+<script>
+
+function goToPage(page){
+
+    window.location.href =
+        page;
+
+}
+
+
+function showToast(msg){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        msg;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2800
+    );
+
+}
+
+
+/* CERRAR MODAL AL HACER CLIC FUERA */
+
+document
+    .getElementById("bookingModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if (
+                event.target === this
+            ){
+
+                closeBookingModal();
+
+            }
+
+        }
+    );
+
+
+/* ESC PARA CERRAR */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if (
+            event.key === "Escape"
+        ){
+
+            closeBookingModal();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
