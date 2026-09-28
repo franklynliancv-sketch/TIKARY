@@ -1,0 +1,2776 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
+
+<meta name="theme-color" content="#176B52">
+
+<title>TIKARY 3 | Configuración de Cuenta</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   TIKARY 3 — CONFIGURACIÓN
+   DISEÑO MODERNO / CLARO / RESPONSIVE
+========================================================= */
+
+:root{
+
+    --green:#176B52;
+    --green-dark:#0D4D3B;
+    --green-light:#35A77D;
+
+    --green-pale:#EAF8F2;
+    --green-pale-2:#F3FBF7;
+
+    --mint:#DDF4EA;
+    --mint-strong:#C8EBDD;
+
+    --gold:#D9A441;
+    --gold-light:#F5D98F;
+    --gold-pale:#FFF9EA;
+
+    --cream:#FFFEFA;
+    --white:#FFFFFF;
+
+    --text:#17352D;
+    --text-soft:#557069;
+
+    --gray:#71827C;
+    --gray-light:#9EACA7;
+
+    --red:#D64545;
+    --red-pale:#FFF0F0;
+
+    --border:#E4ECE8;
+
+    --shadow-soft:
+        0 10px 30px rgba(23,107,82,.08);
+
+    --shadow:
+        0 18px 50px rgba(23,107,82,.11);
+
+    --radius-lg:26px;
+    --radius-md:18px;
+    --radius-sm:14px;
+}
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    width:100%;
+    min-height:100vh;
+
+    font-family:"Inter",sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(53,167,125,.13),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 94% 15%,
+            rgba(217,164,65,.10),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #F7FCF9 0%,
+            #FFFEFA 45%,
+            #F5FBF8 100%
+        );
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================================
+   LOADING ORIGINAL — NO MODIFICAR
+========================================================= */
+
+#loadingScreen {
+
+    position:fixed;
+    inset:0;
+
+    background:var(--cream);
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+}
+
+
+.loading-logo {
+
+    width:80px;
+    height:80px;
+
+    border-radius:22px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 12px 35px rgba(13,77,59,.16);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    width:100%;
+
+    background:rgba(255,254,250,.88);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(228,236,232,.85);
+}
+
+
+.navbar{
+
+    width:min(1180px, calc(100% - 32px));
+
+    min-height:76px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    min-width:0;
+}
+
+
+.brand-logo{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 8px 22px rgba(23,107,82,.15);
+
+    flex-shrink:0;
+}
+
+
+.brand-info{
+
+    display:flex;
+    flex-direction:column;
+
+    line-height:1.1;
+}
+
+
+.brand-name{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    letter-spacing:-.5px;
+
+    color:var(--green-dark);
+}
+
+
+.brand-subtitle{
+
+    margin-top:4px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.1px;
+
+    text-transform:uppercase;
+
+    color:var(--gray);
+}
+
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+.user-badge{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:10px 14px;
+
+    border-radius:999px;
+
+    background:var(--green-pale);
+
+    border:1px solid #D7EEE4;
+
+    color:var(--green-dark);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+}
+
+
+.back-button{
+
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:11px 16px;
+
+    border-radius:12px;
+
+    background:var(--white);
+
+    border:1px solid var(--border);
+
+    color:var(--green-dark);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    box-shadow:0 5px 18px rgba(23,107,82,.05);
+
+    transition:.25s ease;
+}
+
+
+.back-button:hover{
+
+    transform:translateY(-2px);
+
+    border-color:var(--mint-strong);
+
+    box-shadow:
+        0 10px 25px rgba(23,107,82,.10);
+}
+
+
+.back-button:active{
+
+    transform:scale(.97);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+    width:min(900px, calc(100% - 32px));
+
+    margin:auto;
+
+    padding:35px 0 70px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:34px;
+
+    border-radius:var(--radius-lg);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #E8F8F1 0%,
+            #F7FCF9 55%,
+            #FFF9EA 100%
+        );
+
+    border:1px solid #DDEDE6;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:22px;
+}
+
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+    height:190px;
+
+    right:-80px;
+    top:-90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(53,167,125,.20),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    left:-55px;
+    bottom:-65px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(217,164,65,.14),
+            transparent 70%
+        );
+
+    pointer-events:none;
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+.hero-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 11px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.72);
+
+    border:1px solid rgba(210,232,222,.9);
+
+    color:var(--green);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.9px;
+
+    text-transform:uppercase;
+
+    margin-bottom:15px;
+}
+
+
+.hero h1{
+
+    font-size:clamp(26px,4vw,38px);
+
+    line-height:1.08;
+
+    letter-spacing:-1.3px;
+
+    color:var(--green-dark);
+
+    margin-bottom:12px;
+}
+
+
+.hero p{
+
+    max-width:720px;
+
+    font-size:14px;
+
+    line-height:1.75;
+
+    color:var(--text-soft);
+}
+
+
+.hero-status{
+
+    margin-top:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:max-content;
+
+    max-width:100%;
+
+    padding:9px 13px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.68);
+
+    border:1px solid rgba(215,235,226,.95);
+
+    color:var(--green-dark);
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+
+.status-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#39B77F;
+
+    box-shadow:
+        0 0 0 4px rgba(57,183,127,.13);
+}
+
+
+/* =========================================================
+   SETTINGS CARD
+========================================================= */
+
+.settings-card{
+
+    background:rgba(255,255,255,.92);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-soft);
+
+    margin-bottom:18px;
+
+    overflow:hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.settings-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 20px 50px rgba(23,107,82,.10);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:22px 24px;
+
+    border-bottom:1px solid #EDF2EF;
+
+    background:
+        linear-gradient(
+            180deg,
+            #FFFFFF,
+            #FCFEFD
+        );
+}
+
+
+.card-icon{
+
+    width:45px;
+    height:45px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:var(--green-pale);
+
+    border:1px solid #D8EEE5;
+
+    font-size:20px;
+
+    box-shadow:
+        0 8px 20px rgba(23,107,82,.06);
+}
+
+
+.card-header-text{
+
+    min-width:0;
+}
+
+
+.card-title{
+
+    font-size:16px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    margin-bottom:4px;
+}
+
+
+.card-description{
+
+    font-size:11px;
+
+    color:var(--gray);
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.card-body{
+
+    padding:24px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap:17px;
+}
+
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+
+.form-group.full{
+
+    grid-column:1 / -1;
+}
+
+
+.form-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+    letter-spacing:.1px;
+}
+
+
+.form-label .required{
+
+    color:var(--red);
+}
+
+
+.input-wrap{
+
+    position:relative;
+}
+
+
+.input-icon{
+
+    position:absolute;
+
+    left:14px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:14px;
+
+    opacity:.72;
+
+    pointer-events:none;
+}
+
+
+.form-input,
+.form-select{
+
+    width:100%;
+
+    min-height:48px;
+
+    padding:0 14px 0 40px;
+
+    border-radius:13px;
+
+    border:1px solid var(--border);
+
+    background:#FBFDFC;
+
+    color:var(--text);
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:500;
+
+    outline:none;
+
+    transition:.22s ease;
+
+    appearance:none;
+}
+
+
+.form-select{
+
+    cursor:pointer;
+}
+
+
+.form-input::placeholder{
+
+    color:#A4B1AC;
+}
+
+
+.form-input:focus,
+.form-select:focus{
+
+    border-color:#8CCFB5;
+
+    background:#FFFFFF;
+
+    box-shadow:
+        0 0 0 4px rgba(53,167,125,.10);
+}
+
+
+.form-input:disabled{
+
+    background:#F4F7F5;
+
+    color:#7B8A85;
+
+    cursor:not-allowed;
+}
+
+
+.form-note{
+
+    font-size:10px;
+
+    line-height:1.5;
+
+    color:var(--gray-light);
+}
+
+
+/* =========================================================
+   SELECT ARROW
+========================================================= */
+
+.select-wrap{
+
+    position:relative;
+}
+
+
+.select-wrap::after{
+
+    content:"⌄";
+
+    position:absolute;
+
+    right:15px;
+    top:50%;
+
+    transform:translateY(-55%);
+
+    font-size:16px;
+
+    color:var(--green);
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.save-button{
+
+    width:100%;
+
+    min-height:50px;
+
+    margin-top:21px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--green-light)
+        );
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 10px 25px rgba(23,107,82,.20);
+
+    transition:.25s ease;
+}
+
+
+.save-button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(23,107,82,.25);
+}
+
+
+.save-button:active{
+
+    transform:scale(.985);
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.notification-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+
+.notification-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FBFEFC,
+            #F7FBF9
+        );
+
+    border:1px solid #E7EFEB;
+
+    transition:.2s ease;
+}
+
+
+.notification-item:hover{
+
+    border-color:#D4EAE0;
+
+    background:#FFFFFF;
+}
+
+
+.notification-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    min-width:0;
+}
+
+
+.notification-icon{
+
+    width:40px;
+    height:40px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:var(--green-pale);
+
+    font-size:17px;
+}
+
+
+.notification-text{
+
+    min-width:0;
+}
+
+
+.notification-title{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+    margin-bottom:3px;
+}
+
+
+.notification-description{
+
+    font-size:10px;
+
+    color:var(--gray);
+
+    line-height:1.45;
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.switch{
+
+    position:relative;
+
+    width:48px;
+    height:27px;
+
+    flex-shrink:0;
+}
+
+
+.switch input{
+
+    opacity:0;
+
+    width:0;
+    height:0;
+}
+
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    cursor:pointer;
+
+    background:#D8E1DD;
+
+    border-radius:999px;
+
+    transition:.25s ease;
+}
+
+
+.slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:21px;
+    height:21px;
+
+    left:3px;
+    top:3px;
+
+    border-radius:50%;
+
+    background:#FFFFFF;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,.15);
+
+    transition:.25s ease;
+}
+
+
+.switch input:checked + .slider{
+
+    background:var(--green);
+}
+
+
+.switch input:checked + .slider::before{
+
+    transform:translateX(21px);
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.security-box{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap:14px;
+}
+
+
+.security-button{
+
+    min-height:54px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:#FFFFFF;
+
+    color:var(--green-dark);
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+
+.security-button:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#BFDCCE;
+
+    background:var(--green-pale);
+
+    box-shadow:
+        0 10px 25px rgba(23,107,82,.08);
+}
+
+
+.security-button.logout{
+
+    color:var(--red);
+
+    border-color:#F0D8D8;
+
+    background:#FFFDFD;
+}
+
+
+.security-button.logout:hover{
+
+    background:var(--red-pale);
+
+    border-color:#E9BBBB;
+
+    box-shadow:
+        0 10px 25px rgba(214,69,69,.08);
+}
+
+
+.security-info{
+
+    grid-column:1 / -1;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:var(--gold-pale);
+
+    border:1px solid #F1E2B8;
+
+    color:#786126;
+
+    font-size:10px;
+
+    line-height:1.6;
+}
+
+
+.security-info-icon{
+
+    flex-shrink:0;
+
+    font-size:15px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-note{
+
+    text-align:center;
+
+    padding:7px 0 0;
+
+    color:var(--gray-light);
+
+    font-size:10px;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:
+        translate(-50%, 30px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:10000;
+
+    padding:13px 18px;
+
+    border-radius:999px;
+
+    background:var(--green-dark);
+
+    color:#FFFFFF;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 15px 35px rgba(13,77,59,.25);
+
+    transition:.3s ease;
+
+    white-space:nowrap;
+}
+
+
+#toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:760px){
+
+    .navbar{
+
+        min-height:70px;
+
+        width:min(100% - 22px, 900px);
+    }
+
+
+    .brand-logo{
+
+        width:40px;
+        height:40px;
+
+        border-radius:12px;
+    }
+
+
+    .brand-name{
+
+        font-size:16px;
+    }
+
+
+    .brand-subtitle{
+
+        display:none;
+    }
+
+
+    .user-badge{
+
+        padding:9px 11px;
+
+        font-size:10px;
+    }
+
+
+    .back-button{
+
+        padding:10px 12px;
+
+        font-size:11px;
+    }
+
+
+    main{
+
+        width:min(100% - 22px, 900px);
+
+        padding-top:22px;
+    }
+
+
+    .hero{
+
+        padding:25px 22px;
+
+        border-radius:22px;
+    }
+
+
+    .hero h1{
+
+        font-size:28px;
+    }
+
+
+    .card-header{
+
+        padding:19px;
+    }
+
+
+    .card-body{
+
+        padding:19px;
+    }
+
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .form-group.full{
+
+        grid-column:auto;
+    }
+
+
+    .security-box{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .security-info{
+
+        grid-column:auto;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width:560px){
+
+    body{
+
+        background:
+            linear-gradient(
+                180deg,
+                #F5FBF8 0%,
+                #FFFEFA 65%,
+                #F8FCFA 100%
+            );
+    }
+
+
+    .navbar{
+
+        gap:8px;
+    }
+
+
+    .nav-right{
+
+        gap:6px;
+    }
+
+
+    .user-badge{
+
+        display:none;
+    }
+
+
+    .back-button{
+
+        padding:9px 11px;
+
+        border-radius:11px;
+    }
+
+
+    .back-button span{
+
+        display:none;
+    }
+
+
+    main{
+
+        width:calc(100% - 16px);
+
+        padding-top:14px;
+
+        padding-bottom:40px;
+    }
+
+
+    .hero{
+
+        padding:23px 19px;
+
+        margin-bottom:14px;
+
+        border-radius:20px;
+    }
+
+
+    .hero-tag{
+
+        font-size:9px;
+
+        padding:6px 9px;
+    }
+
+
+    .hero h1{
+
+        font-size:25px;
+
+        letter-spacing:-.9px;
+    }
+
+
+    .hero p{
+
+        font-size:12px;
+
+        line-height:1.65;
+    }
+
+
+    .hero-status{
+
+        width:100%;
+
+        font-size:10px;
+    }
+
+
+    .settings-card{
+
+        border-radius:20px;
+
+        margin-bottom:13px;
+    }
+
+
+    .card-header{
+
+        padding:17px;
+
+        gap:11px;
+    }
+
+
+    .card-icon{
+
+        width:40px;
+        height:40px;
+
+        border-radius:12px;
+
+        font-size:17px;
+    }
+
+
+    .card-title{
+
+        font-size:14px;
+    }
+
+
+    .card-description{
+
+        font-size:10px;
+    }
+
+
+    .card-body{
+
+        padding:17px;
+    }
+
+
+    .form-grid{
+
+        gap:14px;
+    }
+
+
+    .form-input,
+    .form-select{
+
+        min-height:46px;
+
+        font-size:12px;
+    }
+
+
+    .notification-item{
+
+        padding:13px;
+
+        border-radius:14px;
+    }
+
+
+    .notification-icon{
+
+        width:36px;
+        height:36px;
+
+        border-radius:10px;
+    }
+
+
+    .notification-title{
+
+        font-size:11px;
+    }
+
+
+    .notification-description{
+
+        font-size:9px;
+    }
+
+
+    .switch{
+
+        width:44px;
+        height:25px;
+    }
+
+
+    .slider::before{
+
+        width:19px;
+        height:19px;
+    }
+
+
+    .switch input:checked + .slider::before{
+
+        transform:translateX(19px);
+    }
+
+
+    .save-button{
+
+        min-height:48px;
+
+        font-size:12px;
+    }
+
+
+    .security-button{
+
+        min-height:50px;
+
+        font-size:11px;
+    }
+
+
+    #toast{
+
+        width:calc(100% - 30px);
+
+        text-align:center;
+
+        white-space:normal;
+
+        bottom:18px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     LOADING ORIGINAL
+====================================================== -->
+
+<div id="loadingScreen">
+
+    <img
+        src="../../imagenes/logo.jpg"
+        class="loading-logo"
+        alt="TIKARY">
+
+    <div style="
+        margin-top:20px;
+        color:var(--green);
+        font-weight:700;
+        font-size:14px;
+    ">
+        Cargando Ajustes de Cuenta TIKARY 3...
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <img
+                src="../../imagenes/logo.jpg"
+                class="brand-logo"
+                alt="Logo TIKARY">
+
+            <div class="brand-info">
+
+                <div class="brand-name">
+                    TIKARY 3
+                </div>
+
+                <div class="brand-subtitle">
+                    Bienestar estudiantil
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <div class="user-badge">
+
+                👤 DNI:
+                <span id="dniText">---</span>
+
+            </div>
+
+
+            <button
+                class="back-button"
+                onclick="goToPage('casa3.html')">
+
+                ←
+
+                <span>
+                    Volver al Panel
+                </span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<main>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-tag">
+                ⚙️ PANEL DE USUARIO
+            </div>
+
+
+            <h1>
+                Configuración de la Cuenta
+            </h1>
+
+
+            <p>
+                Administra tus datos personales, preferencias
+                de notificaciones y la seguridad de tu acceso
+                institucional TIKARY 3.
+            </p>
+
+
+            <div class="hero-status">
+
+                <span class="status-dot"></span>
+
+                Tu cuenta institucional está protegida
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         PERFIL
+    ================================================== -->
+
+    <section class="settings-card">
+
+        <div class="card-header">
+
+            <div class="card-icon">
+                👤
+            </div>
+
+            <div class="card-header-text">
+
+                <div class="card-title">
+                    Perfil del Estudiante
+                </div>
+
+                <div class="card-description">
+                    Actualiza la información asociada a tu perfil.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <form onsubmit="saveProfile(event)">
+
+                <div class="form-grid">
+
+
+                    <!-- DNI -->
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            DNI
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <span class="input-icon">
+                                🪪
+                            </span>
+
+                            <input
+                                id="cfgDni"
+                                class="form-input"
+                                type="text"
+                                disabled
+                                readonly
+                                placeholder="Cargando...">
+
+                        </div>
+
+                        <div class="form-note">
+                            Identificador institucional de tu cuenta.
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Correo institucional
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                id="cfgEmail"
+                                class="form-input"
+                                type="email"
+                                disabled
+                                readonly
+                                placeholder="Cargando...">
+
+                        </div>
+
+                        <div class="form-note">
+                            El correo institucional no puede modificarse.
+                        </div>
+
+                    </div>
+
+
+                    <!-- NOMBRE -->
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Nombre completo
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <span class="input-icon">
+                                ✨
+                            </span>
+
+                            <input
+                                id="cfgNombre"
+                                class="form-input"
+                                type="text"
+                                required
+                                placeholder="Escribe tu nombre completo">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TELEFONO -->
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Número de teléfono
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <span class="input-icon">
+                                📱
+                            </span>
+
+                            <input
+                                id="cfgTelefono"
+                                class="form-input"
+                                type="tel"
+                                placeholder="Ej. 987654321">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CARRERA -->
+
+                    <div class="form-group full">
+
+                        <label class="form-label">
+                            Carrera profesional
+                        </label>
+
+                        <div class="select-wrap">
+
+                            <select
+                                id="cfgCarrera"
+                                class="form-select">
+
+                                <option value="">
+                                    Selecciona tu carrera
+                                </option>
+
+                                <option value="Ingeniería de Sistemas">
+                                    Ingeniería de Sistemas
+                                </option>
+
+                                <option value="Psicología">
+                                    Psicología
+                                </option>
+
+                                <option value="Administración de Empresas">
+                                    Administración de Empresas
+                                </option>
+
+                                <option value="Derecho">
+                                    Derecho
+                                </option>
+
+                                <option value="Medicina Humana">
+                                    Medicina Humana
+                                </option>
+
+                                <option value="Otra Carrera">
+                                    Otra Carrera
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="save-button">
+
+                    💾 Guardar Cambios de Perfil
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         NOTIFICACIONES
+    ================================================== -->
+
+    <section class="settings-card">
+
+        <div class="card-header">
+
+            <div class="card-icon">
+                🔔
+            </div>
+
+            <div class="card-header-text">
+
+                <div class="card-title">
+                    Preferencias de Notificación
+                </div>
+
+                <div class="card-description">
+                    Elige qué avisos deseas recibir en TIKARY 3.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <div class="notification-list">
+
+
+                <!-- casa -->
+
+                <div class="notification-item">
+
+                    <div class="notification-left">
+
+                        <div class="notification-icon">
+                            📅
+                        </div>
+
+                        <div class="notification-text">
+
+                            <div class="notification-title">
+                                Citas psicológicas
+                            </div>
+
+                            <div class="notification-description">
+                                Recibe recordatorios sobre tus citas.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="notifCitas"
+                            checked
+                            onchange="updatePreferences()">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- RUTAS -->
+
+                <div class="notification-item">
+
+                    <div class="notification-left">
+
+                        <div class="notification-icon">
+                            🧭
+                        </div>
+
+                        <div class="notification-text">
+
+                            <div class="notification-title">
+                                Rutas y acompañamiento
+                            </div>
+
+                            <div class="notification-description">
+                                Mantente informado sobre tus procesos.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="notifRutas"
+                            checked
+                            onchange="updatePreferences()">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- BIBLIOTECA -->
+
+                <div class="notification-item">
+
+                    <div class="notification-left">
+
+                        <div class="notification-icon">
+                            📚
+                        </div>
+
+                        <div class="notification-text">
+
+                            <div class="notification-title">
+                                Biblioteca
+                            </div>
+
+                            <div class="notification-description">
+                                Recibe novedades y nuevos recursos.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="notifBiblioteca"
+                            onchange="updatePreferences()">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SEGURIDAD
+    ================================================== -->
+
+    <section class="settings-card">
+
+        <div class="card-header">
+
+            <div class="card-icon">
+                🔐
+            </div>
+
+            <div class="card-header-text">
+
+                <div class="card-title">
+                    Seguridad y Sesión
+                </div>
+
+                <div class="card-description">
+                    Gestiona el acceso y la seguridad de tu cuenta.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <div class="security-box">
+
+
+                <button
+                    type="button"
+                    class="security-button"
+                    onclick="resetPassword()">
+
+                    🔑 Restablecer Contraseña
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="security-button logout"
+                    onclick="handleLogout()">
+
+                    🚪 Cerrar Sesión en TIKARY 3
+
+                </button>
+
+
+                <div class="security-info">
+
+                    <span class="security-info-icon">
+                        🛡️
+                    </span>
+
+                    <span>
+                        Tu acceso institucional está vinculado a tu
+                        correo TIKARY 3. Si necesitas recuperar tu
+                        contraseña, recibirás un enlace en tu correo
+                        institucional.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer-note">
+
+        TIKARY 3 · Bienestar y acompañamiento estudiantil
+
+        <br>
+
+        Tus datos se gestionan de manera segura.
+
+    </div>
+
+
+</main>
+
+
+<!-- ======================================================
+     TOAST
+====================================================== -->
+
+<div id="toast"></div>
+
+
+
+<!-- ======================================================
+     FIREBASE
+====================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+    sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+};
+
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+let currentDni = "";
+let currentEmail = "";
+
+
+
+/* ======================================================
+   AUTENTICACIÓN
+====================================================== */
+
+onAuthStateChanged(auth, async (user) => {
+
+    try {
+
+        if (!user) {
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        currentEmail =
+            (user.email || "")
+            .trim()
+            .toLowerCase();
+
+
+        const regexTikary3 =
+            /^\d{8}@tikary3\.com$/;
+
+
+        if (!regexTikary3.test(currentEmail)) {
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        currentDni =
+            currentEmail.split("@")[0];
+
+
+        document.getElementById("dniText")
+            .textContent =
+            currentDni;
+
+
+        document.getElementById("cfgDni")
+            .value =
+            currentDni;
+
+
+        document.getElementById("cfgEmail")
+            .value =
+            currentEmail;
+
+
+
+        const refDni =
+            doc(
+                db,
+                "dni_permitidos",
+                currentDni
+            );
+
+
+        const snapshotDni =
+            await getDoc(refDni);
+
+
+        if (!snapshotDni.exists()) {
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        await cargarDatosPerfil();
+
+
+        document.getElementById(
+            "loadingScreen"
+        ).style.display = "none";
+
+
+    } catch (error) {
+
+        console.error(
+            "Error al verificar auth en configuracion 3:",
+            error
+        );
+
+        window.location.href =
+            "../../index.html";
+    }
+
+});
+
+
+
+/* ======================================================
+   CARGAR PERFIL
+====================================================== */
+
+async function cargarDatosPerfil() {
+
+    try {
+
+        const refPerfil =
+            doc(
+                db,
+                "perfiles_estudiantes",
+                currentDni
+            );
+
+
+        const snap =
+            await getDoc(refPerfil);
+
+
+        if (snap.exists()) {
+
+            const data =
+                snap.data();
+
+
+            document.getElementById(
+                "cfgNombre"
+            ).value =
+                data.nombre || "";
+
+
+            document.getElementById(
+                "cfgTelefono"
+            ).value =
+                data.telefono || "";
+
+
+            document.getElementById(
+                "cfgCarrera"
+            ).value =
+                data.carrera || "";
+
+
+
+            if (data.preferencias) {
+
+                document.getElementById(
+                    "notifCitas"
+                ).checked =
+                    data.preferencias.citas !== false;
+
+
+                document.getElementById(
+                    "notifRutas"
+                ).checked =
+                    data.preferencias.rutas !== false;
+
+
+                document.getElementById(
+                    "notifBiblioteca"
+                ).checked =
+                    data.preferencias.biblioteca === true;
+
+            }
+
+        }
+
+    } catch (e) {
+
+        console.error(
+            "Error al cargar perfil:",
+            e
+        );
+
+    }
+
+}
+
+
+
+/* ======================================================
+   GUARDAR PERFIL
+====================================================== */
+
+window.saveProfile =
+async function(event) {
+
+    event.preventDefault();
+
+
+    if (!currentDni)
+        return;
+
+
+    const nombre =
+        document.getElementById(
+            "cfgNombre"
+        ).value.trim();
+
+
+    const telefono =
+        document.getElementById(
+            "cfgTelefono"
+        ).value.trim();
+
+
+    const carrera =
+        document.getElementById(
+            "cfgCarrera"
+        ).value;
+
+
+    try {
+
+        const refPerfil =
+            doc(
+                db,
+                "perfiles_estudiantes",
+                currentDni
+            );
+
+
+        await setDoc(
+
+            refPerfil,
+
+            {
+
+                dniEstudiante:
+                    currentDni,
+
+                email:
+                    currentEmail,
+
+                nombre:
+                    nombre,
+
+                telefono:
+                    telefono,
+
+                carrera:
+                    carrera,
+
+                ultimaActualizacion:
+                    new Date().toISOString()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        showToast(
+            "¡Perfil actualizado con éxito! ✓"
+        );
+
+
+    } catch (err) {
+
+        console.error(
+            "Error al guardar perfil:",
+            err
+        );
+
+
+        alert(
+            "Ocurrió un error al actualizar tus datos."
+        );
+
+    }
+
+};
+
+
+
+/* ======================================================
+   PREFERENCIAS
+====================================================== */
+
+window.updatePreferences =
+async function() {
+
+    if (!currentDni)
+        return;
+
+
+    const prefs = {
+
+        citas:
+            document.getElementById(
+                "notifCitas"
+            ).checked,
+
+        rutas:
+            document.getElementById(
+                "notifRutas"
+            ).checked,
+
+        biblioteca:
+            document.getElementById(
+                "notifBiblioteca"
+            ).checked
+
+    };
+
+
+    try {
+
+        const refPerfil =
+            doc(
+                db,
+                "perfiles_estudiantes",
+                currentDni
+            );
+
+
+        await setDoc(
+
+            refPerfil,
+
+            {
+                preferencias:prefs
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        showToast(
+            "Preferencias guardadas ✓"
+        );
+
+
+    } catch (err) {
+
+        console.error(
+            "Error guardando preferencias:",
+            err
+        );
+
+    }
+
+};
+
+
+
+/* ======================================================
+   RESTABLECER CONTRASEÑA
+====================================================== */
+
+window.resetPassword =
+async function() {
+
+    if (!currentEmail)
+        return;
+
+
+    try {
+
+        await sendPasswordResetEmail(
+            auth,
+            currentEmail
+        );
+
+
+        alert(
+            `Se ha enviado un enlace para restablecer tu contraseña a ${currentEmail}. Revisa tu bandeja de entrada.`
+        );
+
+
+    } catch (err) {
+
+        console.error(
+            "Error enviando reset de contraseña:",
+            err
+        );
+
+
+        alert(
+            "No se pudo enviar el correo de recuperación."
+        );
+
+    }
+
+};
+
+
+
+/* ======================================================
+   CERRAR SESIÓN
+====================================================== */
+
+window.handleLogout =
+async function() {
+
+    if (
+        confirm(
+            "¿Estás seguro de que deseas cerrar sesión en TIKARY 3?"
+        )
+    ) {
+
+        try {
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+
+        } catch (err) {
+
+            console.error(
+                "Error cerrando sesión:",
+                err
+            );
+
+        }
+
+    }
+
+};
+
+</script>
+
+
+
+<script>
+
+/* ======================================================
+   FUNCIONES GENERALES
+====================================================== */
+
+function goToPage(page) {
+
+    window.location.href =
+        page;
+
+}
+
+
+function showToast(msg) {
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        msg;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(
+        () =>
+            toast.classList.remove("show"),
+        2800
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

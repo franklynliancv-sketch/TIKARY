@@ -1,0 +1,3876 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#176B52"
+>
+
+<meta
+    name="description"
+    content="TIKARY 1 · Rutas estudiantiles para compartir, salir, conversar y crear comunidad."
+>
+
+<title>TIKARY 1 | Rutas y Comunidades Estudiantiles</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   TIKARY 1 · RUTAS
+   DISEÑO RESPONSIVE · MÓVIL · TABLET · PC · LAPTOP · TV
+========================================================= */
+
+:root{
+
+    --green:#176B52;
+    --green-dark:#0D4D3B;
+    --green-light:#2D9272;
+    --green-soft:#E8F7F0;
+
+    --gold:#D9A441;
+    --gold-light:#F4D88C;
+    --gold-soft:#FFF8E7;
+
+    --cream:#FFFDF7;
+    --white:#FFFFFF;
+
+    --text:#17352D;
+    --gray:#6B7B75;
+    --gray-light:#94A39E;
+
+    --blue:#E8F1FF;
+    --blue-text:#315E9B;
+
+    --purple:#F3EAFE;
+    --purple-text:#7048A8;
+
+    --orange:#FFF0DE;
+    --orange-text:#B85E12;
+
+    --pink:#FDEAF1;
+    --pink-text:#A83E68;
+
+    --shadow:0 20px 50px rgba(13,77,59,.11);
+    --shadow-hover:0 26px 60px rgba(13,77,59,.18);
+
+    --radius:28px;
+
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:"Inter",sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 8% 5%,
+            rgba(45,146,114,.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 94% 18%,
+            rgba(217,164,65,.13),
+            transparent 24%
+        ),
+        linear-gradient(
+            135deg,
+            #E8F7F0 0%,
+            #FFFDF7 48%,
+            #F7EEDC 100%
+        );
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+button{
+    font-family:inherit;
+}
+
+button:focus-visible{
+    outline:3px solid rgba(217,164,65,.55);
+    outline-offset:3px;
+}
+
+/* =========================================================
+   FONDO DECORATIVO
+========================================================= */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:360px;
+    height:360px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    filter:blur(10px);
+
+}
+
+body::before{
+
+    top:12%;
+    left:-190px;
+
+    background:rgba(45,146,114,.09);
+
+}
+
+body::after{
+
+    right:-180px;
+    bottom:4%;
+
+    background:rgba(217,164,65,.09);
+
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:rgba(255,253,247,.82);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(23,53,45,.07);
+
+}
+
+.navbar{
+
+    width:min(1240px,calc(100% - 32px));
+
+    min-height:78px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+}
+
+.brand img{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 8px 24px rgba(13,77,59,.16);
+
+}
+
+.brand-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.brand-name{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    line-height:1.1;
+
+}
+
+.brand-sub{
+
+    margin-top:3px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    color:var(--gray);
+
+    letter-spacing:.5px;
+
+}
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.user-badge{
+
+    background:var(--green-soft);
+
+    border:1px solid rgba(23,107,82,.16);
+
+    padding:9px 14px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+.back-btn{
+
+    border:1px solid rgba(23,53,45,.09);
+
+    background:rgba(255,255,255,.9);
+
+    padding:10px 16px;
+
+    border-radius:14px;
+
+    color:var(--green-dark);
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    transition:.25s ease;
+
+}
+
+.back-btn:hover{
+
+    background:var(--green-soft);
+
+    transform:translateY(-2px);
+
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+
+    width:min(1180px,calc(100% - 32px));
+
+    margin:auto;
+
+    padding:34px 0 80px;
+
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:38px;
+
+    border-radius:34px;
+
+    color:white;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(244,216,140,.20),
+            transparent 27%
+        ),
+        linear-gradient(
+            135deg,
+            #176B52,
+            #0D4D3B
+        );
+
+    box-shadow:
+        0 24px 55px rgba(13,77,59,.20);
+
+    border:1px solid rgba(255,255,255,.24);
+
+    margin-bottom:24px;
+
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:50%;
+
+    right:-60px;
+    top:-80px;
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    border:1px solid rgba(244,216,140,.16);
+
+    border-radius:50%;
+
+    right:90px;
+    bottom:-70px;
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:780px;
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 13px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.14);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+}
+
+.hero h1{
+
+    margin:15px 0 9px;
+
+    font-size:clamp(27px,4vw,42px);
+
+    line-height:1.08;
+
+    letter-spacing:-1px;
+
+}
+
+.hero p{
+
+    margin:0;
+
+    max-width:720px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    color:rgba(255,255,255,.88);
+
+}
+
+/* =========================================================
+   MINI ESTADÍSTICAS
+========================================================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:28px;
+
+    max-width:760px;
+
+}
+
+.stat{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:12px 14px;
+
+    border-radius:17px;
+
+    background:rgba(255,255,255,.11);
+
+    border:1px solid rgba(255,255,255,.13);
+
+}
+
+.stat-icon{
+
+    width:38px;
+    height:38px;
+
+    flex-shrink:0;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:rgba(255,255,255,.14);
+
+    font-size:18px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:16px;
+
+}
+
+.stat span{
+
+    display:block;
+
+    margin-top:2px;
+
+    font-size:10px;
+
+    color:rgba(255,255,255,.72);
+
+    font-weight:600;
+
+}
+
+/* =========================================================
+   MIS RUTAS
+========================================================= */
+
+.my-routes{
+
+    background:rgba(255,255,255,.78);
+
+    border:1px solid rgba(255,255,255,.92);
+
+    border-radius:28px;
+
+    padding:22px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:28px;
+
+    backdrop-filter:blur(16px);
+
+    -webkit-backdrop-filter:blur(16px);
+
+}
+
+.section-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:17px;
+
+}
+
+.section-title-wrap{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.section-icon{
+
+    width:44px;
+    height:44px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:14px;
+
+    background:var(--gold-soft);
+
+    border:1px solid rgba(217,164,65,.18);
+
+    font-size:20px;
+
+}
+
+.section-title{
+
+    margin:0;
+
+    color:var(--green-dark);
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+.section-subtitle{
+
+    margin:3px 0 0;
+
+    font-size:11px;
+
+    color:var(--gray);
+
+}
+
+.route-counter{
+
+    padding:7px 11px;
+
+    border-radius:999px;
+
+    background:var(--green-soft);
+
+    color:var(--green-dark);
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+.my-routes-list{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+    gap:12px;
+
+}
+
+.my-route{
+
+    padding:16px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #F4FBF7,
+            #FFFFFF
+        );
+
+    border:1px solid rgba(23,107,82,.10);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+.my-route-icon{
+
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:16px;
+
+    background:var(--green-soft);
+
+    font-size:23px;
+
+}
+
+.my-route-content{
+
+    min-width:0;
+
+    flex:1;
+
+}
+
+.my-route-title{
+
+    margin:0 0 4px;
+
+    color:var(--green-dark);
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+.my-route-info{
+
+    margin:0;
+
+    color:var(--gray);
+
+    font-size:10px;
+
+    line-height:1.55;
+
+}
+
+.my-route-status{
+
+    padding:5px 8px;
+
+    border-radius:8px;
+
+    background:var(--gold-soft);
+
+    color:#856116;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+}
+
+.empty-routes{
+
+    padding:20px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:#FAFCFB;
+
+    border:1px dashed rgba(23,107,82,.18);
+
+    color:var(--gray);
+
+    font-size:12px;
+
+}
+
+.empty-routes strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+    color:var(--green-dark);
+
+}
+
+/* =========================================================
+   EXPLORAR
+========================================================= */
+
+.explore-heading{
+
+    margin:5px 0 15px;
+
+}
+
+.explore-heading h2{
+
+    margin:0;
+
+    font-size:22px;
+
+    color:var(--green-dark);
+
+    font-weight:800;
+
+}
+
+.explore-heading p{
+
+    margin:5px 0 0;
+
+    font-size:12px;
+
+    color:var(--gray);
+
+}
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.filter-bar{
+
+    display:flex;
+
+    gap:9px;
+
+    overflow-x:auto;
+
+    padding:3px 2px 13px;
+
+    margin-bottom:8px;
+
+    scrollbar-width:none;
+
+}
+
+.filter-bar::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.filter-btn{
+
+    flex-shrink:0;
+
+    border:1px solid rgba(23,53,45,.09);
+
+    background:rgba(255,255,255,.78);
+
+    padding:10px 15px;
+
+    border-radius:14px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    transition:.23s ease;
+
+}
+
+.filter-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:rgba(23,107,82,.22);
+
+}
+
+.filter-btn.active{
+
+    background:var(--green-dark);
+
+    color:white;
+
+    border-color:var(--green-dark);
+
+    box-shadow:0 8px 18px rgba(13,77,59,.16);
+
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.groups-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:20px;
+
+}
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.group-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.84);
+
+    backdrop-filter:blur(16px);
+
+    -webkit-backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,255,255,.95);
+
+    border-radius:27px;
+
+    padding:24px;
+
+    box-shadow:
+        0 15px 38px rgba(13,77,59,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    min-height:350px;
+
+    transition:
+        transform .28s ease,
+        box-shadow .28s ease,
+        background .28s ease;
+
+    animation:cardIn .55s ease both;
+
+}
+
+.group-card:nth-child(2){
+    animation-delay:.06s;
+}
+
+.group-card:nth-child(3){
+    animation-delay:.12s;
+}
+
+.group-card:nth-child(4){
+    animation-delay:.18s;
+}
+
+.group-card:nth-child(5){
+    animation-delay:.24s;
+}
+
+.group-card:nth-child(6){
+    animation-delay:.30s;
+}
+
+@keyframes cardIn{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.group-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-hover);
+
+    background:#FFFFFF;
+
+}
+
+.group-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    right:-65px;
+    top:-65px;
+
+    background:rgba(23,107,82,.035);
+
+    pointer-events:none;
+
+}
+
+.group-top{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+.group-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:5px 10px;
+
+    border-radius:8px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.3px;
+
+    margin-bottom:15px;
+
+}
+
+.tag-viaje{
+    background:#E7F0FF;
+    color:#315E9B;
+}
+
+.tag-paseo{
+    background:#E8F7F0;
+    color:#247257;
+}
+
+.tag-charla{
+    background:#FFF0DE;
+    color:#B85E12;
+}
+
+.tag-reunion{
+    background:#F3EAFE;
+    color:#7048A8;
+}
+
+.tag-comida{
+    background:#FFF5DF;
+    color:#966D17;
+}
+
+.tag-musica{
+    background:#FDEAF1;
+    color:#A83E68;
+}
+
+.tag-podcast{
+    background:#EAF4F8;
+    color:#276A7D;
+}
+
+.tag-video{
+    background:#EEEAFE;
+    color:#5E4AA1;
+}
+
+.group-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    margin-bottom:13px;
+
+}
+
+.group-icon{
+
+    width:58px;
+    height:58px;
+
+    flex-shrink:0;
+
+    border-radius:18px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:var(--green-soft);
+
+    border:1px solid rgba(23,107,82,.14);
+
+    font-size:27px;
+
+    box-shadow:0 8px 18px rgba(23,107,82,.07);
+
+}
+
+.group-title{
+
+    margin:0 0 5px;
+
+    font-size:17px;
+
+    line-height:1.25;
+
+    font-weight:800;
+
+    color:var(--green-dark);
+
+}
+
+.group-organizer{
+
+    font-size:10px;
+
+    color:var(--gray);
+
+    font-weight:700;
+
+}
+
+.group-desc{
+
+    margin:0 0 16px;
+
+    color:var(--text);
+
+    font-size:12px;
+
+    line-height:1.62;
+
+}
+
+.group-details{
+
+    background:
+        linear-gradient(
+            135deg,
+            #EFFAF5,
+            #F8FCFA
+        );
+
+    border:1px solid rgba(23,107,82,.08);
+
+    border-radius:17px;
+
+    padding:13px 14px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+
+    margin-bottom:19px;
+
+}
+
+.detail{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+    font-size:10px;
+
+    color:var(--green-dark);
+
+    line-height:1.45;
+
+}
+
+.detail-icon{
+
+    width:18px;
+
+    flex-shrink:0;
+
+    text-align:center;
+
+}
+
+.detail strong{
+
+    font-weight:800;
+
+}
+
+.group-footer{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.btn-join{
+
+    width:100%;
+
+    border:0;
+
+    background:var(--green);
+
+    color:white;
+
+    padding:13px 18px;
+
+    border-radius:15px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    transition:.25s ease;
+
+    box-shadow:
+        0 8px 20px rgba(23,107,82,.15);
+
+}
+
+.btn-join:hover{
+
+    background:var(--green-dark);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(13,77,59,.20);
+
+}
+
+.btn-join.joined{
+
+    background:var(--gold);
+
+    color:var(--green-dark);
+
+    cursor:default;
+
+    box-shadow:none;
+
+}
+
+.btn-join.joined:hover{
+
+    transform:none;
+
+}
+
+/* =========================================================
+   NOTA INFERIOR
+========================================================= */
+
+.community-note{
+
+    margin-top:28px;
+
+    padding:20px 22px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,248,231,.95),
+            rgba(255,255,255,.86)
+        );
+
+    border:1px solid rgba(217,164,65,.18);
+
+    box-shadow:0 14px 32px rgba(13,77,59,.06);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.community-note-icon{
+
+    width:45px;
+    height:45px;
+
+    flex-shrink:0;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:14px;
+
+    background:var(--gold-soft);
+
+    font-size:21px;
+
+}
+
+.community-note strong{
+
+    display:block;
+
+    color:var(--green-dark);
+
+    font-size:13px;
+
+    margin-bottom:3px;
+
+}
+
+.community-note span{
+
+    color:var(--gray);
+
+    font-size:11px;
+
+    line-height:1.5;
+
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:28px;
+
+    transform:translate(-50%,20px);
+
+    background:var(--green-dark);
+
+    color:white;
+
+    padding:13px 20px;
+
+    border-radius:15px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 16px 40px rgba(13,77,59,.28);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s ease;
+
+    z-index:10000;
+
+    max-width:calc(100% - 32px);
+
+    text-align:center;
+
+}
+
+#toast.show{
+
+    opacity:1;
+
+    transform:translate(-50%,0);
+
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #FFFFFF,
+            #E8F7F0
+        );
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:9999;
+
+}
+
+.loading-logo{
+
+    width:82px;
+    height:82px;
+
+    border-radius:23px;
+
+    object-fit:cover;
+
+    box-shadow:
+        0 15px 40px rgba(13,77,59,.18);
+
+    animation:loadingFloat 1.8s ease-in-out infinite;
+
+}
+
+@keyframes loadingFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-7px);
+    }
+
+}
+
+.loading-text{
+
+    margin-top:20px;
+
+    color:var(--green);
+
+    font-weight:800;
+
+    font-size:13px;
+
+}
+
+.loading-sub{
+
+    margin-top:6px;
+
+    color:var(--gray);
+
+    font-size:10px;
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:900px){
+
+    .groups-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero{
+
+        padding:30px;
+
+    }
+
+}
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width:650px){
+
+    .navbar{
+
+        width:calc(100% - 20px);
+
+        min-height:68px;
+
+    }
+
+    .brand-sub{
+
+        display:none;
+
+    }
+
+    .brand-name{
+
+        font-size:16px;
+
+    }
+
+    .brand img{
+
+        width:40px;
+        height:40px;
+
+    }
+
+    .header-right{
+
+        gap:6px;
+
+    }
+
+    .user-badge{
+
+        display:none;
+
+    }
+
+    .back-btn{
+
+        padding:9px 12px;
+
+        font-size:10px;
+
+    }
+
+    main{
+
+        width:calc(100% - 20px);
+
+        padding-top:20px;
+
+        padding-bottom:50px;
+
+    }
+
+    .hero{
+
+        padding:25px 21px;
+
+        border-radius:25px;
+
+    }
+
+    .hero h1{
+
+        font-size:27px;
+
+    }
+
+    .hero p{
+
+        font-size:12px;
+
+        line-height:1.6;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+        gap:8px;
+
+    }
+
+    .stat{
+
+        padding:10px 12px;
+
+    }
+
+    .my-routes{
+
+        padding:17px;
+
+        border-radius:23px;
+
+    }
+
+    .section-title{
+
+        font-size:16px;
+
+    }
+
+    .section-subtitle{
+
+        display:none;
+
+    }
+
+    .route-counter{
+
+        font-size:9px;
+
+    }
+
+    .my-routes-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .groups-grid{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+    .group-card{
+
+        min-height:auto;
+
+        padding:20px;
+
+        border-radius:23px;
+
+    }
+
+    .group-title{
+
+        font-size:16px;
+
+    }
+
+    .group-desc{
+
+        font-size:11px;
+
+    }
+
+    .community-note{
+
+        align-items:flex-start;
+
+        padding:17px;
+
+    }
+
+}
+
+/* =========================================================
+   LAPTOP / PC GRANDES
+========================================================= */
+
+@media (min-width:1400px){
+
+    .navbar{
+
+        width:min(1450px,calc(100% - 70px));
+
+        min-height:90px;
+
+    }
+
+    main{
+
+        width:min(1400px,calc(100% - 70px));
+
+        padding-top:45px;
+
+    }
+
+    .brand img{
+
+        width:50px;
+        height:50px;
+
+    }
+
+    .brand-name{
+
+        font-size:21px;
+
+    }
+
+    .hero{
+
+        padding:48px;
+
+        border-radius:38px;
+
+    }
+
+    .hero h1{
+
+        font-size:46px;
+
+    }
+
+    .hero p{
+
+        font-size:16px;
+
+    }
+
+    .groups-grid{
+
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+
+    }
+
+    .group-card{
+
+        min-height:390px;
+
+        padding:27px;
+
+    }
+
+    .group-title{
+
+        font-size:19px;
+
+    }
+
+    .group-desc{
+
+        font-size:13px;
+
+    }
+
+    .detail{
+
+        font-size:11px;
+
+    }
+
+    .btn-join{
+
+        font-size:12px;
+
+        padding:15px 20px;
+
+    }
+
+}
+
+/* =========================================================
+   TV / PANTALLAS MUY GRANDES
+========================================================= */
+
+@media (min-width:1900px){
+
+    body{
+
+        font-size:16px;
+
+    }
+
+    .navbar{
+
+        width:min(1680px,calc(100% - 100px));
+
+        min-height:100px;
+
+    }
+
+    main{
+
+        width:min(1600px,calc(100% - 100px));
+
+        padding-top:55px;
+
+    }
+
+    .hero{
+
+        padding:58px;
+
+        border-radius:42px;
+
+        margin-bottom:32px;
+
+    }
+
+    .hero-badge{
+
+        font-size:12px;
+
+        padding:9px 15px;
+
+    }
+
+    .hero h1{
+
+        font-size:52px;
+
+    }
+
+    .hero p{
+
+        font-size:17px;
+
+        max-width:900px;
+
+    }
+
+    .stats{
+
+        margin-top:34px;
+
+        max-width:900px;
+
+    }
+
+    .stat{
+
+        padding:15px 17px;
+
+    }
+
+    .stat-icon{
+
+        width:44px;
+        height:44px;
+
+    }
+
+    .stat strong{
+
+        font-size:19px;
+
+    }
+
+    .stat span{
+
+        font-size:11px;
+
+    }
+
+    .groups-grid{
+
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+
+        gap:25px;
+
+    }
+
+    .group-card{
+
+        min-height:425px;
+
+        padding:30px;
+
+        border-radius:32px;
+
+    }
+
+    .group-icon{
+
+        width:64px;
+        height:64px;
+
+        font-size:30px;
+
+    }
+
+    .group-title{
+
+        font-size:20px;
+
+    }
+
+    .group-desc{
+
+        font-size:13px;
+
+        line-height:1.7;
+
+    }
+
+    .detail{
+
+        font-size:11px;
+
+    }
+
+}
+
+/* =========================================================
+   REDUCIR ANIMACIONES
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =======================================================
+     PANTALLA DE CARGA
+======================================================= -->
+
+<div id="loadingScreen">
+
+    <img
+        src="../../imagenes/logo.jpg"
+        class="loading-logo"
+        alt="TIKARY"
+    >
+
+    <div class="loading-text">
+        Preparando tus Rutas en TIKARY 1...
+    </div>
+
+    <div class="loading-sub">
+        Estamos buscando espacios para compartir.
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div
+            class="brand"
+            onclick="goToPage('casa1.html')"
+        >
+
+            <img
+                src="../../imagenes/logo.jpg"
+                alt="TIKARY"
+            >
+
+            <div class="brand-info">
+
+                <div class="brand-name">
+                    TIKARY 1
+                </div>
+
+                <div class="brand-sub">
+                    COMUNIDAD · RUTAS · INTEGRACIÓN
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="user-badge">
+
+                👤 DNI:
+
+                <span id="dniText">
+                    ---
+                </span>
+
+            </div>
+
+
+            <button
+                class="back-btn"
+                onclick="goToPage('casa1.html')"
+            >
+
+                ←
+                <span>Volver al casa1</span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- =======================================================
+     CONTENIDO PRINCIPAL
+======================================================= -->
+
+<main>
+
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                🧭 RUTAS ESTUDIANTILES
+            </span>
+
+            <h1>
+                Encuentra tu espacio.
+                <br>
+                Comparte el camino.
+            </h1>
+
+            <p>
+                Rutas es el espacio de TIKARY 1 donde puedes encontrar
+                estudiantes con ganas de salir, conversar, comer,
+                escuchar música, crear contenido, estudiar, jugar
+                o simplemente compartir un momento.
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        🧭
+                    </div>
+
+                    <div>
+                        <strong id="totalRoutes">
+                            0
+                        </strong>
+
+                        <span>
+                            Rutas disponibles
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        🤝
+                    </div>
+
+                    <div>
+                        <strong id="myRoutesCount">
+                            0
+                        </strong>
+
+                        <span>
+                            Mis rutas
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        💚
+                    </div>
+
+                    <div>
+                        <strong>
+                            TIKARY
+                        </strong>
+
+                        <span>
+                            Un espacio para conectar
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         MIS RUTAS
+    ==================================================== -->
+
+    <section class="my-routes">
+
+        <div class="section-heading">
+
+            <div class="section-title-wrap">
+
+                <div class="section-icon">
+                    🎒
+                </div>
+
+                <div>
+
+                    <h2 class="section-title">
+                        Mis Rutas
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Aquí aparecerán las actividades a las que te hayas unido.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <span
+                class="route-counter"
+                id="routeCounter"
+            >
+                0 inscritas
+            </span>
+
+        </div>
+
+
+        <div
+            class="my-routes-list"
+            id="myRoutesList"
+        >
+
+            <div class="empty-routes">
+
+                <strong>
+                    Todavía no tienes una ruta guardada.
+                </strong>
+
+                Explora las actividades de abajo y únete a la que más te interese.
+                Aquí quedará guardada para que puedas volver a consultarla.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         EXPLORAR RUTAS
+    ==================================================== -->
+
+    <div class="explore-heading">
+
+        <h2>
+            Explora espacios para compartir
+        </h2>
+
+        <p>
+            No tienes que hacer todo solo. Encuentra una ruta y únete.
+        </p>
+
+    </div>
+
+
+    <!-- ===================================================
+         FILTROS
+    ==================================================== -->
+
+    <div class="filter-bar">
+
+        <button
+            class="filter-btn active"
+            onclick="filterGroups('all', this)"
+        >
+            🌟 Todos
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('viaje', this)"
+        >
+            🏔️ Viajes
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('paseo', this)"
+        >
+            🚲 Paseos
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('charla', this)"
+        >
+            🎤 Charlas
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('reunion', this)"
+        >
+            💻 Estudio
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('comida', this)"
+        >
+            🍔 Comida
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('musica', this)"
+        >
+            🎧 Música
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('podcast', this)"
+        >
+            🎙️ Podcast
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGroups('video', this)"
+        >
+            📹 Videollamada
+        </button>
+
+    </div>
+
+
+    <!-- ===================================================
+         GRID DE RUTAS
+    ==================================================== -->
+
+    <div class="groups-grid">
+
+
+        <!-- ===============================================
+             GRUPO 1 · VIAJE
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="viaje"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-viaje">
+                    Viaje de Integración
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        🏔️
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Ruta a Cieneguilla
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Consejo Estudiantil
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Día de campo y dinámicas al aire libre
+                    para conocer estudiantes, conversar y
+                    compartir una experiencia diferente.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Sábado 18 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Salida:</strong>
+                            Campus Central TIKARY · 07:30 AM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">👥</span>
+                        <span>
+                            <strong>Vacantes:</strong>
+                            12 cupos disponibles
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_1"
+                    onclick="joinGroup(
+                        'grupo_1',
+                        'Ruta a Cieneguilla',
+                        'Viaje',
+                        '🏔️'
+                    )"
+                >
+                    ➕ Unirme al Grupo
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 2 · PASEO
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="paseo"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-paseo">
+                    Paseo Cultural
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        🏛️
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Recorrido Histórico Centro
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Club de Arte
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Caminata fotográfica por el Centro Histórico,
+                    visitas a museos y una parada gastronómica
+                    para compartir en grupo.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Domingo 26 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Encuentro:</strong>
+                            Plaza Mayor · 02:00 PM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">👥</span>
+                        <span>
+                            <strong>Vacantes:</strong>
+                            Libre
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_2"
+                    onclick="joinGroup(
+                        'grupo_2',
+                        'Recorrido Histórico Centro',
+                        'Paseo',
+                        '🏛️'
+                    )"
+                >
+                    ➕ Unirme al Grupo
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 3 · CHARLA
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="charla"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-charla">
+                    Charla Presencial
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        🎤
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Liderazgo y Oratoria
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Módulo Orientación
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Taller práctico para desarrollar habilidades
+                    de comunicación, exposición y confianza
+                    frente a otras personas.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Jueves 15 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Lugar:</strong>
+                            Auditorio TIKARY 1 · 05:00 PM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">👥</span>
+                        <span>
+                            <strong>Vacantes:</strong>
+                            25 cupos
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_3"
+                    onclick="joinGroup(
+                        'grupo_3',
+                        'Liderazgo y Oratoria',
+                        'Charla',
+                        '🎤'
+                    )"
+                >
+                    ➕ Unirme al Grupo
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 4 · ESTUDIO
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="reunion"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-reunion">
+                    Reunión de Estudio
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        💻
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Club de Código y Proyectos
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Estudiantes Dev
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Sesión colaborativa para desarrollar proyectos,
+                    resolver dudas y compartir herramientas digitales.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Todos los Miércoles
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Lugar:</strong>
+                            Sala de Cómputo B · 04:00 PM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">👥</span>
+                        <span>
+                            <strong>Vacantes:</strong>
+                            Libre
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_4"
+                    onclick="joinGroup(
+                        'grupo_4',
+                        'Club de Código y Proyectos',
+                        'Reunión',
+                        '💻'
+                    )"
+                >
+                    ➕ Unirme al Grupo
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 5 · COMIDA
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="comida"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-comida">
+                    Salida para Comer
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        🍔
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Ruta Gastronómica
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Comunidad TIKARY
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Un espacio sencillo para salir a comer,
+                    conversar y conocer compañeros fuera del
+                    ambiente habitual de clases.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Viernes 24 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Punto:</strong>
+                            Entrada principal · 06:30 PM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">👥</span>
+                        <span>
+                            <strong>Grupo:</strong>
+                            Máximo 10 estudiantes
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_5"
+                    onclick="joinGroup(
+                        'grupo_5',
+                        'Ruta Gastronómica',
+                        'Comida',
+                        '🍔'
+                    )"
+                >
+                    🍽️ Quiero unirme
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 6 · MÚSICA
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="musica"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-musica">
+                    Música y Conversación
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        🎧
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Música al Atardecer
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Club Cultural
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Comparte canciones, descubre nuevos artistas,
+                    conversa y pasa un momento tranquilo con otros
+                    estudiantes.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Sábado 25 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Lugar:</strong>
+                            Zona de encuentro · 05:30 PM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">🎵</span>
+                        <span>
+                            <strong>Actividad:</strong>
+                            Playlist compartida
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_6"
+                    onclick="joinGroup(
+                        'grupo_6',
+                        'Música al Atardecer',
+                        'Música',
+                        '🎧'
+                    )"
+                >
+                    🎵 Unirme al espacio
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 7 · PODCAST
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="podcast"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-podcast">
+                    Creación de Contenido
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        🎙️
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Podcast entre Estudiantes
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Comunidad Creativa
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Conversaciones, historias, experiencias y temas
+                    universitarios para quienes quieren participar
+                    en un podcast estudiantil.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Miércoles 22 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">📍</span>
+                        <span>
+                            <strong>Lugar:</strong>
+                            Estudio Creativo TIKARY · 06:00 PM
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">🎙️</span>
+                        <span>
+                            <strong>Modalidad:</strong>
+                            Presencial
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_7"
+                    onclick="joinGroup(
+                        'grupo_7',
+                        'Podcast entre Estudiantes',
+                        'Podcast',
+                        '🎙️'
+                    )"
+                >
+                    🎙️ Quiero participar
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             GRUPO 8 · VIDEOLLAMADA
+        ================================================ -->
+
+        <div
+            class="group-card"
+            data-category="video"
+        >
+
+            <div class="group-top">
+
+                <span class="group-tag tag-video">
+                    Encuentro Virtual
+                </span>
+
+                <div class="group-header">
+
+                    <div class="group-icon">
+                        📹
+                    </div>
+
+                    <div>
+
+                        <h3 class="group-title">
+                            Sala para Conversar
+                        </h3>
+
+                        <span class="group-organizer">
+                            Organiza: Comunidad TIKARY
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p class="group-desc">
+
+                    Una videollamada abierta para conversar, conocer
+                    compañeros, jugar o simplemente compartir un rato
+                    desde casa.
+
+                </p>
+
+
+                <div class="group-details">
+
+                    <div class="detail">
+                        <span class="detail-icon">📅</span>
+                        <span>
+                            <strong>Fecha:</strong>
+                            Martes 21 de Octubre
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">💻</span>
+                        <span>
+                            <strong>Modalidad:</strong>
+                            Videollamada
+                        </span>
+                    </div>
+
+                    <div class="detail">
+                        <span class="detail-icon">👥</span>
+                        <span>
+                            <strong>Capacidad:</strong>
+                            20 estudiantes
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="group-footer">
+
+                <button
+                    class="btn-join"
+                    id="btn_grupo_8"
+                    onclick="joinGroup(
+                        'grupo_8',
+                        'Sala para Conversar',
+                        'Videollamada',
+                        '📹'
+                    )"
+                >
+                    📹 Entrar a la ruta
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         MENSAJE DE COMUNIDAD
+    ==================================================== -->
+
+    <section class="community-note">
+
+        <div class="community-note-icon">
+            💚
+        </div>
+
+        <div>
+
+            <strong>
+                Rutas no es solo salir.
+            </strong>
+
+            <span>
+                Es encontrar un espacio donde puedas compartir,
+                conocer personas y sentir que formas parte de una comunidad.
+                Elige una actividad que vaya contigo y comienza a participar.
+            </span>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<div id="toast"></div>
+
+
+<!-- =======================================================
+     FIREBASE LÓGICA
+     MANTENIDA · TIKARY 1
+======================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+let currentDni = "";
+
+let misGrupos = [];
+
+
+/* =========================================================
+   AUTENTICACIÓN Y VALIDACIÓN
+========================================================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+    try {
+
+        if (!user) {
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+
+        }
+
+
+        const email =
+            (user.email || "")
+                .trim()
+                .toLowerCase();
+
+
+        const regexTikary1 =
+            /^\d{8}@tikary1\.com$/;
+
+
+        if (!regexTikary1.test(email)) {
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+
+        }
+
+
+        currentDni =
+            email.split("@")[0];
+
+
+        const dniTextElem =
+            document.getElementById("dniText");
+
+
+        if (dniTextElem) {
+
+            dniTextElem.textContent =
+                currentDni;
+
+        }
+
+
+        /* ---------------------------------------------
+           VERIFICAR DNI AUTORIZADO
+        --------------------------------------------- */
+
+        const refDni =
+            doc(
+                db,
+                "dni_permitidos",
+                currentDni
+            );
+
+
+        const snapshotDni =
+            await getDoc(refDni);
+
+
+        if (!snapshotDni.exists()) {
+
+            await signOut(auth);
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           CARGAR GRUPOS
+        --------------------------------------------- */
+
+        await cargarMisGrupos();
+
+
+        document.getElementById(
+            "loadingScreen"
+        ).style.display = "none";
+
+
+    } catch (error) {
+
+        console.error(
+            "Error al autenticar en rutas 1:",
+            error
+        );
+
+        window.location.href =
+            "../../index.html";
+
+    }
+
+});
+
+
+/* =========================================================
+   CARGAR GRUPOS DEL ESTUDIANTE
+========================================================= */
+
+async function cargarMisGrupos() {
+
+    try {
+
+        const refGrupos =
+            doc(
+                db,
+                "grupos_estudiantes",
+                currentDni
+            );
+
+
+        const snap =
+            await getDoc(refGrupos);
+
+
+        if (snap.exists()) {
+
+            misGrupos =
+                snap.data().gruposInscritos || [];
+
+
+            misGrupos.forEach(g => {
+
+                const btn =
+                    document.getElementById(
+                        `btn_${g.id}`
+                    );
+
+
+                if (btn) {
+
+                    btn.textContent =
+                        "✓ Unido al Grupo";
+
+                    btn.classList.add(
+                        "joined"
+                    );
+
+                    btn.onclick = null;
+
+                }
+
+            });
+
+        }
+
+
+        actualizarMisRutas();
+
+    } catch (e) {
+
+        console.error(
+            "Error al obtener grupos:",
+            e
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MOSTRAR MIS RUTAS
+========================================================= */
+
+function actualizarMisRutas() {
+
+    const container =
+        document.getElementById(
+            "myRoutesList"
+        );
+
+
+    const counter =
+        document.getElementById(
+            "routeCounter"
+        );
+
+
+    const myRoutesCount =
+        document.getElementById(
+            "myRoutesCount"
+        );
+
+
+    if (!container) return;
+
+
+    const cantidad =
+        misGrupos.length;
+
+
+    if (counter) {
+
+        counter.textContent =
+            `${cantidad} ${
+                cantidad === 1
+                    ? "inscrita"
+                    : "inscritas"
+            }`;
+
+    }
+
+
+    if (myRoutesCount) {
+
+        myRoutesCount.textContent =
+            cantidad;
+
+    }
+
+
+    if (cantidad === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-routes">
+
+                <strong>
+                    Todavía no tienes una ruta guardada.
+                </strong>
+
+                Explora las actividades de abajo
+                y únete a la que más te interese.
+                Aquí quedará guardada para que puedas
+                volver a consultarla.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        misGrupos.map(g => `
+
+            <div class="my-route">
+
+                <div class="my-route-icon">
+
+                    ${g.icono || "🧭"}
+
+                </div>
+
+
+                <div class="my-route-content">
+
+                    <h3 class="my-route-title">
+
+                        ${g.nombre || "Ruta estudiantil"}
+
+                    </h3>
+
+
+                    <p class="my-route-info">
+
+                        🧭 ${g.categoria || "Comunidad"}
+                        <br>
+
+                        🗓️ Inscrito:
+                        ${formatearFecha(
+                            g.fechaInscripcion
+                        )}
+
+                    </p>
+
+                </div>
+
+
+                <span class="my-route-status">
+                    ✓ Unido
+                </span>
+
+            </div>
+
+        `).join("");
+
+
+}
+
+
+/* =========================================================
+   FORMATEAR FECHA DE INSCRIPCIÓN
+========================================================= */
+
+function formatearFecha(fecha) {
+
+    if (!fecha) {
+        return "Fecha registrada";
+    }
+
+
+    try {
+
+        const date =
+            new Date(fecha);
+
+
+        if (isNaN(date.getTime())) {
+            return "Fecha registrada";
+        }
+
+
+        return date.toLocaleDateString(
+            "es-PE",
+            {
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        );
+
+    } catch {
+
+        return "Fecha registrada";
+
+    }
+
+}
+
+
+/* =========================================================
+   UNIRSE A UN GRUPO
+========================================================= */
+
+window.joinGroup = async function(
+    idGrupo,
+    nombreGrupo,
+    categoria,
+    icono
+) {
+
+    if (!currentDni) return;
+
+
+    try {
+
+        const refGrupos =
+            doc(
+                db,
+                "grupos_estudiantes",
+                currentDni
+            );
+
+
+        const snap =
+            await getDoc(refGrupos);
+
+
+        let lista =
+            snap.exists()
+                ? snap.data().gruposInscritos || []
+                : [];
+
+
+        /* ---------------------------------------------
+           EVITAR DUPLICADOS
+        --------------------------------------------- */
+
+        if (
+            lista.some(
+                item => item.id === idGrupo
+            )
+        ) {
+
+            showToast(
+                "Ya formas parte de este grupo"
+            );
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           CREAR GRUPO
+        --------------------------------------------- */
+
+        const nuevoGrupo = {
+
+            id:
+                idGrupo,
+
+            nombre:
+                nombreGrupo,
+
+            categoria:
+                categoria,
+
+            icono:
+                icono,
+
+            fechaInscripcion:
+                new Date().toISOString()
+
+        };
+
+
+        lista.push(
+            nuevoGrupo
+        );
+
+
+        /* ---------------------------------------------
+           GUARDAR EN FIRESTORE
+        --------------------------------------------- */
+
+        await setDoc(
+
+            refGrupos,
+
+            {
+
+                dniEstudiante:
+                    currentDni,
+
+                gruposInscritos:
+                    lista,
+
+                ultimaModificacion:
+                    new Date().toISOString()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        /* ---------------------------------------------
+           ACTUALIZAR DATOS LOCALES
+        --------------------------------------------- */
+
+        misGrupos =
+            lista;
+
+
+        actualizarMisRutas();
+
+
+        /* ---------------------------------------------
+           ENVIAR NOTIFICACIÓN
+        --------------------------------------------- */
+
+        const refNotif =
+            doc(
+                db,
+                "notificaciones_estudiantes",
+                currentDni
+            );
+
+
+        const snapNotif =
+            await getDoc(refNotif);
+
+
+        let listaNotif =
+            snapNotif.exists()
+                ? snapNotif.data().lista || []
+                : [];
+
+
+        listaNotif.unshift({
+
+            id:
+                "notif_grupo_" +
+                Date.now(),
+
+            titulo:
+                "Te uniste a una Ruta / Grupo",
+
+            mensaje:
+                `Te inscribiste exitosamente en "${nombreGrupo}". Revisa el canal del grupo para actualizaciones.`,
+
+            categoria:
+                "orientacion",
+
+            icono:
+                icono,
+
+            fecha:
+                "Ahora mismo",
+
+            leida:
+                false,
+
+            accionTag:
+                "Rutas Estudiantiles"
+
+        });
+
+
+        await setDoc(
+
+            refNotif,
+
+            {
+
+                dniEstudiante:
+                    currentDni,
+
+                lista:
+                    listaNotif,
+
+                ultimaModificacion:
+                    new Date().toISOString()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        /* ---------------------------------------------
+           ACTUALIZAR BOTÓN
+        --------------------------------------------- */
+
+        const btn =
+            document.getElementById(
+                `btn_${idGrupo}`
+            );
+
+
+        if (btn) {
+
+            btn.textContent =
+                "✓ Unido al Grupo";
+
+            btn.classList.add(
+                "joined"
+            );
+
+            btn.onclick = null;
+
+        }
+
+
+        showToast(
+            `¡Te uniste a ${nombreGrupo}! ✓`
+        );
+
+
+    } catch (err) {
+
+        console.error(
+            "Error al unirse al grupo:",
+            err
+        );
+
+        alert(
+            "Ocurrió un error al procesar tu registro."
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   ACTUALIZAR CONTADOR DE RUTAS DISPONIBLES
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const total =
+            document.querySelectorAll(
+                ".group-card"
+            ).length;
+
+
+        const totalRoutes =
+            document.getElementById(
+                "totalRoutes"
+            );
+
+
+        if (totalRoutes) {
+
+            totalRoutes.textContent =
+                total;
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- =======================================================
+     FUNCIONES DE INTERFAZ
+======================================================= -->
+
+<script>
+
+function goToPage(page) {
+
+    window.location.href =
+        page;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(msg) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        msg;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2800
+    );
+
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+function filterGroups(
+    cat,
+    clickedButton
+) {
+
+    const cards =
+        document.querySelectorAll(
+            ".group-card"
+        );
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".filter-btn"
+        );
+
+
+    buttons.forEach(
+        btn =>
+            btn.classList.remove(
+                "active"
+            )
+    );
+
+
+    if (clickedButton) {
+
+        clickedButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+    cards.forEach(
+        card => {
+
+            if (
+                cat === "all" ||
+                card.dataset.category === cat
+            ) {
+
+                card.style.display =
+                    "flex";
+
+            } else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
