@@ -1,0 +1,5547 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#315f5c"
+>
+
+<meta
+    name="description"
+    content="TIKARY - Panel del Psicólogo Independiente"
+>
+
+<title>TIKARY | Psicólogo Independiente</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+
+    --verde:#315f5c;
+    --verde-medio:#527f79;
+    --verde-claro:#6d918c;
+    --verde-oscuro:#234b47;
+
+    --dorado:#b18a45;
+    --dorado-claro:#d3b16d;
+
+    --blanco:#ffffff;
+    --fondo:#eef8f2;
+
+    --texto:#294743;
+    --muted:#71837f;
+
+    --verde-suave:#e8f3ef;
+    --dorado-suave:#f5ecd9;
+
+    --rojo:#b85c5c;
+    --rojo-suave:#faeaea;
+
+    --azul:#557a9c;
+    --azul-suave:#eaf1f7;
+
+    --sombra:
+        0 20px 50px rgba(49,95,92,.12);
+
+    --sombra-suave:
+        0 10px 30px rgba(49,95,92,.08);
+
+    --radio:24px;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Nunito',sans-serif;
+
+    color:var(--texto);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(211,177,109,.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(82,127,121,.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eef8f2 0%,
+            #f8f3df 50%,
+            #e8f1f5 100%
+        );
+
+    min-height:100vh;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--verde-claro);
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:275px;
+
+    padding:25px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(35,75,71,.98),
+            rgba(49,95,92,.97)
+        );
+
+    color:white;
+
+    z-index:1000;
+
+    box-shadow:
+        10px 0 40px rgba(35,75,71,.12);
+
+    overflow-y:auto;
+
+    transition:.3s ease;
+}
+
+.sidebar-top{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:4px 8px 25px;
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    border-radius:16px;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.5);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.logo-text{
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-text strong{
+    font-size:20px;
+    letter-spacing:.5px;
+}
+
+.logo-text span{
+    font-size:11px;
+    opacity:.7;
+    letter-spacing:1px;
+}
+
+/* PROFILE */
+
+.profile-mini{
+
+    background:rgba(255,255,255,.09);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:15px;
+
+    margin-bottom:20px;
+}
+
+.profile-mini-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+
+    width:46px;
+    height:46px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--dorado),
+            var(--dorado-claro)
+        );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-weight:900;
+    font-size:16px;
+
+    flex-shrink:0;
+}
+
+.profile-mini strong{
+    display:block;
+    font-size:14px;
+}
+
+.profile-mini small{
+    display:block;
+    opacity:.65;
+    margin-top:3px;
+}
+
+/* STATUS */
+
+.status-row{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-top:14px;
+
+    padding-top:12px;
+
+    border-top:1px solid rgba(255,255,255,.1);
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    font-size:12px;
+}
+
+.status-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#6dd39b;
+
+    box-shadow:0 0 10px #6dd39b;
+}
+
+.status-dot.offline{
+    background:#aaa;
+    box-shadow:none;
+}
+
+.switch{
+    position:relative;
+    width:38px;
+    height:21px;
+}
+
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(255,255,255,.18);
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.slider:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:15px;
+    height:15px;
+
+    left:3px;
+    top:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+    transition:.3s;
+}
+
+.switch input:checked + .slider{
+    background:var(--dorado);
+}
+
+.switch input:checked + .slider:before{
+    transform:translateX(17px);
+}
+
+/* MENU */
+
+.menu-title{
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    color:rgba(255,255,255,.45);
+
+    padding:10px 12px;
+
+    margin-top:5px;
+}
+
+.menu{
+
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.menu button{
+
+    width:100%;
+
+    border:0;
+
+    background:transparent;
+
+    color:rgba(255,255,255,.72);
+
+    padding:12px 13px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    text-align:left;
+
+    transition:.2s;
+}
+
+.menu button:hover{
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+}
+
+.menu button.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(211,177,109,.28),
+            rgba(255,255,255,.10)
+        );
+
+    color:white;
+
+    border:1px solid rgba(211,177,109,.25);
+}
+
+.menu-icon{
+
+    width:23px;
+
+    text-align:center;
+
+    font-size:17px;
+}
+
+.badge{
+
+    margin-left:auto;
+
+    min-width:21px;
+
+    height:21px;
+
+    padding:0 6px;
+
+    border-radius:20px;
+
+    background:var(--dorado);
+
+    color:white;
+
+    font-size:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:900;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    margin-left:275px;
+
+    width:calc(100% - 275px);
+
+    min-height:100vh;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar{
+
+    height:82px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 35px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:500;
+
+    background:rgba(248,253,249,.72);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(49,95,92,.08);
+}
+
+.mobile-menu{
+    display:none;
+
+    border:0;
+
+    background:var(--verde);
+
+    color:white;
+
+    width:42px;
+    height:42px;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+.top-title h1{
+
+    font-size:22px;
+
+    font-weight:900;
+
+    color:var(--verde-oscuro);
+}
+
+.top-title p{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    margin-top:2px;
+}
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.icon-button{
+
+    position:relative;
+
+    width:43px;
+    height:43px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(49,95,92,.09);
+
+    background:rgba(255,255,255,.72);
+
+    color:var(--verde);
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.2s;
+}
+
+.icon-button:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--sombra-suave);
+}
+
+.notification-dot{
+
+    position:absolute;
+
+    right:8px;
+    top:7px;
+
+    width:7px;
+    height:7px;
+
+    background:var(--dorado);
+
+    border-radius:50%;
+
+    border:2px solid white;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+
+    padding:30px 35px 50px;
+
+    max-width:1600px;
+
+    margin:auto;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(49,95,92,.97),
+            rgba(82,127,121,.95)
+        );
+
+    border-radius:28px;
+
+    padding:30px;
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 20px 50px rgba(49,95,92,.16);
+
+    margin-bottom:25px;
+}
+
+.hero:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(211,177,109,.13);
+
+    right:-80px;
+    top:-100px;
+}
+
+.hero:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    border:30px solid rgba(255,255,255,.04);
+
+    right:130px;
+    bottom:-100px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h2{
+
+    font-size:29px;
+
+    margin-bottom:7px;
+}
+
+.hero p{
+
+    max-width:700px;
+
+    color:rgba(255,255,255,.78);
+
+    line-height:1.6;
+
+    font-size:14px;
+}
+
+.hero-tag{
+
+    display:inline-flex;
+
+    margin-bottom:13px;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.6px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:17px;
+
+    margin-bottom:25px;
+}
+
+.card{
+
+    background:rgba(255,255,255,.76);
+
+    border:1px solid rgba(255,255,255,.7);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    box-shadow:var(--sombra-suave);
+
+    backdrop-filter:blur(15px);
+}
+
+.stat-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    min-height:125px;
+}
+
+.stat-icon{
+
+    width:51px;
+    height:51px;
+
+    border-radius:17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+
+    background:var(--verde-suave);
+
+    flex-shrink:0;
+}
+
+.stat-card:nth-child(2) .stat-icon{
+    background:var(--dorado-suave);
+}
+
+.stat-card:nth-child(3) .stat-icon{
+    background:var(--azul-suave);
+}
+
+.stat-card:nth-child(4) .stat-icon{
+    background:var(--rojo-suave);
+}
+
+.stat-value{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:var(--verde-oscuro);
+
+    line-height:1;
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:7px;
+}
+
+.stat-change{
+
+    color:#4b9a6d;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    margin-top:6px;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid-2{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.4fr)
+        minmax(300px,1fr);
+
+    gap:20px;
+
+    margin-bottom:22px;
+}
+
+.grid-3{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:20px;
+
+    margin-bottom:22px;
+}
+
+.card-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+}
+
+.card-title h3{
+
+    font-size:16px;
+
+    color:var(--verde-oscuro);
+}
+
+.card-title span{
+
+    font-size:11px;
+
+    color:var(--muted);
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.page-header{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:24px;
+}
+
+.page-header h2{
+
+    color:var(--verde-oscuro);
+
+    font-size:25px;
+
+    font-weight:900;
+}
+
+.page-header p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:5px;
+}
+
+.primary-btn{
+
+    border:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde),
+            var(--verde-medio)
+        );
+
+    color:white;
+
+    padding:12px 17px;
+
+    border-radius:14px;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(49,95,92,.15);
+
+    transition:.2s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+}
+
+.gold-btn{
+
+    border:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--dorado),
+            var(--dorado-claro)
+        );
+
+    color:white;
+
+    padding:12px 17px;
+
+    border-radius:14px;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+/* =========================================================
+   REQUEST CARDS
+========================================================= */
+
+.request-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+}
+
+.request-card{
+
+    border:1px solid rgba(49,95,92,.08);
+
+    background:rgba(255,255,255,.7);
+
+    border-radius:18px;
+
+    padding:17px;
+
+    transition:.2s;
+}
+
+.request-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--sombra-suave);
+}
+
+.request-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+}
+
+.request-avatar{
+
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:var(--verde-suave);
+
+    color:var(--verde);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-weight:900;
+}
+
+.request-info{
+    flex:1;
+}
+
+.request-info strong{
+
+    display:block;
+
+    font-size:14px;
+}
+
+.request-info span{
+
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+.request-time{
+
+    font-size:10px;
+
+    color:var(--muted);
+}
+
+.request-body{
+
+    padding:13px 0;
+
+    color:#617570;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+.request-actions{
+
+    display:flex;
+
+    gap:8px;
+}
+
+.accept-btn,
+.reject-btn,
+.view-btn{
+
+    border:0;
+
+    padding:9px 13px;
+
+    border-radius:11px;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.accept-btn{
+
+    background:#e5f4eb;
+
+    color:#39815a;
+}
+
+.reject-btn{
+
+    background:#f9e8e8;
+
+    color:#a95151;
+}
+
+.view-btn{
+
+    background:#e8f0f4;
+
+    color:#557a9c;
+}
+
+.accept-btn:hover,
+.reject-btn:hover,
+.view-btn:hover{
+    transform:translateY(-1px);
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    border-radius:18px;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:760px;
+}
+
+th{
+
+    text-align:left;
+
+    padding:13px 14px;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+    color:var(--muted);
+
+    background:#f4f8f6;
+}
+
+td{
+
+    padding:14px;
+
+    border-bottom:1px solid rgba(49,95,92,.06);
+
+    font-size:12px;
+
+    color:#536965;
+}
+
+td strong{
+    color:var(--verde-oscuro);
+}
+
+.status-pill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:800;
+}
+
+.status-active{
+
+    color:#3e875e;
+
+    background:#e6f5eb;
+}
+
+.status-pending{
+
+    color:#98742f;
+
+    background:#f7efd9;
+}
+
+.status-inactive{
+
+    color:#9d5555;
+
+    background:#faeaea;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.filters{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.search{
+
+    flex:1;
+
+    min-width:220px;
+
+    height:43px;
+
+    border:1px solid rgba(49,95,92,.1);
+
+    border-radius:13px;
+
+    padding:0 14px;
+
+    font-family:inherit;
+
+    color:var(--texto);
+
+    background:rgba(255,255,255,.75);
+
+    outline:none;
+}
+
+.select{
+
+    height:43px;
+
+    border:1px solid rgba(49,95,92,.1);
+
+    border-radius:13px;
+
+    padding:0 13px;
+
+    font-family:inherit;
+
+    color:var(--texto);
+
+    background:rgba(255,255,255,.75);
+
+    outline:none;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress{
+
+    width:100%;
+
+    height:8px;
+
+    border-radius:20px;
+
+    background:#e7efec;
+
+    overflow:hidden;
+}
+
+.progress span{
+
+    display:block;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--verde),
+            var(--dorado)
+        );
+}
+
+/* =========================================================
+   WELLBEING
+========================================================= */
+
+.wellbeing-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:10px;
+}
+
+.mood{
+
+    text-align:center;
+
+    padding:15px 8px;
+
+    border-radius:17px;
+
+    background:#f7faf8;
+}
+
+.mood-icon{
+
+    font-size:25px;
+
+    margin-bottom:7px;
+}
+
+.mood strong{
+
+    display:block;
+
+    font-size:17px;
+}
+
+.mood span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    margin-top:3px;
+}
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+.calendar{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:7px;
+}
+
+.calendar-head{
+
+    text-align:center;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    color:var(--muted);
+
+    padding:5px;
+}
+
+.day{
+
+    min-height:55px;
+
+    border-radius:11px;
+
+    background:#f5f8f7;
+
+    padding:8px;
+
+    font-size:10px;
+
+    position:relative;
+}
+
+.day.active{
+
+    background:var(--verde);
+
+    color:white;
+}
+
+.day.has{
+
+    border:1px solid rgba(177,138,69,.35);
+}
+
+.day.has:after{
+
+    content:"";
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:var(--dorado);
+
+    position:absolute;
+
+    bottom:7px;
+    right:7px;
+}
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.notification-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.notification{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    padding:13px;
+
+    background:#f7faf8;
+
+    border-radius:15px;
+}
+
+.notification-icon{
+
+    width:36px;
+    height:36px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--dorado-suave);
+
+    flex-shrink:0;
+}
+
+.notification strong{
+
+    font-size:12px;
+
+    display:block;
+}
+
+.notification p{
+
+    font-size:11px;
+
+    color:var(--muted);
+
+    margin-top:3px;
+
+    line-height:1.4;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    color:var(--muted);
+}
+
+.empty-icon{
+
+    font-size:40px;
+
+    margin-bottom:12px;
+
+    opacity:.6;
+}
+
+.empty h3{
+
+    color:var(--verde-oscuro);
+
+    margin-bottom:5px;
+}
+
+.empty p{
+    font-size:12px;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(22,55,51,.45);
+
+    backdrop-filter:blur(8px);
+
+    z-index:3000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+
+    width:min(650px,100%);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:
+        rgba(255,255,255,.97);
+
+    border-radius:27px;
+
+    padding:25px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.18);
+
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.modal-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.modal-head h3{
+
+    color:var(--verde-oscuro);
+
+    font-size:19px;
+}
+
+.close{
+
+    width:36px;
+    height:36px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:#eef4f1;
+
+    color:var(--verde);
+
+    cursor:pointer;
+
+    font-size:17px;
+}
+
+/* FORM */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:14px;
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--verde-oscuro);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    border:1px solid rgba(49,95,92,.12);
+
+    border-radius:12px;
+
+    padding:11px 12px;
+
+    font-family:inherit;
+
+    outline:none;
+
+    background:#f8fbfa;
+
+    color:var(--texto);
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+    min-height:100px;
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.cancel-btn{
+
+    border:0;
+
+    background:#edf3f1;
+
+    color:var(--verde);
+
+    padding:11px 17px;
+
+    border-radius:12px;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-large{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-bottom:20px;
+}
+
+.profile-large .avatar{
+
+    width:75px;
+    height:75px;
+
+    border-radius:24px;
+
+    font-size:25px;
+}
+
+.profile-large h3{
+
+    font-size:21px;
+
+    color:var(--verde-oscuro);
+}
+
+.profile-large p{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:3px;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef8f2,
+            #f8f3df
+        );
+
+    transition:.4s;
+}
+
+.loading.hide{
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.loading-box{
+
+    text-align:center;
+}
+
+.loading-logo{
+
+    width:70px;
+    height:70px;
+
+    border-radius:22px;
+
+    object-fit:cover;
+
+    margin-bottom:15px;
+
+    box-shadow:0 12px 30px rgba(49,95,92,.18);
+}
+
+.spinner{
+
+    width:28px;
+    height:28px;
+
+    border:3px solid rgba(49,95,92,.15);
+
+    border-top-color:var(--verde);
+
+    border-radius:50%;
+
+    margin:15px auto;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    z-index:5000;
+
+    background:
+        rgba(35,75,71,.96);
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:15px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transform:translateY(20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+.toast.show{
+
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .cards{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .grid-2{
+        grid-template-columns:1fr;
+    }
+
+    .grid-3{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:850px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+
+        box-shadow:
+            15px 0 50px rgba(0,0,0,.2);
+    }
+
+    .main{
+
+        margin-left:0;
+
+        width:100%;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+
+        padding:0 18px;
+
+        gap:12px;
+    }
+
+    .top-title{
+        flex:1;
+    }
+
+    .top-title h1{
+        font-size:18px;
+    }
+
+    .content{
+        padding:22px 18px 40px;
+    }
+
+    .page-header{
+        flex-direction:column;
+    }
+
+    .grid-3{
+        grid-template-columns:1fr;
+    }
+
+    .wellbeing-grid{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+}
+
+@media(max-width:550px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:23px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .wellbeing-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .top-actions .icon-button:nth-child(2){
+        display:none;
+    }
+
+    .request-actions{
+        flex-wrap:wrap;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     LOADING
+======================================================= -->
+
+<div class="loading" id="loading">
+
+    <div class="loading-box">
+
+        <img
+            src="../../imagenes/logo.jpg"
+            class="loading-logo"
+            alt="TIKARY"
+        >
+
+        <h3>TIKARY</h3>
+
+        <p>
+            Preparando tu espacio profesional...
+        </p>
+
+        <div class="spinner"></div>
+
+    </div>
+
+</div>
+
+
+<div class="app">
+
+
+<!-- =======================================================
+     SIDEBAR
+======================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-top">
+
+        <img
+            src="../../imagenes/logo.jpg"
+            class="logo"
+            alt="TIKARY"
+        >
+
+        <div class="logo-text">
+
+            <strong>TIKARY</strong>
+
+            <span>PSICOLOGÍA Y BIENESTAR</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-mini">
+
+        <div class="profile-mini-row">
+
+            <div class="avatar" id="avatarUsuario">
+                PS
+            </div>
+
+            <div>
+
+                <strong id="nombreUsuario">
+                    Psicólogo
+                </strong>
+
+                <small>
+                    Psicólogo independiente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <div class="status">
+
+                <span
+                    class="status-dot"
+                    id="statusDot"
+                ></span>
+
+                <span id="statusText">
+                    Disponible
+                </span>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="availabilitySwitch"
+                    checked
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        Principal
+    </div>
+
+
+    <nav class="menu">
+
+        <button
+            class="active"
+            data-section="inicio"
+        >
+            <span class="menu-icon">⌂</span>
+            Inicio
+        </button>
+
+
+        <button data-section="solicitudes">
+
+            <span class="menu-icon">📩</span>
+
+            Solicitudes
+
+            <span
+                class="badge"
+                id="solicitudesBadge"
+            >
+                3
+            </span>
+
+        </button>
+
+
+        <button data-section="pacientes">
+
+            <span class="menu-icon">👥</span>
+
+            Mis pacientes
+
+        </button>
+
+
+        <button data-section="agenda">
+
+            <span class="menu-icon">📅</span>
+
+            Agenda
+
+        </button>
+
+
+        <button data-section="consultas">
+
+            <span class="menu-icon">💬</span>
+
+            Consultas
+
+        </button>
+
+    </nav>
+
+
+    <div class="menu-title">
+        Gestión
+    </div>
+
+
+    <nav class="menu">
+
+        <button data-section="estadisticas">
+
+            <span class="menu-icon">📊</span>
+
+            Estadísticas
+
+        </button>
+
+
+        <button data-section="notificaciones">
+
+            <span class="menu-icon">🔔</span>
+
+            Notificaciones
+
+            <span
+                class="badge"
+                id="notificacionesBadge"
+            >
+                4
+            </span>
+
+        </button>
+
+
+        <button data-section="reportes">
+
+            <span class="menu-icon">📄</span>
+
+            Reportes
+
+        </button>
+
+    </nav>
+
+
+    <div class="menu-title">
+        Cuenta
+    </div>
+
+
+    <nav class="menu">
+
+        <button data-section="perfil">
+
+            <span class="menu-icon">👤</span>
+
+            Mi perfil
+
+        </button>
+
+
+        <button data-section="configuracion">
+
+            <span class="menu-icon">⚙</span>
+
+            Configuración
+
+        </button>
+
+
+        <button id="logoutBtn">
+
+            <span class="menu-icon">↪</span>
+
+            Cerrar sesión
+
+        </button>
+
+    </nav>
+
+</aside>
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main class="main">
+
+
+<header class="topbar">
+
+    <button
+        class="mobile-menu"
+        id="mobileMenu"
+    >
+        ☰
+    </button>
+
+
+    <div class="top-title">
+
+        <h1 id="pageTitle">
+            Inicio
+        </h1>
+
+        <p>
+            Panel del psicólogo independiente
+        </p>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="icon-button"
+            onclick="showSection('notificaciones')"
+        >
+            🔔
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+        <button
+            class="icon-button"
+            onclick="showSection('perfil')"
+        >
+            👤
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="content">
+
+
+<!-- =======================================================
+     INICIO
+======================================================= -->
+
+<section
+    class="section active"
+    id="inicio"
+>
+
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                TIKARY · PSICÓLOGO INDEPENDIENTE
+            </span>
+
+            <h2>
+                Bienvenido,
+                <span id="heroNombre">
+                    Psicólogo
+                </span> 👋
+            </h2>
+
+            <p>
+                Gestiona tus solicitudes de atención,
+                organiza tus consultas y acompaña a tus
+                pacientes desde un solo espacio.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                📩
+            </div>
+
+            <div>
+
+                <div
+                    class="stat-value"
+                    id="statSolicitudes"
+                >
+                    3
+                </div>
+
+                <div class="stat-label">
+                    Solicitudes pendientes
+                </div>
+
+                <div class="stat-change">
+                    Requieren respuesta
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div>
+
+                <div class="stat-value">
+                    24
+                </div>
+
+                <div class="stat-label">
+                    Pacientes atendidos
+                </div>
+
+                <div class="stat-change">
+                    +4 este mes
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                📅
+            </div>
+
+            <div>
+
+                <div class="stat-value">
+                    8
+                </div>
+
+                <div class="stat-label">
+                    Consultas esta semana
+                </div>
+
+                <div class="stat-change">
+                    Agenda actualizada
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <div>
+
+                <div class="stat-value">
+                    4.8
+                </div>
+
+                <div class="stat-label">
+                    Valoración promedio
+                </div>
+
+                <div class="stat-change">
+                    Basado en consultas
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Solicitudes recientes
+                </h3>
+
+                <span>
+                    Últimas solicitudes
+                </span>
+
+            </div>
+
+
+            <div
+                class="request-list"
+                id="recentRequests"
+            >
+
+                <!-- JS -->
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Próximas consultas
+                </h3>
+
+                <span>
+                    Esta semana
+                </span>
+
+            </div>
+
+
+            <div class="notification-list">
+
+                <div class="notification">
+
+                    <div class="notification-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Consulta programada
+                        </strong>
+
+                        <p>
+                            Hoy · 4:00 p. m.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notification">
+
+                    <div class="notification-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Nueva consulta
+                        </strong>
+
+                        <p>
+                            Mañana · 10:30 a. m.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notification">
+
+                    <div class="notification-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Seguimiento
+                        </strong>
+
+                        <p>
+                            Viernes · 3:00 p. m.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Actividad de consultas
+                </h3>
+
+                <span>
+                    Últimos 7 días
+                </span>
+
+            </div>
+
+            <canvas id="consultasChart"></canvas>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Estado de atención
+                </h3>
+
+            </div>
+
+
+            <div style="margin-bottom:20px;">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:7px;
+                    font-size:12px;
+                ">
+
+                    <span>
+                        Consultas completadas
+                    </span>
+
+                    <strong>
+                        82%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+                    <span style="width:82%"></span>
+                </div>
+
+            </div>
+
+
+            <div style="margin-bottom:20px;">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:7px;
+                    font-size:12px;
+                ">
+
+                    <span>
+                        Solicitudes aceptadas
+                    </span>
+
+                    <strong>
+                        76%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+                    <span style="width:76%"></span>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:7px;
+                    font-size:12px;
+                ">
+
+                    <span>
+                        Seguimientos
+                    </span>
+
+                    <strong>
+                        68%
+                    </strong>
+
+                </div>
+
+                <div class="progress">
+                    <span style="width:68%"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     SOLICITUDES
+======================================================= -->
+
+<section
+    class="section"
+    id="solicitudes"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Solicitudes de atención
+            </h2>
+
+            <p>
+                Revisa las solicitudes que recibiste
+                y decide si deseas aceptar o rechazar
+                cada atención.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="filterRequests('pending')"
+        >
+            📩 Pendientes
+        </button>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                📩
+            </div>
+
+            <div>
+
+                <div
+                    class="stat-value"
+                    id="pendingCount"
+                >
+                    3
+                </div>
+
+                <div class="stat-label">
+                    Pendientes
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div>
+
+                <div class="stat-value">
+                    18
+                </div>
+
+                <div class="stat-label">
+                    Aceptadas
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                ❌
+            </div>
+
+            <div>
+
+                <div class="stat-value">
+                    4
+                </div>
+
+                <div class="stat-label">
+                    Rechazadas
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="stat-icon">
+                ⏱️
+            </div>
+
+            <div>
+
+                <div class="stat-value">
+                    15 min
+                </div>
+
+                <div class="stat-label">
+                    Tiempo promedio de respuesta
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+
+            <h3>
+                Solicitudes recibidas
+            </h3>
+
+            <span id="requestCountText">
+                3 pendientes
+            </span>
+
+        </div>
+
+
+        <div
+            class="request-list"
+            id="allRequests"
+        >
+
+            <!-- JS -->
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     PACIENTES
+======================================================= -->
+
+<section
+    class="section"
+    id="pacientes"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Mis pacientes
+            </h2>
+
+            <p>
+                Personas cuya solicitud de atención
+                fue aceptada.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="filters">
+
+        <input
+            class="search"
+            id="patientSearch"
+            placeholder="Buscar paciente..."
+            oninput="searchPatients()"
+        >
+
+        <select class="select">
+
+            <option>
+                Todos
+            </option>
+
+            <option>
+                Activos
+            </option>
+
+            <option>
+                En seguimiento
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Paciente
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Última consulta
+                        </th>
+
+                        <th>
+                            Próxima cita
+                        </th>
+
+                        <th>
+                            Seguimiento
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="patientsTable">
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                María Fernanda
+                            </strong>
+                        </td>
+
+                        <td>
+                            <span class="status-pill status-active">
+                                Activo
+                            </span>
+                        </td>
+
+                        <td>
+                            22/09/2026
+                        </td>
+
+                        <td>
+                            29/09/2026
+                        </td>
+
+                        <td>
+                            En seguimiento
+                        </td>
+
+                        <td>
+                            <button
+                                class="view-btn"
+                                onclick="openPatient('María Fernanda')"
+                            >
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                Carlos Alberto
+                            </strong>
+                        </td>
+
+                        <td>
+                            <span class="status-pill status-active">
+                                Activo
+                            </span>
+                        </td>
+
+                        <td>
+                            20/09/2026
+                        </td>
+
+                        <td>
+                            30/09/2026
+                        </td>
+
+                        <td>
+                            Normal
+                        </td>
+
+                        <td>
+                            <button
+                                class="view-btn"
+                                onclick="openPatient('Carlos Alberto')"
+                            >
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                Andrea Lucía
+                            </strong>
+                        </td>
+
+                        <td>
+                            <span class="status-pill status-active">
+                                Activo
+                            </span>
+                        </td>
+
+                        <td>
+                            18/09/2026
+                        </td>
+
+                        <td>
+                            02/10/2026
+                        </td>
+
+                        <td>
+                            Seguimiento
+                        </td>
+
+                        <td>
+                            <button
+                                class="view-btn"
+                                onclick="openPatient('Andrea Lucía')"
+                            >
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     AGENDA
+======================================================= -->
+
+<section
+    class="section"
+    id="agenda"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Mi agenda
+            </h2>
+
+            <p>
+                Organiza tus consultas y disponibilidad.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="openModal('newAppointmentModal')"
+        >
+            + Nueva consulta
+        </button>
+
+    </div>
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Septiembre 2026
+                </h3>
+
+                <span>
+                    Agenda
+                </span>
+
+            </div>
+
+
+            <div class="calendar">
+
+                <div class="calendar-head">L</div>
+                <div class="calendar-head">M</div>
+                <div class="calendar-head">M</div>
+                <div class="calendar-head">J</div>
+                <div class="calendar-head">V</div>
+                <div class="calendar-head">S</div>
+                <div class="calendar-head">D</div>
+
+
+                <div></div>
+                <div>1</div>
+
+
+                <div class="day">
+                    2
+                </div>
+
+                <div class="day">
+                    3
+                </div>
+
+                <div class="day has">
+                    4
+                </div>
+
+                <div class="day">
+                    5
+                </div>
+
+                <div class="day">
+                    6
+                </div>
+
+                <div class="day">
+                    7
+                </div>
+
+                <div class="day">
+                    8
+                </div>
+
+                <div class="day has">
+                    9
+                </div>
+
+                <div class="day">
+                    10
+                </div>
+
+                <div class="day">
+                    11
+                </div>
+
+                <div class="day">
+                    12
+                </div>
+
+                <div class="day">
+                    13
+                </div>
+
+                <div class="day">
+                    14
+                </div>
+
+                <div class="day has">
+                    15
+                </div>
+
+                <div class="day">
+                    16
+                </div>
+
+                <div class="day">
+                    17
+                </div>
+
+                <div class="day">
+                    18
+                </div>
+
+                <div class="day has">
+                    19
+                </div>
+
+                <div class="day">
+                    20
+                </div>
+
+                <div class="day">
+                    21
+                </div>
+
+                <div class="day">
+                    22
+                </div>
+
+                <div class="day active">
+                    23
+                </div>
+
+                <div class="day has">
+                    24
+                </div>
+
+                <div class="day">
+                    25
+                </div>
+
+                <div class="day">
+                    26
+                </div>
+
+                <div class="day">
+                    27
+                </div>
+
+                <div class="day has">
+                    28
+                </div>
+
+                <div class="day">
+                    29
+                </div>
+
+                <div class="day">
+                    30
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Próximas consultas
+                </h3>
+
+            </div>
+
+
+            <div class="request-list">
+
+                <div class="request-card">
+
+                    <div class="request-top">
+
+                        <div class="request-avatar">
+                            MF
+                        </div>
+
+                        <div class="request-info">
+
+                            <strong>
+                                María Fernanda
+                            </strong>
+
+                            <span>
+                                Hoy · 4:00 p. m.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-card">
+
+                    <div class="request-top">
+
+                        <div class="request-avatar">
+                            CA
+                        </div>
+
+                        <div class="request-info">
+
+                            <strong>
+                                Carlos Alberto
+                            </strong>
+
+                            <span>
+                                Mañana · 10:30 a. m.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-card">
+
+                    <div class="request-top">
+
+                        <div class="request-avatar">
+                            AL
+                        </div>
+
+                        <div class="request-info">
+
+                            <strong>
+                                Andrea Lucía
+                            </strong>
+
+                            <span>
+                                Viernes · 3:00 p. m.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     CONSULTAS
+======================================================= -->
+
+<section
+    class="section"
+    id="consultas"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Consultas
+            </h2>
+
+            <p>
+                Historial de atenciones realizadas.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Paciente
+                        </th>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Modalidad
+                        </th>
+
+                        <th>
+                            Duración
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                María Fernanda
+                            </strong>
+                        </td>
+
+                        <td>
+                            22/09/2026
+                        </td>
+
+                        <td>
+                            Videollamada
+                        </td>
+
+                        <td>
+                            50 min
+                        </td>
+
+                        <td>
+                            <span class="status-pill status-active">
+                                Completada
+                            </span>
+                        </td>
+
+                        <td>
+                            <button
+                                class="view-btn"
+                                onclick="showToast('Abriendo detalle de consulta')"
+                            >
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                Carlos Alberto
+                            </strong>
+                        </td>
+
+                        <td>
+                            20/09/2026
+                        </td>
+
+                        <td>
+                            Videollamada
+                        </td>
+
+                        <td>
+                            45 min
+                        </td>
+
+                        <td>
+                            <span class="status-pill status-active">
+                                Completada
+                            </span>
+                        </td>
+
+                        <td>
+                            <button
+                                class="view-btn"
+                                onclick="showToast('Abriendo detalle de consulta')"
+                            >
+                                Ver
+                            </button>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     ESTADISTICAS
+======================================================= -->
+
+<section
+    class="section"
+    id="estadisticas"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Estadísticas
+            </h2>
+
+            <p>
+                Resumen de tu actividad profesional.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-2">
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Consultas mensuales
+                </h3>
+
+            </div>
+
+            <canvas id="monthlyChart"></canvas>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Solicitudes
+                </h3>
+
+            </div>
+
+            <canvas id="requestsChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     NOTIFICACIONES
+======================================================= -->
+
+<section
+    class="section"
+    id="notificaciones"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Notificaciones
+            </h2>
+
+            <p>
+                Revisa las novedades de tu cuenta.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="notification-list">
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    📩
+                </div>
+
+                <div>
+
+                    <strong>
+                        Nueva solicitud de atención
+                    </strong>
+
+                    <p>
+                        María Fernanda solicitó una consulta.
+                        Revisa la solicitud para aceptar o rechazar.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <strong>
+                        Consulta próxima
+                    </strong>
+
+                    <p>
+                        Tienes una consulta programada para hoy
+                        a las 4:00 p. m.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                        ⭐
+                </div>
+
+                <div>
+
+                    <strong>
+                        Nueva valoración
+                    </strong>
+
+                    <p>
+                        Un paciente registró una valoración
+                        después de su consulta.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    🔔
+                </div>
+
+                <div>
+
+                    <strong>
+                        Recordatorio
+                    </strong>
+
+                    <p>
+                        Revisa tus solicitudes pendientes
+                        para mantener actualizada tu agenda.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     REPORTES
+======================================================= -->
+
+<section
+    class="section"
+    id="reportes"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Reportes
+            </h2>
+
+            <p>
+                Genera reportes de tu actividad profesional.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-3">
+
+
+        <div class="card">
+
+            <div style="font-size:30px;margin-bottom:15px;">
+                👥
+            </div>
+
+            <h3>
+                Pacientes
+            </h3>
+
+            <p style="
+                font-size:12px;
+                color:var(--muted);
+                margin:7px 0 17px;
+            ">
+                Resumen de pacientes atendidos.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="generateReport('Pacientes')"
+            >
+                Generar
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div style="font-size:30px;margin-bottom:15px;">
+                📅
+            </div>
+
+            <h3>
+                Consultas
+            </h3>
+
+            <p style="
+                font-size:12px;
+                color:var(--muted);
+                margin:7px 0 17px;
+            ">
+                Historial de consultas realizadas.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="generateReport('Consultas')"
+            >
+                Generar
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div style="font-size:30px;margin-bottom:15px;">
+                📩
+            </div>
+
+            <h3>
+                Solicitudes
+            </h3>
+
+            <p style="
+                font-size:12px;
+                color:var(--muted);
+                margin:7px 0 17px;
+            ">
+                Resumen de solicitudes recibidas.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="generateReport('Solicitudes')"
+            >
+                Generar
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PERFIL
+======================================================= -->
+
+<section
+    class="section"
+    id="perfil"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Mi perfil profesional
+            </h2>
+
+            <p>
+                Información visible en TIKARY.
+            </p>
+
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="showToast('Modo edición activado')"
+        >
+            Editar perfil
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+
+        <div class="profile-large">
+
+            <div
+                class="avatar"
+                id="profileAvatar"
+            >
+                PS
+            </div>
+
+            <div>
+
+                <h3 id="profileName">
+                    Psicólogo independiente
+                </h3>
+
+                <p id="profileEmail">
+                    Correo institucional
+                </p>
+
+                <p>
+                    Profesional de psicología · TIKARY
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Nombre completo
+                </label>
+
+                <input
+                    id="profileFullName"
+                    value="Psicólogo independiente"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Correo
+                </label>
+
+                <input
+                    id="profileEmailInput"
+                    value=""
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Especialidad
+                </label>
+
+                <input
+                    value="Psicología"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Modalidad
+                </label>
+
+                <select>
+
+                    <option>
+                        Virtual
+                    </option>
+
+                    <option>
+                        Presencial
+                    </option>
+
+                    <option>
+                        Virtual y presencial
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Descripción profesional
+                </label>
+
+                <textarea>Profesional de psicología orientado al acompañamiento y bienestar de las personas mediante TIKARY.</textarea>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =======================================================
+     CONFIGURACION
+======================================================= -->
+
+<section
+    class="section"
+    id="configuracion"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Configuración
+            </h2>
+
+            <p>
+                Personaliza tu experiencia profesional.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Disponibilidad
+                </h3>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    🟢
+                </div>
+
+                <div style="flex:1">
+
+                    <strong>
+                        Recibir nuevas solicitudes
+                    </strong>
+
+                    <p>
+                        Cuando estás disponible,
+                        los usuarios pueden enviarte
+                        solicitudes de atención.
+                    </p>
+
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        checked
+                        onchange="toggleAvailability(this)"
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Notificaciones
+                </h3>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    🔔
+                </div>
+
+                <div style="flex:1">
+
+                    <strong>
+                        Nuevas solicitudes
+                    </strong>
+
+                    <p>
+                        Recibir una notificación cuando
+                        llegue una solicitud.
+                    </p>
+
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL SOLICITUD
+======================================================= -->
+
+<div
+    class="modal"
+    id="requestModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                Solicitud de atención
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('requestModal')"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="requestDetail"
+        ></div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal('requestModal')"
+            >
+                Cerrar
+            </button>
+
+            <button
+                class="reject-btn"
+                id="modalReject"
+            >
+                ❌ Rechazar
+            </button>
+
+            <button
+                class="accept-btn"
+                id="modalAccept"
+            >
+                ✅ Aceptar solicitud
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL NUEVA CITA
+======================================================= -->
+
+<div
+    class="modal"
+    id="newAppointmentModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                Nueva consulta
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('newAppointmentModal')"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Paciente
+                </label>
+
+                <select>
+
+                    <option>
+                        María Fernanda
+                    </option>
+
+                    <option>
+                        Carlos Alberto
+                    </option>
+
+                    <option>
+                        Andrea Lucía
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Modalidad
+                </label>
+
+                <select>
+
+                    <option>
+                        Videollamada
+                    </option>
+
+                    <option>
+                        Presencial
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Fecha
+                </label>
+
+                <input
+                    type="date"
+                    value="2026-09-29"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Hora
+                </label>
+
+                <input
+                    type="time"
+                    value="16:00"
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Observación
+                </label>
+
+                <textarea
+                    placeholder="Escribe una observación..."
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal('newAppointmentModal')"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="saveAppointment()"
+            >
+                Guardar consulta
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+>
+    Acción realizada correctamente.
+</div>
+
+
+<!-- =======================================================
+     FIREBASE + JAVASCRIPT
+======================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const loading =
+    document.getElementById("loading");
+
+const nombreUsuario =
+    document.getElementById("nombreUsuario");
+
+const heroNombre =
+    document.getElementById("heroNombre");
+
+const avatarUsuario =
+    document.getElementById("avatarUsuario");
+
+const profileName =
+    document.getElementById("profileName");
+
+const profileFullName =
+    document.getElementById("profileFullName");
+
+const profileEmail =
+    document.getElementById("profileEmail");
+
+const profileEmailInput =
+    document.getElementById("profileEmailInput");
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            window.location.href =
+                "../../index.html";
+
+            return;
+        }
+
+
+        const email =
+            user.email || "";
+
+        const dni =
+            email.split("@")[0];
+
+
+        let nombre =
+            "Psicólogo independiente";
+
+
+        try{
+
+            const q = query(
+
+                collection(
+                    db,
+                    "dni_permitidos"
+                ),
+
+                where(
+                    "dni",
+                    "==",
+                    dni
+                )
+
+            );
+
+
+            const snapshot =
+                await getDocs(q);
+
+
+            if(!snapshot.empty){
+
+                const data =
+                    snapshot.docs[0].data();
+
+
+                nombre =
+
+                    data.nombreCompleto ||
+
+                    data.nombre ||
+
+                    data.nombres ||
+
+                    (
+                        (data.nombres || "") +
+                        " " +
+                        (data.apellidos || "")
+                    ).trim() ||
+
+                    "Psicólogo independiente";
+
+            }
+
+        }catch(error){
+
+            console.warn(
+                "No se pudo obtener el nombre:",
+                error
+            );
+
+        }
+
+
+        nombreUsuario.textContent =
+            nombre;
+
+        heroNombre.textContent =
+            nombre.split(" ")[0];
+
+        profileName.textContent =
+            nombre;
+
+        profileFullName.value =
+            nombre;
+
+        profileEmail.textContent =
+            email;
+
+        profileEmailInput.value =
+            email;
+
+
+        const iniciales =
+            obtenerIniciales(nombre);
+
+
+        avatarUsuario.textContent =
+            iniciales;
+
+        document.getElementById(
+            "profileAvatar"
+        ).textContent =
+            iniciales;
+
+
+        setTimeout(() => {
+
+            loading.classList.add("hide");
+
+        },500);
+
+    }
+);
+
+
+/* =========================================================
+   INICIALES
+========================================================= */
+
+function obtenerIniciales(nombre){
+
+    const partes =
+        nombre
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+    if(partes.length === 1){
+
+        return partes[0]
+            .substring(0,2)
+            .toUpperCase();
+
+    }
+
+
+    return (
+        partes[0][0] +
+        partes[partes.length - 1][0]
+    ).toUpperCase();
+}
+
+
+/* =========================================================
+   NAVEGACION
+========================================================= */
+
+const titles = {
+
+    inicio:
+        "Inicio",
+
+    solicitudes:
+        "Solicitudes de atención",
+
+    pacientes:
+        "Mis pacientes",
+
+    agenda:
+        "Agenda",
+
+    consultas:
+        "Consultas",
+
+    estadisticas:
+        "Estadísticas",
+
+    notificaciones:
+        "Notificaciones",
+
+    reportes:
+        "Reportes",
+
+    perfil:
+        "Mi perfil",
+
+    configuracion:
+        "Configuración"
+
+};
+
+
+document
+    .querySelectorAll(".menu button[data-section]")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                showSection(
+                    button.dataset.section
+                );
+
+            }
+        );
+
+    });
+
+
+window.showSection = function(section){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+    const target =
+        document.getElementById(section);
+
+
+    if(target){
+
+        target.classList.add("active");
+
+    }
+
+
+    document
+        .querySelectorAll(".menu button[data-section]")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.section === section
+            );
+
+        });
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        titles[section] || "TIKARY";
+
+
+    document
+        .getElementById("sidebar")
+        .classList.remove("open");
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+};
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("open");
+
+        }
+    );
+
+
+/* =========================================================
+   DISPONIBILIDAD
+========================================================= */
+
+document
+    .getElementById("availabilitySwitch")
+    .addEventListener(
+        "change",
+        function(){
+
+            const dot =
+                document.getElementById("statusDot");
+
+            const text =
+                document.getElementById("statusText");
+
+
+            if(this.checked){
+
+                dot.classList.remove("offline");
+
+                text.textContent =
+                    "Disponible";
+
+                showToast(
+                    "Ahora estás disponible para recibir solicitudes."
+                );
+
+            }else{
+
+                dot.classList.add("offline");
+
+                text.textContent =
+                    "No disponible";
+
+                showToast(
+                    "Has pausado las nuevas solicitudes."
+                );
+
+            }
+
+        }
+    );
+
+
+window.toggleAvailability = function(input){
+
+    if(input.checked){
+
+        showToast(
+            "Disponibilidad activada."
+        );
+
+    }else{
+
+        showToast(
+            "Disponibilidad desactivada."
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   SOLICITUDES
+========================================================= */
+
+let requests = [
+
+    {
+        id:1,
+        name:"María Fernanda",
+        initials:"MF",
+        reason:
+            "Solicita una orientación psicológica y desea conocer disponibilidad para una primera consulta.",
+        time:"Hace 12 min",
+        status:"pending"
+    },
+
+    {
+        id:2,
+        name:"Luis Alberto",
+        initials:"LA",
+        reason:
+            "Desea solicitar una consulta virtual para conversar sobre bienestar personal.",
+        time:"Hace 35 min",
+        status:"pending"
+    },
+
+    {
+        id:3,
+        name:"Andrea Lucía",
+        initials:"AL",
+        reason:
+            "Solicita acompañamiento psicológico y desea coordinar un horario de atención.",
+        time:"Hace 1 h",
+        status:"pending"
+    }
+
+];
+
+
+function renderRequests(){
+
+    const containers = [
+
+        document.getElementById(
+            "recentRequests"
+        ),
+
+        document.getElementById(
+            "allRequests"
+        )
+
+    ];
+
+
+    containers.forEach(container => {
+
+        if(!container) return;
+
+
+        container.innerHTML = "";
+
+
+        const visible =
+            requests.filter(
+                item =>
+                    item.status === "pending"
+            );
+
+
+        if(!visible.length){
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        No tienes solicitudes pendientes
+                    </h3>
+
+                    <p>
+                        Cuando un usuario solicite atención,
+                        aparecerá aquí.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        visible.forEach(request => {
+
+            const element =
+                document.createElement("div");
+
+
+            element.className =
+                "request-card";
+
+
+            element.innerHTML = `
+
+                <div class="request-top">
+
+                    <div class="request-avatar">
+                        ${request.initials}
+                    </div>
+
+                    <div class="request-info">
+
+                        <strong>
+                            ${request.name}
+                        </strong>
+
+                        <span>
+                            Solicitud de atención
+                        </span>
+
+                    </div>
+
+                    <span class="request-time">
+                        ${request.time}
+                    </span>
+
+                </div>
+
+
+                <div class="request-body">
+
+                    ${request.reason}
+
+                </div>
+
+
+                <div class="request-actions">
+
+                    <button
+                        class="accept-btn"
+                        onclick="acceptRequest(${request.id})"
+                    >
+                        ✓ Aceptar
+                    </button>
+
+                    <button
+                        class="reject-btn"
+                        onclick="rejectRequest(${request.id})"
+                    >
+                        × Rechazar
+                    </button>
+
+                    <button
+                        class="view-btn"
+                        onclick="viewRequest(${request.id})"
+                    >
+                        Ver detalle
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(element);
+
+        });
+
+    });
+
+
+    const pending =
+        requests.filter(
+            r => r.status === "pending"
+        ).length;
+
+
+    document.getElementById(
+        "solicitudesBadge"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "statSolicitudes"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "requestCountText"
+    ).textContent =
+        pending +
+        (pending === 1
+            ? " pendiente"
+            : " pendientes");
+
+}
+
+
+renderRequests();
+
+
+/* =========================================================
+   ACEPTAR SOLICITUD
+========================================================= */
+
+window.acceptRequest = function(id){
+
+    const request =
+        requests.find(
+            item => item.id === id
+        );
+
+
+    if(!request) return;
+
+
+    request.status =
+        "accepted";
+
+
+    renderRequests();
+
+
+    showToast(
+        "Solicitud aceptada correctamente."
+    );
+
+};
+
+
+/* =========================================================
+   RECHAZAR SOLICITUD
+========================================================= */
+
+window.rejectRequest = function(id){
+
+    const request =
+        requests.find(
+            item => item.id === id
+        );
+
+
+    if(!request) return;
+
+
+    request.status =
+        "rejected";
+
+
+    renderRequests();
+
+
+    showToast(
+        "Solicitud rechazada."
+    );
+
+};
+
+
+/* =========================================================
+   VER SOLICITUD
+========================================================= */
+
+window.viewRequest = function(id){
+
+    const request =
+        requests.find(
+            item => item.id === id
+        );
+
+
+    if(!request) return;
+
+
+    document.getElementById(
+        "requestDetail"
+    ).innerHTML = `
+
+        <div class="profile-large">
+
+            <div class="avatar">
+                ${request.initials}
+            </div>
+
+            <div>
+
+                <h3>
+                    ${request.name}
+                </h3>
+
+                <p>
+                    Solicitud de atención psicológica
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            style="box-shadow:none;background:#f6faf8;"
+        >
+
+            <strong>
+                Motivo de la solicitud
+            </strong>
+
+            <p style="
+                margin-top:8px;
+                color:var(--muted);
+                font-size:13px;
+                line-height:1.6;
+            ">
+                ${request.reason}
+            </p>
+
+        </div>
+
+
+        <div style="
+            margin-top:15px;
+            padding:14px;
+            background:#f8f3df;
+            border-radius:15px;
+            color:#7e683b;
+            font-size:11px;
+        ">
+
+            ℹ️ Al aceptar la solicitud,
+            podrás coordinar una consulta con el usuario
+            desde tu agenda.
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "modalAccept"
+    ).onclick = () => {
+
+        acceptRequest(id);
+
+        closeModal("requestModal");
+
+    };
+
+
+    document.getElementById(
+        "modalReject"
+    ).onclick = () => {
+
+        rejectRequest(id);
+
+        closeModal("requestModal");
+
+    };
+
+
+    openModal("requestModal");
+
+};
+
+
+/* =========================================================
+   FILTRO
+========================================================= */
+
+window.filterRequests = function(){
+
+    showSection("solicitudes");
+
+};
+
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+window.openModal = function(id){
+
+    document
+        .getElementById(id)
+        .classList.add("show");
+
+};
+
+
+window.closeModal = function(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("show");
+
+};
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(
+                    event.target === modal
+                ){
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   PACIENTES
+========================================================= */
+
+window.openPatient = function(name){
+
+    showToast(
+        "Abriendo expediente de " + name
+    );
+
+};
+
+
+window.searchPatients = function(){
+
+    const value =
+        document
+            .getElementById("patientSearch")
+            .value
+            .toLowerCase();
+
+
+    document
+        .querySelectorAll("#patientsTable tr")
+        .forEach(row => {
+
+            row.style.display =
+                row.textContent
+                    .toLowerCase()
+                    .includes(value)
+                    ? ""
+                    : "none";
+
+        });
+
+};
+
+
+/* =========================================================
+   NUEVA CONSULTA
+========================================================= */
+
+window.saveAppointment = function(){
+
+    closeModal(
+        "newAppointmentModal"
+    );
+
+    showToast(
+        "Consulta programada correctamente."
+    );
+
+};
+
+
+/* =========================================================
+   REPORTES
+========================================================= */
+
+window.generateReport = function(type){
+
+    showToast(
+        "Generando reporte de " +
+        type +
+        "..."
+    );
+
+};
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+window.showToast = function(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+};
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async () => {
+
+            try{
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../../index.html";
+
+            }catch(error){
+
+                console.error(error);
+
+                showToast(
+                    "No se pudo cerrar la sesión."
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   GRAFICO PRINCIPAL
+========================================================= */
+
+new Chart(
+
+    document.getElementById(
+        "consultasChart"
+    ),
+
+    {
+
+        type:"line",
+
+        data:{
+
+            labels:[
+                "Lun",
+                "Mar",
+                "Mié",
+                "Jue",
+                "Vie",
+                "Sáb",
+                "Dom"
+            ],
+
+            datasets:[{
+
+                label:"Consultas",
+
+                data:[
+                    2,
+                    3,
+                    1,
+                    4,
+                    3,
+                    2,
+                    1
+                ],
+
+                borderColor:
+                    "#315f5c",
+
+                backgroundColor:
+                    "rgba(49,95,92,.10)",
+
+                fill:true,
+
+                tension:.4,
+
+                borderWidth:3
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+                legend:{
+                    display:false
+                }
+            },
+
+            scales:{
+
+                y:{
+                    beginAtZero:true,
+                    ticks:{
+                        precision:0
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+/* =========================================================
+   GRAFICOS ESTADISTICAS
+========================================================= */
+
+new Chart(
+
+    document.getElementById(
+        "monthlyChart"
+    ),
+
+    {
+
+        type:"bar",
+
+        data:{
+
+            labels:[
+                "Abr",
+                "May",
+                "Jun",
+                "Jul",
+                "Ago",
+                "Sep"
+            ],
+
+            datasets:[{
+
+                label:"Consultas",
+
+                data:[
+                    12,
+                    17,
+                    15,
+                    21,
+                    19,
+                    24
+                ],
+
+                backgroundColor:
+                    "#527f79",
+
+                borderRadius:8
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+                legend:{
+                    display:false
+                }
+            },
+
+            scales:{
+                y:{
+                    beginAtZero:true
+                }
+            }
+
+        }
+
+    }
+
+);
+
+
+new Chart(
+
+    document.getElementById(
+        "requestsChart"
+    ),
+
+    {
+
+        type:"doughnut",
+
+        data:{
+
+            labels:[
+                "Aceptadas",
+                "Pendientes",
+                "Rechazadas"
+            ],
+
+            datasets:[{
+
+                data:[
+                    18,
+                    3,
+                    4
+                ],
+
+                backgroundColor:[
+                    "#527f79",
+                    "#d3b16d",
+                    "#b85c5c"
+                ],
+
+                borderWidth:0
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+
+                legend:{
+                    position:"bottom"
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+</script>
+
+</body>
+</html>
