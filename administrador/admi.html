@@ -1,0 +1,5238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#176B52"
+>
+
+<!-- =====================================================
+     LOGO TIKARY
+     admi.html está dentro de /administrador/
+     logo.jpg está dentro de /imagenes/
+     Por eso la ruta correcta es ../imagenes/logo.jpg
+===================================================== -->
+
+<link
+    rel="preload"
+    as="image"
+    href="../imagenes/logo.jpg"
+>
+
+<title>TIKARY | Administrar accesos</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+:root{
+    --primary:#176B52;
+    --primary-dark:#0E4D3B;
+    --primary-light:#E8F5F0;
+
+    --gold:#D7A62A;
+    --gold-dark:#B88713;
+    --gold-light:#FFF6D9;
+
+    --white:#FFFFFF;
+    --text:#18352D;
+    --muted:#71817B;
+
+    --success:#1D9B62;
+    --danger:#D9534F;
+    --warning:#E7A600;
+
+    --shadow:0 20px 50px rgba(23,107,82,.10);
+    --shadow-soft:0 10px 30px rgba(23,107,82,.06);
+
+    --radius:22px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Nunito',sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(215,166,42,.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(23,107,82,.12),
+            transparent 35%
+        ),
+        #F4F8F6;
+
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* =====================================================
+   FONDOS
+===================================================== */
+
+.blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(80px);
+    pointer-events:none;
+    z-index:-1;
+}
+
+.blob.one{
+    width:320px;
+    height:320px;
+    background:rgba(23,107,82,.12);
+    top:-100px;
+    left:-80px;
+}
+
+.blob.two{
+    width:380px;
+    height:380px;
+    background:rgba(215,166,42,.12);
+    right:-130px;
+    bottom:-120px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    width:100%;
+    padding:20px 6%;
+
+    background:rgba(255,255,255,.90);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(23,107,82,.08);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+/* =====================================================
+   LOGO
+   RUTA:
+   administrador/admi.html
+            ↓
+         ../
+            ↓
+       imagenes/logo.jpg
+===================================================== */
+
+.brand-logo{
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    background:#FFFFFF;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 6px 20px rgba(23,107,82,.20);
+
+    border:2px solid rgba(255,255,255,.95);
+
+    flex-shrink:0;
+}
+
+.brand-logo img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    border-radius:14px;
+}
+
+/* Si por alguna razón la imagen falla */
+.brand-logo.logo-error::after{
+    content:"TIKARY";
+
+    color:var(--primary);
+
+    font-size:9px;
+    font-weight:900;
+
+    letter-spacing:.5px;
+}
+
+.brand-text h1{
+    font-size:20px;
+    font-weight:900;
+    color:var(--primary);
+    line-height:1.1;
+    letter-spacing:.5px;
+}
+
+.brand-text span{
+    font-size:11px;
+    font-weight:700;
+    color:var(--muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.back{
+    text-decoration:none;
+    color:var(--primary);
+    background:var(--primary-light);
+
+    padding:10px 18px;
+
+    border-radius:14px;
+
+    font-size:13px;
+    font-weight:800;
+
+    transition:.25s ease;
+}
+
+.back:hover{
+    background:var(--primary);
+    color:white;
+    transform:translateY(-1px);
+}
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.container{
+    width:min(1200px,92%);
+    margin:40px auto 70px;
+}
+
+.title-section{
+    margin-bottom:30px;
+}
+
+.title-section h2{
+    font-size:32px;
+    font-weight:900;
+    color:var(--primary);
+}
+
+.title-section p{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,.88);
+
+    border:1px solid rgba(23,107,82,.08);
+
+    border-radius:var(--radius);
+
+    padding:22px;
+
+    box-shadow:var(--shadow-soft);
+
+    position:relative;
+    overflow:hidden;
+
+    transition:.3s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+}
+
+.stat-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    right:-20px;
+    top:-20px;
+
+    background:rgba(23,107,82,.05);
+}
+
+.stat-label{
+    color:var(--muted);
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:.5px;
+}
+
+.stat-number{
+    margin-top:8px;
+
+    font-size:32px;
+    font-weight:900;
+
+    color:var(--primary);
+}
+
+.stat-card.gold .stat-number{
+    color:var(--gold-dark);
+}
+
+.stat-card.blue .stat-number{
+    color:#2878B8;
+}
+
+.stat-card.purple .stat-number{
+    color:#7251A8;
+}
+
+.stat-card.admin .stat-number{
+    color:#8B5CF6;
+}
+
+/* =====================================================
+   PANELES
+===================================================== */
+
+.panel{
+    background:rgba(255,255,255,.92);
+
+    border:1px solid rgba(23,107,82,.08);
+
+    border-radius:26px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+    backdrop-filter:blur(10px);
+}
+
+.panel-header{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.panel-header h3{
+    color:var(--primary);
+
+    font-size:21px;
+    font-weight:900;
+}
+
+.panel-header p{
+    color:var(--muted);
+
+    font-size:13px;
+    font-weight:600;
+
+    margin-top:3px;
+}
+
+/* =====================================================
+   SELECTOR
+===================================================== */
+
+.type-selector{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+    margin-bottom:25px;
+}
+
+.type-option{
+    border:2px solid #E5ECE9;
+
+    background:#fff;
+
+    padding:16px 12px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-size:13px;
+    font-weight:800;
+
+    color:var(--muted);
+
+    transition:.25s ease;
+}
+
+.type-option:hover{
+    border-color:rgba(23,107,82,.35);
+    background:rgba(23,107,82,.02);
+}
+
+.type-option.active{
+    border-color:var(--primary);
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    box-shadow:
+        0 6px 18px rgba(23,107,82,.10);
+}
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    font-size:12px;
+    font-weight:900;
+    color:var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+
+    border:1px solid #DCE6E2;
+
+    border-radius:15px;
+
+    padding:12px 16px;
+
+    font-family:inherit;
+
+    font-size:14px;
+    font-weight:700;
+
+    color:var(--text);
+
+    outline:none;
+
+    background:white;
+
+    transition:.25s ease;
+}
+
+.form-group input,
+.form-group select{
+    height:50px;
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:90px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(23,107,82,.08);
+
+    background:#fff;
+}
+
+.permission-box{
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    min-height:50px;
+
+    padding:0 16px;
+
+    border:1px solid #DCE6E2;
+
+    border-radius:15px;
+
+    background:white;
+}
+
+.permission-box input{
+    width:20px;
+    height:20px;
+
+    accent-color:var(--primary);
+}
+
+.permission-box span{
+    font-size:13px;
+    font-weight:800;
+}
+
+.form-actions{
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:25px;
+}
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.btn{
+    border:none;
+
+    border-radius:14px;
+
+    padding:13px 22px;
+
+    font-family:inherit;
+
+    font-size:13px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+
+    box-shadow:
+        0 8px 20px rgba(23,107,82,.20);
+}
+
+.btn-primary:hover{
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(23,107,82,.28);
+}
+
+.btn-secondary{
+    background:#EDF2F0;
+    color:var(--text);
+}
+
+.btn-secondary:hover{
+    background:#E1E9E6;
+}
+
+.btn-danger{
+    background:#FFF0EF;
+    color:var(--danger);
+}
+
+.btn-danger:hover{
+    background:#FDE2E0;
+}
+
+.btn-edit{
+    background:var(--primary-light);
+    color:var(--primary);
+}
+
+.btn-edit:hover{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-copy{
+    background:#527F79;
+    color:white;
+
+    padding:6px 12px;
+
+    font-size:11px;
+
+    border-radius:9px;
+
+    font-weight:800;
+}
+
+.btn-copy:hover{
+    opacity:.85;
+}
+
+/* =====================================================
+   ADMINISTRADORES
+===================================================== */
+
+.admin-section{
+    border:1px solid rgba(139,92,246,.15);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.035),
+            rgba(255,255,255,.96)
+        );
+}
+
+.admin-section .panel-header h3{
+    color:#6841A5;
+}
+
+.admin-header-icon{
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#F0E9FF;
+
+    color:#6841A5;
+
+    font-size:25px;
+
+    flex-shrink:0;
+}
+
+.admin-intro{
+    display:flex;
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:25px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#FAF8FF;
+
+    border:1px solid #E9DFFF;
+}
+
+.admin-intro strong{
+    display:block;
+
+    color:#6841A5;
+
+    font-size:14px;
+
+    margin-bottom:3px;
+}
+
+.admin-intro span{
+    display:block;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.admin-form{
+    display:grid;
+
+    grid-template-columns:1fr auto;
+
+    gap:15px;
+
+    align-items:end;
+}
+
+.admin-form .form-group{
+    width:100%;
+}
+
+.admin-email-preview{
+    margin-top:8px;
+
+    padding:12px 15px;
+
+    border-radius:13px;
+
+    background:#F5F0FF;
+
+    color:#6841A5;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    border:1px solid #E4D8FF;
+}
+
+.admin-actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn-admin{
+    background:#6841A5;
+
+    color:white;
+
+    box-shadow:
+        0 8px 20px rgba(104,65,165,.20);
+}
+
+.btn-admin:hover{
+    background:#513186;
+
+    transform:translateY(-2px);
+}
+
+.admin-list{
+    margin-top:25px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:15px;
+}
+
+.admin-item{
+    background:white;
+
+    border:1px solid #E7DFF5;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    transition:.25s ease;
+}
+
+.admin-item:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(104,65,165,.08);
+
+    border-color:#CDB9EE;
+}
+
+.admin-info{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    min-width:0;
+}
+
+.admin-title{
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    font-size:16px;
+
+    font-weight:900;
+}
+
+.admin-email{
+    color:#6841A5;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    word-break:break-all;
+}
+
+.admin-actions-list{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+}
+
+.admin-badge{
+    background:#F0E9FF;
+    color:#6841A5;
+}
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+.search-box{
+    position:relative;
+
+    margin-bottom:20px;
+}
+
+.search-box input{
+    width:100%;
+
+    height:50px;
+
+    border:1px solid #DCE6E2;
+
+    border-radius:16px;
+
+    padding:0 18px;
+
+    font-family:inherit;
+
+    font-size:14px;
+    font-weight:700;
+
+    outline:none;
+
+    background:white;
+
+    transition:.25s ease;
+}
+
+.search-box input:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(23,107,82,.08);
+}
+
+/* =====================================================
+   LISTA
+===================================================== */
+
+.list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.item{
+    border:1px solid #E4ECE8;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:20px 24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    transition:.25s ease;
+}
+
+.item:hover{
+    border-color:rgba(23,107,82,.30);
+
+    box-shadow:
+        0 10px 30px rgba(23,107,82,.08);
+
+    transform:translateY(-1px);
+}
+
+.item-info{
+    min-width:0;
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+.item-title{
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    color:var(--text);
+}
+
+.item-subtitle{
+    color:var(--muted);
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+}
+
+.badge-green{
+    background:#E8F7EF;
+    color:#18804F;
+}
+
+.badge-gold{
+    background:var(--gold-light);
+    color:#B88713;
+}
+
+.badge-red{
+    background:#FFF0EF;
+    color:var(--danger);
+}
+
+.badge-blue{
+    background:#EDF6FF;
+    color:#2878B8;
+}
+
+.item-actions{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    flex-shrink:0;
+
+    min-width:180px;
+}
+
+.action-row{
+    display:flex;
+
+    gap:8px;
+
+    width:100%;
+}
+
+.action-row .btn{
+    flex:1;
+
+    padding:10px 12px;
+
+    font-size:12px;
+
+    text-align:center;
+
+    border-radius:12px;
+}
+
+/* =====================================================
+   VACÍO
+===================================================== */
+
+.empty{
+    padding:45px 20px;
+
+    text-align:center;
+
+    border:2px dashed #D5E2DD;
+
+    border-radius:18px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    background:rgba(255,255,255,.5);
+}
+
+/* =====================================================
+   MODALES
+===================================================== */
+
+.modal-overlay{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(10,30,24,.50);
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:1000;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.25s ease;
+
+    padding:20px;
+}
+
+.modal-overlay.active{
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+.modal-card{
+    background:#ffffff;
+
+    width:min(500px,100%);
+
+    border-radius:26px;
+
+    padding:32px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.25);
+
+    transform:translateY(20px);
+
+    transition:.25s ease;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.modal-overlay.active .modal-card{
+    transform:translateY(0);
+}
+
+.modal-card h4{
+    color:var(--primary);
+
+    font-size:22px;
+
+    font-weight:900;
+}
+
+.modal-card p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    font-weight:600;
+
+    line-height:1.4;
+}
+
+.modal-actions{
+    display:flex;
+
+    gap:12px;
+
+    justify-content:flex-end;
+
+    margin-top:5px;
+}
+
+.modal-actions .btn{
+    padding:12px 20px;
+}
+
+.user-data-box{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    background:#F8FBF9;
+
+    border:1px solid #E1ECE7;
+
+    border-radius:16px;
+
+    padding:16px;
+}
+
+.data-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:13px;
+
+    border-bottom:1px solid #EAEFEC;
+
+    padding-bottom:8px;
+}
+
+.data-row:last-child{
+    border-bottom:none;
+
+    padding-bottom:0;
+}
+
+.data-row span strong{
+    color:var(--primary);
+}
+
+.data-row code{
+    background:#fff;
+
+    padding:3px 8px;
+
+    border-radius:6px;
+
+    border:1px solid #DCE6E2;
+
+    font-weight:800;
+
+    font-size:12px;
+}
+
+.reason-alert{
+    background:#FFF8F8;
+
+    border-left:4px solid var(--danger);
+
+    padding:10px 14px;
+
+    border-radius:0 12px 12px 0;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:var(--danger);
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    background:var(--text);
+
+    color:white;
+
+    padding:15px 20px;
+
+    border-radius:15px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.20);
+
+    opacity:0;
+
+    transform:translateY(15px);
+
+    pointer-events:none;
+
+    transition:.3s ease;
+
+    z-index:2000;
+
+    max-width:360px;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.toast.success{
+    background:var(--success);
+}
+
+.toast.error{
+    background:var(--danger);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:950px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .type-selector{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .admin-form{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    header{
+        padding:15px 4%;
+    }
+
+    .brand-text h1{
+        font-size:17px;
+    }
+
+    .brand-text span{
+        font-size:9px;
+    }
+
+    .brand-logo{
+        width:44px;
+        height:44px;
+        border-radius:14px;
+    }
+
+    .brand-logo img{
+        border-radius:12px;
+    }
+
+    .back{
+        padding:9px 14px;
+        font-size:12px;
+    }
+
+    .container{
+        width:94%;
+        margin-top:30px;
+    }
+
+    .title-section h2{
+        font-size:26px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .stat-card{
+        padding:16px;
+    }
+
+    .stat-label{
+        font-size:10px;
+    }
+
+    .stat-number{
+        font-size:26px;
+    }
+
+    .panel{
+        padding:20px;
+        border-radius:22px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-actions{
+        flex-direction:column;
+    }
+
+    .form-actions .btn{
+        width:100%;
+    }
+
+    .item{
+        align-items:stretch;
+        flex-direction:column;
+    }
+
+    .item-actions{
+        width:100%;
+    }
+
+    .admin-item{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .admin-actions-list{
+        justify-content:stretch;
+    }
+
+    .admin-actions-list .btn{
+        flex:1;
+    }
+
+    .modal-card{
+        padding:22px;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .brand{
+        gap:9px;
+    }
+
+    .brand-logo{
+        width:40px;
+        height:40px;
+    }
+
+    .brand-text h1{
+        font-size:16px;
+    }
+
+    .brand-text span{
+        display:none;
+    }
+
+    .back{
+        padding:8px 12px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .type-selector{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="blob one"></div>
+<div class="blob two"></div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="brand">
+
+        <!-- =================================================
+             LOGO CORRECTO
+
+             admi.html:
+             /administrador/admi.html
+
+             logo:
+             /imagenes/logo.jpg
+
+             Ruta:
+             ../imagenes/logo.jpg
+        ================================================== -->
+
+        <div
+            class="brand-logo"
+            id="brandLogo"
+        >
+
+            <img
+                src="../imagenes/logo.jpg"
+                alt="TIKARY"
+                id="tikaryLogo"
+                loading="eager"
+                decoding="async"
+            >
+
+        </div>
+
+
+        <div class="brand-text">
+
+            <h1>
+                TIKARY
+            </h1>
+
+            <span>
+                Administración de accesos
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="../index.html"
+        class="back"
+    >
+        ← Volver
+    </a>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =====================================================
+         TITULO
+    ====================================================== -->
+
+    <section class="title-section">
+
+        <h2>
+            Administrar accesos 🌿
+        </h2>
+
+        <p>
+            Gestiona las autorizaciones y permisos para crear
+            cuentas de forma segura en TIKARY.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESTADÍSTICAS
+    ====================================================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                ALUMNOS
+            </div>
+
+            <div
+                class="stat-number"
+                id="total"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card gold">
+
+            <div class="stat-label">
+                PSICÓLOGOS INSTITUCIONALES
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalInstitucional"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card blue">
+
+            <div class="stat-label">
+                PSICÓLOGOS INDEPENDIENTES
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalIndependiente"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card purple">
+
+            <div class="stat-label">
+                INSTITUTOS
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalInstitutos"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card admin">
+
+            <div class="stat-label">
+                ADMINISTRADORES
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalAdministradores"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CREAR / EDITAR AUTORIZACIÓN
+    ====================================================== -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <h3 id="formTitle">
+                    Crear autorización
+                </h3>
+
+                <p>
+                    Define quién puede registrarse en la plataforma.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="type-selector">
+
+            <div
+                class="type-option active"
+                data-type="alumno"
+            >
+                🎓 Alumno
+            </div>
+
+
+            <div
+                class="type-option"
+                data-type="institucional"
+            >
+                🧠 Psicólogo institucional
+            </div>
+
+
+            <div
+                class="type-option"
+                data-type="independiente"
+            >
+                👤 Psicólogo independiente
+            </div>
+
+
+            <div
+                class="type-option"
+                data-type="instituto"
+            >
+                🏫 Instituto
+            </div>
+
+        </div>
+
+
+        <form id="accessForm">
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label for="dni">
+                        DNI
+                    </label>
+
+                    <input
+                        type="text"
+                        id="dni"
+                        maxlength="8"
+                        inputmode="numeric"
+                        placeholder="Ingrese DNI de 8 dígitos"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    id="planGroup"
+                >
+
+                    <label for="plan">
+                        Plan
+                    </label>
+
+                    <select
+                        id="plan"
+                        required
+                    >
+
+                        <option value="1">
+                            Plan 1
+                        </option>
+
+                        <option value="2">
+                            Plan 2
+                        </option>
+
+                        <option value="3">
+                            Plan 3
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    id="permisoCuentaGroup"
+                >
+
+                    <label>
+                        Permiso para crear cuenta
+                    </label>
+
+                    <div class="permission-box">
+
+                        <input
+                            type="checkbox"
+                            id="permisoCuenta"
+                            checked
+                        >
+
+                        <span>
+                            Puede crear su cuenta
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    id="permisoInstitutoGroup"
+                    style="display:none;"
+                >
+
+                    <label>
+                        Permiso de instituto
+                    </label>
+
+                    <div class="permission-box">
+
+                        <input
+                            type="checkbox"
+                            id="permisoInstituto"
+                            checked
+                        >
+
+                        <span>
+                            Instituto autorizado
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancel"
+                    style="display:none;"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="save"
+                >
+                    Guardar autorización
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- =====================================================
+         ADMINISTRADORES
+    ====================================================== -->
+
+    <section class="panel admin-section">
+
+        <div class="panel-header">
+
+            <div
+                style="
+                    display:flex;
+                    align-items:center;
+                    gap:15px;
+                "
+            >
+
+                <div class="admin-header-icon">
+                    🛡️
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Administradores TIKARY
+                    </h3>
+
+                    <p>
+                        Registra los DNI autorizados para acceder
+                        como administrador.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-intro">
+
+            <div style="font-size:25px;">
+                🔐
+            </div>
+
+            <div>
+
+                <strong>
+                    Registro de administrador
+                </strong>
+
+                <span>
+                    Ingresa el DNI y TIKARY generará
+                    automáticamente su correo administrativo.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <form id="adminForm">
+
+            <div class="admin-form">
+
+                <div class="form-group">
+
+                    <label for="adminDni">
+                        DNI DEL ADMINISTRADOR
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminDni"
+                        maxlength="8"
+                        inputmode="numeric"
+                        placeholder="Ingrese DNI de 8 dígitos"
+                        autocomplete="off"
+                        required
+                    >
+
+
+                    <div class="admin-email-preview">
+
+                        📧 Correo que se generará:
+
+                        <strong id="adminEmailPreview">
+                            00000000@tikaryadmin.com
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-actions">
+
+                    <button
+                        type="submit"
+                        class="btn btn-admin"
+                        id="btnGuardarAdmin"
+                    >
+                        🛡️ Agregar administrador
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <div
+            id="adminList"
+            class="admin-list"
+        ></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LISTA NORMAL
+    ====================================================== -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <h3>
+                    Autorizaciones registradas
+                </h3>
+
+                <p>
+                    Consulta, edita o bloquea accesos existentes.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="btnReiniciarTodo"
+                class="btn btn-danger"
+                style="
+                    font-size:11px;
+                    padding:9px 14px;
+                "
+            >
+                🗑️ Borrar Todo
+            </button>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Buscar por DNI o correo..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div
+            id="list"
+            class="list"
+        ></div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     MODAL DATOS
+===================================================== -->
+
+<div
+    id="modalVerDatos"
+    class="modal-overlay"
+>
+
+    <div class="modal-card">
+
+        <h4 id="modalDatosTitulo">
+            Datos de la cuenta 📋
+        </h4>
+
+        <p>
+            Detalles completos y credenciales del usuario seleccionado:
+        </p>
+
+
+        <div
+            class="user-data-box"
+            id="contenidoDatosUsuario"
+        ></div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="cerrarModalVerDatos()"
+            >
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL SUSPENSIÓN
+===================================================== -->
+
+<div
+    id="modalBloqueo"
+    class="modal-overlay"
+>
+
+    <div class="modal-card">
+
+        <h4>
+            Suspender acceso 🛑
+        </h4>
+
+        <p id="modalDniLabel">
+            Indica la fecha, la hora exacta hasta la cual
+            estará suspendido y el motivo:
+        </p>
+
+
+        <div class="form-group">
+
+            <label for="fechaHoraSuspension">
+                Suspender hasta (Fecha y hora)
+            </label>
+
+            <input
+                type="datetime-local"
+                id="fechaHoraSuspension"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="motivoBloqueo">
+                Motivo de la suspensión
+            </label>
+
+            <textarea
+                id="motivoBloqueo"
+                placeholder="Ej: Cuenta suspendida temporalmente por revisión..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="cerrarModalBloqueo()"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-danger"
+                onclick="aplicarBloqueoConMotivo()"
+            >
+                Aplicar suspensión
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL BLOQUEO PERMANENTE
+===================================================== -->
+
+<div
+    id="modalBloqueoPermanente"
+    class="modal-overlay"
+>
+
+    <div class="modal-card">
+
+        <h4>
+            Bloqueo permanente 🔒
+        </h4>
+
+        <p id="modalDniPermanenteLabel">
+            Indica el motivo del bloqueo definitivo para el DNI:
+        </p>
+
+
+        <div class="form-group">
+
+            <label for="motivoBloqueoPermanente">
+                Motivo del bloqueo permanente
+            </label>
+
+            <textarea
+                id="motivoBloqueoPermanente"
+                placeholder="Ej: Cuenta bloqueada permanentemente por incumplimiento de normas..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="cerrarModalBloqueoPermanente()"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-danger"
+                onclick="aplicarBloqueoPermanente()"
+            >
+                Aplicar bloqueo permanente
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getFirestore,
+    collection,
+    setDoc,
+    getDocs,
+    deleteDoc,
+    doc,
+    getDoc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDQXXvjw1aoftGNy6rdBrTulDfmMZWJ78c",
+
+    authDomain:
+        "tikary2-82b25.firebaseapp.com",
+
+    projectId:
+        "tikary2-82b25",
+
+    storageBucket:
+        "tikary2-82b25.firebasestorage.app",
+
+    messagingSenderId:
+        "515813934347",
+
+    appId:
+        "1:515813934347:web:e55de461d8b98a31da0e0e",
+
+    measurementId:
+        "G-M9HPJ7QQE6"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let alumnos = [];
+
+let profesionalesInstitucionales = [];
+
+let profesionalesIndependientes = [];
+
+let institutos = [];
+
+let administradores = [];
+
+let tipoActual = "alumno";
+
+let editando = null;
+
+let dniSeleccionadoParaBloquear = null;
+
+
+/* =====================================================
+   VERIFICAR LOGO
+===================================================== */
+
+const tikaryLogo =
+    document.getElementById("tikaryLogo");
+
+const brandLogo =
+    document.getElementById("brandLogo");
+
+
+tikaryLogo.addEventListener(
+    "error",
+    function(){
+
+        console.error(
+            "No se pudo cargar ../imagenes/logo.jpg"
+        );
+
+        brandLogo.classList.add(
+            "logo-error"
+        );
+
+        this.style.display =
+            "none";
+
+    }
+);
+
+
+tikaryLogo.addEventListener(
+    "load",
+    function(){
+
+        brandLogo.classList.remove(
+            "logo-error"
+        );
+
+        console.log(
+            "Logo TIKARY cargado correctamente desde ../imagenes/logo.jpg"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   GENERAR CORREOS
+===================================================== */
+
+function generarCorreo(
+    dni,
+    tipo,
+    plan
+){
+
+    const numero =
+        String(dni).trim();
+
+    const p =
+        String(plan || 1);
+
+
+    if(
+        tipo === "alumno" ||
+        tipo === "estudiante"
+    ){
+
+        return `${numero}@tikary${p}.com`;
+
+    }
+
+
+    if(tipo === "institucional"){
+
+        return `${numero}@tikary${p}b.com`;
+
+    }
+
+
+    if(tipo === "independiente"){
+
+        return `${numero}@tikary${p}p.com`;
+
+    }
+
+
+    if(tipo === "instituto"){
+
+        return `${numero}@tikary${p}i.com`;
+
+    }
+
+
+    if(tipo === "administrador"){
+
+        return `${numero}@tikaryadmin.com`;
+
+    }
+
+
+    return `${numero}@tikary${p}.com`;
+
+}
+
+
+/* =====================================================
+   CARGAR TODO
+===================================================== */
+
+async function cargarTodo(){
+
+    alumnos = [];
+
+    profesionalesInstitucionales = [];
+
+    profesionalesIndependientes = [];
+
+    institutos = [];
+
+    administradores = [];
+
+
+    try{
+
+        const querySnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "dni_permitidos"
+                )
+            );
+
+
+        querySnapshot.forEach(
+            (documento) => {
+
+                const registro =
+                    documento.data();
+
+                const dni =
+                    documento.id;
+
+
+                const item = {
+
+                    id:dni,
+
+                    ...registro
+
+                };
+
+
+                if(
+                    registro.estado === "bloqueado" &&
+                    registro.fechaExpiracionBloqueo &&
+                    registro.tipoBloqueo !== "permanente"
+                ){
+
+                    const fechaExp =
+                        new Date(
+                            registro.fechaExpiracionBloqueo
+                        ).getTime();
+
+
+                    if(
+                        Date.now() > fechaExp
+                    ){
+
+                        updateDoc(
+                            doc(
+                                db,
+                                "dni_permitidos",
+                                dni
+                            ),
+                            {
+                                estado:"disponible",
+                                permisoCrearCuenta:true,
+                                motivoBloqueo:"",
+                                fechaExpiracionBloqueo:null,
+                                tipoBloqueo:null
+                            }
+                        ).catch(
+                            e =>
+                                console.error(e)
+                        );
+
+
+                        item.estado =
+                            "disponible";
+
+                        item.permisoCrearCuenta =
+                            true;
+
+                    }
+
+                }
+
+
+                if(
+                    registro.tipo === "estudiante" ||
+                    registro.tipo === "alumno"
+                ){
+
+                    alumnos.push(item);
+
+                }
+
+                else if(
+                    registro.tipo === "institucional"
+                ){
+
+                    profesionalesInstitucionales.push(item);
+
+                }
+
+                else if(
+                    registro.tipo === "independiente"
+                ){
+
+                    profesionalesIndependientes.push(item);
+
+                }
+
+                else if(
+                    registro.tipo === "instituto"
+                ){
+
+                    institutos.push(item);
+
+                }
+
+                else if(
+                    registro.tipo === "administrador"
+                ){
+
+                    administradores.push(item);
+
+                }
+
+            }
+        );
+
+
+        actualizarEstadisticas();
+
+        renderizar();
+
+        renderizarAdministradores();
+
+
+    }catch(error){
+
+        console.error(
+            "Error leyendo autorizaciones:",
+            error
+        );
+
+
+        mostrarToast(
+            "Error al cargar las autorizaciones de la base de datos.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
+function actualizarEstadisticas(){
+
+    document.getElementById(
+        "total"
+    ).textContent =
+        alumnos.length;
+
+
+    document.getElementById(
+        "totalInstitucional"
+    ).textContent =
+        profesionalesInstitucionales.length;
+
+
+    document.getElementById(
+        "totalIndependiente"
+    ).textContent =
+        profesionalesIndependientes.length;
+
+
+    document.getElementById(
+        "totalInstitutos"
+    ).textContent =
+        institutos.length;
+
+
+    document.getElementById(
+        "totalAdministradores"
+    ).textContent =
+        administradores.length;
+
+}
+
+
+/* =====================================================
+   SELECCIONAR TIPO
+===================================================== */
+
+function seleccionarTipo(tipo){
+
+    tipoActual =
+        tipo;
+
+
+    document
+        .querySelectorAll(".type-option")
+        .forEach(
+            option => {
+
+                option.classList.toggle(
+                    "active",
+                    option.dataset.type === tipo
+                );
+
+            }
+        );
+
+
+    const permisoCuentaGroup =
+        document.getElementById(
+            "permisoCuentaGroup"
+        );
+
+
+    const permisoInstitutoGroup =
+        document.getElementById(
+            "permisoInstitutoGroup"
+        );
+
+
+    const planGroup =
+        document.getElementById(
+            "planGroup"
+        );
+
+
+    if(tipo === "alumno"){
+
+        permisoCuentaGroup.style.display =
+            "flex";
+
+        permisoInstitutoGroup.style.display =
+            "none";
+
+        planGroup.style.display =
+            "flex";
+
+        document.getElementById(
+            "permisoCuenta"
+        ).checked =
+            true;
+
+    }
+
+
+    else if(
+        tipo === "institucional" ||
+        tipo === "independiente"
+    ){
+
+        permisoCuentaGroup.style.display =
+            "flex";
+
+        permisoInstitutoGroup.style.display =
+            "none";
+
+        planGroup.style.display =
+            "flex";
+
+    }
+
+
+    else if(tipo === "instituto"){
+
+        permisoCuentaGroup.style.display =
+            "none";
+
+        permisoInstitutoGroup.style.display =
+            "flex";
+
+        planGroup.style.display =
+            "flex";
+
+        document.getElementById(
+            "permisoInstituto"
+        ).checked =
+            true;
+
+    }
+
+}
+
+
+/* =====================================================
+   GUARDAR AUTORIZACIÓN
+===================================================== */
+
+async function guardar(){
+
+    const dniInput =
+        document.getElementById("dni");
+
+
+    const plan =
+        document.getElementById(
+            "plan"
+        ).value;
+
+
+    const numero =
+        dniInput.value.trim();
+
+
+    if(
+        !/^\d{8}$/.test(numero)
+    ){
+
+        mostrarToast(
+            "El DNI debe tener exactamente 8 dígitos.",
+            "error"
+        );
+
+        dniInput.focus();
+
+        return;
+
+    }
+
+
+    try{
+
+        const docRef =
+            doc(
+                db,
+                "dni_permitidos",
+                numero
+            );
+
+
+        const docSnap =
+            await getDoc(docRef);
+
+
+        const registroAnterior =
+            docSnap.exists()
+                ? docSnap.data()
+                : null;
+
+
+        if(
+            !editando &&
+            docSnap.exists()
+        ){
+
+            mostrarToast(
+                "Ese DNI ya tiene una autorización registrada.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            editando &&
+            editando !== numero
+        ){
+
+            const nuevoDocSnap =
+                await getDoc(
+                    doc(
+                        db,
+                        "dni_permitidos",
+                        numero
+                    )
+                );
+
+
+            if(
+                nuevoDocSnap.exists()
+            ){
+
+                mostrarToast(
+                    "El nuevo DNI ya tiene una autorización registrada.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "dni_permitidos",
+                    editando
+                )
+            );
+
+        }
+
+
+        const ahora =
+            new Date().toISOString();
+
+
+        let objetoGuardar = {};
+
+
+        /* ================= ALUMNO ================= */
+
+        if(
+            tipoActual === "alumno"
+        ){
+
+            objetoGuardar = {
+
+                dni:numero,
+
+                tipo:"estudiante",
+
+                plan:plan,
+
+                permisoCrearCuenta:true,
+
+                cuentaCreada:
+                    registroAnterior?.cuentaCreada ||
+                    false,
+
+                estado:
+                    registroAnterior?.estado ||
+                    (
+                        registroAnterior?.cuentaCreada
+                            ? "usado"
+                            : "disponible"
+                    ),
+
+                motivoBloqueo:
+                    registroAnterior?.motivoBloqueo ||
+                    "",
+
+                fechaExpiracionBloqueo:
+                    registroAnterior?.fechaExpiracionBloqueo ||
+                    null,
+
+                tipoBloqueo:
+                    registroAnterior?.tipoBloqueo ||
+                    null,
+
+                correoGenerado:
+                    generarCorreo(
+                        numero,
+                        "alumno",
+                        plan
+                    ),
+
+                uidUsuario:
+                    registroAnterior?.uidUsuario ||
+                    null,
+
+                fechaRegistro:
+                    registroAnterior?.fechaRegistro ||
+                    ahora,
+
+                fechaActualizacion:
+                    ahora,
+
+                panel:
+                    `tikary${plan}`
+
+            };
+
+        }
+
+
+        /* ================= INSTITUCIONAL ================= */
+
+        else if(
+            tipoActual === "institucional"
+        ){
+
+            const permiso =
+                document.getElementById(
+                    "permisoCuenta"
+                ).checked;
+
+
+            objetoGuardar = {
+
+                dni:numero,
+
+                tipo:"institucional",
+
+                rol:"psicologo",
+
+                tipoPsicologo:"institucional",
+
+                plan:plan,
+
+                permisoCrearCuenta:permiso,
+
+                cuentaCreada:
+                    registroAnterior?.cuentaCreada ||
+                    false,
+
+                estado:
+                    !permiso
+                        ? "bloqueado"
+                        : (
+                            registroAnterior?.estado ||
+                            (
+                                registroAnterior?.cuentaCreada
+                                    ? "usado"
+                                    : "disponible"
+                            )
+                        ),
+
+                motivoBloqueo:
+                    registroAnterior?.motivoBloqueo ||
+                    "",
+
+                fechaExpiracionBloqueo:
+                    registroAnterior?.fechaExpiracionBloqueo ||
+                    null,
+
+                tipoBloqueo:
+                    registroAnterior?.tipoBloqueo ||
+                    null,
+
+                correoGenerado:
+                    generarCorreo(
+                        numero,
+                        "institucional",
+                        plan
+                    ),
+
+                uidUsuario:
+                    registroAnterior?.uidUsuario ||
+                    null,
+
+                fechaRegistro:
+                    registroAnterior?.fechaRegistro ||
+                    ahora,
+
+                fechaActualizacion:
+                    ahora,
+
+                panel:
+                    `tikary${plan}b`
+
+            };
+
+        }
+
+
+        /* ================= INDEPENDIENTE ================= */
+
+        else if(
+            tipoActual === "independiente"
+        ){
+
+            const permiso =
+                document.getElementById(
+                    "permisoCuenta"
+                ).checked;
+
+
+            objetoGuardar = {
+
+                dni:numero,
+
+                tipo:"independiente",
+
+                rol:"psicologo",
+
+                tipoPsicologo:"independiente",
+
+                plan:plan,
+
+                permisoCrearCuenta:permiso,
+
+                cuentaCreada:
+                    registroAnterior?.cuentaCreada ||
+                    false,
+
+                estado:
+                    !permiso
+                        ? "bloqueado"
+                        : (
+                            registroAnterior?.estado ||
+                            (
+                                registroAnterior?.cuentaCreada
+                                    ? "usado"
+                                    : "disponible"
+                            )
+                        ),
+
+                motivoBloqueo:
+                    registroAnterior?.motivoBloqueo ||
+                    "",
+
+                fechaExpiracionBloqueo:
+                    registroAnterior?.fechaExpiracionBloqueo ||
+                    null,
+
+                tipoBloqueo:
+                    registroAnterior?.tipoBloqueo ||
+                    null,
+
+                correoGenerado:
+                    generarCorreo(
+                        numero,
+                        "independiente",
+                        plan
+                    ),
+
+                uidUsuario:
+                    registroAnterior?.uidUsuario ||
+                    null,
+
+                fechaRegistro:
+                    registroAnterior?.fechaRegistro ||
+                    ahora,
+
+                fechaActualizacion:
+                    ahora,
+
+                panel:
+                    `tikary${plan}p`
+
+            };
+
+        }
+
+
+        /* ================= INSTITUTO ================= */
+
+        else if(
+            tipoActual === "instituto"
+        ){
+
+            const permiso =
+                document.getElementById(
+                    "permisoInstituto"
+                ).checked;
+
+
+            objetoGuardar = {
+
+                dni:numero,
+
+                tipo:"instituto",
+
+                rol:"instituto",
+
+                plan:plan,
+
+                permisoCrearCuenta:permiso,
+
+                cuentaCreada:
+                    registroAnterior?.cuentaCreada ||
+                    false,
+
+                estado:
+                    !permiso
+                        ? "bloqueado"
+                        : (
+                            registroAnterior?.estado ||
+                            (
+                                registroAnterior?.cuentaCreada
+                                    ? "usado"
+                                    : "disponible"
+                            )
+                        ),
+
+                motivoBloqueo:
+                    registroAnterior?.motivoBloqueo ||
+                    "",
+
+                fechaExpiracionBloqueo:
+                    registroAnterior?.fechaExpiracionBloqueo ||
+                    null,
+
+                tipoBloqueo:
+                    registroAnterior?.tipoBloqueo ||
+                    null,
+
+                correoGenerado:
+                    generarCorreo(
+                        numero,
+                        "instituto",
+                        plan
+                    ),
+
+                uidUsuario:
+                    registroAnterior?.uidUsuario ||
+                    null,
+
+                fechaRegistro:
+                    registroAnterior?.fechaRegistro ||
+                    ahora,
+
+                fechaActualizacion:
+                    ahora,
+
+                panel:
+                    `tikary${plan}i`
+
+            };
+
+        }
+
+
+        await setDoc(
+            docRef,
+            objetoGuardar
+        );
+
+
+        mostrarToast(
+            editando
+                ? "Autorización actualizada correctamente."
+                : "DNI autorizado correctamente.",
+            "success"
+        );
+
+
+        cancelarEdicion();
+
+        cargarTodo();
+
+
+    }catch(error){
+
+        console.error(
+            "Error al guardar:",
+            error
+        );
+
+
+        mostrarToast(
+            "No se pudo guardar: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   AGREGAR ADMINISTRADOR
+===================================================== */
+
+async function agregarAdministrador(){
+
+    const input =
+        document.getElementById(
+            "adminDni"
+        );
+
+
+    const numero =
+        input.value.trim();
+
+
+    if(
+        !/^\d{8}$/.test(numero)
+    ){
+
+        mostrarToast(
+            "El DNI del administrador debe tener exactamente 8 dígitos.",
+            "error"
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    try{
+
+        const docRef =
+            doc(
+                db,
+                "dni_permitidos",
+                numero
+            );
+
+
+        const docSnap =
+            await getDoc(docRef);
+
+
+        if(
+            docSnap.exists()
+        ){
+
+            mostrarToast(
+                "Ese DNI ya está registrado en TIKARY.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const ahora =
+            new Date().toISOString();
+
+
+        const objetoAdministrador = {
+
+            dni:numero,
+
+            tipo:"administrador",
+
+            rol:"administrador",
+
+            plan:"admin",
+
+            panel:"administrador",
+
+            permisoCrearCuenta:true,
+
+            cuentaCreada:false,
+
+            estado:"disponible",
+
+            motivoBloqueo:"",
+
+            fechaExpiracionBloqueo:null,
+
+            tipoBloqueo:null,
+
+            correoGenerado:
+                `${numero}@tikaryadmin.com`,
+
+            uidUsuario:null,
+
+            fechaRegistro:ahora,
+
+            fechaActualizacion:ahora
+
+        };
+
+
+        await setDoc(
+            docRef,
+            objetoAdministrador
+        );
+
+
+        mostrarToast(
+            "Administrador agregado correctamente. Correo generado: " +
+            numero +
+            "@tikaryadmin.com",
+            "success"
+        );
+
+
+        input.value = "";
+
+        actualizarPreviewAdmin();
+
+        cargarTodo();
+
+
+    }catch(error){
+
+        console.error(
+            "Error agregando administrador:",
+            error
+        );
+
+
+        mostrarToast(
+            "No se pudo registrar el administrador: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER ADMINISTRADORES
+===================================================== */
+
+function renderizarAdministradores(){
+
+    const contenedor =
+        document.getElementById(
+            "adminList"
+        );
+
+
+    if(
+        administradores.length === 0
+    ){
+
+        contenedor.innerHTML = `
+
+            <div class="empty">
+
+                🛡️ No hay administradores
+                registrados todavía.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    contenedor.innerHTML =
+
+        administradores
+            .sort(
+                (a,b) =>
+                    String(a.dni)
+                        .localeCompare(
+                            String(b.dni)
+                        )
+            )
+            .map(
+                item => {
+
+                    const estaBloqueado =
+                        (
+                            item.estado === "bloqueado" ||
+                            item.permisoCrearCuenta === false
+                        );
+
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-info">
+
+                                <div class="admin-title">
+
+                                    🛡️ ${item.dni}
+
+                                    <span class="badge admin-badge">
+                                        ADMINISTRADOR
+                                    </span>
+
+                                    ${obtenerEstadoBadge(item)}
+
+                                </div>
+
+
+                                <div class="admin-email">
+
+                                    📧
+                                    ${
+                                        item.correoGenerado ||
+                                        generarCorreo(
+                                            item.dni,
+                                            "administrador",
+                                            "admin"
+                                        )
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-actions-list">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    onclick="abrirModalVerDatos('${item.dni}')"
+                                >
+                                    👁️ Ver
+                                </button>
+
+
+                                ${
+                                    estaBloqueado
+
+                                    ?
+
+                                    `
+                                    <button
+                                        type="button"
+                                        class="btn"
+                                        style="
+                                            background:#1D9B62;
+                                            color:white;
+                                        "
+                                        onclick="activarAcceso('${item.dni}')"
+                                    >
+                                        ✓ Activar
+                                    </button>
+                                    `
+
+                                    :
+
+                                    `
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger"
+                                        onclick="abrirModalBloqueo('${item.dni}')"
+                                    >
+                                        🛑 Suspender
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger"
+                                        style="
+                                            background:#8B0000;
+                                            color:white;
+                                        "
+                                        onclick="abrirModalBloqueoPermanente('${item.dni}')"
+                                    >
+                                        🔒 Bloquear
+                                    </button>
+                                    `
+                                }
+
+
+                                <button
+                                    type="button"
+                                    class="btn btn-danger"
+                                    onclick="eliminar('${item.dni}')"
+                                >
+                                    Eliminar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   EDITAR
+===================================================== */
+
+window.editar =
+async function(dni){
+
+    try{
+
+        const docSnap =
+            await getDoc(
+                doc(
+                    db,
+                    "dni_permitidos",
+                    dni
+                )
+            );
+
+
+        if(
+            !docSnap.exists()
+        ){
+
+            mostrarToast(
+                "No se encontró la autorización.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const registro =
+            docSnap.data();
+
+
+        editando =
+            dni;
+
+
+        if(
+            registro.tipo === "estudiante" ||
+            registro.tipo === "alumno"
+        ){
+
+            tipoActual =
+                "alumno";
+
+        }
+
+        else if(
+            registro.tipo === "institucional"
+        ){
+
+            tipoActual =
+                "institucional";
+
+        }
+
+        else if(
+            registro.tipo === "independiente"
+        ){
+
+            tipoActual =
+                "independiente";
+
+        }
+
+        else if(
+            registro.tipo === "instituto"
+        ){
+
+            tipoActual =
+                "instituto";
+
+        }
+
+
+        seleccionarTipo(
+            tipoActual
+        );
+
+
+        document.getElementById(
+            "dni"
+        ).value =
+            registro.dni || dni;
+
+
+        document.getElementById(
+            "plan"
+        ).value =
+            registro.plan || "1";
+
+
+        document.getElementById(
+            "permisoCuenta"
+        ).checked =
+            registro.permisoCrearCuenta !== false;
+
+
+        document.getElementById(
+            "permisoInstituto"
+        ).checked =
+            registro.permisoCrearCuenta !== false;
+
+
+        document.getElementById(
+            "formTitle"
+        ).textContent =
+            "Editar autorización";
+
+
+        document.getElementById(
+            "save"
+        ).textContent =
+            "Guardar cambios";
+
+
+        document.getElementById(
+            "cancel"
+        ).style.display =
+            "inline-block";
+
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+
+    }catch(error){
+
+        mostrarToast(
+            "Error al cargar para editar.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   EDITAR ADMINISTRADOR
+===================================================== */
+
+window.editarAdministrador =
+async function(dni){
+
+    const input =
+        document.getElementById(
+            "adminDni"
+        );
+
+
+    input.value =
+        dni;
+
+
+    input.focus();
+
+
+    mostrarToast(
+        "DNI cargado. Puedes reemplazarlo por otro DNI y guardar nuevamente.",
+        "success"
+    );
+
+};
+
+
+/* =====================================================
+   CANCELAR EDICIÓN
+===================================================== */
+
+function cancelarEdicion(){
+
+    editando =
+        null;
+
+
+    document
+        .getElementById(
+            "accessForm"
+        )
+        .reset();
+
+
+    document.getElementById(
+        "plan"
+    ).value =
+        "1";
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "Crear autorización";
+
+
+    document.getElementById(
+        "save"
+    ).textContent =
+        "Guardar autorización";
+
+
+    document.getElementById(
+        "cancel"
+    ).style.display =
+        "none";
+
+
+    tipoActual =
+        "alumno";
+
+
+    seleccionarTipo(
+        "alumno"
+    );
+
+}
+
+
+/* =====================================================
+   ELIMINAR
+===================================================== */
+
+window.eliminar =
+async function(dni){
+
+    const confirmar =
+        confirm(
+            `¿Deseas eliminar la autorización del DNI ${dni}?`
+        );
+
+
+    if(!confirmar)
+        return;
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "dni_permitidos",
+                dni
+            )
+        );
+
+
+        mostrarToast(
+            "Autorización eliminada correctamente.",
+            "success"
+        );
+
+
+        if(
+            editando === dni
+        ){
+
+            cancelarEdicion();
+
+        }
+
+
+        cargarTodo();
+
+
+    }catch(error){
+
+        mostrarToast(
+            "Error al eliminar.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   MODAL VER DATOS
+===================================================== */
+
+window.abrirModalVerDatos =
+async function(dni){
+
+    try{
+
+        const docSnap =
+            await getDoc(
+                doc(
+                    db,
+                    "dni_permitidos",
+                    dni
+                )
+            );
+
+
+        if(
+            !docSnap.exists()
+        ){
+
+            mostrarToast(
+                "No se encontró información para este DNI.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const item =
+            docSnap.data();
+
+
+        const correo =
+            item.correoGenerado ||
+            generarCorreo(
+                item.dni,
+                item.tipo || tipoActual,
+                item.plan || 1
+            );
+
+
+        const passwordMostrada =
+            item.password ||
+            "No especificada";
+
+
+        const nombresUsuario =
+            item.nombres ||
+            item.nombreCompleto ||
+            item.nombresCompletos ||
+            "No registrado aún";
+
+
+        let fechaFormateada =
+            "No registrada";
+
+
+        if(
+            item.fechaRegistro
+        ){
+
+            try{
+
+                fechaFormateada =
+                    new Date(
+                        item.fechaRegistro
+                    ).toLocaleString();
+
+            }catch(e){}
+
+        }
+
+
+        const estaBloqueado =
+            (
+                item.estado === "bloqueado" ||
+                item.permisoCrearCuenta === false
+            );
+
+
+        let estadoTexto =
+            `
+            <span class="badge badge-green">
+                DISPONIBLE
+            </span>
+            `;
+
+
+        if(
+            item.estado === "usado"
+        ){
+
+            estadoTexto =
+                `
+                <span class="badge badge-gold">
+                    CUENTA CREADA
+                </span>
+                `;
+
+        }
+
+        else if(
+            estaBloqueado
+        ){
+
+            if(
+                item.tipoBloqueo === "permanente"
+            ){
+
+                estadoTexto =
+                    `
+                    <span class="badge badge-red">
+                        BLOQUEADO PERMANENTE
+                    </span>
+                    `;
+
+            }
+
+            else{
+
+                estadoTexto =
+                    `
+                    <span class="badge badge-red">
+                        SUSPENDIDO
+                    </span>
+                    `;
+
+            }
+
+        }
+
+
+        let htmlBloqueo =
+            "";
+
+
+        if(
+            estaBloqueado
+        ){
+
+            const motivo =
+                item.motivoBloqueo ||
+                "Acceso restringido por la administración.";
+
+
+            let expiraInfo =
+                "";
+
+
+            if(
+                item.fechaExpiracionBloqueo &&
+                item.tipoBloqueo !== "permanente"
+            ){
+
+                try{
+
+                    expiraInfo =
+                        `
+                        <br>
+                        <small>
+
+                            🕒
+
+                            <strong>
+                                Hasta:
+                            </strong>
+
+                            ${
+                                new Date(
+                                    item.fechaExpiracionBloqueo
+                                ).toLocaleString()
+                            }
+
+                        </small>
+                        `;
+
+                }catch(e){}
+
+            }
+
+
+            htmlBloqueo = `
+
+                <div class="reason-alert">
+
+                    🛑
+
+                    <strong>
+                        Motivo:
+                    </strong>
+
+                    ${motivo}
+
+                    ${expiraInfo}
+
+                </div>
+
+            `;
+
+        }
+
+
+        const esAdmin =
+            item.tipo === "administrador";
+
+
+        document.getElementById(
+            "modalDatosTitulo"
+        ).textContent =
+            esAdmin
+                ? `Administrador: ${item.dni} 🛡️`
+                : `Datos del DNI: ${item.dni}`;
+
+
+        document.getElementById(
+            "contenidoDatosUsuario"
+        ).innerHTML = `
+
+            <div class="data-row">
+
+                <span>
+                    Estado actual:
+                </span>
+
+                <div>
+                    ${estadoTexto}
+                </div>
+
+            </div>
+
+
+            <div class="data-row">
+
+                <span>
+                    Tipo:
+                </span>
+
+                <strong>
+
+                    ${
+                        esAdmin
+                            ? "Administrador TIKARY"
+                            : obtenerNombreTipo(item.tipo)
+                    }
+
+                </strong>
+
+            </div>
+
+
+            <div class="data-row">
+
+                <span>
+                    DNI:
+                </span>
+
+                <strong>
+                    ${item.dni}
+                </strong>
+
+            </div>
+
+
+            <div class="data-row">
+
+                <span>
+                    Nombres / Usuario:
+                </span>
+
+                <strong>
+                    ${nombresUsuario}
+                </strong>
+
+            </div>
+
+
+            <div class="data-row">
+
+                <span>
+                    Fecha de registro:
+                </span>
+
+                <strong>
+                    ${fechaFormateada}
+                </strong>
+
+            </div>
+
+
+            <div class="data-row">
+
+                <span>
+                    Correo asignado:
+                </span>
+
+                <div>
+
+                    <code>
+                        ${correo}
+                    </code>
+
+                    <button
+                        type="button"
+                        class="btn btn-copy"
+                        onclick="navigator.clipboard.writeText('${correo}');alert('¡Correo copiado!');"
+                    >
+                        📋
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="data-row">
+
+                <span>
+                    Contraseña:
+                </span>
+
+                <div>
+
+                    <code>
+                        ${passwordMostrada}
+                    </code>
+
+                    <button
+                        type="button"
+                        class="btn btn-copy"
+                        onclick="navigator.clipboard.writeText('${passwordMostrada}');alert('¡Contraseña copiada!');"
+                    >
+                        📋
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            ${htmlBloqueo}
+
+        `;
+
+
+        document
+            .getElementById(
+                "modalVerDatos"
+            )
+            .classList.add(
+                "active"
+            );
+
+
+    }catch(e){
+
+        mostrarToast(
+            "Error al cargar los datos del usuario.",
+            "error"
+        );
+
+    }
+
+};
+
+
+window.cerrarModalVerDatos =
+function(){
+
+    document
+        .getElementById(
+            "modalVerDatos"
+        )
+        .classList.remove(
+            "active"
+        );
+
+};
+
+
+/* =====================================================
+   BLOQUEO TEMPORAL
+===================================================== */
+
+window.abrirModalBloqueo =
+function(dni){
+
+    dniSeleccionadoParaBloquear =
+        dni;
+
+
+    document.getElementById(
+        "modalDniLabel"
+    ).textContent =
+        `Suspender acceso para el DNI ${dni}:`;
+
+
+    const manana =
+        new Date(
+            Date.now() +
+            24 * 60 * 60 * 1000
+        );
+
+
+    document.getElementById(
+        "fechaHoraSuspension"
+    ).value =
+        manana
+            .toISOString()
+            .slice(0,16);
+
+
+    document.getElementById(
+        "motivoBloqueo"
+    ).value =
+        "Cuenta suspendida temporalmente por revisión.";
+
+
+    document
+        .getElementById(
+            "modalBloqueo"
+        )
+        .classList.add(
+            "active"
+        );
+
+};
+
+
+window.cerrarModalBloqueo =
+function(){
+
+    document
+        .getElementById(
+            "modalBloqueo"
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+    dniSeleccionadoParaBloquear =
+        null;
+
+};
+
+
+/* =====================================================
+   APLICAR BLOQUEO TEMPORAL
+===================================================== */
+
+window.aplicarBloqueoConMotivo =
+async function(){
+
+    if(
+        !dniSeleccionadoParaBloquear
+    )
+        return;
+
+
+    const fechaHoraStr =
+        document.getElementById(
+            "fechaHoraSuspension"
+        ).value;
+
+
+    const motivo =
+        document.getElementById(
+            "motivoBloqueo"
+        ).value.trim();
+
+
+    if(!motivo){
+
+        mostrarToast(
+            "Por favor escribe un motivo para la suspensión.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    let fechaExpiracion =
+        null;
+
+
+    if(
+        fechaHoraStr
+    ){
+
+        fechaExpiracion =
+            new Date(
+                fechaHoraStr
+            ).toISOString();
+
+    }
+
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "dni_permitidos",
+                dniSeleccionadoParaBloquear
+            ),
+            {
+                estado:"bloqueado",
+
+                permisoCrearCuenta:false,
+
+                motivoBloqueo:motivo,
+
+                fechaExpiracionBloqueo:
+                    fechaExpiracion,
+
+                tipoBloqueo:"temporal"
+            }
+        );
+
+
+        mostrarToast(
+            "Acceso suspendido correctamente.",
+            "success"
+        );
+
+
+        cerrarModalBloqueo();
+
+        cargarTodo();
+
+
+    }catch(error){
+
+        mostrarToast(
+            "Error al aplicar la suspensión.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   BLOQUEO PERMANENTE
+===================================================== */
+
+window.abrirModalBloqueoPermanente =
+function(dni){
+
+    dniSeleccionadoParaBloquear =
+        dni;
+
+
+    document.getElementById(
+        "modalDniPermanenteLabel"
+    ).textContent =
+        `Indica el motivo del bloqueo definitivo para el DNI ${dni}:`;
+
+
+    document.getElementById(
+        "motivoBloqueoPermanente"
+    ).value =
+        "Cuenta bloqueada permanentemente por incumplimiento de normas.";
+
+
+    document
+        .getElementById(
+            "modalBloqueoPermanente"
+        )
+        .classList.add(
+            "active"
+        );
+
+};
+
+
+window.cerrarModalBloqueoPermanente =
+function(){
+
+    document
+        .getElementById(
+            "modalBloqueoPermanente"
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+    dniSeleccionadoParaBloquear =
+        null;
+
+};
+
+
+/* =====================================================
+   APLICAR BLOQUEO PERMANENTE
+===================================================== */
+
+window.aplicarBloqueoPermanente =
+async function(){
+
+    if(
+        !dniSeleccionadoParaBloquear
+    )
+        return;
+
+
+    const motivo =
+        document.getElementById(
+            "motivoBloqueoPermanente"
+        ).value.trim();
+
+
+    if(!motivo){
+
+        mostrarToast(
+            "Por favor escribe un motivo para el bloqueo permanente.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "dni_permitidos",
+                dniSeleccionadoParaBloquear
+            ),
+            {
+                estado:"bloqueado",
+
+                permisoCrearCuenta:false,
+
+                motivoBloqueo:motivo,
+
+                fechaExpiracionBloqueo:null,
+
+                tipoBloqueo:"permanente"
+            }
+        );
+
+
+        mostrarToast(
+            "Bloqueo permanente aplicado correctamente.",
+            "success"
+        );
+
+
+        cerrarModalBloqueoPermanente();
+
+        cargarTodo();
+
+
+    }catch(error){
+
+        mostrarToast(
+            "Error al aplicar el bloqueo permanente.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   ACTIVAR ACCESO
+===================================================== */
+
+window.activarAcceso =
+async function(dni){
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "dni_permitidos",
+                dni
+            ),
+            {
+                estado:"disponible",
+
+                permisoCrearCuenta:true,
+
+                motivoBloqueo:"",
+
+                fechaExpiracionBloqueo:null,
+
+                tipoBloqueo:null
+            }
+        );
+
+
+        mostrarToast(
+            "Acceso reactivado correctamente.",
+            "success"
+        );
+
+
+        cargarTodo();
+
+
+    }catch(error){
+
+        mostrarToast(
+            "Error al activar acceso.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   OBTENER LISTA ACTUAL
+===================================================== */
+
+function obtenerListaActual(){
+
+    if(
+        tipoActual === "alumno"
+    )
+        return alumnos;
+
+
+    if(
+        tipoActual === "institucional"
+    )
+        return profesionalesInstitucionales;
+
+
+    if(
+        tipoActual === "independiente"
+    )
+        return profesionalesIndependientes;
+
+
+    if(
+        tipoActual === "instituto"
+    )
+        return institutos;
+
+
+    return [];
+
+}
+
+
+/* =====================================================
+   NOMBRE DEL TIPO
+===================================================== */
+
+function obtenerNombreTipo(tipo){
+
+    if(
+        tipo === "estudiante" ||
+        tipo === "alumno"
+    )
+        return "Alumno";
+
+
+    if(
+        tipo === "institucional"
+    )
+        return "Psicólogo institucional";
+
+
+    if(
+        tipo === "independiente"
+    )
+        return "Psicólogo independiente";
+
+
+    if(
+        tipo === "instituto"
+    )
+        return "Instituto";
+
+
+    if(
+        tipo === "administrador"
+    )
+        return "Administrador";
+
+
+    return "Autorizado";
+
+}
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+function obtenerEstadoBadge(registro){
+
+    const estado =
+        registro.estado ||
+        "disponible";
+
+
+    if(
+        estado === "usado"
+    ){
+
+        return `
+            <span class="badge badge-gold">
+                CUENTA CREADA
+            </span>
+        `;
+
+    }
+
+
+    if(
+        estado === "bloqueado"
+    ){
+
+        if(
+            registro.tipoBloqueo === "permanente"
+        ){
+
+            return `
+                <span class="badge badge-red">
+                    BLOQUEADO PERMANENTE
+                </span>
+            `;
+
+        }
+
+
+        return `
+            <span class="badge badge-red">
+                SUSPENDIDO
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <span class="badge badge-green">
+            DISPONIBLE
+        </span>
+    `;
+
+}
+
+
+/* =====================================================
+   RENDERIZAR
+===================================================== */
+
+function renderizar(){
+
+    const contenedor =
+        document.getElementById(
+            "list"
+        );
+
+
+    const search =
+        document
+            .getElementById(
+                "search"
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    let lista =
+        obtenerListaActual();
+
+
+    if(search){
+
+        lista =
+            lista.filter(
+                item => {
+
+                    const dni =
+                        String(
+                            item.dni || ""
+                        ).toLowerCase();
+
+
+                    const correo =
+                        String(
+                            item.correoGenerado || ""
+                        ).toLowerCase();
+
+
+                    const nombres =
+                        String(
+                            item.nombres ||
+                            item.nombreCompleto ||
+                            ""
+                        ).toLowerCase();
+
+
+                    return (
+                        dni.includes(search) ||
+                        correo.includes(search) ||
+                        nombres.includes(search)
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(
+        lista.length === 0
+    ){
+
+        contenedor.innerHTML = `
+
+            <div class="empty">
+
+                No hay autorizaciones registradas
+                para este tipo.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    contenedor.innerHTML =
+
+        lista
+            .sort(
+                (a,b) =>
+                    String(a.dni)
+                        .localeCompare(
+                            String(b.dni)
+                        )
+            )
+            .map(
+                item => {
+
+                    const nombreTipo =
+                        obtenerNombreTipo(
+                            item.tipo
+                        );
+
+
+                    const estaBloqueado =
+                        (
+                            item.estado === "bloqueado" ||
+                            item.permisoCrearCuenta === false
+                        );
+
+
+                    return `
+
+                        <div class="item">
+
+                            <div class="item-info">
+
+                                <div class="item-title">
+
+                                    ${item.dni}
+
+                                    <span class="badge badge-blue">
+
+                                        ${nombreTipo}
+
+                                    </span>
+
+                                    <span class="badge badge-gold">
+
+                                        PLAN ${item.plan || 1}
+
+                                    </span>
+
+                                    ${obtenerEstadoBadge(item)}
+
+                                </div>
+
+
+                                <div class="item-subtitle">
+
+                                    Haz clic en ver datos para consultar
+                                    las credenciales de la cuenta.
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="item-actions">
+
+                                <div class="action-row">
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        style="
+                                            background:#E1F0EC;
+                                            color:var(--primary);
+                                        "
+                                        onclick="abrirModalVerDatos('${item.dni}')"
+                                    >
+
+                                        👁️ Ver datos
+
+                                    </button>
+
+                                </div>
+
+
+                                <div class="action-row">
+
+                                    ${
+                                        estaBloqueado
+
+                                        ?
+
+                                        `
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            style="
+                                                background:#1D9B62;
+                                                color:white;
+                                            "
+                                            onclick="activarAcceso('${item.dni}')"
+                                        >
+                                            ✓ Activar
+                                        </button>
+                                        `
+
+                                        :
+
+                                        `
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger"
+                                            onclick="abrirModalBloqueo('${item.dni}')"
+                                            style="
+                                                font-size:11px;
+                                                padding:10px 4px;
+                                            "
+                                        >
+                                            🛑 Suspender
+                                        </button>
+
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger"
+                                            onclick="abrirModalBloqueoPermanente('${item.dni}')"
+                                            style="
+                                                background:#8B0000;
+                                                color:white;
+                                                font-size:11px;
+                                                padding:10px 4px;
+                                            "
+                                        >
+                                            🔒 Bloquear
+                                        </button>
+
+                                        `
+
+                                    }
+
+                                </div>
+
+
+                                <div class="action-row">
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-edit"
+                                        onclick="editar('${item.dni}')"
+                                    >
+                                        Editar
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger"
+                                        onclick="eliminar('${item.dni}')"
+                                    >
+                                        Eliminar
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   PREVISUALIZAR CORREO ADMIN
+===================================================== */
+
+function actualizarPreviewAdmin(){
+
+    const dni =
+        document
+            .getElementById(
+                "adminDni"
+            )
+            .value
+            .trim();
+
+
+    const preview =
+        document.getElementById(
+            "adminEmailPreview"
+        );
+
+
+    if(
+        /^\d{8}$/.test(dni)
+    ){
+
+        preview.textContent =
+            `${dni}@tikaryadmin.com`;
+
+    }
+
+    else{
+
+        preview.textContent =
+            "00000000@tikaryadmin.com";
+
+    }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer =
+    null;
+
+
+function mostrarToast(
+    mensaje,
+    tipo = ""
+){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        mensaje;
+
+
+    toast.className =
+        "toast show " + tipo;
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.className =
+                    "toast";
+
+            },
+            3200
+        );
+
+}
+
+
+/* =====================================================
+   EVENTOS DE TIPOS
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".type-option"
+    )
+    .forEach(
+        option => {
+
+            option.addEventListener(
+                "click",
+                () => {
+
+                    if(editando)
+                        cancelarEdicion();
+
+
+                    seleccionarTipo(
+                        option.dataset.type
+                    );
+
+
+                    renderizar();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+document
+    .getElementById(
+        "accessForm"
+    )
+    .addEventListener(
+        "submit",
+        e => {
+
+            e.preventDefault();
+
+            guardar();
+
+        }
+    );
+
+
+/* =====================================================
+   ADMIN FORM
+===================================================== */
+
+document
+    .getElementById(
+        "adminForm"
+    )
+    .addEventListener(
+        "submit",
+        e => {
+
+            e.preventDefault();
+
+            agregarAdministrador();
+
+        }
+    );
+
+
+/* =====================================================
+   CANCELAR
+===================================================== */
+
+document
+    .getElementById(
+        "cancel"
+    )
+    .addEventListener(
+        "click",
+        cancelarEdicion
+    );
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+document
+    .getElementById(
+        "search"
+    )
+    .addEventListener(
+        "input",
+        renderizar
+    );
+
+
+/* =====================================================
+   DNI
+===================================================== */
+
+document
+    .getElementById(
+        "dni"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value
+                    .replace(
+                        /\D/g,
+                        ""
+                    )
+                    .slice(
+                        0,
+                        8
+                    );
+
+        }
+    );
+
+
+/* =====================================================
+   DNI ADMIN
+===================================================== */
+
+document
+    .getElementById(
+        "adminDni"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value
+                    .replace(
+                        /\D/g,
+                        ""
+                    )
+                    .slice(
+                        0,
+                        8
+                    );
+
+
+            actualizarPreviewAdmin();
+
+        }
+    );
+
+
+/* =====================================================
+   BORRAR TODO
+===================================================== */
+
+document
+    .getElementById(
+        "btnReiniciarTodo"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            if(
+                confirm(
+                    "⚠️ ¿Estás COMPLETAMENTE seguro? Esto borrará TODOS los registros de DNI autorizados de la base de datos."
+                )
+            ){
+
+                try{
+
+                    const querySnapshot =
+                        await getDocs(
+                            collection(
+                                db,
+                                "dni_permitidos"
+                            )
+                        );
+
+
+                    const promesas =
+                        querySnapshot.docs.map(
+                            docu =>
+                                deleteDoc(
+                                    doc(
+                                        db,
+                                        "dni_permitidos",
+                                        docu.id
+                                    )
+                                )
+                        );
+
+
+                    await Promise.all(
+                        promesas
+                    );
+
+
+                    mostrarToast(
+                        "Se han eliminado todas las autorizaciones.",
+                        "success"
+                    );
+
+
+                    cancelarEdicion();
+
+                    cargarTodo();
+
+
+                }catch(error){
+
+                    mostrarToast(
+                        "Error al reiniciar los registros.",
+                        "error"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        seleccionarTipo(
+            "alumno"
+        );
+
+        actualizarPreviewAdmin();
+
+        cargarTodo();
+
+    }
+);
+
+</script>
+
+
+<!-- =====================================================
+     VERIFICACIÓN EXTRA DEL LOGO
+
+     Se ejecuta después de que todo el documento cargue.
+===================================================== -->
+
+<script>
+
+window.addEventListener(
+    "load",
+    function(){
+
+        const logo =
+            document.getElementById(
+                "tikaryLogo"
+            );
+
+
+        if(
+            logo &&
+            logo.complete &&
+            logo.naturalWidth === 0
+        ){
+
+            console.error(
+                "TIKARY: No se encontró ../imagenes/logo.jpg"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
