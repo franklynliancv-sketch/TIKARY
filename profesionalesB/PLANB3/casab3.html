@@ -1,0 +1,4120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#315f5c">
+
+<meta
+    name="description"
+    content="TIKARY | Profesionales Institucionales PLAN B3"
+>
+
+<title>TIKARY | Profesionales Institucionales B3</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+
+    --verde:#315f5c;
+    --verde-medio:#527f79;
+    --verde-claro:#6d918c;
+    --verde-oscuro:#234b47;
+
+    --verde-suave:#e8f3ef;
+    --verde-suave-2:#f1f8f5;
+
+    --dorado:#b18a45;
+    --dorado-claro:#d3b16d;
+
+    --blanco:#ffffff;
+    --crema:#fffdf7;
+
+    --texto:#294743;
+    --texto-secundario:#71837f;
+
+    --borde:rgba(49,95,92,.12);
+
+    --rojo:#b75b5b;
+    --rojo-suave:#fbeeee;
+
+    --azul:#54789b;
+    --azul-suave:#edf4fa;
+
+    --verde-ok:#4d8a70;
+    --verde-ok-suave:#eaf6ef;
+
+    --amarillo:#b18a45;
+    --amarillo-suave:#fbf5e7;
+
+    --sombra:
+        0 18px 50px rgba(35,75,71,.10);
+
+    --sombra-suave:
+        0 8px 25px rgba(35,75,71,.07);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Nunito',sans-serif;
+
+    color:var(--texto);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(211,177,109,.14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(109,145,140,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eef8f2,
+            #f8f3df,
+            #e8f1f5
+        );
+
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#eef4f1;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--verde-claro);
+    border-radius:20px;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    width:270px;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    padding:24px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(35,75,71,.98),
+            rgba(49,95,92,.97)
+        );
+
+    color:white;
+
+    z-index:100;
+
+    box-shadow:
+        10px 0 35px rgba(35,75,71,.12);
+
+    overflow-y:auto;
+
+    transition:.3s;
+}
+
+
+.logo-area{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:8px 8px 28px;
+}
+
+
+.logo-circle{
+
+    width:48px;
+    height:48px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--dorado-claro),
+            var(--dorado)
+        );
+
+    color:white;
+
+    font-size:21px;
+    font-weight:900;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.18);
+}
+
+
+.logo-text strong{
+
+    display:block;
+
+    font-size:22px;
+
+    letter-spacing:.5px;
+}
+
+
+.logo-text span{
+
+    font-size:11px;
+
+    opacity:.72;
+}
+
+
+.menu-title{
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    opacity:.55;
+
+    margin:12px 12px 8px;
+}
+
+
+.menu{
+
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+
+.menu-item{
+
+    border:0;
+
+    width:100%;
+
+    background:transparent;
+
+    color:rgba(255,255,255,.72);
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 13px;
+
+    border-radius:13px;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.2s;
+}
+
+
+.menu-item:hover{
+
+    background:rgba(255,255,255,.09);
+
+    color:white;
+
+    transform:translateX(2px);
+}
+
+
+.menu-item.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.17),
+            rgba(255,255,255,.08)
+        );
+
+    color:white;
+
+    box-shadow:
+        inset 3px 0 0 var(--dorado-claro);
+}
+
+
+.menu-icon{
+
+    width:25px;
+
+    text-align:center;
+
+    font-size:17px;
+}
+
+
+.sidebar-bottom{
+
+    margin-top:25px;
+
+    padding:14px 5px;
+
+    border-top:
+        1px solid rgba(255,255,255,.10);
+}
+
+
+.plan-box{
+
+    padding:15px;
+
+    border-radius:17px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(255,255,255,.09);
+}
+
+
+.plan-box small{
+
+    display:block;
+
+    font-size:10px;
+
+    opacity:.6;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+
+.plan-box strong{
+
+    display:block;
+
+    margin-top:4px;
+
+    font-size:18px;
+}
+
+
+.plan-capacity{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:11px;
+
+    font-size:11px;
+
+    opacity:.75;
+}
+
+
+.capacity-bar{
+
+    height:6px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:10px;
+
+    margin-top:7px;
+
+    overflow:hidden;
+}
+
+
+.capacity-fill{
+
+    height:100%;
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--dorado-claro),
+            var(--dorado)
+        );
+
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    margin-left:270px;
+
+    width:calc(100% - 270px);
+
+    min-height:100vh;
+}
+
+
+.topbar{
+
+    height:78px;
+
+    padding:0 30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    background:
+        rgba(255,255,255,.72);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+        1px solid rgba(49,95,92,.08);
+}
+
+
+.page-location{
+
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:12px;
+
+    color:var(--texto-secundario);
+}
+
+
+.page-location strong{
+
+    color:var(--texto);
+}
+
+
+.top-actions{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+
+.icon-btn{
+
+    width:40px;
+    height:40px;
+
+    border:1px solid var(--borde);
+
+    background:rgba(255,255,255,.8);
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    color:var(--texto);
+
+    font-size:17px;
+
+    position:relative;
+}
+
+
+.notification-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:var(--rojo);
+
+    position:absolute;
+
+    top:8px;
+    right:8px;
+
+    border:2px solid white;
+}
+
+
+/* =========================================================
+   USER MENU
+========================================================= */
+
+.user-menu{
+
+    position:relative;
+}
+
+
+.user-box{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    padding:5px 8px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+
+.user-box:hover{
+
+    background:rgba(49,95,92,.06);
+}
+
+
+.user-avatar{
+
+    width:40px;
+    height:40px;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde),
+            var(--verde-medio)
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:14px;
+    font-weight:900;
+}
+
+
+.user-info{
+
+    line-height:1.15;
+
+    max-width:190px;
+}
+
+
+.user-info strong{
+
+    display:block;
+
+    font-size:12px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
+
+
+.user-info span{
+
+    display:block;
+
+    font-size:10px;
+
+    color:var(--texto-secundario);
+
+    margin-top:3px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+}
+
+
+.user-dropdown{
+
+    position:absolute;
+
+    right:0;
+
+    top:58px;
+
+    width:250px;
+
+    background:white;
+
+    border:1px solid var(--borde);
+
+    border-radius:17px;
+
+    padding:10px;
+
+    box-shadow:var(--sombra);
+
+    display:none;
+
+    z-index:200;
+}
+
+
+.user-dropdown.show{
+    display:block;
+}
+
+
+.dropdown-user{
+
+    padding:12px;
+
+    border-bottom:
+        1px solid var(--borde);
+
+    margin-bottom:6px;
+}
+
+
+.dropdown-user strong{
+
+    display:block;
+
+    font-size:12px;
+}
+
+
+.dropdown-user span{
+
+    display:block;
+
+    color:var(--texto-secundario);
+
+    font-size:10px;
+
+    margin-top:4px;
+
+    word-break:break-word;
+}
+
+
+.logout-btn{
+
+    width:100%;
+
+    border:0;
+
+    background:var(--rojo-suave);
+
+    color:var(--rojo);
+
+    padding:11px;
+
+    border-radius:11px;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    text-align:left;
+}
+
+
+.logout-btn:hover{
+    background:#f8e2e2;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+
+    padding:30px;
+}
+
+
+.section{
+    display:none;
+}
+
+
+.section.active{
+    display:block;
+}
+
+
+.page-header{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+
+.page-header h1{
+
+    font-size:28px;
+
+    line-height:1.1;
+
+    margin-bottom:7px;
+}
+
+
+.page-header p{
+
+    color:var(--texto-secundario);
+
+    font-size:13px;
+}
+
+
+.header-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+
+.btn{
+
+    border:0;
+
+    border-radius:12px;
+
+    padding:11px 16px;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+
+.btn-primary{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde),
+            var(--verde-medio)
+        );
+
+    color:white;
+
+    box-shadow:
+        0 7px 18px rgba(49,95,92,.18);
+}
+
+
+.btn-gold{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--dorado),
+            var(--dorado-claro)
+        );
+
+    color:white;
+}
+
+
+.btn-light{
+
+    background:white;
+
+    border:1px solid var(--borde);
+
+    color:var(--texto);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+
+    background:
+        rgba(255,255,255,.78);
+
+    border:
+        1px solid rgba(255,255,255,.75);
+
+    border-radius:21px;
+
+    box-shadow:var(--sombra-suave);
+
+    padding:20px;
+}
+
+
+.card-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:17px;
+}
+
+
+.card-title h3{
+    font-size:15px;
+}
+
+
+.card-title span{
+
+    color:var(--texto-secundario);
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:18px;
+}
+
+
+.stat{
+
+    min-height:145px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+.stat::after{
+
+    content:"";
+
+    width:90px;
+    height:90px;
+
+    position:absolute;
+
+    right:-30px;
+    bottom:-30px;
+
+    border-radius:50%;
+
+    background:
+        rgba(49,95,92,.05);
+}
+
+
+.stat-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+
+.stat-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+}
+
+
+.stat-icon.green{
+    background:var(--verde-suave);
+}
+
+
+.stat-icon.gold{
+    background:var(--amarillo-suave);
+}
+
+
+.stat-icon.blue{
+    background:var(--azul-suave);
+}
+
+
+.stat-icon.red{
+    background:var(--rojo-suave);
+}
+
+
+.stat-label{
+
+    margin-top:17px;
+
+    font-size:11px;
+
+    color:var(--texto-secundario);
+}
+
+
+.stat-value{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    margin-top:2px;
+}
+
+
+.stat-detail{
+
+    margin-top:5px;
+
+    font-size:10px;
+
+    color:var(--texto-secundario);
+}
+
+
+/* =========================================================
+   DASH GRID
+========================================================= */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1.45fr 1fr;
+
+    gap:18px;
+}
+
+
+.bottom-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:18px;
+
+    margin-top:18px;
+}
+
+
+/* =========================================================
+   REQUESTS
+========================================================= */
+
+.request{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px 0;
+
+    border-bottom:
+        1px solid rgba(49,95,92,.08);
+}
+
+
+.request:last-child{
+    border-bottom:0;
+}
+
+
+.request-avatar{
+
+    width:42px;
+    height:42px;
+
+    flex:none;
+
+    border-radius:13px;
+
+    background:
+        var(--verde-suave);
+
+    color:var(--verde);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+    font-weight:900;
+}
+
+
+.request-info{
+
+    min-width:0;
+
+    flex:1;
+}
+
+
+.request-info strong{
+
+    display:block;
+
+    font-size:12px;
+}
+
+
+.request-info span{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:var(--texto-secundario);
+
+    font-size:10px;
+}
+
+
+.request-actions{
+
+    display:flex;
+    gap:5px;
+}
+
+
+.mini-btn{
+
+    border:0;
+
+    border-radius:9px;
+
+    padding:7px 9px;
+
+    font-family:inherit;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+.accept{
+
+    color:var(--verde-ok);
+
+    background:var(--verde-ok-suave);
+}
+
+
+.reject{
+
+    color:var(--rojo);
+
+    background:var(--rojo-suave);
+}
+
+
+/* =========================================================
+   TEAM
+========================================================= */
+
+.team-list{
+
+    display:grid;
+
+    gap:10px;
+}
+
+
+.team-member{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:11px;
+
+    background:
+        rgba(247,250,248,.8);
+
+    border-radius:14px;
+
+    border:1px solid rgba(49,95,92,.06);
+}
+
+
+.member-avatar{
+
+    width:39px;
+    height:39px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9e9e3,
+            #edf6f2
+        );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--verde);
+
+    font-size:11px;
+
+    font-weight:900;
+}
+
+
+.member-info{
+    flex:1;
+}
+
+
+.member-info strong{
+
+    display:block;
+
+    font-size:11px;
+}
+
+
+.member-info span{
+
+    display:block;
+
+    font-size:9px;
+
+    color:var(--texto-secundario);
+
+    margin-top:2px;
+}
+
+
+.status{
+
+    display:flex;
+    align-items:center;
+
+    gap:5px;
+
+    font-size:9px;
+
+    font-weight:800;
+}
+
+
+.status-dot{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+}
+
+
+.status-online{
+    background:#58a879;
+}
+
+
+.status-busy{
+    background:#d3a14c;
+}
+
+
+.status-offline{
+    background:#a8b4b1;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+
+th{
+
+    text-align:left;
+
+    padding:12px 10px;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    color:var(--texto-secundario);
+
+    border-bottom:
+        1px solid var(--borde);
+}
+
+
+td{
+
+    padding:13px 10px;
+
+    font-size:11px;
+
+    border-bottom:
+        1px solid rgba(49,95,92,.06);
+}
+
+
+tr:last-child td{
+    border-bottom:0;
+}
+
+
+.person{
+
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+
+.person-avatar{
+
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+
+    background:var(--verde-suave);
+
+    color:var(--verde);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:10px;
+    font-weight:900;
+}
+
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:5px 8px;
+
+    border-radius:8px;
+
+    font-size:9px;
+
+    font-weight:800;
+}
+
+
+.badge.green{
+
+    color:var(--verde-ok);
+
+    background:var(--verde-ok-suave);
+}
+
+
+.badge.gold{
+
+    color:#92702e;
+
+    background:var(--amarillo-suave);
+}
+
+
+.badge.red{
+
+    color:var(--rojo);
+
+    background:var(--rojo-suave);
+}
+
+
+.badge.blue{
+
+    color:var(--azul);
+
+    background:var(--azul-suave);
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:15px;
+}
+
+
+.input,
+.select{
+
+    height:40px;
+
+    padding:0 12px;
+
+    border-radius:11px;
+
+    border:
+        1px solid var(--borde);
+
+    background:rgba(255,255,255,.8);
+
+    font-family:inherit;
+
+    color:var(--texto);
+
+    font-size:11px;
+
+    outline:none;
+}
+
+
+.input{
+    min-width:220px;
+}
+
+
+.input:focus,
+.select:focus{
+
+    border-color:
+        rgba(49,95,92,.35);
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        280px 1fr;
+
+    gap:18px;
+}
+
+
+.profile-card{
+    text-align:center;
+}
+
+
+.profile-big-avatar{
+
+    width:90px;
+    height:90px;
+
+    margin:4px auto 15px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde),
+            var(--verde-medio)
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+    font-weight:900;
+}
+
+
+.profile-card h2{
+    font-size:19px;
+}
+
+
+.profile-card p{
+
+    color:var(--texto-secundario);
+
+    font-size:11px;
+
+    margin-top:4px;
+}
+
+
+.profile-email{
+
+    display:block;
+
+    margin-top:7px;
+
+    color:var(--verde);
+
+    font-size:10px;
+
+    word-break:break-all;
+}
+
+
+.profile-details{
+
+    margin-top:20px;
+
+    display:grid;
+
+    gap:10px;
+}
+
+
+.detail-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    font-size:10px;
+
+    padding-bottom:9px;
+
+    border-bottom:
+        1px solid rgba(49,95,92,.07);
+}
+
+
+.detail-row span:first-child{
+    color:var(--texto-secundario);
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+.calendar-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:6px;
+}
+
+
+.calendar-day{
+
+    min-height:55px;
+
+    padding:7px;
+
+    border-radius:9px;
+
+    background:
+        rgba(245,249,247,.8);
+
+    font-size:10px;
+}
+
+
+.calendar-day strong{
+    font-size:11px;
+}
+
+
+.calendar-day.active{
+
+    background:
+        var(--verde);
+
+    color:white;
+}
+
+
+.calendar-day.has-event::after{
+
+    content:"";
+
+    display:block;
+
+    width:5px;
+    height:5px;
+
+    margin-top:7px;
+
+    border-radius:50%;
+
+    background:var(--dorado);
+}
+
+
+.calendar-head{
+
+    text-align:center;
+
+    font-size:9px;
+
+    color:var(--texto-secundario);
+
+    padding:4px;
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.alert{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:11px;
+
+    padding:13px;
+
+    border-radius:14px;
+
+    margin-bottom:9px;
+}
+
+
+.alert:last-child{
+    margin-bottom:0;
+}
+
+
+.alert-icon{
+
+    width:32px;
+    height:32px;
+
+    flex:none;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.alert strong{
+
+    display:block;
+
+    font-size:11px;
+}
+
+
+.alert p{
+
+    font-size:10px;
+
+    color:var(--texto-secundario);
+
+    margin-top:2px;
+}
+
+
+.alert.warning{
+    background:var(--amarillo-suave);
+}
+
+
+.alert.warning .alert-icon{
+    background:#f3e5bd;
+}
+
+
+.alert.info{
+    background:var(--azul-suave);
+}
+
+
+.alert.info .alert-icon{
+    background:#d9e8f3;
+}
+
+
+.alert.success{
+    background:var(--verde-ok-suave);
+}
+
+
+.alert.success .alert-icon{
+    background:#d6ebdf;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(20,45,42,.42);
+
+    backdrop-filter:blur(7px);
+
+    z-index:500;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+
+.modal-overlay.show{
+    display:flex;
+}
+
+
+.modal{
+
+    width:min(560px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:
+        rgba(255,255,255,.96);
+
+    border-radius:24px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.20);
+
+    padding:24px;
+}
+
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+
+.modal-header h2{
+    font-size:19px;
+}
+
+
+.close-modal{
+
+    border:0;
+
+    background:#f2f5f3;
+
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:var(--texto);
+}
+
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+}
+
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:5px;
+}
+
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+
+.form-group label{
+
+    font-size:10px;
+
+    font-weight:800;
+}
+
+
+.form-control{
+
+    height:42px;
+
+    border:1px solid var(--borde);
+
+    border-radius:11px;
+
+    padding:0 12px;
+
+    font-family:inherit;
+
+    outline:none;
+
+    font-size:11px;
+}
+
+
+.form-control:focus{
+
+    border-color:
+        rgba(49,95,92,.4);
+}
+
+
+.modal-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    margin-top:20px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    z-index:700;
+
+    background:
+        var(--verde-oscuro);
+
+    color:white;
+
+    padding:13px 17px;
+
+    border-radius:13px;
+
+    box-shadow:
+        0 15px 35px rgba(35,75,71,.25);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    transform:
+        translateY(100px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+
+.toast.show{
+
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef8f2,
+            #f8f3df,
+            #e8f1f5
+        );
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:15px;
+}
+
+
+.loading-logo{
+
+    width:65px;
+    height:65px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde),
+            var(--verde-medio)
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    box-shadow:var(--sombra);
+}
+
+
+.loading-text{
+
+    font-size:12px;
+
+    color:var(--texto-secundario);
+
+    font-weight:700;
+}
+
+
+.loading-spinner{
+
+    width:25px;
+    height:25px;
+
+    border:3px solid rgba(49,95,92,.15);
+
+    border-top-color:var(--verde);
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+.mobile-menu{
+
+    display:none;
+
+    border:0;
+
+    background:transparent;
+
+    font-size:22px;
+
+    color:var(--texto);
+}
+
+
+@media(max-width:1100px){
+
+    .stats-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:850px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+    }
+
+    .main{
+
+        margin-left:0;
+
+        width:100%;
+    }
+
+    .mobile-menu{
+
+        display:block;
+    }
+
+    .topbar{
+
+        padding:0 17px;
+    }
+
+    .content{
+
+        padding:20px 15px;
+    }
+
+    .profile-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:620px){
+
+    .stats-grid{
+
+        grid-template-columns:1fr 1fr;
+
+        gap:10px;
+    }
+
+    .stat{
+
+        padding:15px;
+
+        min-height:130px;
+    }
+
+    .stat-value{
+        font-size:23px;
+    }
+
+    .bottom-grid{
+        grid-template-columns:1fr;
+    }
+
+    .page-header{
+        flex-direction:column;
+    }
+
+    .page-header h1{
+        font-size:23px;
+    }
+
+    .header-actions{
+        width:100%;
+    }
+
+    .header-actions .btn{
+        flex:1;
+    }
+
+    .user-info{
+        display:none;
+    }
+
+    .top-actions{
+        gap:5px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .input{
+        min-width:100%;
+    }
+
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+        scroll-behavior:auto !important;
+        transition:none !important;
+        animation:none !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     PANTALLA DE CARGA
+========================================================= -->
+
+<div
+    class="loading-screen"
+    id="loadingScreen"
+>
+
+    <div class="loading-logo">
+        T
+    </div>
+
+    <div class="loading-spinner"></div>
+
+    <div class="loading-text">
+        Verificando acceso a TIKARY...
+    </div>
+
+</div>
+
+
+
+<div class="app">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+
+    <div class="logo-area">
+
+        <div class="logo-circle">
+            T
+        </div>
+
+        <div class="logo-text">
+
+            <strong>TIKARY</strong>
+
+            <span>
+                Profesionales institucionales
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        Principal
+    </div>
+
+
+    <nav class="menu">
+
+
+        <button
+            class="menu-item active"
+            data-section="inicio"
+        >
+
+            <span class="menu-icon">⌂</span>
+
+            Inicio
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="solicitudes"
+        >
+
+            <span class="menu-icon">✉</span>
+
+            Solicitudes
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="personas"
+        >
+
+            <span class="menu-icon">♙</span>
+
+            Estudiantes
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="agenda"
+        >
+
+            <span class="menu-icon">▣</span>
+
+            Agenda
+
+        </button>
+
+
+        <div class="menu-title">
+            Equipo
+        </div>
+
+
+        <button
+            class="menu-item"
+            data-section="equipo"
+        >
+
+            <span class="menu-icon">♧</span>
+
+            Equipo de psicología
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="seguimiento"
+        >
+
+            <span class="menu-icon">◌</span>
+
+            Seguimientos
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="reportes"
+        >
+
+            <span class="menu-icon">▥</span>
+
+            Reportes
+
+        </button>
+
+
+        <div class="menu-title">
+            Sistema
+        </div>
+
+
+        <button
+            class="menu-item"
+            data-section="notificaciones"
+        >
+
+            <span class="menu-icon">♢</span>
+
+            Notificaciones
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            data-section="configuracion"
+        >
+
+            <span class="menu-icon">⚙</span>
+
+            Configuración
+
+        </button>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="plan-box">
+
+            <small>Plan activo</small>
+
+            <strong>PLAN B3</strong>
+
+            <div class="plan-capacity">
+
+                <span>Profesionales</span>
+
+                <span>8 / 8</span>
+
+            </div>
+
+            <div class="capacity-bar">
+
+                <div class="capacity-fill"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main">
+
+
+<header class="topbar">
+
+
+    <div class="page-location">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+            ☰
+        </button>
+
+        <span>TIKARY</span>
+
+        <span>›</span>
+
+        <strong>Panel B3</strong>
+
+    </div>
+
+
+    <div class="top-actions">
+
+
+        <button
+            class="icon-btn"
+            onclick="showSection('notificaciones')"
+            title="Notificaciones"
+        >
+
+            ♢
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+        <div class="user-menu">
+
+
+            <div
+                class="user-box"
+                id="userBox"
+            >
+
+                <div
+                    class="user-avatar"
+                    id="userAvatar"
+                >
+                    PI
+                </div>
+
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        Cargando...
+                    </strong>
+
+                    <span id="userEmail">
+                        Verificando cuenta...
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="user-dropdown"
+                id="userDropdown"
+            >
+
+                <div class="dropdown-user">
+
+                    <strong id="dropdownName">
+                        Profesional institucional
+                    </strong>
+
+                    <span id="dropdownEmail">
+                        —
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="logout-btn"
+                    id="logoutBtn"
+                >
+                    ↪ Cerrar sesión
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</header>
+
+
+
+<div class="content">
+
+
+
+<!-- =========================================================
+     INICIO
+========================================================= -->
+
+<section
+    class="section active"
+    id="inicio"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Panel institucional
+            </h1>
+
+            <p>
+                Gestión del equipo de psicología institucional · PLAN B3
+            </p>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                class="btn btn-light"
+                onclick="showSection('reportes')"
+            >
+                ▥ Ver reportes
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="openModal('modalSolicitud')"
+            >
+                + Nueva solicitud
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+
+        <div class="card stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon green">
+                    ♧
+                </div>
+
+                <span class="badge green">
+                    8 activos
+                </span>
+
+            </div>
+
+            <div class="stat-label">
+                Psicólogos institucionales
+            </div>
+
+            <div class="stat-value">
+                8
+            </div>
+
+            <div class="stat-detail">
+                Capacidad del PLAN B3
+            </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon gold">
+                    ✉
+                </div>
+
+                <span class="badge gold">
+                    Pendientes
+                </span>
+
+            </div>
+
+            <div class="stat-label">
+                Solicitudes recibidas
+            </div>
+
+            <div class="stat-value">
+                12
+            </div>
+
+            <div class="stat-detail">
+                Requieren revisión del equipo
+            </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon blue">
+                    ♙
+                </div>
+
+                <span class="badge blue">
+                    Activos
+                </span>
+
+            </div>
+
+            <div class="stat-label">
+                Estudiantes atendidos
+            </div>
+
+            <div class="stat-value">
+                186
+            </div>
+
+            <div class="stat-detail">
+                Seguimiento institucional
+            </div>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <div class="stat-top">
+
+                <div class="stat-icon red">
+                    ◌
+                </div>
+
+                <span class="badge red">
+                    7 pendientes
+                </span>
+
+            </div>
+
+            <div class="stat-label">
+                Seguimientos
+            </div>
+
+            <div class="stat-value">
+                24
+            </div>
+
+            <div class="stat-detail">
+                Actividad reciente
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="dashboard-grid">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Solicitudes recientes
+                </h3>
+
+                <button
+                    class="btn btn-light"
+                    onclick="showSection('solicitudes')"
+                >
+                    Ver todas
+                </button>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    LM
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        Luis Mendoza
+                    </strong>
+
+                    <span>
+                        Solicitud de orientación · Hoy, 09:20
+                    </span>
+
+                </div>
+
+                <div class="request-actions">
+
+                    <button
+                        class="mini-btn accept"
+                        onclick="acceptRequest('Luis Mendoza')"
+                    >
+                        Aceptar
+                    </button>
+
+                    <button
+                        class="mini-btn reject"
+                        onclick="rejectRequest('Luis Mendoza')"
+                    >
+                        Rechazar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    AS
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        Andrea Salazar
+                    </strong>
+
+                    <span>
+                        Solicitud de atención · Hoy, 08:45
+                    </span>
+
+                </div>
+
+                <div class="request-actions">
+
+                    <button
+                        class="mini-btn accept"
+                        onclick="acceptRequest('Andrea Salazar')"
+                    >
+                        Aceptar
+                    </button>
+
+                    <button
+                        class="mini-btn reject"
+                        onclick="rejectRequest('Andrea Salazar')"
+                    >
+                        Rechazar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    CR
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        Carlos Ríos
+                    </strong>
+
+                    <span>
+                        Orientación académica · Ayer, 16:10
+                    </span>
+
+                </div>
+
+                <div class="request-actions">
+
+                    <button
+                        class="mini-btn accept"
+                        onclick="acceptRequest('Carlos Ríos')"
+                    >
+                        Aceptar
+                    </button>
+
+                    <button
+                        class="mini-btn reject"
+                        onclick="rejectRequest('Carlos Ríos')"
+                    >
+                        Rechazar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    JV
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        José Vargas
+                    </strong>
+
+                    <span>
+                        Solicitud de seguimiento · Ayer, 14:32
+                    </span>
+
+                </div>
+
+                <div class="request-actions">
+
+                    <button
+                        class="mini-btn accept"
+                        onclick="acceptRequest('José Vargas')"
+                    >
+                        Aceptar
+                    </button>
+
+                    <button
+                        class="mini-btn reject"
+                        onclick="rejectRequest('José Vargas')"
+                    >
+                        Rechazar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Equipo de psicología
+                </h3>
+
+                <span>
+                    8 profesionales
+                </span>
+
+            </div>
+
+
+            <div class="team-list">
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        AT
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Ana Torres
+                        </strong>
+
+                        <span>
+                            Psicóloga institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-online"></span>
+                        Disponible
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        LM
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Luis Mendoza
+                        </strong>
+
+                        <span>
+                            Psicólogo institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-busy"></span>
+                        En atención
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        AS
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Andrea Salazar
+                        </strong>
+
+                        <span>
+                            Psicóloga institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-online"></span>
+                        Disponible
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        CR
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Carlos Ríos
+                        </strong>
+
+                        <span>
+                            Psicólogo institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-busy"></span>
+                        En atención
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        MV
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            María Vega
+                        </strong>
+
+                        <span>
+                            Psicóloga institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-online"></span>
+                        Disponible
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        DR
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Diego Ramos
+                        </strong>
+
+                        <span>
+                            Psicólogo institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-online"></span>
+                        Disponible
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        LC
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Laura Castillo
+                        </strong>
+
+                        <span>
+                            Psicóloga institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-busy"></span>
+                        En atención
+                    </div>
+
+                </div>
+
+
+                <div class="team-member">
+
+                    <div class="member-avatar">
+                        PN
+                    </div>
+
+                    <div class="member-info">
+
+                        <strong>
+                            Pedro Navarro
+                        </strong>
+
+                        <span>
+                            Psicólogo institucional
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+                        <span class="status-dot status-online"></span>
+                        Disponible
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="bottom-grid">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Distribución del equipo
+                </h3>
+
+                <span>
+                    Carga actual
+                </span>
+
+            </div>
+
+            <canvas
+                id="workloadChart"
+                height="190"
+            ></canvas>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Alertas del equipo
+                </h3>
+
+                <span>
+                    Hoy
+                </span>
+
+            </div>
+
+
+            <div class="alert warning">
+
+                <div class="alert-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <strong>
+                        7 seguimientos pendientes
+                    </strong>
+
+                    <p>
+                        Revisar antes del cierre de jornada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="alert info">
+
+                <div class="alert-icon">
+                    i
+                </div>
+
+                <div>
+
+                    <strong>
+                        12 solicitudes nuevas
+                    </strong>
+
+                    <p>
+                        Hay solicitudes esperando asignación.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="alert success">
+
+                <div class="alert-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Equipo disponible
+                    </strong>
+
+                    <p>
+                        Hay profesionales disponibles para nuevas solicitudes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     SOLICITUDES
+========================================================= -->
+
+<section
+    class="section"
+    id="solicitudes"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Solicitudes
+            </h1>
+
+            <p>
+                Gestiona las solicitudes recibidas y asigna profesionales.
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="openModal('modalSolicitud')"
+        >
+            + Registrar solicitud
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+
+        <div class="filters">
+
+            <input
+                class="input"
+                id="searchRequests"
+                type="search"
+                placeholder="Buscar estudiante..."
+                oninput="filterRequests()"
+            >
+
+
+            <select
+                class="select"
+                id="requestStatus"
+                onchange="filterRequests()"
+            >
+
+                <option value="todos">
+                    Todos los estados
+                </option>
+
+                <option value="pendiente">
+                    Pendientes
+                </option>
+
+                <option value="aceptada">
+                    Aceptadas
+                </option>
+
+                <option value="rechazada">
+                    Rechazadas
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Estudiante</th>
+
+                        <th>Solicitud</th>
+
+                        <th>Fecha</th>
+
+                        <th>Estado</th>
+
+                        <th>Profesional</th>
+
+                        <th>Acción</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="requestsTable">
+
+
+                    <tr data-status="pendiente">
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    LM
+                                </div>
+
+                                <strong>
+                                    Luis Mendoza
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Orientación
+                        </td>
+
+                        <td>
+                            27/09/2026
+                        </td>
+
+                        <td>
+                            <span class="badge gold">
+                                Pendiente
+                            </span>
+                        </td>
+
+                        <td>
+                            Sin asignar
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="assignRequest(this)"
+                            >
+                                Asignar
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr data-status="pendiente">
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    AS
+                                </div>
+
+                                <strong>
+                                    Andrea Salazar
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Atención
+                        </td>
+
+                        <td>
+                            27/09/2026
+                        </td>
+
+                        <td>
+                            <span class="badge gold">
+                                Pendiente
+                            </span>
+                        </td>
+
+                        <td>
+                            Sin asignar
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="assignRequest(this)"
+                            >
+                                Asignar
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr data-status="aceptada">
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    CR
+                                </div>
+
+                                <strong>
+                                    Carlos Ríos
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Orientación académica
+                        </td>
+
+                        <td>
+                            26/09/2026
+                        </td>
+
+                        <td>
+                            <span class="badge green">
+                                Aceptada
+                            </span>
+                        </td>
+
+                        <td>
+                            Ana Torres
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="showToast('Solicitud ya asignada.')"
+                            >
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr data-status="aceptada">
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    JV
+                                </div>
+
+                                <strong>
+                                    José Vargas
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            Seguimiento
+                        </td>
+
+                        <td>
+                            26/09/2026
+                        </td>
+
+                        <td>
+                            <span class="badge green">
+                                Aceptada
+                            </span>
+                        </td>
+
+                        <td>
+                            Luis Mendoza
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="showToast('Solicitud abierta.')"
+                            >
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     ESTUDIANTES
+========================================================= -->
+
+<section
+    class="section"
+    id="personas"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Estudiantes
+            </h1>
+
+            <p>
+                Consulta y organiza los estudiantes asignados al equipo.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+
+        <div class="filters">
+
+            <input
+                class="input"
+                type="search"
+                placeholder="Buscar por nombre o código..."
+            >
+
+
+            <select class="select">
+
+                <option>
+                    Todos los grados
+                </option>
+
+                <option>1.º</option>
+                <option>2.º</option>
+                <option>3.º</option>
+                <option>4.º</option>
+                <option>5.º</option>
+
+            </select>
+
+
+            <select class="select">
+
+                <option>
+                    Todos los estados
+                </option>
+
+                <option>
+                    En seguimiento
+                </option>
+
+                <option>
+                    Activo
+                </option>
+
+                <option>
+                    Pendiente
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Estudiante</th>
+                        <th>Grado</th>
+                        <th>Profesional</th>
+                        <th>Última actividad</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    MC
+                                </div>
+
+                                <strong>
+                                    María Castro
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>5.º A</td>
+
+                        <td>Ana Torres</td>
+
+                        <td>Hoy</td>
+
+                        <td>
+                            <span class="badge green">
+                                Activo
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="showToast('Perfil del estudiante abierto.')"
+                            >
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    JP
+                                </div>
+
+                                <strong>
+                                    Juan Pérez
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>4.º B</td>
+
+                        <td>Luis Mendoza</td>
+
+                        <td>Ayer</td>
+
+                        <td>
+                            <span class="badge gold">
+                                Seguimiento
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="showToast('Perfil del estudiante abierto.')"
+                            >
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+
+                            <div class="person">
+
+                                <div class="person-avatar">
+                                    RG
+                                </div>
+
+                                <strong>
+                                    Rosa García
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>3.º A</td>
+
+                        <td>Andrea Salazar</td>
+
+                        <td>24/09/2026</td>
+
+                        <td>
+                            <span class="badge blue">
+                                Pendiente
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="mini-btn accept"
+                                onclick="showToast('Perfil del estudiante abierto.')"
+                            >
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     AGENDA
+========================================================= -->
+
+<section
+    class="section"
+    id="agenda"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Agenda institucional
+            </h1>
+
+            <p>
+                Organiza las atenciones y disponibilidad del equipo.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="openModal('modalCita')"
+        >
+            + Nueva cita
+        </button>
+
+    </div>
+
+
+
+    <div class="bottom-grid">
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Septiembre 2026
+                </h3>
+
+                <span>
+                    Semana actual
+                </span>
+
+            </div>
+
+
+            <div class="calendar-grid">
+
+                <div class="calendar-head">LUN</div>
+                <div class="calendar-head">MAR</div>
+                <div class="calendar-head">MIÉ</div>
+                <div class="calendar-head">JUE</div>
+                <div class="calendar-head">VIE</div>
+                <div class="calendar-head">SÁB</div>
+                <div class="calendar-head">DOM</div>
+
+
+                <div class="calendar-day">
+                    <strong>21</strong>
+                </div>
+
+                <div class="calendar-day has-event">
+                    <strong>22</strong>
+                </div>
+
+                <div class="calendar-day has-event">
+                    <strong>23</strong>
+                </div>
+
+                <div class="calendar-day">
+                    <strong>24</strong>
+                </div>
+
+                <div class="calendar-day has-event">
+                    <strong>25</strong>
+                </div>
+
+                <div class="calendar-day">
+                    <strong>26</strong>
+                </div>
+
+                <div class="calendar-day active has-event">
+                    <strong>27</strong>
+                </div>
+
+                <div class="calendar-day">
+                    <strong>28</strong>
+                </div>
+
+                <div class="calendar-day">
+                    <strong>29</strong>
+                </div>
+
+                <div class="calendar-day">
+                    <strong>30</strong>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Atenciones de hoy
+                </h3>
+
+                <span>
+                    27 septiembre
+                </span>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    09
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        09:00 · María Castro
+                    </strong>
+
+                    <span>
+                        Psic. Ana Torres · Orientación
+                    </span>
+
+                </div>
+
+                <span class="badge green">
+                    Confirmada
+                </span>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    11
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        11:00 · Juan Pérez
+                    </strong>
+
+                    <span>
+                        Psic. Luis Mendoza · Seguimiento
+                    </span>
+
+                </div>
+
+                <span class="badge gold">
+                    Pendiente
+                </span>
+
+            </div>
+
+
+            <div class="request">
+
+                <div class="request-avatar">
+                    15
+                </div>
+
+                <div class="request-info">
+
+                    <strong>
+                        15:30 · Rosa García
+                    </strong>
+
+                    <span>
+                        Psic. Andrea Salazar · Orientación
+                    </span>
+
+                </div>
+
+                <span class="badge blue">
+                    Programada
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     EQUIPO
+========================================================= -->
+
+<section
+    class="section"
+    id="equipo"
+>
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Equipo de psicología
+            </h1>
+
+            <p>
+                Administración de los 8 profesionales institucionales.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="openModal('modalProfesional')"
+        >
+            + Agregar profesional
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Profesional</th>
+                        <th>Rol</th>
+                        <th>Estudiantes</th>
+                        <th>Solicitudes</th>
+                        <th>Disponibilidad</th>
+                        <th>Estado</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="person">
+                                <div class="person-avatar">AT</div>
+                                <strong>Ana Torres</strong>
+                            </div>
+                        </td>
+
+                        <td>Psicóloga</td>
+
+                        <td>28</td>
+
+                        <td>2</td>
+
+                        <td>Disponible</td>
+
+                        <td>
+                            <span class="badge green">
+                                Activo
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="person">
+                                <div class="person-avatar">LM</div>
+                                <strong>Luis Mendoza</strong>
+                            </div>
+                        </td>
+
+                        <td>Psicólogo</td>
+
+                        <td>31</td>
+
+                        <td>1</td>
+
+                        <td>En atención</td>
+
+                        <td>
+                            <span class="badge green">
+                                Activo
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="person">
+                                <div class="
